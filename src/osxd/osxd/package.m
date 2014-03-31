@@ -14,4 +14,10 @@
     
     return *rv;
 }
+
+-(void)download {
+    if (!self.URL) {
+        
+    }
+}
 @end

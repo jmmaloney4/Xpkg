@@ -11,6 +11,7 @@
 		043230E018E8DE5B00731B2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 043230DF18E8DE5B00731B2B /* main.m */; };
 		043230E418E8DE5B00731B2B /* osxd.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 043230E318E8DE5B00731B2B /* osxd.1 */; };
 		043230EC18E8E52A00731B2B /* package.m in Sources */ = {isa = PBXBuildFile; fileRef = 043230EB18E8E52A00731B2B /* package.m */; };
+		0432310418E8FBD100731B2B /* share.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432310318E8FBD100731B2B /* share.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		043230E318E8DE5B00731B2B /* osxd.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = osxd.1; sourceTree = "<group>"; };
 		043230EA18E8E52A00731B2B /* package.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = package.h; sourceTree = "<group>"; };
 		043230EB18E8E52A00731B2B /* package.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = package.m; sourceTree = "<group>"; };
+		0432310218E8FBD100731B2B /* share.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = share.h; sourceTree = "<group>"; };
+		0432310318E8FBD100731B2B /* share.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = share.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,8 @@
 				043230DF18E8DE5B00731B2B /* main.m */,
 				043230EA18E8E52A00731B2B /* package.h */,
 				043230EB18E8E52A00731B2B /* package.m */,
+				0432310218E8FBD100731B2B /* share.h */,
+				0432310318E8FBD100731B2B /* share.m */,
 				043230E318E8DE5B00731B2B /* osxd.1 */,
 				043230E118E8DE5B00731B2B /* Supporting Files */,
 			);
@@ -144,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0432310418E8FBD100731B2B /* share.m in Sources */,
 				043230EC18E8E52A00731B2B /* package.m in Sources */,
 				043230E018E8DE5B00731B2B /* main.m in Sources */,
 			);
@@ -259,6 +265,7 @@
 				043230E918E8DE5B00731B2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
