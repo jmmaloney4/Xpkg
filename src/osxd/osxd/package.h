@@ -12,4 +12,5 @@
 @property NSURL* URL;
 @property NSString* path;
 -(NSInteger)install;
+-(id) initWithURL:(NSURL*)URL;
 @end

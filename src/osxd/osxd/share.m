@@ -25,11 +25,14 @@
     config = [NSFileHandle fileHandleForReadingAtPath:CONFIG_FILE];
     return config;
 }
-
-+(NSString*) getConfigFileString {
-    NSData *data = [[share getConfigFile] readDataToEndOfFile];
++(NSString*) getStringForFileAtPath:(NSString*) path {
+    NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:path];
+    NSData *data = [file readDataToEndOfFile];
     NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
     return string;
+}
++(NSString*) getConfigFileString {
+    return [share getStringForFileAtPath:CONFIG_PATH];
 }
 
 +(BOOL) exitIfNotRoot {
@@ -50,16 +53,63 @@
     printf("%s", [x UTF8String]);
 }
 
-+(void) createPackage:(NSString*)path withFromat:(NSInteger*)type {
++(void) printError:(NSString*) x {
+    printf("%sERROR: %s%s", [BOLDRED UTF8String], [x UTF8String], [RESET UTF8String]);
+}
+
++(NSString*) getInfoFileForPath:(NSString*) path {
+    NSMutableString* infoFilePath = [[NSMutableString alloc] init];
+    [infoFilePath appendString:path];
+    [infoFilePath appendString:@"/OSXD/info"];
+    return infoFilePath;
+}
+
++(NSString*) createPackage:(NSString*)path {
+    BOOL isBinary = false;
+    NSString* infoFile = [share getStringForFileAtPath:[share getInfoFileForPath:path]];
+    
+    if ([infoFile hasPrefix:SRC]) {
+        
+    } else if ([infoFile hasPrefix:BIN]) {
+        
+    } else {
+        [share printError:@"Unidentifiable Package Type"];
+    }
+    
+    
+    // tar NSTask
     NSTask* tar = [[NSTask alloc]init];
     [tar setLaunchPath:@"/usr/bin/tar"];
+    
+    // Output File Path
     NSMutableString* out = [[NSMutableString alloc] initWithUTF8String:[path UTF8String]];
-    if (type == 0) {
+    if ([out hasSuffix:@"/"]) {
+        // removes the last character from the range
+        NSRange range = {[out length], 1};
+        [out deleteCharactersInRange:range];
+    }
+    
+    // Get Type of Package to be created
+    if (isBinary) {
+        // Binary
         [out appendString:@".xbp"];
     } else {
+        // Source
         [out appendString:@".xsp"];
     }
-    [tar setArguments:@[@"-cj", @"--format", @"ustar", path, @">", out]];
+    
+    NSPipe* pipe = [NSPipe pipe];
+    [tar setStandardOutput: pipe];
+    
+    [tar setArguments:@[@"-cj", @"--format", @"ustar", path]];
+    [tar launch];
+    
+    NSFileHandle* file = [pipe fileHandleForReading];
+    NSData* data = [file readDataToEndOfFile];
+    file = [NSFileHandle fileHandleForWritingAtPath:out];
+    [file writeData:data];
+    [file closeFile];
+    return out;
 }
 
 @end

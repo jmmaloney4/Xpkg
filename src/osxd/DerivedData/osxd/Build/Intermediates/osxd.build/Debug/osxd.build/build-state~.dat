@@ -1,0 +1,237 @@
+Tosxd
+v6
+r1
+cCheck dependencies
+cProcessPCH /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.pch osxd/osxd-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.o /Users/jack/Desktop/osxd/src/osxd/osxd/share.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.o /Users/jack/Desktop/osxd/src/osxd/osxd/package.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.o /Users/jack/Desktop/osxd/src/osxd/osxd/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/osxd normal x86_64
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
+c00000000530295C100000000000000AA
+t1392678337
+s170
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/SDKSettings.plist
+c000000005335BA7E000000000000044C
+t1396030078
+s1100
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/CoreServices/SystemVersion.plist
+c000000005335BA7E00000000000001DE
+t1396030078
+s478
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000005335BA8100000000000C9E38
+t1396030081
+s826936
+
+N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
+c000000005335BACF0000000000000ADC
+t1396030159
+s2780
+
+N/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.pch
+t1396299825
+s116404
+
+N/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.o
+t1396299826
+s12288
+
+N/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/osxd.LinkFileList
+c000000005339D82E0000000000000184
+t1396299822
+s388
+
+N/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.o
+t1396299826
+s14504
+
+N/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.o
+t1396299826
+s22420
+
+N/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/osxd
+t2
+s0
+
+N/Users/jack/Desktop/osxd/src/osxd/osxd/main.m
+c000000005339D2DD0000000000000660
+t1396298461
+s1632
+
+N/Users/jack/Desktop/osxd/src/osxd/osxd/osxd-Prefix.pch
+c000000005338A6DB00000000000000B6
+t1396221659
+s182
+
+N/Users/jack/Desktop/osxd/src/osxd/osxd/package.m
+c000000005339670E0000000000000270
+t1396270862
+s624
+
+N/Users/jack/Desktop/osxd/src/osxd/osxd/share.m
+c000000005339D8290000000000000950
+t1396299817
+s2384
+
+CBuild AST from /Users/jack/Desktop/osxd/src/osxd/osxd/main.m
+r0
+
+CBuild AST from /Users/jack/Desktop/osxd/src/osxd/osxd/package.m
+r0
+
+CBuild AST from /Users/jack/Desktop/osxd/src/osxd/osxd/share.m
+r0
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesc042deae0feab841^40f7f1ae0feab841^---0#1#1#--18"Check dependencies36"F1A97DDC-71AE-4E71-9639-E10B494C3D5F-
+
+CCompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.o /Users/jack/Desktop/osxd/src/osxd/osxd/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s417992626.106432
+e417992626.170076
+r1
+xCompileC
+xDerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.o
+x/Users/jack/Desktop/osxd/src/osxd/osxd/main.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jack/Desktop/osxd/src/osxd/osxd/main.m
+d/Users/jack/Desktop/osxd/src/osxd/osxd/share.h
+o/Users/jack/Desktop/osxd/src/osxd/osxd/main.m:29:27: warning: unused variable 'confstr' [-Wunused-variable]
+o                NSString* confstr = [share getConfigFileString];
+o                          ^
+o1 warning generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/jack/Desktop/osxd/src/osxd/osxd/main.m184"CompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.o osxd/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler9a5d1bb20feab841^40892bb20feab841^-222"/Users/jack/Desktop/osxd/src/osxd/osxd/main.m:29:27: warning: unused variable 'confstr' [-Wunused-variable]                NSString* confstr = [share getConfigFileString];                          ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@25"Unused variable 'confstr'-417992626#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@52"file:///Users/jack/Desktop/osxd/src/osxd/osxd/main.m0000000000000000^28#26#28#26#766#0#19"Unused Entity Issue--0#0#1#-19%DVTDocumentLocation4@52"file:///Users/jack/Desktop/osxd/src/osxd/osxd/main.m0000000000000000^3220"CompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.o osxd/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jack/Desktop/osxd/src/osxd    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jack/Desktop/osxd/src/osxd/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.9 -g -Wno-sign-conversion -iquote /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-generated-files.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-own-target-headers.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-all-target-headers.hmap -iquote /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-project-headers.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/DerivedSources/x86_64 -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/DerivedSources -F/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug -include /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch -MMD -MT dependencies -MF /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.dia -c /Users/jack/Desktop/osxd/src/osxd/osxd/main.m -o /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.o36"DD434A8F-A9B1-4DF5-8B7E-724740382ED4-
+b11CE292E-0163-40A9-8918-E91C9FB274E3
+
+CCompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.o /Users/jack/Desktop/osxd/src/osxd/osxd/package.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s417992626.030604
+e417992626.106003
+r1
+xCompileC
+xDerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.o
+x/Users/jack/Desktop/osxd/src/osxd/osxd/package.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jack/Desktop/osxd/src/osxd/osxd/package.m
+d/Users/jack/Desktop/osxd/src/osxd/osxd/package.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection56"Compile /Users/jack/Desktop/osxd/src/osxd/osxd/package.m190"CompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.o osxd/package.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compilerb2f207b20feab841^596c1bb20feab841^---0#0#1#-19%DVTDocumentLocation2@55"file:///Users/jack/Desktop/osxd/src/osxd/osxd/package.m0000000000000000^3238"CompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.o osxd/package.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jack/Desktop/osxd/src/osxd    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jack/Desktop/osxd/src/osxd/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.9 -g -Wno-sign-conversion -iquote /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-generated-files.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-own-target-headers.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-all-target-headers.hmap -iquote /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-project-headers.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/DerivedSources/x86_64 -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/DerivedSources -F/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug -include /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch -MMD -MT dependencies -MF /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.d --serialize-diagnostics /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.dia -c /Users/jack/Desktop/osxd/src/osxd/osxd/package.m -o /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.o36"29ADB9B9-D1A9-4A42-9FEC-62D74372C428-
+b11CE292E-0163-40A9-8918-E91C9FB274E3
+
+CCompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.o /Users/jack/Desktop/osxd/src/osxd/osxd/share.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s417992626.029840
+e417992626.113198
+r1
+xCompileC
+xDerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.o
+x/Users/jack/Desktop/osxd/src/osxd/osxd/share.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jack/Desktop/osxd/src/osxd/osxd/share.m
+d/Users/jack/Desktop/osxd/src/osxd/osxd/share.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection54"Compile /Users/jack/Desktop/osxd/src/osxd/osxd/share.m186"CompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.o osxd/share.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compilerf3c807b20feab841^48151db20feab841^---0#0#1#-19%DVTDocumentLocation2@53"file:///Users/jack/Desktop/osxd/src/osxd/osxd/share.m0000000000000000^3226"CompileC DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.o osxd/share.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jack/Desktop/osxd/src/osxd    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jack/Desktop/osxd/src/osxd/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.9 -g -Wno-sign-conversion -iquote /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-generated-files.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-own-target-headers.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-all-target-headers.hmap -iquote /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-project-headers.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/DerivedSources/x86_64 -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/DerivedSources -F/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug -include /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch -MMD -MT dependencies -MF /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.d --serialize-diagnostics /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.dia -c /Users/jack/Desktop/osxd/src/osxd/osxd/share.m -o /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.o36"CAF98666-ABFD-4432-84E6-F34FC90D6577-
+b11CE292E-0163-40A9-8918-E91C9FB274E3
+
+CLd /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/osxd normal x86_64
+s417992626.171062
+e417992626.226951
+r1
+xLd
+x/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/osxd
+xnormal
+xx86_64
+d/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/osxd.LinkFileList
+d/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/share.o
+d/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/package.o
+d/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/main.o
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libobjc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libSystem.dylib
+d/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/lib/darwin/libclang_rt.osx.a
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/IOKit.framework/IOKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/IOSurface.framework/IOSurface
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ImageIO.framework/ImageIO
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Security.framework/Security
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreText.framework/CoreText
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/DiskArbitration.framework/DiskArbitration
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/CoreServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcache.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcommonCrypto.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcompiler_rt.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcopyfile.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcorecrypto.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libdispatch.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libdyld.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libkeymgr.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/liblaunch.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libmacho.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libquarantine.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libremovefile.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_asl.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_blocks.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_c.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_configuration.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_dnssd.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_info.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_kernel.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_m.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_malloc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_network.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_notify.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_platform.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_pthread.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_sandbox.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libsystem_stats.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection81"Link /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/osxd59"Ld DerivedData/osxd/Build/Products/Debug/osxd normal x86_6440de2bb20feab841^ea213ab20feab841^---0#0#1#--998"Ld DerivedData/osxd/Build/Products/Debug/osxd normal x86_64    cd /Users/jack/Desktop/osxd/src/osxd    export MACOSX_DEPLOYMENT_TARGET=10.9    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug -F/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug -filelist /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/osxd.LinkFileList -mmacosx-version-min=10.9 -fobjc-arc -fobjc-link-runtime -framework Foundation -Xlinker -dependency_info -Xlinker /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/Objects-normal/x86_64/osxd_dependency_info.dat -o /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/osxd36"9831769D-D8CC-4FCD-8FBA-D8E8334A107A-
+b11CE292E-0163-40A9-8918-E91C9FB274E3
+
+CProcessPCH /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.pch osxd/osxd-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s417992622.946271
+e417992626.028663
+r1
+xProcessPCH
+x/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.pch
+xosxd/osxd-Prefix.pch
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jack/Desktop/osxd/src/osxd/osxd/osxd-Prefix.pch
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection31"Precompile osxd/osxd-Prefix.pch218"ProcessPCH DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.pch osxd/osxd-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler5b5df2ae0feab841^3f5707b20feab841^---0#0#1#-19%DVTDocumentLocation2@61"file:///Users/jack/Desktop/osxd/src/osxd/osxd/osxd-Prefix.pch0000000000000000^3179"ProcessPCH DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.pch osxd/osxd-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jack/Desktop/osxd/src/osxd    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jack/Desktop/osxd/src/osxd/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.9 -g -Wno-sign-conversion -iquote /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-generated-files.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-own-target-headers.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-all-target-headers.hmap -iquote /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/osxd-project-headers.hmap -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/DerivedSources/x86_64 -I/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/osxd.build/Debug/osxd.build/DerivedSources -F/Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Products/Debug --serialize-diagnostics /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.dia -MMD -MT dependencies -MF /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.d -c /Users/jack/Desktop/osxd/src/osxd/osxd/osxd-Prefix.pch -o /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Build/Intermediates/PrecompiledHeaders/osxd-Prefix-gqiyuqonqhszojewpzpbhbvvzbaq/osxd-Prefix.pch.pch36"01B1297E-DB68-42A7-9A24-60AF667B2E71-
+b11CE292E-0163-40A9-8918-E91C9FB274E3
+
+CProcessPCH /Users/jack/Desktop/osxd/src/osxd/DerivedData/osxd/Index/PrecompiledHeaders/osxd-Prefix-eximciimkbontiggsslpzjubmawe_ast/osxd-Prefix.pch.pch osxd/osxd-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
