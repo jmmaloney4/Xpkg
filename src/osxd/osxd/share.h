@@ -42,8 +42,9 @@ static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 +(NSFileHandle*) getConfigFile;
 +(NSString*) getConfigFileString;
 +(BOOL) exitIfNotRoot;
-+(void) print:(NSString*) x;
++(void) print:(const char *)x;
 +(void) printUsage;
 +(NSString*) createPackage:(NSString*)path;
++(void) printError:(const char *)x;
 +(NSString*) getInfoFileForPath:(NSString*) path;
 @end

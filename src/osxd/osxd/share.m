@@ -39,22 +39,22 @@
     if (getuid() == 0) {
         return YES;
     } else {
-        [share print:@"Must Be Root\n"];
+        [share print:"Must Be Root\n"];
         exit(1);
         return NO;
     }
 }
 
 +(void) printUsage {
-    [share print:USAGE];
+    [share print:[USAGE UTF8String]];
 }
 
-+(void) print:(NSString*) x {
-    printf("%s", [x UTF8String]);
++(void) print:(const char *) x {
+    printf("%s", x);
 }
 
-+(void) printError:(NSString*) x {
-    printf("%sERROR: %s%s", [BOLDRED UTF8String], [x UTF8String], [RESET UTF8String]);
++(void) printError:(const char *) x {
+    printf("%sERROR: %s%s", [BOLDRED UTF8String], [RESET UTF8String], x);
 }
 
 +(NSString*) getInfoFileForPath:(NSString*) path {
@@ -68,12 +68,20 @@
     BOOL isBinary = false;
     NSString* infoFile = [share getStringForFileAtPath:[share getInfoFileForPath:path]];
     
-    if ([infoFile hasPrefix:SRC]) {
-        
-    } else if ([infoFile hasPrefix:BIN]) {
-        
-    } else {
-        [share printError:@"Unidentifiable Package Type"];
+    if (!infoFile) {
+        if ([infoFile hasPrefix:SRC]) {
+            isBinary = false;
+        } else if ([infoFile hasPrefix:BIN]) {
+            isBinary = true;
+        }  else {
+            const char * x;
+            x = "Unidentifiable Package Type, file at %s/OSXD/info is either non existent or cannot be parsed\n", path;
+            [share printError:x];
+        }
+    }  else {
+        const char * x;
+        x = "Unidentifiable Package Type, file at %s/OSXD/info is non existent\n", path;
+        [share printError:x];
     }
     
     

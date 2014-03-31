@@ -20,8 +20,6 @@ int main(int argc, const char * argv[])
             exit(1);
         }
         
-        
-        
         if ([INSTALL isEqualToString:[NSString stringWithUTF8String:argv[1]]]) {
             [share exitIfNotRoot];
             if (argc < 3) {
@@ -42,7 +40,7 @@ int main(int argc, const char * argv[])
             
         } else if ([CREATE isEqualToString:[NSString stringWithUTF8String:argv[1]]]) {
             if (argc < 3) {
-                [share print:@"create command requires at least one argument"];
+                [share print:"create command requires at least one argument"];
                 exit(-1);
             }
             NSString* path = [[NSString alloc] initWithUTF8String:argv[2]];
