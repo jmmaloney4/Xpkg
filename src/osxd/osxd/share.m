@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 IV. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "share.h"
 
 @implementation share
@@ -47,6 +48,14 @@
 
 +(void) print:(NSString*) x {
     printf("%s", [x UTF8String]);
+}
+
++(void) createPackage:(NSString*)path {
+    NSTask* tar = [[NSTask alloc]init];
+    [tar setLaunchPath:@"/usr/bin/tar"];
+    //NSString* out = path + @".osd";
+    [tar setArguments:@[@"-cj", @"--format", @"ustar", path, @">", ]];
+    
 }
 
 @end

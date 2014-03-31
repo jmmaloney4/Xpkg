@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface package : NSObject
-@property NSString* URL;
+@property NSURL* URL;
 -(NSInteger)install;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "package.h"
+#import <Foundation/Foundation.h>
 
 @implementation package
 -(NSInteger)install {
@@ -19,5 +20,11 @@
     if (!self.URL) {
         
     }
+}
+
+-(id) initWithURL:(NSURL*)URL {
+    self = [super init];
+    self.URL = URL;
+    return self;
 }
 @end

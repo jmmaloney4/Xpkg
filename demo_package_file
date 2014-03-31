@@ -1,0 +1,14 @@
+Package: com.example.test
+Name: test package
+Homepage: http://www.example.com/test/
+Source-URL: http://www.example.com/test/src.osd
+Source SHA1: SHA1 hash
+Source-Build-Commands: ./configure; make install;
+Binary-URL: http://www.example.com/test/bin.obd
+Binary-SHA1: SHA1 hash
+Description: an example package
+Maintainer: Jack Maloney <jmmaloney4@gmail.com>
+Version: 1.0.4
+Depends: gnutar
+Recommended: libzip
+

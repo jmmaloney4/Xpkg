@@ -17,9 +17,8 @@ static NSString* BUILD = @"build";
 static NSString* LIST = @"list";
 static NSString* SEARCH = @"search";
 static NSString* ADD = @"add";
-static NSString* DEV = @"dev";
-static NSString* DEV_BUILD = @"build";
-static NSString* DEV_EXTRACT = @"extract";
+static NSString* CREATE = @"create";
+static NSString* EXTRACT = @"extract";
 
 static NSString* CONFIG_FILE = @"/opt/osxd/config";
 static NSString* CONFIG_PATH = @"/opt/osxd";
