@@ -27,4 +27,11 @@
     self.URL = URL;
     return self;
 }
+
+-(void) extract {
+    NSTask* extract = [[NSTask alloc]init];
+    [extract setLaunchPath:@"/usr/bin/tar"];
+    [extract setArguments:@[@"-xf", self.path, @"> /dev/null"]];
+    [extract launch];
+}
 @end

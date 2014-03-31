@@ -50,12 +50,16 @@
     printf("%s", [x UTF8String]);
 }
 
-+(void) createPackage:(NSString*)path {
++(void) createPackage:(NSString*)path withFromat:(NSInteger*)type {
     NSTask* tar = [[NSTask alloc]init];
     [tar setLaunchPath:@"/usr/bin/tar"];
-    //NSString* out = path + @".osd";
-    [tar setArguments:@[@"-cj", @"--format", @"ustar", path, @">", ]];
-    
+    NSMutableString* out = [[NSMutableString alloc] initWithUTF8String:[path UTF8String]];
+    if (type == 0) {
+        [out appendString:@".xbp"];
+    } else {
+        [out appendString:@".xsp"];
+    }
+    [tar setArguments:@[@"-cj", @"--format", @"ustar", path, @">", out]];
 }
 
 @end

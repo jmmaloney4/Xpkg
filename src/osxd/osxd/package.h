@@ -10,5 +10,6 @@
 
 @interface package : NSObject
 @property NSURL* URL;
+@property NSString* path;
 -(NSInteger)install;
 @end

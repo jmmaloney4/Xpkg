@@ -11,6 +11,8 @@
 static NSString* USAGE = @"osxd [options] command [options] <arguments> \ntype osxd -h  for more help\n";
 
 static NSString* INSTALL = @"install";
+static NSString* UPDATE = @"update";
+static NSString* UPGRADE = @"upgrade";
 static NSString* REINSTALL = @"reinstall";
 static NSString* REMOVE = @"remove";
 static NSString* BUILD = @"build";

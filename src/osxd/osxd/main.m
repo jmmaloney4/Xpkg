@@ -25,9 +25,9 @@ int main(int argc, const char * argv[])
                 exit(1);
             } else {
                 NSString* confstr = [share getConfigFileString];
+                
             }
         } else if ([ADD isEqualToString:[NSString stringWithUTF8String:argv[1]]]) {
-            
             
             
         } else if ([REINSTALL isEqualToString:[NSString stringWithUTF8String:argv[1]]]) {
