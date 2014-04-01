@@ -10,6 +10,8 @@
 
 static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype xpkg -h  for more help\n";
 
+static NSString* PREFIX = @"/opt/xpkg";
+
 static NSString* INSTALL = @"install";
 static NSString* UPDATE = @"update";
 static NSString* UPGRADE = @"upgrade";
@@ -39,7 +41,8 @@ static NSString* BOLDRED = @"\033[1m\033[31m";      /* Bold Red */
 static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 
 @interface xpkg : NSObject
-+(void)printError:(NSString*) x;
-+(BOOL)checkForArgs:(int) argc;
++(void)print:(NSString*)x;
++(void)printError:(NSString*)x;
++(BOOL)checkForArgs:(int)argc;
 +(NSString*)parseArg1:(NSString*)arg;
 @end
