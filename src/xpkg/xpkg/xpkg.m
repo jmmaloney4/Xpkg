@@ -22,4 +22,15 @@
     return rv;
 }
 
++(NSString*) parseArg1:(NSString *)arg {
+    if ([UPDATE isEqualToString:arg]) {
+        return UPDATE;
+    } else if ([INSTALL isEqualToString:arg]) {
+        return INSTALL;
+    } else {
+        [xpkg printError:@"Arguments are invalid"];
+        return nil;
+    }
+}
+
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString* USAGE = @"osxd [options] command [options] <arguments> \ntype osxd -h  for more help\n";
+static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype xpkg -h  for more help\n";
 
 static NSString* INSTALL = @"install";
 static NSString* UPDATE = @"update";

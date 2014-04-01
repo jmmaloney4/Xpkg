@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "xpkg.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-        
+        [xpkg checkForArgs:argc];
+        NSString* arg1 = [NSString stringWithUTF8String:argv[1]];
+        [xpkg parseArg1:]
         
     }
     return 0;
