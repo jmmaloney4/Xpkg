@@ -1,0 +1,20 @@
+@Package: bash
+@Version: 4.3
+@Description: The Bash Shell
+@URL: http://mirror.nexcess.net/gnu/bash/bash-4.3.tar.gz
+@SHA1: 45ac3c5727e7262334f4dfadecdf601b39434e84
+@Mirror-1: http://psg.mtu.edu/pub/gnu/bash/bash-4.3.tar.gz
+@Maintainer: Jack Maloney <jmmaloney4@gmail.com>
+@Depends:
+@Recomended:
+
+@build {
+
+	$ ./configure
+	$ make
+	% cp bash
+}
+
+@install {
+	%ln bash bin
+}
