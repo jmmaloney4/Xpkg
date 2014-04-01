@@ -327,7 +327,7 @@ t1396383291
 s116404
 
 N/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o
-t1396383291
+t1396384062
 s10156
 
 N/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.LinkFileList
@@ -336,16 +336,16 @@ t1396383288
 s256
 
 N/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o
-t1396383291
-s17828
+t1396384233
+s15976
 
 N/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/xpkg
-t1396383291
-s17772
+t1396384108
+s17932
 
 N/Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m
-c00000000533B1E00000000000000018D
-t1396383232
+c00000000533B1EA0000000000000018D
+t1396383392
 s397
 
 N/Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg-Prefix.pch
@@ -354,14 +354,14 @@ t1396383232
 s182
 
 N/Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.h
-c00000000533B1E0000000000000005E4
-t1396383232
-s1508
+c00000000533B20E000000000000005F8
+t1396383968
+s1528
 
 N/Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m
-c00000000533B1E0000000000000004CC
-t1396383232
-s1228
+c00000000533B21E50000000000000486
+t1396384229
+s1158
 
 CBuild AST from /Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m
 r0
@@ -371,11 +371,11 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesf04fc10856ebb841^7fc1c20856ebb841^---0#1#1#--18"Check dependencies36"0D7B1826-633B-4004-8839-B394BAF3DBCB-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies4fafac6959ebb841^1f2ead6959ebb841^---0#1#1#--18"Check dependencies36"F7A6DD2C-AE29-41A1-B520-C60E1EB86C18-
 
 CCompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o /Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s418076091.205192
-e418076091.272288
+s418076862.396692
+e418076862.479774
 r1
 xCompileC
 xDerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o
@@ -386,12 +386,12 @@ xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
 d/Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m
 d/Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m184"CompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o xpkg/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler2eab34bb55ebb841^35b445bb55ebb841^---0#0#1#-19%DVTDocumentLocation2@52"file:///Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m0000000000000000^3220"CompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o xpkg/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jack/Desktop/xpkg/src/xpkg    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.9 -g -Wno-sign-conversion -iquote /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-generated-files.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-own-target-headers.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-all-target-headers.hmap -iquote /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-project-headers.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/DerivedSources/x86_64 -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/DerivedSources -F/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug -include /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/PrecompiledHeaders/xpkg-Prefix-dvmhujgvkhwqfdeqepbbzjwnulpf/xpkg-Prefix.pch -MMD -MT dependencies -MF /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.dia -c /Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m -o /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o36"2055FDC9-BC6F-433F-B532-30F049ACA328-
-bBEFD10DE-C69C-42EE-847E-6E271623F1F6
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m184"CompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o xpkg/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler97c865be58ebb841^02d67abe58ebb841^---0#0#1#-19%DVTDocumentLocation2@52"file:///Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m0000000000000000^3220"CompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o xpkg/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jack/Desktop/xpkg/src/xpkg    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.9 -g -Wno-sign-conversion -iquote /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-generated-files.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-own-target-headers.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-all-target-headers.hmap -iquote /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-project-headers.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/DerivedSources/x86_64 -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/DerivedSources -F/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug -include /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/PrecompiledHeaders/xpkg-Prefix-dvmhujgvkhwqfdeqepbbzjwnulpf/xpkg-Prefix.pch -MMD -MT dependencies -MF /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.dia -c /Users/jack/Desktop/xpkg/src/xpkg/xpkg/main.m -o /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/main.o36"90EBA911-EBA0-4803-8D7C-684C5937CFBC-
+bF97F57CE-2392-4D54-AC24-41C06E4F8386
 
 CCompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o /Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s418076091.205745
-e418076091.283851
+s418077033.676584
+e418077033.750176
 r1
 xCompileC
 xDerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o
@@ -402,12 +402,12 @@ xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
 d/Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m
 d/Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.h
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m184"CompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o xpkg/xpkg.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler7ec734bb55ebb841^d6ab48bb55ebb841^---0#0#1#-19%DVTDocumentLocation2@52"file:///Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m0000000000000000^3220"CompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o xpkg/xpkg.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jack/Desktop/xpkg/src/xpkg    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.9 -g -Wno-sign-conversion -iquote /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-generated-files.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-own-target-headers.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-all-target-headers.hmap -iquote /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-project-headers.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/DerivedSources/x86_64 -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/DerivedSources -F/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug -include /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/PrecompiledHeaders/xpkg-Prefix-dvmhujgvkhwqfdeqepbbzjwnulpf/xpkg-Prefix.pch -MMD -MT dependencies -MF /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.d --serialize-diagnostics /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.dia -c /Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m -o /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o36"8F7E0E77-57BC-4832-B155-E9481466B27F-
-bBEFD10DE-C69C-42EE-847E-6E271623F1F6
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Compile /Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m184"CompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o xpkg/xpkg.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler1a52ad6959ebb841^890bc06959ebb841^---0#0#1#-19%DVTDocumentLocation2@52"file:///Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m0000000000000000^3220"CompileC DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o xpkg/xpkg.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jack/Desktop/xpkg/src/xpkg    export LANG=en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.9 -g -Wno-sign-conversion -iquote /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-generated-files.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-own-target-headers.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-all-target-headers.hmap -iquote /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/xpkg-project-headers.hmap -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/DerivedSources/x86_64 -I/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/DerivedSources -F/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug -include /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/PrecompiledHeaders/xpkg-Prefix-dvmhujgvkhwqfdeqepbbzjwnulpf/xpkg-Prefix.pch -MMD -MT dependencies -MF /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.d --serialize-diagnostics /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.dia -c /Users/jack/Desktop/xpkg/src/xpkg/xpkg/xpkg.m -o /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.o36"4394BE4A-F4E1-4BD0-BCB9-5A0CCAE9F695-
+b587380E6-A9A2-4C45-B637-533FF400AFA4
 
 CLd /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/xpkg normal x86_64
-s418076091.284791
-e418076091.427565
+s418077033.752646
+e418077033.807661
 r1
 xLd
 x/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/xpkg
@@ -431,20 +431,6 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/DiskArbitration.framework/DiskArbitration
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/CoreServices
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
-d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcache.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcommonCrypto.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libcompiler_rt.dylib
@@ -475,8 +461,22 @@ d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunc.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libunwind.dylib
 d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/system/libxpc.dylib
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection81"Link /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/xpkg59"Ld DerivedData/xpkg/Build/Products/Debug/xpkg normal x86_6409fd48bb55ebb841^29756dbb55ebb841^---0#0#1#--998"Ld DerivedData/xpkg/Build/Products/Debug/xpkg normal x86_64    cd /Users/jack/Desktop/xpkg/src/xpkg    export MACOSX_DEPLOYMENT_TARGET=10.9    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug -F/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug -filelist /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.LinkFileList -mmacosx-version-min=10.9 -fobjc-arc -fobjc-link-runtime -framework Foundation -Xlinker -dependency_info -Xlinker /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg_dependency_info.dat -o /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/xpkg36"5C86438C-303D-4F40-B96C-4245B5A1C89A-
-bBEFD10DE-C69C-42EE-847E-6E271623F1F6
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
+d/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection81"Link /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/xpkg59"Ld DerivedData/xpkg/Build/Products/Debug/xpkg normal x86_64d7c2c06959ebb841^b9c3ce6959ebb841^---0#0#1#--998"Ld DerivedData/xpkg/Build/Products/Debug/xpkg normal x86_64    cd /Users/jack/Desktop/xpkg/src/xpkg    export MACOSX_DEPLOYMENT_TARGET=10.9    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -L/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug -F/Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug -filelist /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg.LinkFileList -mmacosx-version-min=10.9 -fobjc-arc -fobjc-link-runtime -framework Foundation -Xlinker -dependency_info -Xlinker /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/xpkg.build/Debug/xpkg.build/Objects-normal/x86_64/xpkg_dependency_info.dat -o /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Products/Debug/xpkg36"D0DAF6A9-4025-4D9F-AC7B-24E9369B38BD-
+b587380E6-A9A2-4C45-B637-533FF400AFA4
 
 CProcessPCH /Users/jack/Desktop/xpkg/src/xpkg/DerivedData/xpkg/Build/Intermediates/PrecompiledHeaders/xpkg-Prefix-dvmhujgvkhwqfdeqepbbzjwnulpf/xpkg-Prefix.pch.pch xpkg/xpkg-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s418076088.070097

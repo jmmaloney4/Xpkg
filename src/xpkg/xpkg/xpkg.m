@@ -21,35 +21,40 @@
 +(BOOL) checkForArgs:(int)argc {
     BOOL rv = NO;
     if (argc < 2) {
+        [xpkg print:USAGE];
+        exit(1);
+        rv = NO;
+    } else {
         rv = YES;
+        return rv;
     }
     return rv;
 }
 
-+(NSData*)executeCommand:(NSString*)command WithArguments:(NSArray*) args {
-    NSTask* task = [[NSTask alloc] init];
-    NSPipe* pipe = [NSPipe pipe];
-    NSFileHandle* file = [pipe fileHandleForReading];
-    NSData* data = [file readDataToEndOfFile];
-    [task setLaunchPath:command];
-    [task setArguments:args];
-    [task setStandardOutput:data];
-    [task launch];
-    return data;
++(int)executeCommand:(NSString*)command {
+    int rv = system([command UTF8String]);
+    return rv;
     
 }
 
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
-        [xpkg print:@"Updating xpkg"];
-        [xpkg executeCommand:@"" WithArguments:@[@""]];
         return UPDATE;
+    } else if ([ADD isEqualToString:arg]) {
+        [xpkg commandAdd];
+        return ADD;
     } else if ([INSTALL isEqualToString:arg]) {
         return INSTALL;
     } else {
         [xpkg printError:@"Arguments are invalid"];
         return nil;
     }
+}
+
++(void) commandAdd {
+    [xpkg print:@"ADDING"];
+    [xpkg executeCommand:@"cd /opt/xpkg"];
+    [xpkg executeCommand:@"ls"];
 }
 
 @end
