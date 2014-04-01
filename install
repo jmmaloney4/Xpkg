@@ -36,7 +36,6 @@ echo "Cloning xpkg Repository"
 
 $TMP/bin/git clone https://github.com/jmmaloney4/xpkg.git $XPKG >> $TMP/log/xpkg.log 2>&1
 cd $XPKG
-$TMP/bin/git checkout install >> $TMP/log/xpkg.log 2>&1
 
 cp -r $TMP/ $XPKG/tmp >> $TMP/log/xpkg.log 2>&1
 

@@ -31,17 +31,21 @@
     return rv;
 }
 
-+(int)executeCommand:(NSString*)command {
-    int rv = system([command UTF8String]);
-    return rv;
++(NSData*)executeCommand:(NSString*)command withArgs:(NSArray*)args {
+    NSData* rv;
+    NSTask* task = [[NSTask alloc] init];
+    [task setLaunchPath:command];
+    [task setArguments:args];
     
+    
+    return rv;
 }
 
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
+        
         return UPDATE;
     } else if ([ADD isEqualToString:arg]) {
-        [xpkg commandAdd];
         return ADD;
     } else if ([INSTALL isEqualToString:arg]) {
         return INSTALL;
@@ -51,10 +55,5 @@
     }
 }
 
-+(void) commandAdd {
-    [xpkg print:@"ADDING"];
-    [xpkg executeCommand:@"cd /opt/xpkg"];
-    [xpkg executeCommand:@"ls"];
-}
 
 @end
