@@ -1,4 +1,4 @@
-osxd
+xpkg
 ====
 A package manager for Mac OS X
 
