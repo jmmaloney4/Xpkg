@@ -12,6 +12,8 @@ static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype x
 
 static NSString* PREFIX = @"/opt/xpkg";
 
+static NSString* VERSION = @"0.1.0";
+
 static NSString* INSTALL = @"install";
 static NSString* UPDATE = @"update";
 static NSString* UPGRADE = @"upgrade";
@@ -44,4 +46,5 @@ static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 +(NSString*)parseArg1:(NSString*)arg;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
++(void)rebuildProgram;
 @end
