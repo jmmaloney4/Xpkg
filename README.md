@@ -2,13 +2,12 @@ xpkg
 ====
 A package manager for Mac OS X
 
-open src/ as a workspace in xcode and begin editing...
+Open src/xpkg as a workspace in XCode and begin editing...
 
 Notes
 ====
-it dosen't really work right now though
+It dosen't really work right now...
 
 Depends
 ====
-
 Xcode Command Line Tools
