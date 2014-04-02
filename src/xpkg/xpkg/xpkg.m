@@ -34,9 +34,12 @@
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
     NSString* rv;
     NSTask* task = [[NSTask alloc] init];
+    NSMutableArray* argss = [args mutableCopy];
+    
+    [argss insertObject:@">> /opt/xpkg/log/xpkg.log 2>&1" atIndex:[args count] + 1];
     
     [task setLaunchPath:command];
-    [task setArguments:args];
+    [task setArguments:argss];
     [task setCurrentDirectoryPath:path];
     
     NSPipe* pipe =[NSPipe pipe];
@@ -53,6 +56,8 @@
 
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
+        [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
+        
         
         return UPDATE;
     } else if ([ADD isEqualToString:arg]) {
@@ -66,7 +71,15 @@
 }
 
 +(NSString*) getPathWithPrefix:(NSString*)path {
-    NSMutableString* rv;
+    NSMutableString* rv = [PREFIX mutableCopy];
+    [rv appendString:path];
+    return rv;
+}
+
++(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path {
+    BOOL rv = NO;
+    
+    
     
     return rv;
 }

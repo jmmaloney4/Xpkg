@@ -27,9 +27,6 @@ static NSString* EXTRACT = @"extract";
 static NSString* CONFIG_FILE = @"/opt/osxd/config";
 static NSString* CONFIG_PATH = @"/opt/osxd";
 
-static NSString* SRC = @"SRC";
-static NSString* BIN = @"BIN";
-
 // Colors for terminal output
 static NSString* RESET = @"\033[0m";
 static NSString* RED = @"\033[31m";      /* Red */
@@ -45,7 +42,6 @@ static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 +(void)printError:(NSString*)x;
 +(BOOL)checkForArgs:(int)argc;
 +(NSString*)parseArg1:(NSString*)arg;
-
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
-
++(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
 @end
