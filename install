@@ -45,7 +45,7 @@ cp -r $XPKG/tmp/bin $XPKG/core/git/1.9.1/ >> $TMP/log/xpkg.log 2>&1
 
 cp $XPKG/tmp/log/xpkg.log $XPKG/log/xpkg.log >> $TMP/log/xpkg.log 2>&1
 
-echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
+echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
 
 echo "Downloading xpkg sources"
 
