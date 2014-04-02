@@ -46,4 +46,6 @@ static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 +(BOOL)checkForArgs:(int)argc;
 +(NSString*)parseArg1:(NSString*)arg;
 
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
+
 @end

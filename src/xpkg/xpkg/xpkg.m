@@ -31,12 +31,22 @@
     return rv;
 }
 
-+(NSData*)executeCommand:(NSString*)command withArgs:(NSArray*)args {
-    NSData* rv;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
+    NSString* rv;
     NSTask* task = [[NSTask alloc] init];
+    
     [task setLaunchPath:command];
     [task setArguments:args];
+    [task setCurrentDirectoryPath:path];
     
+    NSPipe* pipe =[NSPipe pipe];
+    [task setStandardOutput:pipe];
+    
+    NSFileHandle* file = [pipe fileHandleForReading];
+    
+    NSData* data = [file readDataToEndOfFile];
+    
+    rv= [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
     
     return rv;
 }
@@ -53,6 +63,12 @@
         [xpkg printError:@"Arguments are invalid"];
         return nil;
     }
+}
+
++(NSString*) getPathWithPrefix:(NSString*)path {
+    NSMutableString* rv;
+    
+    return rv;
 }
 
 
