@@ -21,29 +21,51 @@
 +(BOOL) checkForArgs:(int)argc {
     BOOL rv = NO;
     if (argc < 2) {
+        [xpkg print:USAGE];
+        exit(1);
+        rv = NO;
+    } else {
         rv = YES;
+        return rv;
     }
     return rv;
 }
 
-+(NSData*)executeCommand:(NSString*)command WithArguments:(NSArray*) args {
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
+    NSString* rv;
     NSTask* task = [[NSTask alloc] init];
-    NSPipe* pipe = [NSPipe pipe];
-    NSFileHandle* file = [pipe fileHandleForReading];
-    NSData* data = [file readDataToEndOfFile];
+    //NSMutableArray* argss = [args mutableCopy];
+    
+    //[argss insertObject:@">> /opt/xpkg/log/xpkg.log 2>&1" atIndex:[args count]];
+    
     [task setLaunchPath:command];
     [task setArguments:args];
-    [task setStandardOutput:data];
-    [task launch];
-    return data;
+    [task setCurrentDirectoryPath:path];
     
+    NSPipe* pipe =[NSPipe pipe];
+    [task setStandardOutput:pipe];
+    
+    [task launch];
+    
+    NSFileHandle* file = [pipe fileHandleForReading];
+    
+    NSData* data = [file readDataToEndOfFile];
+    
+    rv= [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    
+    return rv;
 }
+
+//TODO add a method to open a file for reading
 
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
-        [xpkg print:@"Updating xpkg"];
-        [xpkg executeCommand:@"" WithArguments:@[@""]];
+        [xpkg executeCommand:[xpkg getPathWithPrefix:@"/core/git/1.9.1/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
+        
+        
         return UPDATE;
+    } else if ([ADD isEqualToString:arg]) {
+        return ADD;
     } else if ([INSTALL isEqualToString:arg]) {
         return INSTALL;
     } else {
@@ -51,5 +73,20 @@
         return nil;
     }
 }
+
++(NSString*) getPathWithPrefix:(NSString*)path {
+    NSMutableString* rv = [PREFIX mutableCopy];
+    [rv appendString:path];
+    return rv;
+}
+
++(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path {
+    BOOL rv = NO;
+    
+    
+    
+    return rv;
+}
+
 
 @end

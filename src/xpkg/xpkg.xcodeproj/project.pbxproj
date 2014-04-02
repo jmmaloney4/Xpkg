@@ -259,6 +259,7 @@
 				04FF783D18EA3C79007B17F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
