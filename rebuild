@@ -1,0 +1,10 @@
+#!/bin/bash
+export XPKG=/opt/xpkg
+export VERSION=$($XPKG/core/xpkg -V)
+cd $XPKG/src/xpkg
+
+xcodebuild
+
+#cp $XPKG/core/xpkg $XPKG/core/xpkg\-versions/$VERSION/xpkg
+cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/xpkg
+ln -fF $XPKG/core/xpkg /usr/bin/xpkg

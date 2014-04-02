@@ -15,7 +15,7 @@
 }
 
 +(void) printError:(NSString *)x {
-    printf("%sError:%s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
+    printf("%sError: %s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
 }
 
 +(BOOL) checkForArgs:(int)argc {
@@ -61,32 +61,15 @@
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
         [xpkg executeCommand:[xpkg getPathWithPrefix:@"/core/git/1.9.1/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
-        
-        NSString* fileContents = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:@"version"] encoding:NSUTF8StringEncoding error:nil];
-        NSArray* lines = [fileContents componentsSeparatedByString:@"."];
-        NSArray* version = [VERSION componentsSeparatedByString:@"."];
-        
-        if ([lines count] > 2) {
-            if (lines[0] == version[0]) {
-                if (lines[1] == version[1]) {
-                    if(lines[2] == version[2]) {
-                        
-                    } else {
-                        [xpkg rebuildProgram];
-                    }
-                } else {
-                    [xpkg rebuildProgram];
-                }
-            } else {
-                [xpkg rebuildProgram];
-            }
-        }
-        
+        [xpkg rebuildProgram];
         return UPDATE;
     } else if ([ADD isEqualToString:arg]) {
         return ADD;
     } else if ([INSTALL isEqualToString:arg]) {
         return INSTALL;
+    } else if ([VERSION_ARG isEqualToString:arg]) {
+        [xpkg print:VERSION];
+        return VERSION_ARG;
     } else {
         [xpkg printError:@"Arguments are invalid"];
         return nil;
@@ -122,10 +105,7 @@
 }
 
 +(void) rebuildProgram {
-    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[@">> /opt/xpkg/log/xpkg.log 2>&1"] andPath:[xpkg getPathWithPrefix:@"/src/xpkg"]];
-    [xpkg executeCommand:@"/bin/mv" withArgs:@[[xpkg getPathWithPrefix:@"/core/xpkg"], [xpkg getPathWithPrefix:@"/core/xpkg-versions/xpkg"]] andPath:[xpkg getPathWithPrefix:@"/core/"]];
-    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/src/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/xpkg"]] andPath:[xpkg getPathWithPrefix:@""]
-     ];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/rebuild"] withArgs:@[] andPath:[xpkg getPathWithPrefix:@""]];
 }
 
 @end

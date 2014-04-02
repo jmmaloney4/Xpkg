@@ -14,6 +14,7 @@ static NSString* PREFIX = @"/opt/xpkg";
 
 static NSString* VERSION = @"0.1.0";
 
+static NSString* VERSION_ARG = @"-V";
 static NSString* INSTALL = @"install";
 static NSString* UPDATE = @"update";
 static NSString* UPGRADE = @"upgrade";
