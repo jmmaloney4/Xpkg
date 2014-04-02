@@ -62,6 +62,7 @@ xcodebuild >> $TMP/log/xpkg.log 2>&1
 
 cp ./build/Release/xpkg $XPKG/core/
 
-ln -iF $XPKG/core/xpkg /usr/bin/xpkg
+ln -F $XPKG/core/xpkg /usr/bin/xpkg
 
-
+mkdir -p $XPKG/bin
+mkdir -p $XPKG/sbin
