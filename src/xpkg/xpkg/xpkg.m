@@ -54,6 +54,8 @@
     return rv;
 }
 
+//TODO add a method to open a file for reading
+
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
         [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
