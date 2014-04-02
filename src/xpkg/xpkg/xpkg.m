@@ -34,16 +34,18 @@
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
     NSString* rv;
     NSTask* task = [[NSTask alloc] init];
-    NSMutableArray* argss = [args mutableCopy];
+    //NSMutableArray* argss = [args mutableCopy];
     
-    [argss insertObject:@">> /opt/xpkg/log/xpkg.log 2>&1" atIndex:[args count] + 1];
+    //[argss insertObject:@">> /opt/xpkg/log/xpkg.log 2>&1" atIndex:[args count]];
     
     [task setLaunchPath:command];
-    [task setArguments:argss];
+    [task setArguments:args];
     [task setCurrentDirectoryPath:path];
     
     NSPipe* pipe =[NSPipe pipe];
     [task setStandardOutput:pipe];
+    
+    [task launch];
     
     NSFileHandle* file = [pipe fileHandleForReading];
     
@@ -58,7 +60,7 @@
 
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
-        [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
+        [xpkg executeCommand:[xpkg getPathWithPrefix:@"/core/git/1.9.1/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
         
         
         return UPDATE;
