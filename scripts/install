@@ -1,0 +1,40 @@
+#!/bin/sh
+
+#  Script.sh
+#  
+#
+#  Created by Jack Maloney on 4/2/14.
+#
+
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+export XPKG=/opt/xpkg
+export LOG=/opt/xpkg/log/xpkg.log
+
+mkdir -p $XPKG/log
+mkdir -p $XPKG/bin
+mkdir -p $XPKG/core
+cd $XPKG
+
+echo "Downloading xpkg"
+curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
+tar -xvf ./master.tar.gz
+
+rm -r ./repo
+
+mv ./xpkg-master ./repo
+
+cd ./repo/src/xpkg/
+
+xcodebuild
+
+cp $XPKG/repo/src/xpkg/build/Release/xpkg $XPKG/core/
+
+ln -fF $XPKG/core/xpkg $XPKG/bin/
+
+echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
+
+
