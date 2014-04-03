@@ -16,47 +16,47 @@ export LOG=/opt/xpkg/log/xpkg.log
 
 echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
 
-mkdir -p $XPKG/log
-mkdir -p $XPKG/bin
-mkdir -p $XPKG/sbin
-mkdir -p $XPKG/core
-mkdir -p $XPKG/tmp
+sudo mkdir -p $XPKG/log
+sudo mkdir -p $XPKG/bin
+sudo mkdir -p $XPKG/sbin
+sudo mkdir -p $XPKG/core
+sudo mkdir -p $XPKG/tmp
 cd $XPKG
 
 echo "Downloading xpkg"
-curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
-tar -xvf ./master.tar.gz
+sudo curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
+sudo tar -xvf ./master.tar.gz
 
 echo "Downloading Git"
-curl '-#' https://codeload.github.com/git/git/tar.gz/v1.8.4 > ./git.tar.gz
+sudo curl '-#' https://codeload.github.com/git/git/tar.gz/v1.8.4 > ./git.tar.gz
 echo "Unpacking Git"
-tar -xvf ./git.tar.gz
+sudo tar -xvf ./git.tar.gz
 
 cd ./git-1.8.4/
 
 echo "Building Git, This May Take A Few Minutes"
-make configure
-mkdir -p $XPKG/core/git/1.8.4/
-./configure --prefix=$XPKG/core/git/1.8.4/
-make all
-make install
+sudo make configure
+sudo mkdir -p $XPKG/core/git/1.8.4/
+sudo ./configure --prefix=$XPKG/core/git/1.8.4/
+sudo make all
+sudo make install
 
 cd $XPKG/core/git/1.8.4/
-ln ./* $XPKG/bin/
+sudo ln ./* $XPKG/bin/
 
 cd $XPKG
 
-$XPKG/bin/git init
-$XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git
-$XPKG/bin/git pull origin master
-git branch --set-upstream-to=origin/master
+sudo $XPKG/bin/git init
+sudo $XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git
+sudo $XPKG/bin/git pull origin master
+sudo git branch --set-upstream-to=origin/master
 
 cd $XPKG/src/xpkg
 
-xcodebuild
+sudo xcodebuild
 
-cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
+sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
 
-ln -fF $XPKG/core/xpkg /usr/bin/xpkg
+sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 
 
