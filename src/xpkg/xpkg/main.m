@@ -19,10 +19,12 @@ int main(int argc, const char * argv[])
             exit(-1);
         }
         
+        [xpkg downloadFile:@"http://gnu.mirrors.hoobly.com/gnu/bash/bash-4.3.tar.gz" place:@"/Users/jack/Desktop/bash-4.3.tar.gz"];
+        
         //[xpkg executeCommand:@"" withArgs:@[] andPath:@""];
-        [xpkg checkForArgs:argc];
-        NSString* arg1 = [NSString stringWithUTF8String:argv[1]];
-        arg1 = [xpkg parseArg1:arg1];
+        //[xpkg checkForArgs:argc];
+        //NSString* arg1 = [NSString stringWithUTF8String:argv[1]];
+        //arg1 = [xpkg parseArg1:arg1];
     }
     return 0;
 }

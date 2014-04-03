@@ -108,4 +108,9 @@
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/rebuild"] withArgs:@[] andPath:[xpkg getPathWithPrefix:@""]];
 }
 
++(void) downloadFile:(NSString*)URL place:(NSString*)path {
+    NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:URL]];
+    [data writeToFile:path atomically:YES];
+}
+
 @end
