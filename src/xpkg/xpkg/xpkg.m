@@ -106,10 +106,14 @@
 
 +(void) updateProgram {
     [xpkg downloadFile:@"https://codeload.github.com/jmmaloney4/xpkg/zip/master" place:[xpkg getPathWithPrefix:@"/master.tar.gz"]];
-    [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", @"master.tar.gz"] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xmvf", @"master.tar.gz"] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/rm" withArgs:@[@"-r", [xpkg getPathWithPrefix:@"/repo"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/mv" withArgs:@[@"-f", [xpkg getPathWithPrefix:@"/xpkg-master"], [xpkg getPathWithPrefix:@"/repo"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/rm" withArgs:@[[xpkg getPathWithPrefix:@"/master.tar.gz"]] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/repo/src/xpkg"]];
+    [xpkg executeCommand:@"/bin/rm" withArgs:@[[xpkg getPathWithPrefix:@"/core/xpkg"]] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/repo/src/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/xpkg"]] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/bin/ln" withArgs:@[[xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
 }
 
 +(void) downloadFile:(NSString*)URL place:(NSString*)path {

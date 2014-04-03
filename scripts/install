@@ -14,8 +14,11 @@ fi
 export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
 
+echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
+
 mkdir -p $XPKG/log
 mkdir -p $XPKG/bin
+mkdir -p $XPKG/sbin
 mkdir -p $XPKG/core
 mkdir -p $XPKG/tmp
 cd $XPKG
@@ -24,18 +27,33 @@ echo "Downloading xpkg"
 curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
 tar -xvf ./master.tar.gz
 
-rm -r ./repo
+echo "Downloading Git"
+curl '-#' https://codeload.github.com/git/git/tar.gz/v1.8.4 > ./git.tar.gz
+echo "Unpacking Git"
+tar -xvf ./git.tar.gz
 
-mv ./xpkg-master ./repo
+cd ./git-1.8.4/
 
-cd ./repo/src/xpkg/
+echo "Building Git, This May Take A Few Minutes"
+make configure
+mkdir -p $XPKG/core/git/1.8.4/
+./configure --prefix=$XPKG/core/git/1.8.4/
+make all
+make install
+
+cd $XPKG/core/git/1.8.4/
+ln ./* $XPKG/bin/
+
+cd $XPKG
+
+$XPKG/bin/git init
+$XPKG/bin/git remote add https://github.com/jmmaloney4/xpkg.git
+$XPKG/bin/git pull
 
 xcodebuild
 
 cp $XPKG/repo/src/xpkg/build/Release/xpkg $XPKG/core/
 
 ln -fF $XPKG/core/xpkg $XPKG/bin/
-
-echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
 
 

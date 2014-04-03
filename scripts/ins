@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# check for root
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+export TMP=/tmp/xpkg
+
+mkdir -p $TMP
+
+cd $TMP
+
+mkdir log >> /dev/null 2>&1
+
+echo "Downloading Git"
+curl '-#' https://codeload.github.com/git/git/tar.gz/v1.8.4 > ./master.tar.gz
+echo "Unpacking Git"
+tar -xvf ./master.tar.gz >> $TMP/log/xpkg.log 2>&1
+
+cd ./git-1.8.4/
+
+echo "Building Git, This May Take A Few Minutes"
+
+make configure >> $TMP/log/xpkg.log 2>&1
+./configure --prefix=$TMP >> $TMP/log/xpkg.log 2>&1
+make all >> $TMP/log/xpkg.log 2>&1
+make install >> $TMP/log/xpkg.log 2>&1
+
+export XPKG=/opt/xpkg
+
+mkdir -p $XPKG >> $TMP/log/xpkg.log 2>&1
+
+echo "Cloning xpkg Repository"
+
+$TMP/bin/git clone https://github.com/jmmaloney4/xpkg.git $XPKG >> $TMP/log/xpkg.log 2>&1
+cd $XPKG
+
+cp -r $TMP/ $XPKG/tmp >> $TMP/log/xpkg.log 2>&1
+
+mkdir -p $XPKG/core/git >> $TMP/log/xpkg.log 2>&1
+
+cp -r $XPKG/tmp/bin $XPKG/core/git/1.8.4/ >> $TMP/log/xpkg.log 2>&1
+
+cp $XPKG/tmp/log/xpkg.log $XPKG/log/xpkg.log >> $TMP/log/xpkg.log 2>&1
+
+echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
+
+cd $XPKG/src/xpkg/
+
+echo "Building xpkg"
+
+xcodebuild >> $TMP/log/xpkg.log 2>&1
+
+cp ./build/Release/xpkg $XPKG/core/
+
+ln -F $XPKG/core/xpkg /usr/bin/xpkg
+
+mkdir -p $XPKG/bin
+mkdir -p $XPKG/sbin
+
+mkdir -p $XPKG/core/xpkg-versions/
+
+ln $XPKG/core/git/1.8.4/git $XPKG/core/git/git
