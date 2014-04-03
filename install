@@ -47,14 +47,7 @@ cp $XPKG/tmp/log/xpkg.log $XPKG/log/xpkg.log >> $TMP/log/xpkg.log 2>&1
 
 echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
 
-echo "Downloading xpkg sources"
-
-curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > $XPKG/tmp/xpkg.zip
-cd $XPKG/tmp >> $TMP/log/xpkg.log 2>&1
-rm -r ./xpkg-master/
-unzip ./xpkg.zip >> $TMP/log/xpkg.log 2>&1
-
-cd ./xpkg-master/src/xpkg/
+cd $XPKG/src/xpkg/
 
 echo "Building xpkg"
 
@@ -67,4 +60,6 @@ ln -F $XPKG/core/xpkg /usr/bin/xpkg
 mkdir -p $XPKG/bin
 mkdir -p $XPKG/sbin
 
-ln $XPKG/core/git/1.9.1/git $XPKG/bin/git
+mkdir -p $XPKG/core/xpkg-versions/
+
+ln $XPKG/core/git/1.9.1/git $XPKG/core/git/git

@@ -15,7 +15,7 @@
 }
 
 +(void) printError:(NSString *)x {
-    printf("%sError:%s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
+    printf("%sError: %s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
 }
 
 +(BOOL) checkForArgs:(int)argc {
@@ -61,13 +61,15 @@
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
         [xpkg executeCommand:[xpkg getPathWithPrefix:@"/core/git/1.9.1/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
-        
-        
+        [xpkg rebuildProgram];
         return UPDATE;
     } else if ([ADD isEqualToString:arg]) {
         return ADD;
     } else if ([INSTALL isEqualToString:arg]) {
         return INSTALL;
+    } else if ([VERSION_ARG isEqualToString:arg]) {
+        [xpkg print:VERSION];
+        return VERSION_ARG;
     } else {
         [xpkg printError:@"Arguments are invalid"];
         return nil;
@@ -80,13 +82,30 @@
     return rv;
 }
 
-+(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path {
++(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*)path {
     BOOL rv = NO;
+    NSString* shar = [xpkg executeCommand:@"/usr/bin/shasum" withArgs:@[@"-a 256", path] andPath:@"/"];
+    NSString* rmdr = [xpkg executeCommand:@"/usr/bin/openssl" withArgs:@[@"rmd160", path] andPath:@"/"];
     
+    NSArray* shas = [shar componentsSeparatedByString:@" "];
+    NSArray* rmds = [rmdr componentsSeparatedByString:@" "];
     
+    for (int i = 0; i < [shar length]; i++) {
+        if (shas[i] == sha) {
+            for (int i = 0; i < [rmdr length]; i++) {
+                if (rmds[i] == rmd) {
+                    rv = YES;
+                    return rv;
+                }
+            }
+        }
+    }
     
     return rv;
 }
 
++(void) rebuildProgram {
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/rebuild"] withArgs:@[] andPath:[xpkg getPathWithPrefix:@""]];
+}
 
 @end

@@ -14,7 +14,8 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
         if (getuid() != 0) {
-            [xpkg print:@"Not root, Exiting...\n"];
+            [xpkg printError:@"Not root, Exiting...\n"];
+            [xpkg print:USAGE];
             exit(-1);
         }
         
