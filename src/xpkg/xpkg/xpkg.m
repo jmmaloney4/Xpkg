@@ -60,12 +60,14 @@
 
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
-        // [xpkg executeCommand:[xpkg getPathWithPrefix:@"/core/git/1.9.1/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
+        [xpkg exitIfNotRoot];
         [xpkg updateProgram];
         return UPDATE;
     } else if ([ADD isEqualToString:arg]) {
+        [xpkg exitIfNotRoot];
         return ADD;
     } else if ([INSTALL isEqualToString:arg]) {
+        [xpkg exitIfNotRoot];
         return INSTALL;
     } else if ([VERSION_ARG isEqualToString:arg]) {
         [xpkg print:VERSION];
@@ -76,6 +78,7 @@
         return @"HELP";
     } else {
         [xpkg printError:@"Arguments are invalid"];
+        [xpkg print:USAGE];
         return nil;
     }
 }
@@ -84,6 +87,13 @@
     NSMutableString* rv = [PREFIX mutableCopy];
     [rv appendString:path];
     return rv;
+}
+
++(void) exitIfNotRoot {
+    if (getuid() != 0) {
+        [xpkg printError:@"Not Root, Exiting..."];
+        exit(-1);
+    }
 }
 
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*)path {

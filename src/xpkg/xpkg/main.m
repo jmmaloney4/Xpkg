@@ -13,10 +13,6 @@ int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-        if (getuid() != 0) {
-            [xpkg printError:@"Not root, Exiting...\n"];
-            exit(-1);
-        }
 
         [xpkg checkForArgs:argc];
         NSString* arg1 = [NSString stringWithUTF8String:argv[1]];

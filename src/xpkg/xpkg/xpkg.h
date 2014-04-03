@@ -51,4 +51,5 @@ static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
 +(void)updateProgram;
 +(void) downloadFile:(NSString*)URL place:(NSString*)path;
++(void) exitIfNotRoot;
 @end
