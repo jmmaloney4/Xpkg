@@ -15,11 +15,11 @@ cd $TMP
 mkdir log >> /dev/null 2>&1
 
 echo "Downloading Git"
-curl '-#' https://codeload.github.com/git/git/tar.gz/v1.9.1 > ./master.tar.gz
+curl '-#' https://codeload.github.com/git/git/tar.gz/v1.8.4 > ./master.tar.gz
 echo "Unpacking Git"
 tar -xvf ./master.tar.gz >> $TMP/log/xpkg.log 2>&1
 
-cd ./git-1.9.1/
+cd ./git-1.8.4/
 
 echo "Building Git, This May Take A Few Minutes"
 
@@ -41,7 +41,7 @@ cp -r $TMP/ $XPKG/tmp >> $TMP/log/xpkg.log 2>&1
 
 mkdir -p $XPKG/core/git >> $TMP/log/xpkg.log 2>&1
 
-cp -r $XPKG/tmp/bin $XPKG/core/git/1.9.1/ >> $TMP/log/xpkg.log 2>&1
+cp -r $XPKG/tmp/bin $XPKG/core/git/1.8.4/ >> $TMP/log/xpkg.log 2>&1
 
 cp $XPKG/tmp/log/xpkg.log $XPKG/log/xpkg.log >> $TMP/log/xpkg.log 2>&1
 
@@ -62,4 +62,4 @@ mkdir -p $XPKG/sbin
 
 mkdir -p $XPKG/core/xpkg-versions/
 
-ln $XPKG/core/git/1.9.1/git $XPKG/core/git/git
+ln $XPKG/core/git/1.8.4/git $XPKG/core/git/git
