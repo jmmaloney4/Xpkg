@@ -50,6 +50,8 @@ $XPKG/bin/git init
 $XPKG/bin/git remote add https://github.com/jmmaloney4/xpkg.git
 $XPKG/bin/git pull
 
+cd $XPKG/src/
+
 xcodebuild
 
 cp $XPKG/repo/src/xpkg/build/Release/xpkg $XPKG/core/

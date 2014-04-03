@@ -1,10 +1,2 @@
 src/xpkg/DerivedData/
 src/xpkg/build
-
-!src/xpkg/xpkg/
-!.gitignore
-!install
-!LICENSE
-!README.md
-!packages/
-!scripts/
