@@ -17,7 +17,7 @@ int main(int argc, const char * argv[])
             [xpkg printError:@"Not root, Exiting...\n"];
             exit(-1);
         }
-        [xpkg updateProgram];
+        [xpkg print:USAGE];
 
         //[xpkg checkForArgs:argc];
         //NSString* arg1 = [NSString stringWithUTF8String:argv[1]];
