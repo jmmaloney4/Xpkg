@@ -43,13 +43,17 @@ static NSString* BOLDRED = @"\033[1m\033[31m";      /* Bold Red */
 static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 
 @interface xpkg : NSObject
-+(void)print:(NSString*)x;
-+(void)printError:(NSString*)x;
-+(BOOL)checkForArgs:(int)argc;
-+(NSString*)parseArg1:(NSString*)arg;
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
++(void) print:(NSString*)x;
++(void) printError:(NSString*)x;
++(BOOL) checkForArgs:(int)argc;
++(NSString*) executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
-+(void)updateProgram;
++(void) updateProgram;
 +(void) downloadFile:(NSString*)URL place:(NSString*)path;
 +(void) exitIfNotRoot;
++(BOOL) installPackage:(NSString*)path;
++(NSFileHandle*) getFileAtPath:(NSString*)path;
++(NSString*) getStringFromData:(NSData*) data;
++(NSData*) getDataFromFile:(NSFileHandle*) file;
+
 @end

@@ -56,31 +56,17 @@
     return rv;
 }
 
-//TODO add a method to open a file for reading
++(NSFileHandle*) getFileAtPath:(NSString*) path {
+    NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:path];
+    return file;
+}
 
-+(NSString*) parseArg1:(NSString *)arg {
-    if ([UPDATE isEqualToString:arg]) {
-        [xpkg exitIfNotRoot];
-        [xpkg updateProgram];
-        return UPDATE;
-    } else if ([ADD isEqualToString:arg]) {
-        [xpkg exitIfNotRoot];
-        return ADD;
-    } else if ([INSTALL isEqualToString:arg]) {
-        [xpkg exitIfNotRoot];
-        return INSTALL;
-    } else if ([VERSION_ARG isEqualToString:arg]) {
-        [xpkg print:VERSION];
-        return VERSION_ARG;
-    } else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
-        [xpkg print:USAGE];
-        [xpkg print:HELP_TEXT];
-        return @"HELP";
-    } else {
-        [xpkg printError:@"Arguments are invalid"];
-        [xpkg print:USAGE];
-        return nil;
-    }
++(NSData*) getDataFromFile:(NSFileHandle*) file {
+    return [file readDataToEndOfFile];
+}
+
++(NSString*) getStringFromData:(NSData*) data {
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 +(NSString*) getPathWithPrefix:(NSString*)path {
@@ -128,6 +114,31 @@
 +(void) downloadFile:(NSString*)URL place:(NSString*)path {
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:URL]];
     [data writeToFile:path atomically:YES];
+}
+
++(BOOL) installPackage:(NSString*)path {
+    BOOL s = NO;
+
+    NSString* package;
+    NSString* name;
+    NSString* version;
+
+    NSFileHandle* file = [xpkg getFileAtPath:path];
+    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+    NSArray* filecmps = [filestr componentsSeparatedByString:@" "];
+
+    if (!filecmps) {
+        return NO;
+    }
+
+    for (int i = 0; i < [filecmps count]; i++) {
+        if ([@"Package:" isEqualToString:filecmps[i]]) {
+            package = filecmps[i + 1];
+        }
+    }
+    
+    return s;
+
 }
 
 @end
