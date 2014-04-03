@@ -19,9 +19,9 @@ int main(int argc, const char * argv[])
         }
         [xpkg print:USAGE];
 
-        //[xpkg checkForArgs:argc];
-        //NSString* arg1 = [NSString stringWithUTF8String:argv[1]];
-        //arg1 = [xpkg parseArg1:arg1];
+        [xpkg checkForArgs:argc];
+        NSString* arg1 = [NSString stringWithUTF8String:argv[1]];
+        arg1 = [xpkg parseArg1:arg1];
     }
     return 0;
 }
