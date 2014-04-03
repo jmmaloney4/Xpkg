@@ -70,6 +70,10 @@
     } else if ([VERSION_ARG isEqualToString:arg]) {
         [xpkg print:VERSION];
         return VERSION_ARG;
+    } else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
+        [xpkg print:USAGE];
+        [xpkg print:HELP_TEXT];
+        return @"HELP";
     } else {
         [xpkg printError:@"Arguments are invalid"];
         return nil;
