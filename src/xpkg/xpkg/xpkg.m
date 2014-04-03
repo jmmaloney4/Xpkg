@@ -91,7 +91,7 @@
 
 +(void) exitIfNotRoot {
     if (getuid() != 0) {
-        [xpkg printError:@"Not Root, Exiting..."];
+        [xpkg printError:@"Not Root, Exiting...\n"];
         exit(-1);
     }
 }
