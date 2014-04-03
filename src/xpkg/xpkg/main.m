@@ -25,6 +25,7 @@ int main(int argc, const char * argv[])
         } else if ([ADD isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
         } else if ([INSTALL isEqualToString:arg]) {
+            [xpkg print:@"install"];
             [xpkg exitIfNotRoot];
             if (argc > 2) {
                 [xpkg installPackage:[NSString stringWithUTF8String:argv[2]]];
