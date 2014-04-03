@@ -128,6 +128,7 @@
     NSArray* filecmps = [filestr componentsSeparatedByString:@" "];
 
     if (!filecmps) {
+        [xpkg print:@"HI"];
         return NO;
     }
 
