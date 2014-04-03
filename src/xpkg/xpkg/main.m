@@ -43,10 +43,3 @@ int main(int argc, const char * argv[])
     }
     return 0;
 }
-
-NSString* getArg(int index) {
-    if (index > argc) {
-        return nil;
-    }
-    return [NSString stringWithUTF8String:argv[index]];
-}
