@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "xpkg.h"
 
-int argc;
-const char * argv[];
-
 int main(int argc, const char * argv[])
 {
 
@@ -19,6 +16,8 @@ int main(int argc, const char * argv[])
         [xpkg checkForArgs:argc];
 
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
+
+        printf("%d", argc);
 
         if ([UPDATE isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
