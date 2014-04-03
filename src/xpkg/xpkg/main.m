@@ -29,6 +29,8 @@ int main(int argc, const char * argv[])
             [xpkg exitIfNotRoot];
             if (argc > 2) {
                 [xpkg installPackage:[NSString stringWithUTF8String:argv[2]]];
+            } else {
+                [xpkg print:@"no args"];
             }
         } else if ([VERSION_ARG isEqualToString:arg]) {
             [xpkg print:VERSION];
