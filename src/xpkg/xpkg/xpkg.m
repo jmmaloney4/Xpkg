@@ -61,7 +61,7 @@
 +(NSString*) parseArg1:(NSString *)arg {
     if ([UPDATE isEqualToString:arg]) {
         // [xpkg executeCommand:[xpkg getPathWithPrefix:@"/core/git/1.9.1/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
-        [xpkg rebuildProgram];
+        [xpkg updateProgram];
         return UPDATE;
     } else if ([ADD isEqualToString:arg]) {
         return ADD;
@@ -104,8 +104,12 @@
     return rv;
 }
 
-+(void) rebuildProgram {
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/rebuild"] withArgs:@[] andPath:[xpkg getPathWithPrefix:@""]];
++(void) updateProgram {
+    [xpkg downloadFile:@"https://codeload.github.com/jmmaloney4/xpkg/zip/master" place:[xpkg getPathWithPrefix:@"/master.tar.gz"]];
+    [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", @"master.tar.gz"] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/bin/rm" withArgs:@[@"-r", [xpkg getPathWithPrefix:@"/repo"]] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/bin/mv" withArgs:@[@"-f", [xpkg getPathWithPrefix:@"/xpkg-master"], [xpkg getPathWithPrefix:@"/repo"]] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/bin/rm" withArgs:@[[xpkg getPathWithPrefix:@"/master.tar.gz"]] andPath:[xpkg getPathWithPrefix:@""]];
 }
 
 +(void) downloadFile:(NSString*)URL place:(NSString*)path {

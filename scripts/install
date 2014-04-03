@@ -17,6 +17,7 @@ export LOG=/opt/xpkg/log/xpkg.log
 mkdir -p $XPKG/log
 mkdir -p $XPKG/bin
 mkdir -p $XPKG/core
+mkdir -p $XPKG/tmp
 cd $XPKG
 
 echo "Downloading xpkg"
