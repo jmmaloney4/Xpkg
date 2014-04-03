@@ -12,7 +12,7 @@ static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype x
 
 static NSString* PREFIX = @"/opt/xpkg";
 
-static NSString* VERSION = @"0.1.0";
+static NSString* VERSION = @"1.0.0";
 
 static NSString* HELP_TEXT = @"";
 
