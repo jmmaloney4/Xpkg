@@ -17,7 +17,7 @@ int main(int argc, const char * argv[])
             [xpkg printError:@"Not root, Exiting...\n"];
             exit(-1);
         }
-
+        [xpkg print:@"HELLO"];
         [xpkg updateProgram];
 
         //[xpkg checkForArgs:argc];
