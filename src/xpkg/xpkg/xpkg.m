@@ -142,8 +142,8 @@
 
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Package"]) {
                 package = f[1];
+                [xpkg print:package];
             }
-            [xpkg print:package];
         } else if ([filecmps[x] hasPrefix:@"&"]) {
             //parse method
         } else if ([filecmps[x] hasPrefix:@"#"]) {
