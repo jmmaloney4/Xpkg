@@ -142,7 +142,7 @@
 
             while (true) {
                 if ([f[0] hasPrefix:@"@"]) {
-                    package = [[f[0] componentsSeparatedByString:@"@"][1]];
+                    package = [f[0] componentsSeparatedByString:@"@"][1];
                     [xpkg print:package];
                 }
             }
