@@ -7,15 +7,16 @@
 //
 
 #import "xpkg.h"
+#import "DDLog.h"
 
 @implementation xpkg
 
 +(void) print:(NSString*) x {
-    printf("%s", [x UTF8String]);
+    DDLogInfo(x);
 }
 
 +(void) printError:(NSString *)x {
-    printf("%sError: %s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
+    DDLogError(@"%sError: %s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
 }
 
 +(BOOL) checkForArgs:(int)argc {
