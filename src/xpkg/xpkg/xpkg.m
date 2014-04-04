@@ -132,7 +132,7 @@
         return NO;
     }
 
-    [xpkg print:filecmps[5]];
+    [xpkg print:filecmps[0]];
 
     return s;
 
