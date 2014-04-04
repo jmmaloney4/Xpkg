@@ -134,8 +134,6 @@
         return NO;
     }
 
-    [xpkg print:filecmps[0]];
-
     for (int x = 0; x < [filecmps count]; x++) {
         if ([filecmps[x] hasPrefix:@"@"]) {
             //parse attribute
