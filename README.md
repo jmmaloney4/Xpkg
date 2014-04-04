@@ -1,3 +1,3 @@
 xpkg
 ====
-Go to [The Wiki]()
+Go to [The Wiki](https://github.com/jmmaloney4/xpkg/wiki)
