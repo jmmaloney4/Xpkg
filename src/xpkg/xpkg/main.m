@@ -13,6 +13,8 @@ int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
+        Xlog(true, @"HELLO");
+
         [xpkg checkForArgs:argc];
 
         NSString* arg = [NSString stringWithUTF8String:argv[1]];

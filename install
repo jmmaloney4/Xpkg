@@ -37,7 +37,7 @@ sudo ./configure --prefix=$XPKG/core/git/1.9.1/
 sudo make all
 sudo make install
 
-cd $XPKG/core/git/1.9.1/
+cd $XPKG/core/git/1.9.1/bin
 sudo ln ./* $XPKG/bin/
 
 cd $XPKG

@@ -7,15 +7,16 @@
 //
 
 #import "xpkg.h"
+#include <asl.h>
 
 @implementation xpkg
 
 +(void) print:(NSString*) x {
-    NSLog(@"%s",  [x UTF8String]);
+    Xlog(true, @"%s", [x UTF8String]);
 }
 
 +(void) printError:(NSString *)x {
-    NSLog(@"%sError: %s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
+    
 }
 
 +(BOOL) checkForArgs:(int)argc {

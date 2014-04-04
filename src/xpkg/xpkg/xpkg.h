@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype xpkg -h  for more help\n";
+static NSString* USAGE = @"\nxpkg [options] command [options] <arguments> \ntype xpkg -h  for more help\n";
 
 static NSString* PREFIX = @"/opt/xpkg";
 
@@ -52,5 +52,14 @@ static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 +(NSFileHandle*) getFileAtPath:(NSString*)path;
 +(NSString*) getStringFromData:(NSData*) data;
 +(NSData*) getDataFromFile:(NSFileHandle*) file;
-
++(NSString*) getPathWithPrefix:(NSString*)path;
 @end
+
+void Xlog(BOOL tofile, NSString* format, ...) {
+    va_list argList;
+    va_start(argList, format);
+    NSString* formattedMessage = [[NSString alloc] initWithFormat: format arguments: argList];
+    va_end(argList);
+    NSLog(@"%@", formattedMessage);
+    fprintf(fopen([[xpkg getPathWithPrefix:@"/log/xpkg.log"] UTF8String], "a"), "%s\n", [formattedMessage UTF8String]);
+}
