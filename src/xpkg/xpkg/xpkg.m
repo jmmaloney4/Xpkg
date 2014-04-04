@@ -132,9 +132,7 @@
         return NO;
     }
 
-    for (int c = 0; c < [filecmps count]; c++) {
-        [xpkg print:filecmps[c]];
-    }
+    [xpkg print:filecmps[5]];
 
     return s;
 
