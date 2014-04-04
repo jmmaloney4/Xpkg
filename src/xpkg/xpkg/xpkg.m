@@ -140,15 +140,11 @@
 
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
 
-            while (true) {
-                if ([f[0] hasPrefix:@"@"]) {
-                    if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Package"]) {
-                        package = f[1];
-                    }
-                    [xpkg print:package];
-                }
+        if ([f[0] hasPrefix:@"@"]) {
+            if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Package"]) {
+                package = f[1];
             }
-
+            [xpkg print:package];
         } else if ([filecmps[x] hasPrefix:@"&"]) {
             //parse method
         } else if ([filecmps[x] hasPrefix:@"#"]) {
