@@ -140,7 +140,6 @@
 
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
 
-        if ([f[0] hasPrefix:@"@"]) {
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Package"]) {
                 package = f[1];
             }
@@ -151,9 +150,8 @@
             //comment, ignore
         }
     }
-
     return s;
-
 }
 
 @end
+
