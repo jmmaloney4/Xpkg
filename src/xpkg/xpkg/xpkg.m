@@ -138,6 +138,7 @@
 
     for (int x = 0; x < [filecmps count]; x++) {
         if ([filecmps[x] hasPrefix:@"&"]) {
+            [xpkg print:filecmps[x]];
             break;
         }
         NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
