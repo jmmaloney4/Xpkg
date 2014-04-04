@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DDLog.h"
 
 static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype xpkg -h  for more help\n";
 
@@ -39,6 +40,8 @@ static NSString* CYAN = @"\033[36m";      /* Cyan */
 static NSString* BOLDRED = @"\033[1m\033[31m";      /* Bold Red */
 static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
 @interface xpkg : NSObject
 +(void) print:(NSString*)x;
 +(void) printError:(NSString*)x;
@@ -52,5 +55,7 @@ static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 +(NSFileHandle*) getFileAtPath:(NSString*)path;
 +(NSString*) getStringFromData:(NSData*) data;
 +(NSData*) getDataFromFile:(NSFileHandle*) file;
+
++(NSString*) getPathWithPrefix:(NSString*)path;
 
 @end
