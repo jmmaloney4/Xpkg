@@ -135,7 +135,6 @@
     }
 
     for (int i = 0; i < [filecmps count]; i++) {
-        [xpkg print:filecmps[i]];
         if ([@"Package:" isEqualToString:filecmps[i]]) {
             package = filecmps[i + 1];
             [xpkg print:package];
