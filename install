@@ -11,6 +11,7 @@ export LOG=/opt/xpkg/log/xpkg.log
 
 echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
 
+sudo mkdir $XPKG
 sudo mkdir -p $XPKG/log
 sudo mkdir -p $XPKG/bin
 sudo mkdir -p $XPKG/sbin
@@ -37,22 +38,22 @@ sudo ./configure --prefix=$XPKG/core/git/1.9.1/
 sudo make all
 sudo make install
 
-cd $XPKG/core/git/1.9.1/
-sudo ln ./* $XPKG/bin/
+#cd $XPKG/core/git/1.9.1/
+#sudo ln ./* $XPKG/bin/
 
-cd $XPKG
+#cd $XPKG
 
-sudo $XPKG/bin/git init
-sudo $XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git
-sudo $XPKG/bin/git pull origin master
-sudo git branch --set-upstream-to=origin/master
+#sudo $XPKG/bin/git init
+#sudo $XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git
+#sudo $XPKG/bin/git pull origin master
+#sudo git branch --set-upstream-to=origin/master
 
-cd $XPKG/src/xpkg
+#cd $XPKG/src/xpkg
 
-sudo xcodebuild -workspace $XPKG/src/xpkg/xpkg.xcworkspace/ -scheme xpkg
+#sudo xcodebuild -workspace $XPKG/src/xpkg/xpkg.xcworkspace/ -scheme xpkg
 
-sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
+#sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
 
-sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
+#sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 
 
