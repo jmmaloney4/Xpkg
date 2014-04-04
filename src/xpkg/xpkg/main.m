@@ -8,14 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "xpkg.h"
-#import "DDASLLogger.h"
-#import "DDTTYLogger.h"
-#import "DDFileLogger.h"
+
 int main(int argc, const char * argv[])
 {
-    @autoreleasepool {
-        [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
+    @autoreleasepool {
         [xpkg checkForArgs:argc];
 
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
