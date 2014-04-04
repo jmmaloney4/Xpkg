@@ -123,22 +123,12 @@
     NSString* name;
     NSString* version;
 
-    [xpkg print:@"getting file"];
-
     NSFileHandle* file = [xpkg getFileAtPath:path];
     NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
-    NSArray* filecmps = [filestr componentsSeparatedByString:@" "];
+    NSArray* filecmps = [filestr componentsSeparatedByString:@"@"];
 
     if (!filecmps) {
-        [xpkg print:@"HI"];
         return NO;
-    }
-
-    for (int i = 0; i < [filecmps count]; i++) {
-        if ([@"@Package:" isEqualToString:filecmps[i]]) {
-            package = filecmps[i + 1];
-            [xpkg print:package];
-        }
     }
     
     return s;
