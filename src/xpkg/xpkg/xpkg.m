@@ -125,17 +125,14 @@
 
     NSFileHandle* file = [xpkg getFileAtPath:path];
     NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
-    NSArray* filecmps = [filestr componentsSeparatedByString:@"@"];
+
+    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
     if (!filecmps) {
         return NO;
     }
 
-    for (int i = 0; i < [filecmps count]; i++) {
-        if (@"") {
-            <#statements#>
-        }
-    }
+    
 
     return s;
 

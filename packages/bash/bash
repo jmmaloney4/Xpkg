@@ -9,15 +9,13 @@
 @Depends:
 @Recomended:
 
-====
+&build {
 
-@build {
-
-	$ ./configure
+	$ ./configure --prefix=/opt/xpkg/xpkgs/bash/4.3/
 	$ make
 	% cp bash
 }
 
-@install {
+&install {
 	%ln bash bin
 }
