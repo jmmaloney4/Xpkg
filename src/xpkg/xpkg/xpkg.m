@@ -130,7 +130,13 @@
     if (!filecmps) {
         return NO;
     }
-    
+
+    for (int i = 0; i < [filecmps count]; i++) {
+        if (@"") {
+            <#statements#>
+        }
+    }
+
     return s;
 
 }

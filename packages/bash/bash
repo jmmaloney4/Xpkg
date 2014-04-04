@@ -1,4 +1,4 @@
-@Package:bash
+@Package: bash
 @Version: 4.3
 @Description: The Bash Shell
 @URL: http://mirror.nexcess.net/gnu/bash/bash-4.3.tar.gz
@@ -8,6 +8,8 @@
 @Maintainer: Jack Maloney <jmmaloney4@gmail.com>
 @Depends:
 @Recomended:
+
+====
 
 @build {
 

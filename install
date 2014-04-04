@@ -23,20 +23,20 @@ sudo curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master
 sudo tar -xvf ./master.tar.gz
 
 echo "Downloading Git"
-sudo curl '-#' https://codeload.github.com/git/git/tar.gz/v1.8.4 > ./git.tar.gz
+sudo curl '-#' https://codeload.github.com/git/git/tar.gz/v1.9.1 > ./git.tar.gz
 echo "Unpacking Git"
 sudo tar -xvf ./git.tar.gz
 
-cd ./git-1.8.4/
+cd ./git-1.9.1/
 
 echo "Building Git, This May Take A Few Minutes"
 sudo make configure
-sudo mkdir -p $XPKG/core/git/1.8.4/
-sudo ./configure --prefix=$XPKG/core/git/1.8.4/
+sudo mkdir -p $XPKG/core/git/1.9.1/
+sudo ./configure --prefix=$XPKG/core/git/1.9.1/
 sudo make all
 sudo make install
 
-cd $XPKG/core/git/1.8.4/
+cd $XPKG/core/git/1.9.1/
 sudo ln ./* $XPKG/bin/
 
 cd $XPKG
