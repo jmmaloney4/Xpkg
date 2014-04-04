@@ -29,9 +29,6 @@ static NSString* ADD = @"add";
 static NSString* CREATE = @"create";
 static NSString* EXTRACT = @"extract";
 
-static NSString* CONFIG_FILE = @"/opt/osxd/config";
-static NSString* CONFIG_PATH = @"/opt/osxd";
-
 // Colors for terminal output
 static NSString* RESET = @"\033[0m";
 static NSString* RED = @"\033[31m";      /* Red */
