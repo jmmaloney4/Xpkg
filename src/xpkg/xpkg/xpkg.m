@@ -11,11 +11,11 @@
 @implementation xpkg
 
 +(void) print:(NSString*) x {
-    DDLogInfo(x);
+    printf("%s", [x UTF8String]);
 }
 
 +(void) printError:(NSString *)x {
-    DDLogError(x);
+    printf("%sError: %s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
 }
 
 +(BOOL) checkForArgs:(int)argc {

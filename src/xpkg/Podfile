@@ -1,7 +1,0 @@
-# Uncomment this line to define a global platform for your project
-platform :osx
-
-target "xpkg" do
-	pod 'CocoaLumberjack'
-end
-
