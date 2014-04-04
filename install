@@ -49,7 +49,7 @@ sudo git branch --set-upstream-to=origin/master
 
 cd $XPKG/src/xpkg
 
-sudo xcodebuild
+sudo xcodebuild -workspace $XPKG/src/xpkg/xpkg.xcworkspace/ -scheme xpkg
 
 sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
 
