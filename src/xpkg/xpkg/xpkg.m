@@ -128,13 +128,20 @@
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
+    NSMutableArray* parsedArrays;
+
     if (!filecmps) {
         return NO;
     }
 
     [xpkg print:filecmps[0]];
 
-
+    for (int x = 0; x < [filecmps count]; x++) {
+        if ([filecmps[x] hasPrefix:@"&"]) {
+            break;
+        }
+        NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
+    }
 
     return s;
 
