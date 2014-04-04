@@ -17,8 +17,6 @@ int main(int argc, const char * argv[])
 
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
 
-        printf("%d", argc);
-
         if ([UPDATE isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
             [xpkg updateProgram];
