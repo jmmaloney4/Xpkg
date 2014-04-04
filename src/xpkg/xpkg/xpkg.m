@@ -34,9 +34,6 @@
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
     NSString* rv;
     NSTask* task = [[NSTask alloc] init];
-    //NSMutableArray* argss = [args mutableCopy];
-    
-    //[argss insertObject:@">> /opt/xpkg/log/xpkg.log 2>&1" atIndex:[args count]];
     
     [task setLaunchPath:command];
     [task setArguments:args];
