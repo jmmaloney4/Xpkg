@@ -126,13 +126,15 @@
     NSFileHandle* file = [xpkg getFileAtPath:path];
     NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
 
-    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
+    NSArray* filecmps = [filestr componentsSeparatedByString:@"\\w"];
 
     if (!filecmps) {
         return NO;
     }
 
-    
+    for (int c = 0; c < [filecmps count]; c++) {
+        [xpkg print:filecmps[c]];
+    }
 
     return s;
 
