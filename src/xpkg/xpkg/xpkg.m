@@ -137,11 +137,18 @@
     [xpkg print:filecmps[0]];
 
     for (int x = 0; x < [filecmps count]; x++) {
-        if ([filecmps[x] hasPrefix:@"&"]) {
-            [xpkg print:filecmps[x]];
-            break;
+        if ([filecmps[x] hasPrefix:@"@"]) {
+            //parse attribute
+
+            NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
+
+            [xpkg print:f[1]];
+
+        } else if ([filecmps[x] hasPrefix:@"&"]) {
+            //parse method
+        } else if ([filecmps[x] hasPrefix:@"#"]) {
+            //comment, ignore
         }
-        NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
     }
 
     return s;
