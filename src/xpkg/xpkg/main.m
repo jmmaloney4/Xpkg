@@ -20,8 +20,8 @@ int main(int argc, const char * argv[])
 
         [xpkg log:init_log];
 
-        NSString* arg = [NSString stringWithUTF8String:argv[1]];
         [xpkg checkForArgs:argc];
+        NSString* arg = [NSString stringWithUTF8String:argv[1]];
 
         if ([UPDATE isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
