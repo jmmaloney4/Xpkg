@@ -62,8 +62,20 @@
     }
     return rv;
 }
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er {
+    return [xpkg executeCommand:command withArgs:args andPath:path printErr:er printOut:true];
+}
+
+
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL) ot {
+    return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:ot];
+}
 
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
+    return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:false];
+}
+
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL) ot {
     NSString* rv;
     NSTask* task = [[NSTask alloc] init];
     

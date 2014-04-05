@@ -50,7 +50,12 @@ static NSString* BOLDYELLOW = @"\033[1m\033[33m";    /* Bold Yellow */
 +(void) log:(NSString *)x;
 +(void) printWarn:(NSString *)x;
 +(BOOL) checkForArgs:(int)argc;
+
 +(NSString*) executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL) ot;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL) ot;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er;
+
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
 +(void) updateProgram;
 +(void) downloadFile:(NSString*)URL place:(NSString*)path;
