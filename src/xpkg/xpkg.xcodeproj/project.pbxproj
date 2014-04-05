@@ -100,11 +100,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04FF783B18EA3C79007B17F9 /* Build configuration list for PBXNativeTarget "xpkg" */;
 			buildPhases = (
+<<<<<<< HEAD
 				DEF1340DA68F4515A51EA577 /* Check Pods Manifest.lock */,
 				04FF782918EA3C79007B17F9 /* Sources */,
 				04FF782A18EA3C79007B17F9 /* Frameworks */,
 				04FF782B18EA3C79007B17F9 /* CopyFiles */,
 				E6AB0CF7513D4433A530EED7 /* Copy Pods Resources */,
+=======
+				04FF782918EA3C79007B17F9 /* Sources */,
+				04FF782A18EA3C79007B17F9 /* Frameworks */,
+				04FF782B18EA3C79007B17F9 /* CopyFiles */,
+>>>>>>> parent of 71ca9fb... using cocoa pods to install CocoaLumberjack
 			);
 			buildRules = (
 			);
@@ -141,6 +147,7 @@
 		};
 /* End PBXProject section */
 
+<<<<<<< HEAD
 /* Begin PBXShellScriptBuildPhase section */
 		DEF1340DA68F4515A51EA577 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -174,6 +181,8 @@
 		};
 /* End PBXShellScriptBuildPhase section */
 
+=======
+>>>>>>> parent of 71ca9fb... using cocoa pods to install CocoaLumberjack
 /* Begin PBXSourcesBuildPhase section */
 		04FF782918EA3C79007B17F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -260,10 +269,15 @@
 		04FF783C18EA3C79007B17F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
 				ONLY_ACTIVE_ARCH = YES;
+=======
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
+>>>>>>> parent of 71ca9fb... using cocoa pods to install CocoaLumberjack
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -271,10 +285,15 @@
 		04FF783D18EA3C79007B17F9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
 				ONLY_ACTIVE_ARCH = NO;
+=======
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
+>>>>>>> parent of 71ca9fb... using cocoa pods to install CocoaLumberjack
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
