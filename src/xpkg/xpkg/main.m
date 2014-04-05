@@ -8,11 +8,23 @@
 
 #import <Foundation/Foundation.h>
 #import "xpkg.h"
+#import "DDlog.h"
+#import "DDTTYLogger.h"
+#import "DDASLLogger.h"
+#import "DDFileLogger.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
+        DDFileLogger* fileLogger = [[DDFileLogger alloc] initWithLogFileManager:[[DDLogFileManagerDefault alloc] initWithLogsDirectory:@"/opt/xpkg/log/"]];
+        fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+
+        [DDLog addLogger:fileLogger];
+        [DDLog addLogger:[DDASLLogger sharedInstance]];
+        [DDLog addLogger:[DDTTYLogger sharedInstance]];
+
         [xpkg checkForArgs:argc];
 
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
