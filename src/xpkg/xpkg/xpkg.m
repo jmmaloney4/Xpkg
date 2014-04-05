@@ -101,8 +101,16 @@
         [xpkg log:[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]];
     }
 
+    if (er) {
+        printf([[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] UTF8String]);
+    }
+
     if (![[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
         [xpkg log:[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding]];
+    }
+
+    if (ot) {
+        printf([[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
 
     return rv;
