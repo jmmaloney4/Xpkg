@@ -13,9 +13,15 @@ int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-        [xpkg checkForArgs:argc];
+
+        NSString* init_log = @"\n\n\n==========Started Logging Session ";
+        init_log = [init_log stringByAppendingString:[xpkg getTimestamp]];
+        init_log = [init_log stringByAppendingString:@"==========\n\n"];
+
+        [xpkg log:init_log];
 
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
+        [xpkg checkForArgs:argc];
 
         if ([UPDATE isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
@@ -32,6 +38,11 @@ int main(int argc, const char * argv[])
         } else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
             [xpkg print:USAGE];
             [xpkg print:HELP_TEXT];
+        } else if ([CLEAR_LOG isEqualToString:arg]) {
+            [xpkg exitIfNotRoot];
+            [xpkg executeCommand:@"/bin/rm" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
+            [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
+            [xpkg print:@"Cleared Log..."];
         } else {
             [xpkg printError:@"Arguments are invalid"];
             [xpkg print:USAGE];
