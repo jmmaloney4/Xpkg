@@ -14,9 +14,9 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
 
-        NSString* init_log = @"\n\n\n==========Started Logging Session ";
+        NSString* init_log = @"\n\n\n========== Started Logging Session ";
         init_log = [init_log stringByAppendingString:[xpkg getTimestamp]];
-        init_log = [init_log stringByAppendingString:@"==========\n\n"];
+        init_log = [init_log stringByAppendingString:@" ==========\n\n"];
 
         [xpkg log:init_log];
 
