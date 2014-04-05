@@ -62,19 +62,10 @@
     }
     return rv;
 }
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er {
-    return [xpkg executeCommand:command withArgs:args andPath:path printErr:er printOut:true];
-}
 
-
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL) ot {
-    return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:ot];
-}
-
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
-    return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:false];
-}
-
+/** 
+ * Uses an NSTask to execute a shell command
+ **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL) ot {
     NSString* rv;
     NSTask* task = [[NSTask alloc] init];
@@ -101,6 +92,8 @@
         [xpkg log:[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]];
     }
 
+
+    // prints the error of the command to stderr if 'er' is true
     if (er) {
         fprintf(stderr, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
@@ -109,11 +102,29 @@
         [xpkg log:[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding]];
     }
 
+    // prints the standard out of the command to stdout if 'ot' is true
     if (ot) {
         fprintf(stdout, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
 
     return rv;
+}
+
+/**
+ * Other Variants of the executeCommand method above, just with some default values in place
+ **/
+
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er {
+    return [xpkg executeCommand:command withArgs:args andPath:path printErr:er printOut:true];
+}
+
+
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL) ot {
+    return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:ot];
+}
+
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
+    return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:false];
 }
 
 +(NSFileHandle*) getFileAtPath:(NSString*) path {
@@ -135,12 +146,19 @@
     return rv;
 }
 
+/**
+ * Exits the program if it is not run as root
+ **/
 +(void) exitIfNotRoot {
     if (getuid() != 0) {
         [xpkg printError:@"Not Root, Exiting...\n"];
         exit(-1);
     }
 }
+
+/**
+ * Checks the SHA256 and RIPEMD-160 hashes for the tarball downloaded by the program
+ **/
 
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*)path {
     BOOL rv = NO;
@@ -164,6 +182,10 @@
     return rv;
 }
 
+/**
+ * updates Xpkg itself
+ **/
+
 +(void) updateProgram {
     [xpkg executeCommand:@"/opt/xpkg/bin/git" withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/src/xpkg"]];
@@ -171,11 +193,17 @@
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
 }
 
+/**
+ * Downloads the fie at URL and saves it at the path provided
+ **/
 +(void) downloadFile:(NSString*)URL place:(NSString*)path {
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:URL]];
     [data writeToFile:path atomically:YES];
 }
 
+/**
+ * installs a package from the package file at path
+ **/
 +(BOOL) installPackage:(NSString*)path {
     BOOL s = NO;
 
@@ -197,12 +225,24 @@
     for (int x = 0; x < [filecmps count]; x++) {
         if ([filecmps[x] hasPrefix:@"@"]) {
             //parse attribute
-
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
 
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Package"]) {
                 package = f[1];
-                [xpkg print:package];
+                if ([package hasPrefix:@" "]) {
+                    package = [package substringWithRange:NSMakeRange(1, [package length]-1)];
+                }
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Version"]) {
+                version = f[1];
+                if ([version hasPrefix:@" "]) {
+                    version = [version substringWithRange:NSMakeRange(1, [version length]-1)];
+                }
+            } if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Name"]) {
+                name = f[1];
+                if ([name hasPrefix:@" "]) {
+                    name = [name substringWithRange:NSMakeRange(1, [name length]-1)];
+                    [xpkg print:name];
+                }
             }
         } else if ([filecmps[x] hasPrefix:@"&"]) {
             //parse method
@@ -213,6 +253,9 @@
     return s;
 }
 
+/**
+ * clears the Xpkg log file
+ **/
 +(void) clearLog {
     [xpkg executeCommand:@"/bin/rm" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
     [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
