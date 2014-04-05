@@ -36,7 +36,7 @@
 
     NSData* data = [pre dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:@"/opt/xpkg/log/xpkg.log"];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:LOG_FILE];
     [fileHandle seekToEndOfFile];
     [fileHandle writeData:data];
     [fileHandle closeFile];
