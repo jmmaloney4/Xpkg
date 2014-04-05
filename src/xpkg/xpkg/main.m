@@ -35,6 +35,8 @@ int main(int argc, const char * argv[])
             }
         } else if ([VERSION_ARG isEqualToString:arg]) {
             [xpkg print:VERSION];
+        } else if ([@"-v" isEqualToString:arg] || [@"--version" isEqualToString:arg]) {
+            [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
         } else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
             [xpkg print:USAGE];
             [xpkg print:HELP_TEXT];
@@ -46,5 +48,4 @@ int main(int argc, const char * argv[])
             [xpkg print:USAGE];
         }
     }
-    return 0;
 }
