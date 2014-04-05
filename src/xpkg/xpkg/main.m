@@ -40,9 +40,7 @@ int main(int argc, const char * argv[])
             [xpkg print:HELP_TEXT];
         } else if ([CLEAR_LOG isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
-            [xpkg executeCommand:@"/bin/rm" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
-            [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
-            [xpkg print:@"Cleared Log..."];
+            [xpkg clearLog];
         } else {
             [xpkg printError:@"Arguments are invalid"];
             [xpkg print:USAGE];

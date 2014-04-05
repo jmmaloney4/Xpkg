@@ -61,6 +61,7 @@ static NSString* BOLDYELLOW = @"\033[1m\033[33m";    /* Bold Yellow */
 +(NSData*) getDataFromFile:(NSFileHandle*) file;
 +(NSString*) getPathWithPrefix:(NSString*)path;
 +(NSString*) getTimestamp;
++(void) clearLog;
 @end
 
 static NSFileHandle* logFile;

@@ -193,5 +193,11 @@
     return s;
 }
 
++(void) clearLog {
+    [xpkg executeCommand:@"/bin/rm" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
+    [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
+    [xpkg print:@"Cleared Log..."];
+}
+
 @end
 
