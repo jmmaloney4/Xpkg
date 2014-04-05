@@ -16,6 +16,8 @@ static NSString* VERSION = @"1.0.0";
 
 static NSString* HELP_TEXT = @"";
 
+static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
+
 static NSString* VERSION_ARG = @"-V";
 static NSString* INSTALL = @"install";
 static NSString* UPDATE = @"update";
@@ -28,22 +30,33 @@ static NSString* SEARCH = @"search";
 static NSString* ADD = @"add";
 static NSString* CREATE = @"create";
 static NSString* EXTRACT = @"extract";
+static NSString* CLEAR_LOG = @"clear-log";
 
 // Colors for terminal output
 static NSString* RESET = @"\033[0m";
-static NSString* RED = @"\033[31m";      /* Red */
-static NSString* GREEN = @"\033[32m";      /* Green */
-static NSString* BLUE = @"\033[34m";      /* Blue */
-static NSString* MAGENTA  = @"\033[35m";      /* Magenta */
-static NSString* CYAN = @"\033[36m";      /* Cyan */
+static NSString* RED = @"\033[31m";                 /* Red */
+static NSString* GREEN = @"\033[32m";               /* Green */
+static NSString* BLUE = @"\033[34m";                /* Blue */
+static NSString* MAGENTA  = @"\033[35m";            /* Magenta */
+static NSString* CYAN = @"\033[36m";                /* Cyan */
 static NSString* BOLDRED = @"\033[1m\033[31m";      /* Bold Red */
-static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
+static NSString* BOLDGREEN = @"\033[1m\033[32m";    /* Bold Green */
+static NSString* BOLDYELLOW = @"\033[1m\033[33m";    /* Bold Yellow */
+
 
 @interface xpkg : NSObject
 +(void) print:(NSString*)x;
 +(void) printError:(NSString*)x;
++(void) log:(NSString *)x;
++(void) printWarn:(NSString *)x;
 +(BOOL) checkForArgs:(int)argc;
-+(NSString*) executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
+
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL)ot;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot log:(BOOL)l;
+
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
 +(void) updateProgram;
 +(void) downloadFile:(NSString*)URL place:(NSString*)path;
@@ -52,5 +65,9 @@ static NSString* BOLDGREEN = @"\033[1m\033[32m";      /* Bold Green */
 +(NSFileHandle*) getFileAtPath:(NSString*)path;
 +(NSString*) getStringFromData:(NSData*) data;
 +(NSData*) getDataFromFile:(NSFileHandle*) file;
-
++(NSString*) getPathWithPrefix:(NSString*)path;
++(NSString*) getTimestamp;
++(void) clearLog;
 @end
+
+static NSFileHandle* logFile;
