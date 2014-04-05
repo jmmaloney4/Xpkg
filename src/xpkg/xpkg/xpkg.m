@@ -210,6 +210,9 @@
     NSString* package;
     NSString* name;
     NSString* version;
+    NSString* SHA256;
+    NSString* RMD160;
+    NSString* description;
 
     NSFileHandle* file = [xpkg getFileAtPath:path];
     NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
@@ -237,11 +240,29 @@
                 if ([version hasPrefix:@" "]) {
                     version = [version substringWithRange:NSMakeRange(1, [version length]-1)];
                 }
-            } if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Name"]) {
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Name"]) {
                 name = f[1];
                 if ([name hasPrefix:@" "]) {
                     name = [name substringWithRange:NSMakeRange(1, [name length]-1)];
                     [xpkg print:name];
+                }
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"SHA256"]) {
+                SHA256 = f[1];
+                if ([SHA256 hasPrefix:@" "]) {
+                    SHA256 = [SHA256 substringWithRange:NSMakeRange(1, [SHA256 length]-1)];
+                    [xpkg print:SHA256];
+                }
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"RMD160"]) {
+                RMD160 = f[1];
+                if ([RMD160 hasPrefix:@" "]) {
+                    RMD160 = [RMD160 substringWithRange:NSMakeRange(1, [RMD160 length]-1)];
+                    [xpkg print:RMD160];
+                }
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Description"]) {
+                description = f[1];
+                if ([description hasPrefix:@" "]) {
+                    description = [description substringWithRange:NSMakeRange(1, [description length]-1)];
+                    [xpkg print:description];
                 }
             }
         } else if ([filecmps[x] hasPrefix:@"&"]) {
