@@ -102,7 +102,7 @@
     }
 
     if (er) {
-        printf([[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] UTF8String]);
+        fprintf(stderr, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
 
     if (![[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
@@ -110,7 +110,7 @@
     }
 
     if (ot) {
-        printf([[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
+        fprintf(stdout, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
 
     return rv;
