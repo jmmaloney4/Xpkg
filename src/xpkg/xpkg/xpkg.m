@@ -7,18 +7,47 @@
 //
 
 #import "xpkg.h"
-#import "DDLog.h"
 
 @implementation xpkg
 
 +(void) print:(NSString*) x {
-    DDLogInfo(x, path);
-    printf("%s", [x UTF8String]);
+    printf("%s\n", [x UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"INFO: %@\n", x]];
 }
 
 +(void) printError:(NSString *)x {
-    DDLogError(x, path);
-    printf("%sError: %s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
+    printf("%sERROR: %s%s\n", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", x]];
+}
+
++(void) printWarn:(NSString *)x {
+    printf("%sWARNING: %s%s\n", [BOLDYELLOW UTF8String], [RESET UTF8String], [x UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"WARNING: %@\n", x]];
+}
+
++(void) log:(NSString *)x {
+    NSString* date = [xpkg getTimestamp];
+
+    NSString* pre = @"[ ";
+
+    pre = [pre stringByAppendingString:date];
+    pre = [pre stringByAppendingString:@" ] "];
+    pre = [pre stringByAppendingString:x];
+
+    NSData* data = [pre dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:@"/opt/xpkg/log/xpkg.log"];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:data];
+    [fileHandle closeFile];
+}
+
++(NSString*) getTimestamp {
+    NSDate *myDate = [[NSDate alloc] init];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"cccc, MMMM dd, YYYY, HH:mm:ss.SSS aa"];
+    NSString* date = [dateFormat stringFromDate:myDate];
+    return date;
 }
 
 +(BOOL) checkForArgs:(int)argc {
@@ -42,17 +71,28 @@
     [task setArguments:args];
     [task setCurrentDirectoryPath:path];
     
-    NSPipe* pipe =[NSPipe pipe];
+    NSPipe* pipe = [NSPipe pipe];
     [task setStandardOutput:pipe];
-    
+
+    NSPipe* err = [NSPipe pipe];
+    [task setStandardError:err];
+
     [task launch];
     
     NSFileHandle* file = [pipe fileHandleForReading];
-    
     NSData* data = [file readDataToEndOfFile];
-    
-    rv= [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-    
+
+    NSFileHandle* errfile = [err fileHandleForReading];
+    NSData* errdata = [errfile readDataToEndOfFile];
+
+    if (![[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
+        [xpkg log:[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]];
+    }
+
+    if (![[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
+        [xpkg log:[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding]];
+    }
+
     return rv;
 }
 

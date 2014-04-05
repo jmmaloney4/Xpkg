@@ -8,26 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "xpkg.h"
-#import "DDlog.h"
-#import "DDTTYLogger.h"
-#import "DDASLLogger.h"
-#import "DDFileLogger.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-        DDFileLogger* fileLogger = [[DDFileLogger alloc] initWithLogFileManager:[[DDLogFileManagerDefault alloc] initWithLogsDirectory:@"/opt/xpkg/log/"]];
-        fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
-        fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
 
-        [DDLog addLogger:fileLogger];
-        [DDLog addLogger:[DDASLLogger sharedInstance]];
-        [DDLog addLogger:[DDTTYLogger sharedInstance]];
+        NSString* init_log = @"\n\n\n==========Started Logging Session ";
+        init_log = [init_log stringByAppendingString:[xpkg getTimestamp]];
+        init_log = [init_log stringByAppendingString:@"==========\n\n"];
 
-        [xpkg checkForArgs:argc];
+        [xpkg log:init_log];
 
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
+        [xpkg checkForArgs:argc];
 
         if ([UPDATE isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
@@ -44,6 +38,11 @@ int main(int argc, const char * argv[])
         } else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
             [xpkg print:USAGE];
             [xpkg print:HELP_TEXT];
+        } else if ([CLEAR_LOG isEqualToString:arg]) {
+            [xpkg exitIfNotRoot];
+            [xpkg executeCommand:@"/bin/rm" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
+            [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
+            [xpkg print:@"Cleared Log..."];
         } else {
             [xpkg printError:@"Arguments are invalid"];
             [xpkg print:USAGE];

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDLog.h"
 
 static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype xpkg -h  for more help\n";
 
@@ -29,6 +28,7 @@ static NSString* SEARCH = @"search";
 static NSString* ADD = @"add";
 static NSString* CREATE = @"create";
 static NSString* EXTRACT = @"extract";
+static NSString* CLEAR_LOG = @"clear-log";
 
 // Colors for terminal output
 static NSString* RESET = @"\033[0m";
@@ -41,13 +41,12 @@ static NSString* BOLDRED = @"\033[1m\033[31m";      /* Bold Red */
 static NSString* BOLDGREEN = @"\033[1m\033[32m";    /* Bold Green */
 static NSString* BOLDYELLOW = @"\033[1m\033[33m";    /* Bold Yellow */
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-
-static NSString* path = @"/opt/xpkg/log/xpkg.log";
 
 @interface xpkg : NSObject
 +(void) print:(NSString*)x;
 +(void) printError:(NSString*)x;
++(void) log:(NSString *)x;
++(void) printWarn:(NSString *)x;
 +(BOOL) checkForArgs:(int)argc;
 +(NSString*) executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
@@ -59,6 +58,7 @@ static NSString* path = @"/opt/xpkg/log/xpkg.log";
 +(NSString*) getStringFromData:(NSData*) data;
 +(NSData*) getDataFromFile:(NSFileHandle*) file;
 +(NSString*) getPathWithPrefix:(NSString*)path;
++(NSString*) getTimestamp;
 @end
 
 static NSFileHandle* logFile;

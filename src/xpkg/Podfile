@@ -2,6 +2,6 @@
 platform :osx
 
 target "xpkg" do
-	pod 'CocoaLumberjack'
+	# pod 'CocoaLumberjack'
 end
 
