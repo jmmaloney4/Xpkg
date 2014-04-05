@@ -16,8 +16,6 @@ static NSString* VERSION = @"1.0.0";
 
 static NSString* HELP_TEXT = @"";
 
-static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
-
 static NSString* VERSION_ARG = @"-V";
 static NSString* INSTALL = @"install";
 static NSString* UPDATE = @"update";
@@ -61,7 +59,6 @@ static NSString* BOLDYELLOW = @"\033[1m\033[33m";    /* Bold Yellow */
 +(NSData*) getDataFromFile:(NSFileHandle*) file;
 +(NSString*) getPathWithPrefix:(NSString*)path;
 +(NSString*) getTimestamp;
-+(void) clearLog;
 @end
 
 static NSFileHandle* logFile;

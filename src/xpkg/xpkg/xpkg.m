@@ -16,7 +16,7 @@
 }
 
 +(void) printError:(NSString *)x {
-    printf("%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [x UTF8String]);
+    printf("%sERROR: %s%s\n", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", x]];
 }
 
@@ -36,7 +36,7 @@
 
     NSData* data = [pre dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:LOG_FILE];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:@"/opt/xpkg/log/xpkg.log"];
     [fileHandle seekToEndOfFile];
     [fileHandle writeData:data];
     [fileHandle closeFile];
@@ -191,12 +191,6 @@
         }
     }
     return s;
-}
-
-+(void) clearLog {
-    [xpkg executeCommand:@"/bin/rm" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
-    [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
-    [xpkg print:@"Cleared Log..."];
 }
 
 @end
