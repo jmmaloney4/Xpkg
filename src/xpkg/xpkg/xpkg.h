@@ -16,6 +16,8 @@ static NSString* VERSION = @"1.0.0";
 
 static NSString* HELP_TEXT = @"";
 
+static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
+
 static NSString* VERSION_ARG = @"-V";
 static NSString* INSTALL = @"install";
 static NSString* UPDATE = @"update";
