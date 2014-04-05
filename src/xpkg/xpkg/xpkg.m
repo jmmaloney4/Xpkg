@@ -16,7 +16,7 @@
 }
 
 +(void) printError:(NSString *)x {
-    printf("%sERROR: %s%s\n", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
+    printf("%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [x UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", x]];
 }
 
