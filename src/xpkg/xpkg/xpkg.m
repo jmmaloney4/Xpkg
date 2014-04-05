@@ -7,14 +7,17 @@
 //
 
 #import "xpkg.h"
+#import "DDLog.h"
 
 @implementation xpkg
 
 +(void) print:(NSString*) x {
+    DDLogInfo(x, path);
     printf("%s", [x UTF8String]);
 }
 
 +(void) printError:(NSString *)x {
+    DDLogError(x, path);
     printf("%sError: %s%s", [BOLDRED UTF8String], [RESET UTF8String], [x UTF8String]);
 }
 
@@ -34,9 +37,6 @@
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
     NSString* rv;
     NSTask* task = [[NSTask alloc] init];
-    //NSMutableArray* argss = [args mutableCopy];
-    
-    //[argss insertObject:@">> /opt/xpkg/log/xpkg.log 2>&1" atIndex:[args count]];
     
     [task setLaunchPath:command];
     [task setArguments:args];
