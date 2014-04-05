@@ -210,9 +210,13 @@
     NSString* package;
     NSString* name;
     NSString* version;
-    NSString* SHA256;
-    NSString* RMD160;
+    NSString* sha256;
+    NSString* rmd160;
     NSString* description;
+    NSString* url;
+    NSString* homepage;
+    NSString* maintainer;
+    NSArray* depends;
 
     NSFileHandle* file = [xpkg getFileAtPath:path];
     NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
@@ -247,16 +251,16 @@
                     [xpkg print:name];
                 }
             } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"SHA256"]) {
-                SHA256 = f[1];
-                if ([SHA256 hasPrefix:@" "]) {
-                    SHA256 = [SHA256 substringWithRange:NSMakeRange(1, [SHA256 length]-1)];
-                    [xpkg print:SHA256];
+                sha256 = f[1];
+                if ([sha256 hasPrefix:@" "]) {
+                    sha256 = [sha256 substringWithRange:NSMakeRange(1, [sha256 length]-1)];
+                    [xpkg print:sha256];
                 }
             } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"RMD160"]) {
-                RMD160 = f[1];
-                if ([RMD160 hasPrefix:@" "]) {
-                    RMD160 = [RMD160 substringWithRange:NSMakeRange(1, [RMD160 length]-1)];
-                    [xpkg print:RMD160];
+                rmd160 = f[1];
+                if ([rmd160 hasPrefix:@" "]) {
+                    rmd160 = [rmd160 substringWithRange:NSMakeRange(1, [rmd160 length]-1)];
+                    [xpkg print:rmd160];
                 }
             } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Description"]) {
                 description = f[1];
@@ -264,7 +268,42 @@
                     description = [description substringWithRange:NSMakeRange(1, [description length]-1)];
                     [xpkg print:description];
                 }
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"URL"]) {
+                url = f[1];
+                url = [url stringByAppendingString:@":"];
+                url = [url stringByAppendingString:f[2]];
+                if ([url hasPrefix:@" "]) {
+                    url = [url substringWithRange:NSMakeRange(1, [url length]-1)];
+                    [xpkg print:url];
+                }
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Maintainer"]) {
+                maintainer = f[1];
+                if ([maintainer hasPrefix:@" "]) {
+                    maintainer = [maintainer substringWithRange:NSMakeRange(1, [maintainer length]-1)];
+                    [xpkg print:maintainer];
+                }
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Homepage"]) {
+                homepage = f[1];
+                homepage = [homepage stringByAppendingString:@":"];
+                homepage = [homepage stringByAppendingString:f[2]];
+                if ([homepage hasPrefix:@" "]) {
+                    homepage = [homepage substringWithRange:NSMakeRange(1, [homepage length]-1)];
+                    [xpkg print:homepage];
+                }
+            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Depends"]) {
+                NSString* str = f[1];
+                depends = [str componentsSeparatedByString:@","];
+                NSMutableArray* md = [depends mutableCopy];
+                for (int a = 0; a < [md count]; a++) {
+                    if ([md[a] hasPrefix:@" "]) {
+                        md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
+                        [xpkg print:md[a]];
+                    }
+                }
+                depends = md;
             }
+
+
         } else if ([filecmps[x] hasPrefix:@"&"]) {
             //parse method
         } else if ([filecmps[x] hasPrefix:@"#"]) {
