@@ -8,7 +8,7 @@
 @Mirror-1: http://psg.mtu.edu/pub/gnu/bash/bash-4.3.tar.gz
 @Maintainer: Jack Maloney <jmmaloney4@gmail.com>
 @Depends: com.IV.test, com.r.superpackage
-@Recomended:
+@Recomended: com.d.fff
 
 &build {
 

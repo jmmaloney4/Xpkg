@@ -66,7 +66,7 @@
 /** 
  * Uses an NSTask to execute a shell command
  **/
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL) ot {
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot log:(BOOL)l {
     NSString* rv;
     NSTask* task = [[NSTask alloc] init];
     
@@ -88,18 +88,19 @@
     NSFileHandle* errfile = [err fileHandleForReading];
     NSData* errdata = [errfile readDataToEndOfFile];
 
-    if (![[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
-        [xpkg log:[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]];
-    }
-
-
     // prints the error of the command to stderr if 'er' is true
     if (er) {
         fprintf(stderr, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
 
-    if (![[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
-        [xpkg log:[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding]];
+    if (l) {
+        if (![[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
+            [xpkg log:[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]];
+        }
+
+        if (![[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
+            [xpkg log:[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding]];
+        }
     }
 
     // prints the standard out of the command to stdout if 'ot' is true
@@ -110,23 +111,41 @@
     return rv;
 }
 
-/**
+/*
  * Other Variants of the executeCommand method above, just with some default values in place
- **/
+ */
 
+/**
+ * Uses an NSTask to execute a shell command
+ **/
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL) ot {
+    return [xpkg executeCommand:command withArgs:args andPath:path printErr:er printOut:ot log:true];
+}
+
+/**
+ * Uses an NSTask to execute a shell command
+ **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er {
     return [xpkg executeCommand:command withArgs:args andPath:path printErr:er printOut:true];
 }
 
-
+/**
+ * Uses an NSTask to execute a shell command
+ **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL) ot {
     return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:ot];
 }
 
+/**
+ * Uses an NSTask to execute a shell command
+ **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path {
     return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:false];
 }
 
+/*
+ * a few utility methods
+ */
 +(NSFileHandle*) getFileAtPath:(NSString*) path {
     NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:path];
     return file;
@@ -217,13 +236,12 @@
     NSString* homepage;
     NSString* maintainer;
     NSArray* depends;
+    NSArray* recomended;
 
     NSFileHandle* file = [xpkg getFileAtPath:path];
     NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
-
-    NSMutableArray* parsedArrays;
 
     if (!filecmps) {
         return NO;
@@ -301,6 +319,17 @@
                     }
                 }
                 depends = md;
+            }  else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Recomended"]) {
+                NSString* str = f[1];
+                recomended = [str componentsSeparatedByString:@","];
+                NSMutableArray* md = [recomended mutableCopy];
+                for (int a = 0; a < [md count]; a++) {
+                    if ([md[a] hasPrefix:@" "]) {
+                        md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
+                        [xpkg print:md[a]];
+                    }
+                }
+                recomended = md;
             }
 
 
