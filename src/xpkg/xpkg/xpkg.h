@@ -30,6 +30,7 @@ static NSString* SEARCH = @"search";
 static NSString* ADD = @"add";
 static NSString* CREATE = @"create";
 static NSString* EXTRACT = @"extract";
+static NSString* VIEW = @"view";
 static NSString* CLEAR_LOG = @"clear-log";
 
 // Colors for terminal output
@@ -55,7 +56,6 @@ static NSString* BOLDYELLOW = @"\033[1m\033[33m";    /* Bold Yellow */
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL)ot;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er;
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot log:(BOOL)l;
 
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
 +(void) updateProgram;

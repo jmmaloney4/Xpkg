@@ -63,17 +63,17 @@
     return rv;
 }
 
-/** 
+/**
  * Uses an NSTask to execute a shell command
  **/
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot log:(BOOL)l {
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot {
     NSString* rv;
     NSTask* task = [[NSTask alloc] init];
-    
+
     [task setLaunchPath:command];
     [task setArguments:args];
     [task setCurrentDirectoryPath:path];
-    
+
     NSPipe* pipe = [NSPipe pipe];
     [task setStandardOutput:pipe];
 
@@ -81,7 +81,7 @@
     [task setStandardError:err];
 
     [task launch];
-    
+
     NSFileHandle* file = [pipe fileHandleForReading];
     NSData* data = [file readDataToEndOfFile];
 
@@ -93,14 +93,12 @@
         fprintf(stderr, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
 
-    if (l) {
-        if (![[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
-            [xpkg log:[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]];
-        }
+    if (![[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
+        [xpkg log:[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]];
+    }
 
-        if (![[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
-            [xpkg log:[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding]];
-        }
+    if (![[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
+        [xpkg log:[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding]];
     }
 
     // prints the standard out of the command to stdout if 'ot' is true
@@ -114,13 +112,6 @@
 /*
  * Other Variants of the executeCommand method above, just with some default values in place
  */
-
-/**
- * Uses an NSTask to execute a shell command
- **/
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL) ot {
-    return [xpkg executeCommand:command withArgs:args andPath:path printErr:er printOut:ot log:true];
-}
 
 /**
  * Uses an NSTask to execute a shell command
@@ -183,10 +174,10 @@
     BOOL rv = NO;
     NSString* shar = [xpkg executeCommand:@"/usr/bin/shasum" withArgs:@[@"-a 256", path] andPath:@"/"];
     NSString* rmdr = [xpkg executeCommand:@"/usr/bin/openssl" withArgs:@[@"rmd160", path] andPath:@"/"];
-    
+
     NSArray* shas = [shar componentsSeparatedByString:@" "];
     NSArray* rmds = [rmdr componentsSeparatedByString:@" "];
-    
+
     for (int i = 0; i < [shar length]; i++) {
         if (shas[i] == sha) {
             for (int i = 0; i < [rmdr length]; i++) {
@@ -197,7 +188,7 @@
             }
         }
     }
-    
+
     return rv;
 }
 
@@ -334,7 +325,18 @@
 
 
         } else if ([filecmps[x] hasPrefix:@"&"]) {
-            //parse method
+            if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&build"]) {
+                for (int d = 0; ![filecmps[x] isEqualToString:@"}"]; d++) {
+                    x++;
+                    if ([filecmps[x] hasPrefix:@"$"] || [filecmps[x] hasPrefix:@"\t$"]) {
+                        // SHELL COMMAND
+                    } else if ([filecmps[x] hasPrefix:@"%"] || [filecmps[x] hasPrefix:@"\t%"]) {
+                        // SPECIAL COMMAND
+                    }
+                }
+            } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&install"]) {
+                [xpkg print:@"\nINSTALL METHOD\n"];
+            }
         } else if ([filecmps[x] hasPrefix:@"#"]) {
             //comment, ignore
         }
