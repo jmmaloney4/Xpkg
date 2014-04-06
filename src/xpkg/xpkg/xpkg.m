@@ -275,8 +275,8 @@
 
         if ([filecmps[x] hasPrefix:@"&"]) {
             if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&build"]) {
-
-
+                [xpkg print:@"Building..."];
+                double start = CFAbsoluteTimeGetCurrent();
                 for (int d = 0; ![filecmps[x] isEqualToString:@"}"]; d++) {
                     x++;
                     if ([filecmps[x] hasPrefix:@"$"] || [filecmps[x] hasPrefix:@"\t$"]) {
@@ -288,7 +288,7 @@
                         [mp removeObjectAtIndex:0];
                         parts = mp;
                         command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
-                        
+
                         if (command) {
                             [xpkg executeCommand:command withArgs:parts andPath:[xpkg getPackageRoot:package andVersion:version] printErr:true printOut:true];
                         } else {
@@ -299,6 +299,8 @@
 
                     }
                 }
+                double end = CFAbsoluteTimeGetCurrent();
+                [xpkg print:[NSString stringWithFormat:@"%f", end - start]];
             } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&install"]) {
                 [xpkg print:@"\nINSTALL METHOD\n"];
             } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&remove"]) {
@@ -436,7 +438,6 @@
     NSString* r = [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", path] andPath:wdir printErr:false printOut:false];
     [xpkg print:r];
     m = [[r componentsSeparatedByString:@"\n"] mutableCopy];
-    [xpkg print:[NSString stringWithFormat:@"%d",[m count]]];
     m = [[m[0] componentsSeparatedByString:@"/"] mutableCopy];
     m = [[m[0] componentsSeparatedByString:@" "] mutableCopy];
 
