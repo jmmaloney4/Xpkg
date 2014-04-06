@@ -54,3 +54,7 @@ sudo xcodebuild
 sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
 
 sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
+
+sudo cp $XPKG/src/xpkg/xpkg/tar.sh $XPKG/core/tar.sh
+
+sudo /usr/bin/xpkg update

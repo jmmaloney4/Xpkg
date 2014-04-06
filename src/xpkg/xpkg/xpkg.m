@@ -72,10 +72,13 @@
  * Uses an NSTask to execute a shell command
  **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot {
-    NSString* rv;
+
     NSTask* task = [[NSTask alloc] init];
 
     [task setLaunchPath:command];
+
+    //[task ]
+
     [task setArguments:args];
     [task setCurrentDirectoryPath:path];
 
@@ -110,6 +113,8 @@
     if (ot) {
         fprintf(stdout, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
+
+    NSString* rv = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
 
     return rv;
 }
@@ -203,7 +208,7 @@
 
 +(void) updateProgram {
     [xpkg executeCommand:@"/opt/xpkg/bin/git" withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
-    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/src/xpkg"] printErr:true printOut:false];
+    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/src/xpkg"] printErr:false printOut:false];
     [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/src/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
 }
@@ -255,12 +260,21 @@
     depends = [xpkg getPackageDepends:path];
     recomended = [xpkg getPackageRecomended:path];
 
-    [xpkg printInfo:[NSString stringWithFormat:@"Installing %@ at Version %@ From: %@", name, version, url]];
+    [xpkg printInfo:[NSString stringWithFormat:@"Installing %@, Version %@ From: %@", name, version, url]];
+
+    if (url) {
+        [xpkg print:@"\tDownloading..."];
+        [xpkg downloadFile:url place:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]]];
+        [xpkg print:@"\tUnpacking..."];
+        [xpkg UntarFileAtPath:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package] workingDir:@"/tmp/"];
+    }
 
     for (int x = 0; x < [filecmps count]; x++) {
 
         if ([filecmps[x] hasPrefix:@"&"]) {
             if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&build"]) {
+                [xpkg print:@"\tBuilding..."];
+                double start = CFAbsoluteTimeGetCurrent();
                 for (int d = 0; ![filecmps[x] isEqualToString:@"}"]; d++) {
                     x++;
                     if ([filecmps[x] hasPrefix:@"$"] || [filecmps[x] hasPrefix:@"\t$"]) {
@@ -271,10 +285,15 @@
                         [mp removeObjectAtIndex:0];
                         [mp removeObjectAtIndex:0];
                         parts = mp;
-                        command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
+                        if ([command hasPrefix:@"."] || [command hasPrefix:@"/"]) {
+                            // DOES NOTHING
+                        } else {
+                            command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
+                        }
 
+                        [xpkg print:[NSString stringWithFormat:@"Executing command %@", command]];
                         if (command) {
-                            [xpkg executeCommand:command withArgs:parts andPath:[xpkg getPackageRoot:package andVersion:version]    printErr:false printOut:false];
+                            [xpkg executeCommand:command withArgs:parts andPath:@"/opt/xpkg/tmp/bash-4.3/" printErr:false printOut:false];
                         } else {
                             [xpkg printError:[NSString stringWithFormat:@"Unable to launch command %@", command]];
                         }
@@ -283,8 +302,12 @@
 
                     }
                 }
+                double end = CFAbsoluteTimeGetCurrent();
+                [xpkg print:[NSString stringWithFormat:@"Built in %f ms", (end - start) * 1000]];
             } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&install"]) {
-                [xpkg print:@"\nINSTALL METHOD\n"];
+
+                //INSTALL METHOD
+
             } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&remove"]) {
                 [xpkg print:@"\nREMOVE METHOD\n"];
             }
@@ -363,7 +386,6 @@
             for (int a = 0; a < [md count]; a++) {
                 if ([md[a] hasPrefix:@" "]) {
                     md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
-                    [xpkg print:md[a]];
                 }
             }
             rv = md;
@@ -414,6 +436,15 @@
 
 +(NSArray*) getPackageRecomended:(NSString*)path {
     return [xpkg getPackageArrayAttribute:@"Recomended" atPath:path];
+}
+
++(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir {
+    NSString* c = [xpkg getPathWithPrefix:@"/core/tar.sh"];
+    c = [c stringByAppendingString:@" "];
+    c = [c stringByAppendingString:path];
+    c = [c stringByAppendingString:@" "];
+    c = [c stringByAppendingString:wdir];
+    system([c UTF8String]);
 }
 @end
 
