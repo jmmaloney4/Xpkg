@@ -72,7 +72,6 @@
  * Uses an NSTask to execute a shell command
  **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot {
-    /*
 
     NSTask* task = [[NSTask alloc] init];
 
@@ -114,20 +113,8 @@
     if (ot) {
         fprintf(stdout, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
-    */
 
-
-    NSString* rv;
-    NSString* c = command;
-
-    for (int f = 0; f < [args count]; f++) {
-        c = [c stringByAppendingString:@" "];
-        c = [c stringByAppendingString:args[f]];
-    }
-
-    NSString* x = [NSString stringWithFormat:@"%@ %@", [xpkg getPathWithPrefix:@"/core/rootd"], c];
-
-    system([x UTF8String]);
+    NSString* rv = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
 
     return rv;
 }
