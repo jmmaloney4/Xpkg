@@ -439,7 +439,12 @@
 }
 
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir {
-    [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", path] andPath:wdir printErr:false printOut:false];
+    NSString* c = [xpkg getPathWithPrefix:@"/core/tar.sh"];
+    c = [c stringByAppendingString:@" "];
+    c = [c stringByAppendingString:path];
+    c = [c stringByAppendingString:@" "];
+    c = [c stringByAppendingString:wdir];
+    system([c UTF8String]);
 }
 @end
 
