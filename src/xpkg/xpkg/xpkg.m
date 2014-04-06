@@ -72,14 +72,13 @@
  * Uses an NSTask to execute a shell command
  **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot {
+    /*
+
     NSTask* task = [[NSTask alloc] init];
 
-    [task setLaunchPath:@"/usr/bin/sudo"];
+    [task setLaunchPath:command];
 
-    NSMutableArray* ags = [args mutableCopy];
-    [ags insertObject:command atIndex:0];
-
-    args = ags;
+    //[task ]
 
     [task setArguments:args];
     [task setCurrentDirectoryPath:path];
@@ -115,8 +114,21 @@
     if (ot) {
         fprintf(stdout, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
+    */
 
-    NSString* rv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+
+    NSString* rv;
+    NSString* c = command;
+
+    for (int f = 0; f < [args count]; f++) {
+        c = [c stringByAppendingString:@" "];
+        c = [c stringByAppendingString:args[f]];
+    }
+
+    NSString* x = [NSString stringWithFormat:@"%@ %@", [xpkg getPathWithPrefix:@"/core/rootd"], c];
+
+    system([x UTF8String]);
 
     return rv;
 }
@@ -295,7 +307,7 @@
 
                         [xpkg print:[NSString stringWithFormat:@"Executing command %@", command]];
                         if (command) {
-                            [xpkg executeCommand:command withArgs:parts andPath:@"/opt/xpkg/tmp/bash-4.3" printErr:true printOut:true];
+                            [xpkg executeCommand:command withArgs:parts andPath:@"/opt/xpkg/tmp/bash-4.3/" printErr:false printOut:false];
                         } else {
                             [xpkg printError:[NSString stringWithFormat:@"Unable to launch command %@", command]];
                         }
