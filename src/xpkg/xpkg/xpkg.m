@@ -363,7 +363,6 @@
             for (int a = 0; a < [md count]; a++) {
                 if ([md[a] hasPrefix:@" "]) {
                     md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
-                    [xpkg print:md[a]];
                 }
             }
             rv = md;
