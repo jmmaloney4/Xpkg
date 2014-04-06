@@ -27,7 +27,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0418A2C618F20F5E00BDE91B /* tar.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = tar.sh; sourceTree = "<group>"; };
 		044631F018F05DA4000B009E /* xpkg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xpkg; sourceTree = BUILT_PRODUCTS_DIR; };
 		044631F318F05DA4000B009E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		044631F618F05DA5000B009E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -80,7 +79,6 @@
 				044631F618F05DA5000B009E /* main.m */,
 				0446320118F05E10000B009E /* xpkg.h */,
 				0446320218F05E10000B009E /* xpkg.m */,
-				0418A2C618F20F5E00BDE91B /* tar.sh */,
 				044631FA18F05DA5000B009E /* xpkg.1 */,
 				044631F818F05DA5000B009E /* Supporting Files */,
 			);

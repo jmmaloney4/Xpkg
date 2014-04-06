@@ -77,8 +77,6 @@
 
     [task setLaunchPath:command];
 
-    //[task ]
-
     [task setArguments:args];
     [task setCurrentDirectoryPath:path];
 
@@ -266,7 +264,7 @@
         [xpkg print:@"\tDownloading..."];
         [xpkg downloadFile:url place:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]]];
         [xpkg print:@"\tUnpacking..."];
-        [xpkg UntarFileAtPath:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package] workingDir:@"/tmp/"];
+        [xpkg UntarFileAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]] workingDir:@"/tmp/"];
     }
 
     for (int x = 0; x < [filecmps count]; x++) {
@@ -285,8 +283,10 @@
                         [mp removeObjectAtIndex:0];
                         [mp removeObjectAtIndex:0];
                         parts = mp;
-                        if ([command hasPrefix:@"."] || [command hasPrefix:@"/"]) {
-                            // DOES NOTHING
+                        if ([command hasPrefix:@"./"]) {
+                            command = [NSString stringWithFormat:@"/opt/xpkg/tmp/bash-4.3/%@", command];
+                        } else if ([command hasPrefix:@"/"]) {
+                            // DO NOTHING
                         } else {
                             command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
                         }
@@ -439,12 +439,11 @@
 }
 
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir {
-    NSString* c = [xpkg getPathWithPrefix:@"/core/tar.sh"];
-    c = [c stringByAppendingString:@" "];
-    c = [c stringByAppendingString:path];
-    c = [c stringByAppendingString:@" "];
-    c = [c stringByAppendingString:wdir];
-    system([c UTF8String]);
+    [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", path] andPath:wdir printErr:false printOut:false];
+}
+
++(void) clearTmp {
+    //[xpkg ]
 }
 @end
 
