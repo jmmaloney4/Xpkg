@@ -43,6 +43,8 @@ int main(int argc, const char * argv[])
         } else if ([CLEAR_LOG isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
             [xpkg clearLog];
+        } else if ([@"log" isEqualToString:arg]) {
+            system("less /opt/xpkg/log/xpkg.log");
         } else if ([VIEW isEqualToString:arg]) {
             //VIEW COMMAND
         } else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {

@@ -265,9 +265,9 @@
     [xpkg printInfo:[NSString stringWithFormat:@"Installing %@, Version %@ From: %@", name, version, url]];
 
     if (url) {
-        [xpkg print:@"Downloading..."];
+        [xpkg print:@"\tDownloading..."];
         [xpkg downloadFile:url place:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]]];
-        [xpkg print:@"Unpacking..."];
+        [xpkg print:@"\tUnpacking..."];
         [xpkg UntarFileAtPath:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package] workingDir:@"/tmp/"];
     }
 
@@ -275,7 +275,7 @@
 
         if ([filecmps[x] hasPrefix:@"&"]) {
             if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&build"]) {
-                [xpkg print:@"Building..."];
+                [xpkg print:@"\tBuilding..."];
                 double start = CFAbsoluteTimeGetCurrent();
                 for (int d = 0; ![filecmps[x] isEqualToString:@"}"]; d++) {
                     x++;
@@ -288,9 +288,9 @@
                         [mp removeObjectAtIndex:0];
                         parts = mp;
                         command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
-
+                        [xpkg print:[NSString stringWithFormat:@"Executing command %@", command]];
                         if (command) {
-                            [xpkg executeCommand:command withArgs:parts andPath:[xpkg getPackageRoot:package andVersion:version] printErr:true printOut:true];
+                            [xpkg executeCommand:command withArgs:parts andPath:@"/opt/xpkg/tmp/bash-4.3" printErr:true printOut:true];
                         } else {
                             [xpkg printError:[NSString stringWithFormat:@"Unable to launch command %@", command]];
                         }
@@ -302,7 +302,9 @@
                 double end = CFAbsoluteTimeGetCurrent();
                 [xpkg print:[NSString stringWithFormat:@"%f", end - start]];
             } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&install"]) {
-                [xpkg print:@"\nINSTALL METHOD\n"];
+
+                //INSTALL METHOD
+
             } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&remove"]) {
                 [xpkg print:@"\nREMOVE METHOD\n"];
             }
@@ -433,17 +435,8 @@
     return [xpkg getPackageArrayAttribute:@"Recomended" atPath:path];
 }
 
-+(NSString*) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir {
-    NSMutableArray* m = [[path componentsSeparatedByString:@"/"] mutableCopy];
-    NSString* r = [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", path] andPath:wdir printErr:false printOut:false];
-    [xpkg print:r];
-    m = [[r componentsSeparatedByString:@"\n"] mutableCopy];
-    m = [[m[0] componentsSeparatedByString:@"/"] mutableCopy];
-    m = [[m[0] componentsSeparatedByString:@" "] mutableCopy];
-
-    NSString* rv = m[0];
-    [xpkg print:rv];
-    return rv;
++(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir {
+    [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", path] andPath:wdir printErr:false printOut:false];
 }
 @end
 

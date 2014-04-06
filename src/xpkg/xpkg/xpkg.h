@@ -12,7 +12,7 @@ static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype x
 
 static NSString* PREFIX = @"/opt/xpkg";
 
-static NSString* VERSION = @"1.0.0";
+static NSString* VERSION = @"1.0.0-Beta.2";
 
 static NSString* HELP_TEXT = @"";
 
@@ -74,7 +74,7 @@ static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
 +(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path;
 +(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
 +(void) printInfo:(NSString *)x;
-+(NSString*) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
++(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
 @end
 
 static NSFileHandle* logFile;
