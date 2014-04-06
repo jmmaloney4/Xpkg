@@ -42,7 +42,8 @@ static NSString* MAGENTA  = @"\033[35m";            /* Magenta */
 static NSString* CYAN = @"\033[36m";                /* Cyan */
 static NSString* BOLDRED = @"\033[1m\033[31m";      /* Bold Red */
 static NSString* BOLDGREEN = @"\033[1m\033[32m";    /* Bold Green */
-static NSString* BOLDYELLOW = @"\033[1m\033[33m";    /* Bold Yellow */
+static NSString* BOLDYELLOW = @"\033[1m\033[33m";   /* Bold Yellow */
+static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
 
 
 @interface xpkg : NSObject
@@ -68,6 +69,11 @@ static NSString* BOLDYELLOW = @"\033[1m\033[33m";    /* Bold Yellow */
 +(NSString*) getPathWithPrefix:(NSString*)path;
 +(NSString*) getTimestamp;
 +(void) clearLog;
++(NSString*) getPackageRoot:(NSString*)package andVersion:(NSString*)version;
++(NSArray*) getPackageArrayAttribute:(NSString*)attr atPath:(NSString*)path;
++(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path;
++(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
++(void) printInfo:(NSString *)x;
 @end
 
 static NSFileHandle* logFile;

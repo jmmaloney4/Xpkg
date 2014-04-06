@@ -16,13 +16,18 @@
 }
 
 +(void) printError:(NSString *)x {
-    printf("%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [x UTF8String]);
+    fprintf(stderr, "%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [x UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", x]];
 }
 
 +(void) printWarn:(NSString *)x {
-    printf("%sWARNING: %s%s\n", [BOLDYELLOW UTF8String], [RESET UTF8String], [x UTF8String]);
+    fprintf(stderr, "%sWARNING: %s%s\n", [BOLDYELLOW UTF8String], [RESET UTF8String], [x UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"WARNING: %@\n", x]];
+}
+
++(void) printInfo:(NSString *)x {
+    printf("%s%s%s\n", [BOLDCYAN UTF8String], [x UTF8String], [RESET UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"INFORMATION: %@\n", x]];
 }
 
 +(void) log:(NSString *)x {
@@ -238,106 +243,40 @@
         return NO;
     }
 
+    package = [xpkg getPackage:path];
+    version = [xpkg getPackageVersion:path];
+    name = [xpkg getPackageName:path];
+    sha256 = [xpkg getPackageSHA256:path];
+    rmd160 = [xpkg getPackageRMD160:path];
+    description = [xpkg getPackageDescription:path];
+    url = [xpkg getPackageURL:path];
+    homepage = [xpkg getPackageHomepage:path];
+    maintainer = [xpkg getPackageMaintainer:path];
+    depends = [xpkg getPackageDepends:path];
+    recomended = [xpkg getPackageRecomended:path];
+
+    [xpkg printInfo:[NSString stringWithFormat:@"Installing %@ at Version %@ From: %@", name, version, url]];
+
     for (int x = 0; x < [filecmps count]; x++) {
-        if ([filecmps[x] hasPrefix:@"@"]) {
-            //parse attribute
-            NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
 
-            if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Package"]) {
-                package = f[1];
-                if ([package hasPrefix:@" "]) {
-                    package = [package substringWithRange:NSMakeRange(1, [package length]-1)];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Version"]) {
-                version = f[1];
-                if ([version hasPrefix:@" "]) {
-                    version = [version substringWithRange:NSMakeRange(1, [version length]-1)];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Name"]) {
-                name = f[1];
-                if ([name hasPrefix:@" "]) {
-                    name = [name substringWithRange:NSMakeRange(1, [name length]-1)];
-                    [xpkg print:name];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"SHA256"]) {
-                sha256 = f[1];
-                if ([sha256 hasPrefix:@" "]) {
-                    sha256 = [sha256 substringWithRange:NSMakeRange(1, [sha256 length]-1)];
-                    [xpkg print:sha256];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"RMD160"]) {
-                rmd160 = f[1];
-                if ([rmd160 hasPrefix:@" "]) {
-                    rmd160 = [rmd160 substringWithRange:NSMakeRange(1, [rmd160 length]-1)];
-                    [xpkg print:rmd160];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Description"]) {
-                description = f[1];
-                if ([description hasPrefix:@" "]) {
-                    description = [description substringWithRange:NSMakeRange(1, [description length]-1)];
-                    [xpkg print:description];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"URL"]) {
-                url = f[1];
-                url = [url stringByAppendingString:@":"];
-                url = [url stringByAppendingString:f[2]];
-                if ([url hasPrefix:@" "]) {
-                    url = [url substringWithRange:NSMakeRange(1, [url length]-1)];
-                    [xpkg print:url];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Maintainer"]) {
-                maintainer = f[1];
-                if ([maintainer hasPrefix:@" "]) {
-                    maintainer = [maintainer substringWithRange:NSMakeRange(1, [maintainer length]-1)];
-                    [xpkg print:maintainer];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Homepage"]) {
-                homepage = f[1];
-                homepage = [homepage stringByAppendingString:@":"];
-                homepage = [homepage stringByAppendingString:f[2]];
-                if ([homepage hasPrefix:@" "]) {
-                    homepage = [homepage substringWithRange:NSMakeRange(1, [homepage length]-1)];
-                    [xpkg print:homepage];
-                }
-            } else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Depends"]) {
-                NSString* str = f[1];
-                depends = [str componentsSeparatedByString:@","];
-                NSMutableArray* md = [depends mutableCopy];
-                for (int a = 0; a < [md count]; a++) {
-                    if ([md[a] hasPrefix:@" "]) {
-                        md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
-                        [xpkg print:md[a]];
-                    }
-                }
-                depends = md;
-            }  else if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"Recomended"]) {
-                NSString* str = f[1];
-                recomended = [str componentsSeparatedByString:@","];
-                NSMutableArray* md = [recomended mutableCopy];
-                for (int a = 0; a < [md count]; a++) {
-                    if ([md[a] hasPrefix:@" "]) {
-                        md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
-                        [xpkg print:md[a]];
-                    }
-                }
-                recomended = md;
-            }
-
-
-        } else if ([filecmps[x] hasPrefix:@"&"]) {
+        if ([filecmps[x] hasPrefix:@"&"]) {
             if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&build"]) {
                 for (int d = 0; ![filecmps[x] isEqualToString:@"}"]; d++) {
                     x++;
                     if ([filecmps[x] hasPrefix:@"$"] || [filecmps[x] hasPrefix:@"\t$"]) {
                         // SHELL COMMAND
                         NSArray* parts = [filecmps[x] componentsSeparatedByString:@" "];
-                        NSMutableArray* p = [parts mutableCopy];
-                        NSString* com  = [[p objectAtIndex:1] mutableCopy];
-                        com = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[com] andPath:@"/" printErr:false printOut:false];
-                        if (com) {
-                            [xpkg executeCommand:com withArgs:p andPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] printErr:false printOut:false];
+                        NSString* command = parts[1];
+                        NSMutableArray* mp = [parts mutableCopy];
+                        [mp removeObjectAtIndex:0];
+                        [mp removeObjectAtIndex:0];
+                        parts = mp;
+                        command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
+
+                        if (command) {
+                            [xpkg executeCommand:command withArgs:parts andPath:[xpkg getPackageRoot:package andVersion:version]    printErr:false printOut:false];
                         } else {
-                            [xpkg printError:[NSString stringWithFormat:@"Failed to launch program %@", com]];
+                            [xpkg printError:[NSString stringWithFormat:@"Unable to launch command %@", command]];
                         }
                     } else if ([filecmps[x] hasPrefix:@"%"] || [filecmps[x] hasPrefix:@"\t%"]) {
                         // SPECIAL COMMAND
@@ -365,5 +304,116 @@
     [xpkg print:[NSString stringWithFormat:@"Cleared Log At: %@", [xpkg getTimestamp]]];
 }
 
++(NSString*) getPackageRoot:(NSString*)package andVersion:(NSString*)version {
+    return [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@", package, version]];
+}
+
++(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path  {
+    return [xpkg getPackageAttribute:attr atPath:path isURL:false];
+}
+
++(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url{
+    NSString* rv;
+
+    NSFileHandle* file = [xpkg getFileAtPath:path];
+    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+
+    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
+
+    if (!filecmps) {
+        return NO;
+    }
+
+    for (int x = 0; x < [filecmps count]; x++) {
+        if ([filecmps[x] hasPrefix:@"@"]) {
+            NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
+            if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:attr]) {
+                rv = f[1];
+                if (url) {
+                    rv = [rv stringByAppendingString:@":"];
+                    rv = [rv stringByAppendingString:f[2]];
+                }
+                if ([rv hasPrefix:@" "]) {
+                    rv = [rv substringWithRange:NSMakeRange(1, [rv length]-1)];
+                }
+            }
+        }
+    }
+    return rv;
+}
+
++(NSArray*) getPackageArrayAttribute:(NSString*)attr atPath:(NSString*)path {
+    NSArray* rv;
+
+    NSFileHandle* file = [xpkg getFileAtPath:path];
+    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+
+    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
+
+    if (!filecmps) {
+        return NO;
+    }
+
+    for (int x = 0; x < [filecmps count]; x++) {
+        if ([filecmps[x] hasPrefix:@"@"]) {
+            NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
+            NSString* str = f[1];
+            rv = [str componentsSeparatedByString:@","];
+            NSMutableArray* md = [rv mutableCopy];
+            for (int a = 0; a < [md count]; a++) {
+                if ([md[a] hasPrefix:@" "]) {
+                    md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
+                    [xpkg print:md[a]];
+                }
+            }
+            rv = md;
+        }
+    }
+    return rv;
+}
+
++(NSString*) getPackage:(NSString*)path {
+    return [xpkg getPackageAttribute:@"Package" atPath:path];
+}
+
++(NSString*) getPackageVersion:(NSString*)path {
+    return [xpkg getPackageAttribute:@"Version" atPath:path];
+}
+
++(NSString*) getPackageName:(NSString*)path {
+    return [xpkg getPackageAttribute:@"Name" atPath:path];
+}
+
++(NSString*) getPackageURL:(NSString*)path {
+    return [xpkg getPackageAttribute:@"URL" atPath:path isURL:true];
+}
+
++(NSString*) getPackageHomepage:(NSString*)path {
+    return [xpkg getPackageAttribute:@"Homepage" atPath:path isURL:true];
+}
+
++(NSString*) getPackageSHA256:(NSString*)path {
+    return [xpkg getPackageAttribute:@"SHA256" atPath:path];
+}
+
++(NSString*) getPackageRMD160:(NSString*)path {
+    return [xpkg getPackageAttribute:@"RMD160" atPath:path];
+}
+
++(NSString*) getPackageDescription:(NSString*)path {
+    return [xpkg getPackageAttribute:@"Description" atPath:path];
+}
+
++(NSString*) getPackageMaintainer:(NSString*)path {
+    return [xpkg getPackageAttribute:@"Maintainer" atPath:path];
+}
+
++(NSArray*) getPackageDepends:(NSString*)path {
+    return [xpkg getPackageArrayAttribute:@"Depends" atPath:path];
+}
+
++(NSArray*) getPackageRecomended:(NSString*)path {
+    return [xpkg getPackageArrayAttribute:@"Recomended" atPath:path];
+}
 @end
 
