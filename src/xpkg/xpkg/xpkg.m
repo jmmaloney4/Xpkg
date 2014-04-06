@@ -330,12 +330,24 @@
                     x++;
                     if ([filecmps[x] hasPrefix:@"$"] || [filecmps[x] hasPrefix:@"\t$"]) {
                         // SHELL COMMAND
+                        NSArray* parts = [filecmps[x] componentsSeparatedByString:@" "];
+                        NSMutableArray* p = [parts mutableCopy];
+                        NSString* com  = [[p objectAtIndex:1] mutableCopy];
+                        com = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[com] andPath:@"/" printErr:false printOut:false];
+                        if (com) {
+                            [xpkg executeCommand:com withArgs:p andPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] printErr:false printOut:false];
+                        } else {
+                            [xpkg printError:[NSString stringWithFormat:@"Failed to launch program %@", com]];
+                        }
                     } else if ([filecmps[x] hasPrefix:@"%"] || [filecmps[x] hasPrefix:@"\t%"]) {
                         // SPECIAL COMMAND
+
                     }
                 }
             } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&install"]) {
                 [xpkg print:@"\nINSTALL METHOD\n"];
+            } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&remove"]) {
+                [xpkg print:@"\nREMOVE METHOD\n"];
             }
         } else if ([filecmps[x] hasPrefix:@"#"]) {
             //comment, ignore

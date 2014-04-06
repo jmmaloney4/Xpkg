@@ -12,7 +12,7 @@
 
 &build {
 
-	$ ./configure --prefix=/opt/xpkg/xpkgs/bash/4.3/
+	$ configure --prefix=/opt/xpkg/xpkgs/bash/4.3/
 	$ make
 	% cp bash
 }
