@@ -72,10 +72,15 @@
  * Uses an NSTask to execute a shell command
  **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot {
-    NSString* rv;
     NSTask* task = [[NSTask alloc] init];
 
-    [task setLaunchPath:command];
+    [task setLaunchPath:@"/usr/bin/sudo"];
+
+    NSMutableArray* ags = [args mutableCopy];
+    [ags insertObject:command atIndex:0];
+
+    args = ags;
+
     [task setArguments:args];
     [task setCurrentDirectoryPath:path];
 
@@ -110,6 +115,8 @@
     if (ot) {
         fprintf(stdout, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
+
+    NSString* rv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     return rv;
 }
@@ -255,12 +262,21 @@
     depends = [xpkg getPackageDepends:path];
     recomended = [xpkg getPackageRecomended:path];
 
-    [xpkg printInfo:[NSString stringWithFormat:@"Installing %@ at Version %@ From: %@", name, version, url]];
+    [xpkg printInfo:[NSString stringWithFormat:@"Installing %@, Version %@ From: %@", name, version, url]];
+
+    if (url) {
+        [xpkg print:@"Downloading..."];
+        [xpkg downloadFile:url place:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]]];
+        [xpkg print:@"Unpacking..."];
+        [xpkg UntarFileAtPath:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package] workingDir:@"/tmp/"];
+    }
 
     for (int x = 0; x < [filecmps count]; x++) {
 
         if ([filecmps[x] hasPrefix:@"&"]) {
             if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&build"]) {
+
+
                 for (int d = 0; ![filecmps[x] isEqualToString:@"}"]; d++) {
                     x++;
                     if ([filecmps[x] hasPrefix:@"$"] || [filecmps[x] hasPrefix:@"\t$"]) {
@@ -272,9 +288,9 @@
                         [mp removeObjectAtIndex:0];
                         parts = mp;
                         command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
-
+                        
                         if (command) {
-                            [xpkg executeCommand:command withArgs:parts andPath:[xpkg getPackageRoot:package andVersion:version]    printErr:false printOut:false];
+                            [xpkg executeCommand:command withArgs:parts andPath:[xpkg getPackageRoot:package andVersion:version] printErr:true printOut:true];
                         } else {
                             [xpkg printError:[NSString stringWithFormat:@"Unable to launch command %@", command]];
                         }
@@ -413,6 +429,20 @@
 
 +(NSArray*) getPackageRecomended:(NSString*)path {
     return [xpkg getPackageArrayAttribute:@"Recomended" atPath:path];
+}
+
++(NSString*) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir {
+    NSMutableArray* m = [[path componentsSeparatedByString:@"/"] mutableCopy];
+    NSString* r = [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", path] andPath:wdir printErr:false printOut:false];
+    [xpkg print:r];
+    m = [[r componentsSeparatedByString:@"\n"] mutableCopy];
+    [xpkg print:[NSString stringWithFormat:@"%d",[m count]]];
+    m = [[m[0] componentsSeparatedByString:@"/"] mutableCopy];
+    m = [[m[0] componentsSeparatedByString:@" "] mutableCopy];
+
+    NSString* rv = m[0];
+    [xpkg print:rv];
+    return rv;
 }
 @end
 
