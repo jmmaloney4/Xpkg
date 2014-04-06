@@ -287,7 +287,12 @@
                         [mp removeObjectAtIndex:0];
                         [mp removeObjectAtIndex:0];
                         parts = mp;
-                        command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
+                        if ([command hasPrefix:@"."] || [command hasPrefix:@"/"]) {
+                            // DOES NOTHING
+                        } else {
+                            command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
+                        }
+
                         [xpkg print:[NSString stringWithFormat:@"Executing command %@", command]];
                         if (command) {
                             [xpkg executeCommand:command withArgs:parts andPath:@"/opt/xpkg/tmp/bash-4.3" printErr:true printOut:true];
