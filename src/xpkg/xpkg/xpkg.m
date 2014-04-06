@@ -300,7 +300,7 @@
                     }
                 }
                 double end = CFAbsoluteTimeGetCurrent();
-                [xpkg print:[NSString stringWithFormat:@"%f", end - start]];
+                [xpkg print:[NSString stringWithFormat:@"Built in %f ms", (end - start) * 1000]];
             } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&install"]) {
 
                 //INSTALL METHOD
