@@ -43,9 +43,10 @@ int main(int argc, const char * argv[])
         } else if ([CLEAR_LOG isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
             [xpkg clearLog];
+        } else if ([VIEW isEqualToString:arg]) {
+            //VIEW COMMAND
         } else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
-            //[xpkg executeCommand:@"/usr/bin/more" withArgs:@[@"/opt/xpkg/LICENSE"] andPath:@"/" printErr:false printOut:true];
-            system("more /opt/xpkg/LICENSE");
+            system("less /opt/xpkg/LICENSE");
         }
             else {
             [xpkg printError:@"Arguments are invalid"];
