@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# change directory to the directory passed in at $1
-cd $1
-sudo $2 $3 $4 $5 $6 $7 $8 $9
