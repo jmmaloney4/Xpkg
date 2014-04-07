@@ -285,15 +285,12 @@
                         parts = mp;
                         if ([command hasPrefix:@"./"]) {
                             command = [NSString stringWithFormat:@"/opt/xpkg/tmp/bash-4.3/%@", command];
-                        } else if ([command hasPrefix:@"/"]) {
-                            // DO NOTHING
-                        } else {
-                            command = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[command] andPath:@"/" printErr:false printOut:false];
                         }
 
                         [xpkg print:[NSString stringWithFormat:@"Executing command %@", command]];
                         if (command) {
                             [xpkg executeCommand:command withArgs:parts andPath:@"/opt/xpkg/tmp/bash-4.3/" printErr:false printOut:false];
+                            [xpkg print:@"Done."];
                         } else {
                             [xpkg printError:[NSString stringWithFormat:@"Unable to launch command %@", command]];
                         }
