@@ -19,6 +19,7 @@ int main(int argc, const char * argv[])
         init_log = [init_log stringByAppendingString:@" ==========\n\n"];
 
         [xpkg log:init_log];
+        [xpkg printX];
 
         [xpkg checkForArgs:argc];
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
@@ -39,6 +40,7 @@ int main(int argc, const char * argv[])
             [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
         } else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
             [xpkg print:USAGE];
+            [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
             [xpkg print:HELP_TEXT];
         } else if ([CLEAR_LOG isEqualToString:arg]) {
             [xpkg exitIfNotRoot];

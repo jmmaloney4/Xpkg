@@ -1,0 +1,3 @@
+@Name: Xpkg Default Repository
+@Description: The repository that is installed by default, it mostly contains a few basic Unix tools.
+@Maintainer: Joe Bob <joe-bob@example.com>

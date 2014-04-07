@@ -463,6 +463,17 @@
     }
 }
 
++(void) printX {
+    [xpkg print:[NSString stringWithFormat:@"%@\n\\⎺⎺\\       /⎺⎺/%@", BOLDCYAN, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@ \\  \\     /  /%@", BOLDCYAN, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@  \\  \\   /  /%@", BOLDCYAN, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@   \\  \\ /  /%@", BOLDCYAN, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@   /  / \\  \\%@", BOLDCYAN, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@  /  /   \\  \\%@", BOLDCYAN, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@ /  /     \\  \\%@", BOLDCYAN, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@/__/       \\__\\%@", BOLDCYAN, RESET]];
+}
+
 +(void) addRepository:(NSString*) url {
     [xpkg downloadFile:url place:[xpkg getPathWithPrefix:@"/tmp/tmprepo.tar.xz"]];
 }

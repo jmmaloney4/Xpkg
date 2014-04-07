@@ -15,6 +15,7 @@ static NSString* PREFIX = @"/opt/xpkg";
 static NSString* VERSION = @"1.0.0-Beta.2";
 
 static NSString* HELP_TEXT = @"";
+//HELP_TEXT = [NSString stringWithFormat:@"Options are either: \n\t"];
 
 static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
 
@@ -77,6 +78,7 @@ static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
 +(void) clearTmp;
 +(BOOL) is64Bit;
++(void) printX;
 +(void) createRepository:(NSString*) path;
 @end
 
