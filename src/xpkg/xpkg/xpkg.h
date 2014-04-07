@@ -77,6 +77,7 @@ static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
 +(void) clearTmp;
 +(BOOL) is64Bit;
++(void) createRepository:(NSString*) path;
 @end
 
 static NSFileHandle* logFile;

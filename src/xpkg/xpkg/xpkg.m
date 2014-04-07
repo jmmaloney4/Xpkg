@@ -35,6 +35,10 @@
 
     NSString* pre = @"[ ";
 
+    if (!nil) {
+        return;
+    }
+
     pre = [pre stringByAppendingString:date];
     pre = [pre stringByAppendingString:@" ] "];
     pre = [pre stringByAppendingString:x];
@@ -460,17 +464,59 @@
 }
 
 +(void) addRepository:(NSString*) url {
-    [xpkg downloadFile:url place:[xpkg getPathWithPrefix:@"/tmp/tmprepo.bzip2"]];
-    [xpkg executeCommand:@"/usr/bin/bzip2" withArgs:@[@"-d", [xpkg getPathWithPrefix:@"/tmprepo.bzip2"]] andPath:[xpkg getPathWithPrefix:@"/tmp"]];
-    NSString* x = [xpkg getStringFromData:[xpkg getDataFromFile:[NSFileHandle fileHandleForReadingAtPath:[xpkg getPathWithPrefix:@"/tmp/repo"]]]];
-    NSArray* name = [x componentsSeparatedByString:@"\n"][0];
-    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/tmp/repo"], [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/info/%@", name]]] andPath:@"/"];
-    [url writeToFile:[xpkg getPathWithPrefix:@"/core/info/repos"] atomically:true encoding:NSUTF8StringEncoding error:nil];
-    [xpkg parseRepoFile:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/info/%@", name]]];
+    [xpkg downloadFile:url place:[xpkg getPathWithPrefix:@"/tmp/tmprepo.tar.xz"]];
+}
+
++(void) createRepository:(NSString*) path {
+    NSFileManager* filem = [[NSFileManager alloc] init];
+
+    BOOL isDir;
+    [filem fileExistsAtPath:path isDirectory:&isDir];
+    if (isDir) {
+
+        // IS A DIRECTORY
+
+        if ([filem fileExistsAtPath:[NSString stringWithFormat:@"%@/REPO", path]]) {
+            // HAS A REPO FILE
+
+            NSString* name = [xpkg getPackageAttribute:@"Name" atPath:[NSString stringWithFormat:@"%@/REPO", path]];
+            if (!name) {
+                [xpkg printError:@"No Name in REPO file"];
+                return;
+            } else {
+                NSString* description = [xpkg getPackageAttribute:@"Description" atPath:[NSString stringWithFormat:@"%@/REPO", path]];
+                if (!description) {
+                    [xpkg printError:@"No Description in REPO file"];
+                    return;
+                } else {
+                    NSString* description = [xpkg getPackageAttribute:@"Maintainer" atPath:[NSString stringWithFormat:@"%@/REPO", path]];
+                    if (!description) {
+                        [xpkg printError:@"No Maintainer in REPO file"];
+                        return;
+                    }
+                }
+            }
+
+            [xpkg printInfo:[NSString stringWithFormat:@"Creating an Xpkg repository with directory %@", path]];
+            NSArray* g = [path componentsSeparatedByString:@"/"];
+            NSString* h = g[[g count] - 2];
+            [[xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-cJ", path] andPath:[filem currentDirectoryPath] printErr:false printOut:false] writeToFile:[NSString stringWithFormat:@"%@/%@.xro", [filem currentDirectoryPath], h] atomically:true encoding:NSUTF8StringEncoding error:nil];
+            [xpkg print:[NSString stringWithFormat:@"%@/%@.xro", [filem currentDirectoryPath], h]];
+            [xpkg print:[xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-cJ", path] andPath:[filem currentDirectoryPath] printErr:false printOut:false]];
+            [xpkg print:[NSString stringWithFormat:@"\tPlaced repo file at %@.xro", h]];
+
+        } else {
+            [xpkg printError:[NSString stringWithFormat:@"No file at %@/REPO", path]];
+            return;
+        }
+    } else {
+        [xpkg printError:[NSString stringWithFormat:@"%@ is not a directory", path]];
+        return;
+    }
 }
 
 +(void) parseRepoFile:(NSString*)path {
-
+    
 }
 
 
