@@ -15,6 +15,7 @@ static NSString* PREFIX = @"/opt/xpkg";
 static NSString* VERSION = @"1.0.0-Beta.2";
 
 static NSString* HELP_TEXT = @"";
+//HELP_TEXT = [NSString stringWithFormat:@"Options are either: \n\t"];
 
 static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
 
@@ -44,6 +45,7 @@ static NSString* BOLDRED = @"\033[1m\033[31m";      /* Bold Red */
 static NSString* BOLDGREEN = @"\033[1m\033[32m";    /* Bold Green */
 static NSString* BOLDYELLOW = @"\033[1m\033[33m";   /* Bold Yellow */
 static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
+static NSString* BOLDMAGENTA = @"\033[1m\033[35m";      /* Bold Magenta */
 
 
 @interface xpkg : NSObject
@@ -75,6 +77,10 @@ static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
 +(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
 +(void) printInfo:(NSString *)x;
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
++(void) clearTmp;
++(BOOL) is64Bit;
++(void) printXpkg;
++(void) createRepository:(NSString*) path;
 @end
 
 static NSFileHandle* logFile;

@@ -19,6 +19,7 @@ int main(int argc, const char * argv[])
         init_log = [init_log stringByAppendingString:@" ==========\n\n"];
 
         [xpkg log:init_log];
+        [xpkg printXpkg];
 
         [xpkg checkForArgs:argc];
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
@@ -39,6 +40,7 @@ int main(int argc, const char * argv[])
             [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
         } else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
             [xpkg print:USAGE];
+            [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
             [xpkg print:HELP_TEXT];
         } else if ([CLEAR_LOG isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
@@ -49,8 +51,9 @@ int main(int argc, const char * argv[])
             //VIEW COMMAND
         } else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
             system("less /opt/xpkg/LICENSE");
-        }
-            else {
+        } else if ([CREATE isEqualToString:arg]) {
+            [xpkg createRepository:[NSString stringWithUTF8String:argv[2]]];
+        } else {
             [xpkg printError:@"Arguments are invalid"];
             [xpkg print:USAGE];
         }
