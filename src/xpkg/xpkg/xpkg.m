@@ -463,15 +463,15 @@
     }
 }
 
-+(void) printX {
-    [xpkg print:[NSString stringWithFormat:@"%@\n\\⎺⎺\\       /⎺⎺/%@", BOLDCYAN, RESET]];
-    [xpkg print:[NSString stringWithFormat:@"%@ \\  \\     /  /%@", BOLDCYAN, RESET]];
-    [xpkg print:[NSString stringWithFormat:@"%@  \\  \\   /  /%@", BOLDCYAN, RESET]];
-    [xpkg print:[NSString stringWithFormat:@"%@   \\  \\ /  /%@", BOLDCYAN, RESET]];
-    [xpkg print:[NSString stringWithFormat:@"%@   /  / \\  \\%@", BOLDCYAN, RESET]];
-    [xpkg print:[NSString stringWithFormat:@"%@  /  /   \\  \\%@", BOLDCYAN, RESET]];
-    [xpkg print:[NSString stringWithFormat:@"%@ /  /     \\  \\%@", BOLDCYAN, RESET]];
-    [xpkg print:[NSString stringWithFormat:@"%@/__/       \\__\\%@", BOLDCYAN, RESET]];
++(void) printXpkg {
+    [xpkg print:[NSString stringWithFormat:@"%@\n\\⎺⎺\\       /⎺⎺/        /⎺⎺⎺⎺⎺⎺⎺⎺/ |⎺⎺|  /⎺⎺/  |%@", BOLDMAGENTA, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@ \\  \\     /  /        /   /⎺⎺/ /  |  | /  /     |   %@", BOLDMAGENTA, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@  \\  \\   /  /        /   /__/ /   |  |/  /      |   %@", BOLDMAGENTA, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@   \\  \\ /  /        /  ______/    |     /       |   %@", BOLDMAGENTA, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@   /  / \\  \\       /  /           |     \\      |   %@", BOLDMAGENTA, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@  /  /   \\  \\     /  /            |  |\\  \\    |   %@", BOLDMAGENTA, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@ /  /     \\  \\   /  /             |  | \\  \\   |   %@", BOLDMAGENTA, RESET]];
+    [xpkg print:[NSString stringWithFormat:@"%@/__/       \\__\\ /__/              |__|  \\__\\  |   %@", BOLDMAGENTA, RESET]];
 }
 
 +(void) addRepository:(NSString*) url {

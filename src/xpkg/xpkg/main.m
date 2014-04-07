@@ -19,7 +19,7 @@ int main(int argc, const char * argv[])
         init_log = [init_log stringByAppendingString:@" ==========\n\n"];
 
         [xpkg log:init_log];
-        [xpkg printX];
+        [xpkg printXpkg];
 
         [xpkg checkForArgs:argc];
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
