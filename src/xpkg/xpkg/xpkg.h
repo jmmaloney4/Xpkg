@@ -75,6 +75,8 @@ static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
 +(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
 +(void) printInfo:(NSString *)x;
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
++(void) clearTmp;
++(BOOL) is64Bit;
 @end
 
 static NSFileHandle* logFile;

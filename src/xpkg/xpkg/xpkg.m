@@ -78,6 +78,11 @@
     [task setLaunchPath:command];
 
     [task setArguments:args];
+
+    if ([path isEqualToString:@""]) {
+        path = @"/";
+    }
+
     [task setCurrentDirectoryPath:path];
 
     NSPipe* pipe = [NSPipe pipe];
@@ -260,11 +265,13 @@
 
     [xpkg printInfo:[NSString stringWithFormat:@"Installing %@, Version %@ From: %@", name, version, url]];
 
+    [xpkg clearTmp];
+
     if (url) {
         [xpkg print:@"\tDownloading..."];
         [xpkg downloadFile:url place:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]]];
         [xpkg print:@"\tUnpacking..."];
-        [xpkg UntarFileAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]] workingDir:@"/tmp/"];
+        [xpkg UntarFileAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]] workingDir:[xpkg getPathWithPrefix:@"/tmp/"]];
     }
 
     for (int x = 0; x < [filecmps count]; x++) {
@@ -440,7 +447,32 @@
 }
 
 +(void) clearTmp {
-    //[xpkg ]
+    [xpkg executeCommand:@"/bin/rm" withArgs:@[@"-r", [xpkg getPathWithPrefix:@"/tmp/"]] andPath:@"/"];
+    [xpkg executeCommand:@"/bin/mkdir" withArgs:@[[xpkg getPathWithPrefix:@"/tmp"]] andPath:@"/"];
 }
+
++(BOOL) is64Bit {
+    if (__LP64__) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
++(void) addRepository:(NSString*) url {
+    [xpkg downloadFile:url place:[xpkg getPathWithPrefix:@"/tmp/tmprepo.bzip2"]];
+    [xpkg executeCommand:@"/usr/bin/bzip2" withArgs:@[@"-d", [xpkg getPathWithPrefix:@"/tmprepo.bzip2"]] andPath:[xpkg getPathWithPrefix:@"/tmp"]];
+    NSString* x = [xpkg getStringFromData:[xpkg getDataFromFile:[NSFileHandle fileHandleForReadingAtPath:[xpkg getPathWithPrefix:@"/tmp/repo"]]]];
+    NSArray* name = [x componentsSeparatedByString:@"\n"][0];
+    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/tmp/repo"], [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/info/%@", name]]] andPath:@"/"];
+    [url writeToFile:[xpkg getPathWithPrefix:@"/core/info/repos"] atomically:true encoding:NSUTF8StringEncoding error:nil];
+    [xpkg parseRepoFile:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/info/%@", name]]];
+}
+
++(void) parseRepoFile:(NSString*)path {
+
+}
+
+
 @end
 

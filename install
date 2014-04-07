@@ -17,6 +17,7 @@ sudo mkdir -p $XPKG/sbin
 sudo mkdir -p $XPKG/core
 sudo mkdir -p $XPKG/tmp
 sudo mkdir -p $XPKG/xpkgs
+sudo mkdir -p $XPKG/core/info/
 cd $XPKG
 
 echo "Downloading xpkg"
