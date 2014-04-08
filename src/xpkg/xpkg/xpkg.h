@@ -42,7 +42,6 @@ static NSString* BUILD = @"build";
 static NSString* LIST = @"list";
 static NSString* SEARCH = @"search";
 static NSString* ADD = @"add";
-static NSString* CREATE = @"create";
 static NSString* EXTRACT = @"extract";
 static NSString* VIEW = @"view";
 static NSString* CLEAR_LOG = @"clear-log";
@@ -80,7 +79,7 @@ static NSString* SYS_INFO = @"sys";
 +(void) clearTmp;
 +(BOOL) is64Bit;
 +(void) printXpkg;
-+(void) createRepository:(NSString*) path;
++(void) addRepository:(NSString*) url;
 @end
 
 static NSFileHandle* logFile;

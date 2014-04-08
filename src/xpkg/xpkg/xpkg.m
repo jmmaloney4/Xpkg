@@ -475,11 +475,10 @@
 }
 
 +(void) addRepository:(NSString*) url {
-    [xpkg downloadFile:url place:[xpkg getPathWithPrefix:@"/tmp/tmprepo.tar.xz"]];
-}
-
-+(void) createRepository:(NSString*) path {
     NSFileManager* filem = [[NSFileManager alloc] init];
+
+    [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
+    [xpkg executeCommand:@"/opt/xpkg/bin/git" withArgs:@[@"submodule", @"add", url] andPath:@"/opt/xpkg/core/repos"];
 
 }
 

@@ -52,8 +52,9 @@ int main(int argc, const char * argv[])
             //VIEW COMMAND
         } else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
             system("less /opt/xpkg/LICENSE");
-        } else if ([CREATE isEqualToString:arg]) {
-            [xpkg createRepository:[NSString stringWithUTF8String:argv[2]]];
+        } else if ([ADD isEqualToString:arg]) {
+            [xpkg exitIfNotRoot];
+            [xpkg addRepository:[NSString stringWithUTF8String:argv[2]]];
         } else {
             [xpkg printError:@"Arguments are invalid"];
             [xpkg print:USAGE];
