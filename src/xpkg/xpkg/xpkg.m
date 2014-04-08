@@ -471,7 +471,7 @@
     printf("%s", [[NSString stringWithFormat:@"%@   /  / \\  \\       /  /           |     \\     |  |            \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@  /  /   \\  \\     /  /            |  |\\  \\    |  |           \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@ /  /     \\  \\   /  /             |  | \\  \\   |  |_/⎺/       \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@/__/       \\__\\ /__/              |__|  \\__\\  |_____/  %@Advanced Package Managment for Mac OSX\n\n%@", BOLDMAGENTA, BOLDGREEN, RESET] UTF8String]);
+    printf("%s", [[NSString stringWithFormat:@"%@/__/       \\__\\ /__/              |__|  \\__\\  |_____/  %@Advanced Package Managment for Mac OS X\n\n%@", BOLDMAGENTA, BOLDGREEN, RESET] UTF8String]);
 }
 
 +(void) addRepository:(NSString*) url {
@@ -511,9 +511,10 @@
             [xpkg printInfo:[NSString stringWithFormat:@"Creating an Xpkg repository with directory %@", path]];
             NSArray* g = [path componentsSeparatedByString:@"/"];
             NSString* h = g[[g count] - 2];
-            [[xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-cJ", path] andPath:[filem currentDirectoryPath] printErr:false printOut:false] writeToFile:[NSString stringWithFormat:@"%@/%@.xro", [filem currentDirectoryPath], h] atomically:true encoding:NSUTF8StringEncoding error:nil];
+            [[xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-cJ", path, [NSString stringWithFormat:@"> %@/%@.xro", [filem currentDirectoryPath], h]] andPath:[filem currentDirectoryPath] printErr:false printOut:false] writeToFile:[NSString stringWithFormat:@"%@/%@.xro", [filem currentDirectoryPath], h] atomically:true encoding:NSUTF8StringEncoding error:nil];
+            //system([[NSString stringWithFormat:@"/usr/bin/tar -cJ %@ > %@/%@.xro", path, [filem currentDirectoryPath], h] UTF8String]);
+
             [xpkg print:[NSString stringWithFormat:@"%@/%@.xro", [filem currentDirectoryPath], h]];
-            [xpkg print:[xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-cJ", path] andPath:[filem currentDirectoryPath] printErr:false printOut:false]];
             [xpkg print:[NSString stringWithFormat:@"\tPlaced repo file at %@.xro", h]];
 
         } else {
