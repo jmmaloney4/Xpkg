@@ -75,7 +75,7 @@
 /**
  * Uses an NSTask to execute a shell command
  **/
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot {
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot returnOut:(BOOL) x{
 
     NSTask* task = [[NSTask alloc] init];
 
@@ -83,7 +83,7 @@
 
     [task setArguments:args];
 
-    if ([path isEqualToString:@""]) {
+    if ([path isEqualToString:@""] || [path isEqualToString:nil]) {
         path = @"/";
     }
 
@@ -120,9 +120,13 @@
     if (ot) {
         fprintf(stdout, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
+    NSString* rv;
 
-    NSString* rv = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-
+    if (x) {
+        rv = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    } else {
+        rv = [[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding];
+    }
     return rv;
 }
 
@@ -142,6 +146,13 @@
  **/
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL) ot {
     return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:ot];
+}
+
+/**
+ * Uses an NSTask to execute a shell command
+ **/
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot {
+    return [xpkg executeCommand:command withArgs:args andPath:path printErr:er printOut:ot returnOut:true];
 }
 
 /**
@@ -478,7 +489,11 @@
     NSFileManager* filem = [[NSFileManager alloc] init];
 
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
-    [xpkg executeCommand:@"/opt/xpkg/bin/git" withArgs:@[@"submodule", @"add", url] andPath:@"/opt/xpkg/core/repos"];
+    NSString* g = [xpkg executeCommand:@"/opt/xpkg/bin/git" withArgs:@[@"submodule", @"add", url] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
+
+    xx
+
+    NSFileHandle* rfile = [NSFileHandle fileHandleForReadingAtPath:[xpkg getPathWithPrefix:@"/core/repos//REPO"]];
 
 }
 
