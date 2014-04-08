@@ -22,41 +22,38 @@ cd $XPKG
 
 echo "Downloading xpkg"
 sudo curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
-sudo tar -xvf ./master.tar.gz
+sudo tar -xf ./master.tar.gz >> $LOG
 
 echo "Downloading Git"
 sudo curl '-#' https://codeload.github.com/git/git/tar.gz/v1.9.1 > ./git.tar.gz
 echo "Unpacking Git"
-sudo tar -xvf ./git.tar.gz
+sudo tar -xf ./git.tar.gz >> $LOG
 
 cd ./git-1.9.1/
 
 echo "Building Git, This May Take A Few Minutes"
-sudo make configure
+sudo make configure >> $LOG
 sudo mkdir -p $XPKG/core/git/1.9.1/
-sudo ./configure --prefix=$XPKG/core/git/1.9.1/
-sudo make all
-sudo make install
+sudo ./configure --prefix=$XPKG/core/git/1.9.1/ >> $LOG
+sudo make all >> $LOG
+sudo make install >> $LOG
 
 cd $XPKG/core/git/1.9.1/
-sudo ln ./bin/* $XPKG/bin/
+sudo ln -fF ./bin/* $XPKG/bin/ >> $LOG
 
-cd $XPKG
+cd $XPKG >> $LOG
 
-sudo $XPKG/bin/git init
-sudo $XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git
-sudo $XPKG/bin/git pull origin master
-sudo git branch --set-upstream-to=origin/master
+sudo $XPKG/bin/git init >> $LOG
+sudo $XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git >> $LOG
+sudo $XPKG/bin/git pull origin master >> $LOG
+sudo git branch --set-upstream-to=origin/master >> $LOG
 
-cd $XPKG/src/xpkg
+cd $XPKG/src/xpkg >> $LOG
 
-sudo xcodebuild
+sudo xcodebuild >> $LOG
 
 sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
 
 sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
-
-sudo cp $XPKG/src/xpkg/xpkg/tar.sh $XPKG/core/tar.sh
-sudo chmod +x $XPKG/core/tar.sh
 
 sudo /usr/bin/xpkg update
