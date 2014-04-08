@@ -491,9 +491,17 @@
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
     NSString* g = [xpkg executeCommand:@"/opt/xpkg/bin/git" withArgs:@[@"submodule", @"add", url] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
 
-    xx
+    [xpkg print:g];
+
+    [g componentsSeparatedByString:@"/"];
 
     NSFileHandle* rfile = [NSFileHandle fileHandleForReadingAtPath:[xpkg getPathWithPrefix:@"/core/repos//REPO"]];
+
+    NSString* rf = [xpkg getStringFromData:[xpkg getDataFromFile:rfile]];
+    NSArray* rfl = [rf componentsSeparatedByString:@"\n"];
+
+
+
 
 }
 

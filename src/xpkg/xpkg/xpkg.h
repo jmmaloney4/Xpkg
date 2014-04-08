@@ -42,6 +42,7 @@ static NSString* BUILD = @"build";
 static NSString* LIST = @"list";
 static NSString* SEARCH = @"search";
 static NSString* ADD = @"add";
+static NSString* RM_REPO = @"rm-repo";
 static NSString* EXTRACT = @"extract";
 static NSString* VIEW = @"view";
 static NSString* CLEAR_LOG = @"clear-log";
