@@ -45,8 +45,7 @@ static NSString* BOLDRED = @"\033[1m\033[31m";      /* Bold Red */
 static NSString* BOLDGREEN = @"\033[1m\033[32m";    /* Bold Green */
 static NSString* BOLDYELLOW = @"\033[1m\033[33m";   /* Bold Yellow */
 static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
-static NSString* BOLDMAGENTA = @"\033[1m\033[35m";      /* Bold Magenta */
-
+static NSString* BOLDMAGENTA = @"\033[1m\033[35m";  /* Bold Magenta */
 
 @interface xpkg : NSObject
 +(void) print:(NSString*)x;
