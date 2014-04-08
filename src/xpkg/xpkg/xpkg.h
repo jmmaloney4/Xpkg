@@ -46,6 +46,7 @@ static NSString* CREATE = @"create";
 static NSString* EXTRACT = @"extract";
 static NSString* VIEW = @"view";
 static NSString* CLEAR_LOG = @"clear-log";
+static NSString* SYS_INFO = @"sys";
 
 @interface xpkg : NSObject
 +(void) print:(NSString*)x;
