@@ -481,50 +481,6 @@
 +(void) createRepository:(NSString*) path {
     NSFileManager* filem = [[NSFileManager alloc] init];
 
-    BOOL isDir;
-    [filem fileExistsAtPath:path isDirectory:&isDir];
-    if (isDir) {
-
-        // IS A DIRECTORY
-
-        if ([filem fileExistsAtPath:[NSString stringWithFormat:@"%@/REPO", path]]) {
-            // HAS A REPO FILE
-
-            NSString* name = [xpkg getPackageAttribute:@"Name" atPath:[NSString stringWithFormat:@"%@/REPO", path]];
-            if (!name) {
-                [xpkg printError:@"No Name in REPO file"];
-                return;
-            } else {
-                NSString* description = [xpkg getPackageAttribute:@"Description" atPath:[NSString stringWithFormat:@"%@/REPO", path]];
-                if (!description) {
-                    [xpkg printError:@"No Description in REPO file"];
-                    return;
-                } else {
-                    NSString* description = [xpkg getPackageAttribute:@"Maintainer" atPath:[NSString stringWithFormat:@"%@/REPO", path]];
-                    if (!description) {
-                        [xpkg printError:@"No Maintainer in REPO file"];
-                        return;
-                    }
-                }
-            }
-
-            [xpkg printInfo:[NSString stringWithFormat:@"Creating an Xpkg repository with directory %@", path]];
-            NSArray* g = [path componentsSeparatedByString:@"/"];
-            NSString* h = g[[g count] - 2];
-            [[xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-cJ", path, [NSString stringWithFormat:@"> %@/%@.xro", [filem currentDirectoryPath], h]] andPath:[filem currentDirectoryPath] printErr:false printOut:false] writeToFile:[NSString stringWithFormat:@"%@/%@.xro", [filem currentDirectoryPath], h] atomically:true encoding:NSUTF8StringEncoding error:nil];
-            //system([[NSString stringWithFormat:@"/usr/bin/tar -cJ %@ > %@/%@.xro", path, [filem currentDirectoryPath], h] UTF8String]);
-
-            [xpkg print:[NSString stringWithFormat:@"%@/%@.xro", [filem currentDirectoryPath], h]];
-            [xpkg print:[NSString stringWithFormat:@"\tPlaced repo file at %@.xro", h]];
-
-        } else {
-            [xpkg printError:[NSString stringWithFormat:@"No file at %@/REPO", path]];
-            return;
-        }
-    } else {
-        [xpkg printError:[NSString stringWithFormat:@"%@ is not a directory", path]];
-        return;
-    }
 }
 
 +(void) parseRepoFile:(NSString*)path {
