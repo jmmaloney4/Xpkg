@@ -39,7 +39,7 @@ sudo make all
 sudo make install
 
 cd $XPKG/core/git/1.9.1/
-sudo ln ./* $XPKG/bin/
+sudo ln ./bin/* $XPKG/bin/
 
 cd $XPKG
 
