@@ -20,6 +20,7 @@ int main(int argc, const char * argv[])
 
         [xpkg log:init_log];
         [xpkg printXpkg];
+        [xpkg print:RESET];
 
         [xpkg checkForArgs:argc];
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
@@ -46,7 +47,6 @@ int main(int argc, const char * argv[])
             [xpkg exitIfNotRoot];
             [xpkg clearLog];
         } else if ([@"log" isEqualToString:arg]) {
-            [xpkg print:RESET];
             system("less /opt/xpkg/log/xpkg.log");
         } else if ([VIEW isEqualToString:arg]) {
             //VIEW COMMAND
