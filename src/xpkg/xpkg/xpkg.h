@@ -42,10 +42,10 @@ static NSString* BUILD = @"build";
 static NSString* LIST = @"list";
 static NSString* SEARCH = @"search";
 static NSString* ADD = @"add";
-static NSString* CREATE = @"create";
 static NSString* EXTRACT = @"extract";
 static NSString* VIEW = @"view";
 static NSString* CLEAR_LOG = @"clear-log";
+static NSString* SYS_INFO = @"sys";
 
 @interface xpkg : NSObject
 +(void) print:(NSString*)x;
@@ -56,6 +56,7 @@ static NSString* CLEAR_LOG = @"clear-log";
 
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot;
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot returnOut:(BOOL) x ;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL)ot;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er;
 
@@ -79,7 +80,7 @@ static NSString* CLEAR_LOG = @"clear-log";
 +(void) clearTmp;
 +(BOOL) is64Bit;
 +(void) printXpkg;
-+(void) createRepository:(NSString*) path;
++(void) addRepository:(NSString*) url;
 @end
 
 static NSFileHandle* logFile;
