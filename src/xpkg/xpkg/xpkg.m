@@ -464,16 +464,6 @@
 }
 
 +(void) printXpkg {
-<<<<<<< HEAD
-    printf("%s", [[NSString stringWithFormat:@"%@\n\\⎺⎺\\       /⎺⎺/        /⎺⎺⎺⎺⎺⎺⎺⎺/ |⎺⎺|  /⎺⎺/  |⎺⎺⎺⎺⎺⎺⎺|      \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@ \\  \\     /  /        /   /⎺⎺/ /  |  | /  /   | |⎺⎺⎺| |        \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@  \\  \\   /  /        /   /__/ /   |  |/  /    | |___| |        \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@   \\  \\ /  /        /  ______/    |     /     |  _____|        \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@   /  / \\  \\       /  /           |     \\     |  |            \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@  /  /   \\  \\     /  /            |  |\\  \\    |  |           \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@ /  /     \\  \\   /  /             |  | \\  \\   |  |_/⎺/       \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@/__/       \\__\\ /__/              |__|  \\__\\  |_____/  %@Advanced Package Managment for Mac OSX%@\n\n", BOLDMAGENTA, BOLDGREEN, RESET] UTF8String]);
-=======
     printf("%s", [[NSString stringWithFormat:@"%@\n\\⎺⎺\\       /⎺⎺/ |⎺⎺⎺⎺⎺⎺⎺⎺| |⎺⎺|  /⎺⎺/ |⎺⎺⎺⎺⎺⎺⎺|      \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@ \\  \\     /  /  |   |⎺⎺| | |  | /  /  | |⎺⎺⎺| |        \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@  \\  \\   /  /   |   |__| | |  |/  /   | |___| |        \n%@", BOLDMAGENTA, RESET] UTF8String]);
@@ -482,7 +472,6 @@
     printf("%s", [[NSString stringWithFormat:@"%@  /  /   \\  \\   |  |       |  |\\  \\   |  |           \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@ /  /     \\  \\  |  |       |  | \\  \\  |  |_/⎺/       \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@/__/       \\__\\ |__|       |__|  \\__\\ |_____/  %@Advanced Package Managment for Mac OS X\n\n%@", BOLDMAGENTA, BOLDGREEN, RESET] UTF8String]);
->>>>>>> dev
 }
 
 +(void) addRepository:(NSString*) url {
