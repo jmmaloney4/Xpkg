@@ -332,7 +332,7 @@
 +(void) clearLog {
     [xpkg executeCommand:@"/bin/rm" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
     [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
-    [xpkg print:[NSString stringWithFormat:@"Cleared Log At: %@", [xpkg getTimestamp]]];
+    [xpkg printInfo:[NSString stringWithFormat:@"Cleared Log At: %@", [xpkg getTimestamp]]];
 }
 
 +(NSString*) getPackageRoot:(NSString*)package andVersion:(NSString*)version {
