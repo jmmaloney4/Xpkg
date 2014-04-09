@@ -492,19 +492,20 @@
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
 
     NSString* path = [xpkg getPathWithPrefix:@"/core/repos/tmp"];
+    [xpkg parseRepoFile:path];
+}
 
++(NSArray*) parseRepoFile:(NSString*)path {
     NSString* name = [xpkg getPackageAttribute:@"Name" atPath:path isURL:false];
     NSString* maintainer = [xpkg getPackageAttribute:@"Maintainer" atPath:path isURL:false];
     NSString* description = [xpkg getPackageAttribute:@"Description" atPath:path isURL:false];
 
     [xpkg print:[NSString stringWithFormat:@"NAME: %@", name]];
-    [xpkg print:[NSString stringWithFormat:@"NAME: %@", maintainer]];
-    [xpkg print:[NSString stringWithFormat:@"NAME: %@", description]];
+    [xpkg print:[NSString stringWithFormat:@"MAINTAINER: %@", maintainer]];
+    [xpkg print:[NSString stringWithFormat:@"DESCRIPTION: %@", description]];
 
-}
-
-+(void) parseRepoFile:(NSString*)path {
-    
+    NSArray* rv = @[name, maintainer, description];
+    return rv;
 }
 
 
