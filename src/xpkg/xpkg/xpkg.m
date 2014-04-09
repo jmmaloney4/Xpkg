@@ -225,7 +225,7 @@
  **/
 
 +(void) updateProgram {
-    [xpkg executeCommand:@"/opt/xpkg/bin/git" withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/src/xpkg"] printErr:false printOut:false];
     [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/src/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
@@ -306,12 +306,12 @@
                         [mp removeObjectAtIndex:0];
                         parts = mp;
                         if ([command hasPrefix:@"./"]) {
-                            command = [NSString stringWithFormat:@"/opt/xpkg/tmp/bash-4.3/%@", command];
+                            command = [NSString stringWithFormat:@"%@%@", [xpkg getPathWithPrefix:@"/tmp/bash-4.3/"], command];
                         }
 
                         [xpkg print:[NSString stringWithFormat:@"Executing command %@", command]];
                         if (command) {
-                            [xpkg executeCommand:command withArgs:parts andPath:@"/opt/xpkg/tmp/bash-4.3/" printErr:false printOut:false];
+                            [xpkg executeCommand:command withArgs:parts andPath:[xpkg getPathWithPrefix:@"/tmp/bash-4.3/"] printErr:false printOut:false];
                             [xpkg print:@"Done."];
                         } else {
                             [xpkg printError:[NSString stringWithFormat:@"Unable to launch command %@", command]];
@@ -341,8 +341,8 @@
  * clears the Xpkg log file
  **/
 +(void) clearLog {
-    [xpkg executeCommand:@"/bin/rm" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
-    [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[@"/opt/xpkg/log/xpkg.log"] andPath:@"/"];
+    [xpkg executeCommand:@"/bin/rm" withArgs:@[[xpkg getPathWithPrefix:@"/log/xpkg.log"]] andPath:@"/"];
+    [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[[xpkg getPathWithPrefix:@"/log/xpkg.log"]] andPath:@"/"];
     [xpkg printInfo:[NSString stringWithFormat:@"Cleared Log At: %@", [xpkg getTimestamp]]];
 }
 
@@ -476,8 +476,8 @@
 
 +(void) printXpkg {
     printf("%s", [[NSString stringWithFormat:@"%@\n\\⎺⎺\\       /⎺⎺/ |⎺⎺⎺⎺⎺⎺⎺⎺| |⎺⎺|  /⎺⎺/ |⎺⎺⎺⎺⎺⎺⎺|      \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@ \\  \\     /  /  |   |⎺⎺| | |  | /  /  | |⎺⎺⎺| |        \n%@", BOLDMAGENTA, RESET] UTF8String]);
-    printf("%s", [[NSString stringWithFormat:@"%@  \\  \\   /  /   |   |__| | |  |/  /   | |___| |        \n%@", BOLDMAGENTA, RESET] UTF8String]);
+    printf("%s", [[NSString stringWithFormat:@"%@  \\  \\     /  /  |  |⎺⎺⎺| | |  | /  /  | |⎺⎺⎺| |        \n%@", BOLDMAGENTA, RESET] UTF8String]);
+    printf("%s", [[NSString stringWithFormat:@"%@  \\  \\   /  /   |  |___| | |  |/  /   | |___| |        \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@   \\  \\ /  /    |  ______| |     /    |  _____|        \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@   /  / \\  \\    |  |       |     \\    |  |            \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@  /  /   \\  \\   |  |       |  |\\  \\   |  |           \n%@", BOLDMAGENTA, RESET] UTF8String]);
@@ -489,22 +489,17 @@
     NSFileManager* filem = [[NSFileManager alloc] init];
 
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
-    NSString* g = [xpkg executeCommand:@"/opt/xpkg/bin/git" withArgs:@[@"submodule", @"add", url] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
 
-    NSString* path;
-
-    [xpkg print:g];
-
-    [g componentsSeparatedByString:@"/"];
-
-    NSFileHandle* rfile = [NSFileHandle fileHandleForReadingAtPath:[xpkg getPathWithPrefix:@"/core/repos//REPO"]];
-
-    NSString* rf = [xpkg getStringFromData:[xpkg getDataFromFile:rfile]];
-    NSArray* rfl = [rf componentsSeparatedByString:@"\n"];
+    NSString* path = [xpkg getPathWithPrefix:@"/core/repos/tmp"];
 
     NSString* name = [xpkg getPackageAttribute:@"Name" atPath:path isURL:false];
     NSString* maintainer = [xpkg getPackageAttribute:@"Maintainer" atPath:path isURL:false];
+    NSString* description = [xpkg getPackageAttribute:@"Description" atPath:path isURL:false];
 
+    [xpkg print:[NSString stringWithFormat:@"NAME: %@", name]];
+    [xpkg print:[NSString stringWithFormat:@"NAME: %@", maintainer]];
+    [xpkg print:[NSString stringWithFormat:@"NAME: %@", description]];
 
 }
 
