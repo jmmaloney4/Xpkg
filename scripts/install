@@ -9,44 +9,46 @@
 export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
 
-echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin/:/opt/xpkg/sbin/:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
+echo -e '# XPKG PATH SETUP \nexport PATH=/opt/xpkg/bin:/opt/xpkg/sbin:$PATH \n# XPKG PATH SETUP END' >> $HOME/.bash_profile
+source $HOME/.bash_profile
 
-sudo mkdir -p $XPKG/log
-sudo mkdir -p $XPKG/bin
-sudo mkdir -p $XPKG/sbin
-sudo mkdir -p $XPKG/core
-sudo mkdir -p $XPKG/tmp
-sudo mkdir -p $XPKG/xpkgs
-sudo mkdir -p $XPKG/core/info/
+mkdir -p $XPKG/log
+mkdir -p $XPKG/bin
+mkdir -p $XPKG/sbin
+mkdir -p $XPKG/core
+mkdir -p $XPKG/tmp
+mkdir -p $XPKG/xpkgs
+mkdir -p $XPKG/core/info/
 cd $XPKG
 
 echo "Downloading xpkg"
-sudo curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
-sudo tar -xf ./master.tar.gz >> $LOG
+curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
+tar -xf ./master.tar.gz >> $LOG
 
 echo "Downloading Git"
-sudo curl '-#L' https://codeload.github.com/git/git/tar.gz/v1.9.1 > ./git.tar.gz
-
-echo "Downloading Autoconf"
-sudo curl '-#L' http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz > ./autoconf.tar.gz
+curl '-#L' https://codeload.github.com/git/git/tar.gz/v1.9.1 > ./git.tar.gz
 
 echo "Downloading Automake"
-sudo curl '-#L' http://ftp.gnu.org/gnu/automake/automake-1.14.1.tar.gz > ./automake.tar.gz
+curl '-#L' http://ftp.gnu.org/gnu/automake/automake-1.14.1.tar.gz > ./automake.tar.gz
 
 echo "Unpacking Git"
-sudo tar -xf ./git.tar.gz >> $LOG
-
-echo "Unpacking Autoconf"
-sudo tar -xf ./autoconf.tar.gz >> $LOG
+tar -xf ./git.tar.gz >> $LOG
 
 echo "Unpacking Automake"
-sudo tar -xf ./automake.tar.gz >> $LOG
+tar -xf ./automake.tar.gz >> $LOG
 
-#Build Autoconf
+# Build Automake
+echo "Building Automake"
+mkdir -p /opt/xpkg/core/automake
+cd ./automake-1.14.1/
+./configure --prefix=/opt/xpkg/core/automake/
+make
+make install
+cd /opt/xpkg/core/automake/
+ln ./bin/* /opt/xpkg/bin/
 
 
 # Build Git
-
 cd ./git-1.9.1/
 
 echo "Building Git, This May Take A Few Minutes"
