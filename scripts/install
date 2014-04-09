@@ -9,9 +9,9 @@
 export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
 
-echo -e '# XPKG PATH SETUP' >> $HOME/.bash_profile
-echo -e 'export PATH=/opt/xpkg/bin:/opt/xpkg/sbin:$PATH' >> $HOME/.bash_profile
-echo -e '# XPKG PATH SETUP END' >> $HOME/.bash_profile
+echo '# XPKG PATH SETUP' >> $HOME/.bash_profile
+echo 'export PATH=/opt/xpkg/bin:/opt/xpkg/sbin:$PATH' >> $HOME/.bash_profile
+echo '# XPKG PATH SETUP END' >> $HOME/.bash_profile
 
 source $HOME/.bash_profile
 
@@ -53,6 +53,7 @@ ln ./bin/* /opt/xpkg/bin/
 
 
 # Build Git
+cd $XPKG
 cd ./git-1.9.1/
 
 echo "Building Git, This May Take A Few Minutes"
