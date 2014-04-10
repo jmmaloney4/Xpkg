@@ -22,8 +22,6 @@ int main(int argc, const char * argv[])
         [xpkg printXpkg];
         [xpkg print:RESET];
 
-        [xpkg print:@"HELLO"];
-
         [xpkg checkForArgs:argc];
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
 
