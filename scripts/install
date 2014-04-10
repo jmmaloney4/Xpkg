@@ -42,8 +42,8 @@ cd /opt/
 
 echo "Downloading xpkg"
 curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
-tar -xf ./master.tar.gz >> $LOG 2>&1
-if if [[ -d "$/opt/xpkg" ]] ; then
+tar -xf ./master.tar.gz
+if [[ -d "$/opt/xpkg" ]] ; then
    rm -r ./xpkg
 fi
 cp -r ./Xpkg-master/ ./xpkg/
