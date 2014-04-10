@@ -1,8 +1,8 @@
-xpkg/DerivedData/
-xpkg/build/
-xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/
-xpkg/xpkg.xcodeproj/xcuserdata/
+/*
+xpkg/xpkg.xcodeproj/project.pbxproj
+xpkg/xpkg.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+xpkg/xpkg.xcodeproj/project.pbxproj/project.xcworkspace/xcshareddata/xpkg.xccheckout
 LICENSE
-*.xcuserstate
+
 
 
