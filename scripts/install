@@ -131,6 +131,7 @@ sudo ln -fF ./bin/* $XPKG/bin/ >> $LOG 2>&1
 cd $XPKG >> $LOG 2>&1
 
 echo "Building Xpkg"
+cd $XPKG
 sudo $XPKG/bin/git init >> $LOG 2>&1
 sudo $XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git >> $LOG 2>&1
 sudo $XPKG/bin/git pull origin master >> $LOG 2>&1
