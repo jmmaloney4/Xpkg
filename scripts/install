@@ -66,6 +66,8 @@ mkdir -p $XPKG/man/mann/
 mkdir -p $XPKG/man/whatis/
 mkdir -p $XPKG/core/info/
 
+cd $XPKG
+
 echo "Downloading Git"
 curl '-#L' https://codeload.github.com/git/git/tar.gz/v1.9.1 > ./git.tar.gz
 
