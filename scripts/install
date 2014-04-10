@@ -43,7 +43,8 @@ cd /opt/
 echo "Downloading xpkg"
 curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
 tar -xf ./master.tar.gz >> $LOG 2>&1
-cp -r ./Xpkg-master ./xpkg
+rm -r ./xpkg
+cp -r ./Xpkg-master/ ./xpkg/
 rm -r ./Xpkg-master
 
 mkdir -p $XPKG/log
