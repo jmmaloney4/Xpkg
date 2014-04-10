@@ -150,7 +150,7 @@ rm -r /opt/xpkg/git-1.9.1/
 rm /opt/xpkg/autoconf.tar.gz
 rm /opt/xpkg/automake.tar.gz
 rm /opt/xpkg/git.tar.gz
-rm /opt/xpkg/master.tar.gz
+rm /opt/master.tar.gz
 
 sudo /usr/bin/xpkg update
 
