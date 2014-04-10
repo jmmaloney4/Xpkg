@@ -225,8 +225,9 @@
  **/
 
 +(void) updateProgram {
+    [xpkg executeCommand:@"/bin/rm" withArgs:@[@"-r", [xpkg getPathWithPrefix:@"/xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata"]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg addAndCommit];
-    [xpkg print:[xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"]]];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
     [xpkg addAndCommit];
     [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
     [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
@@ -234,8 +235,8 @@
 }
 
 +(void) addAndCommit {
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"add", @"-A"] andPath:[xpkg getPathWithPrefix:@"/"]];
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"commit", @"-m", @"\"xpkg local commit\""] andPath:[xpkg getPathWithPrefix:@"/"]];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"add", @"-A"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"commit", @"-m", @"\"xpkg local commit\""] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
 }
 
 /**
