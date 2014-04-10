@@ -123,7 +123,7 @@ sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 
 sudo /usr/bin/xpkg update
 
-if [ $? == 0]; then
+if [ $? == 0 ]; then
   echo "Install Comleted Sucsessfully"
 else
   echo "Install Failed"
