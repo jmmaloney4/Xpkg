@@ -10,7 +10,7 @@ export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
 
 echo "Checking PATH..."
-if [[ ":$PATH:" == *":/opt/xpkg/bin:"* ]]; then
+if [[ :$PATH: == *":/opt/xpkg/bin:"* ]]; then
   echo "bin PATH Looks Good"
 else
   echo "Adding /opt/xpkg/bin to PATH"
@@ -19,7 +19,7 @@ else
   echo '# XPKG PATH SETUP END' >> $HOME/.bash_profile
 fi
 
-if [[ ":$PATH:" == *":/opt/xpkg/sbin:"* ]]; then
+if [[ :$PATH: == *":/opt/xpkg/sbin:"* ]]; then
   echo "sbin PATH Looks Good"
 else
   echo "Adding /opt/xpkg/sbin to PATH"
