@@ -225,10 +225,17 @@
  **/
 
 +(void) updateProgram {
+    [xpkg addAndCommit];
     [xpkg print:[xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"]]];
+    [xpkg addAndCommit];
     [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
     [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
+}
+
++(void) addAndCommit {
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"add", @"-A"] andPath:[xpkg getPathWithPrefix:@"/"]];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"commit", @"-m", @"\"xpkg local commit\""] andPath:[xpkg getPathWithPrefix:@"/"]];
 }
 
 /**
