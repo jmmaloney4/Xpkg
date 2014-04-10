@@ -226,8 +226,8 @@
 
 +(void) updateProgram {
     [xpkg print:[xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"]]];
-    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/src/xpkg"] printErr:false printOut:false];
-    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/src/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
+    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
 }
 
@@ -448,7 +448,7 @@
 
 +(void) addRepository:(NSString*) url {
     NSFileManager* filem = [[NSFileManager alloc] init];
-
+   
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
 
