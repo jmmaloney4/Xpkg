@@ -48,11 +48,11 @@ int main(int argc, const char * argv[])
             [xpkg exitIfNotRoot];
             [xpkg clearLog];
         } else if ([@"log" isEqualToString:arg]) {
-            system("less /opt/xpkg/log/xpkg.log");
+            system([[NSString stringWithFormat:@"less %@", [xpkg getPathWithPrefix:@"/log/xpkg.log"]] UTF8String]);
         } else if ([VIEW isEqualToString:arg]) {
             //VIEW COMMAND
         } else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
-            system("less /opt/xpkg/LICENSE");
+            system([[NSString stringWithFormat:@"less %@", [xpkg getPathWithPrefix:@"/LICENSE"]] UTF8String]);
         } else {
             [xpkg printError:@"Arguments are invalid"];
             [xpkg print:USAGE];

@@ -82,6 +82,7 @@ static NSString* SYS_INFO = @"sys";
 +(BOOL) is64Bit;
 +(void) printXpkg;
 +(void) addRepository:(NSString*) url;
++(NSArray*) parseRepoFile:(NSString*)path;
 @end
 
 static NSFileHandle* logFile;
