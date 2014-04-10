@@ -86,8 +86,8 @@ cd ./autoconf-2.69/
 make >> $LOG 2>&1
 make install >> $LOG 2>&1
 cd /opt/xpkg/core/autoconf/
-ln ./bin/* /opt/xpkg/bin/
-ln ./share/man/man1/* /opt/xpkg/man/man1/
+ln ./bin/* /opt/xpkg/bin
+ln ./share/man/man1/* /opt/xpkg/man/man1
 
 cd $XPKG
 
