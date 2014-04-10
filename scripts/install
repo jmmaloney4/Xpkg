@@ -65,24 +65,28 @@ tar -xf ./autoconf.tar.gz >> $LOG
 echo "Unpacking Automake"
 tar -xf ./automake.tar.gz >> $LOG
 
+cd $XPKG
+
 # Build Autoconf
 echo "Building Autoconf"
 mkdir -p /opt/xpkg/core/autoconf
 cd ./autoconf-2.69/
-./configure --prefix=/opt/xpkg/core/autoconf/
-make
-make install
+./configure --prefix=/opt/xpkg/core/autoconf/ >> $LOG
+make >> $LOG
+make install >> $LOG
 cd /opt/xpkg/core/autoconf/
 ln ./bin/* /opt/xpkg/bin/
 ln ./share/man/man1/* /opt/xpkg/man/man1/
+
+cd $XPKG
 
 # Build Automake
 echo "Building Automake"
 mkdir -p /opt/xpkg/core/automake
 cd ./automake-1.14.1/
-./configure --prefix=/opt/xpkg/core/automake/
-make
-make install
+./configure --prefix=/opt/xpkg/core/automake/ >> $LOG
+make >> $LOG
+make install >> $LOG
 cd /opt/xpkg/core/automake/
 ln ./bin/* /opt/xpkg/bin/
 ln ./share/man/man1/* /opt/xpkg/man/man1/
