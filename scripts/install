@@ -6,6 +6,13 @@
 #  Created by Jack Maloney on 4/2/14.
 #
 
+if [ whoami == "root" ]; then
+  echo "User is Root, Continuing..."
+else
+  echo "User is not Root, Exiting..."
+  exit 1
+fi
+
 export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
 
