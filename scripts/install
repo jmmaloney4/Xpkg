@@ -113,3 +113,9 @@ sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
 sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 
 sudo /usr/bin/xpkg update
+
+if [ $? == 0]; then
+  echo "Install Comleted Sucsessfully"
+else
+  echo "Install Failed"
+fi
