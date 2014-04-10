@@ -225,7 +225,7 @@
  **/
 
 +(void) updateProgram {
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg print:[xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"]]];
     [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/src/xpkg"] printErr:false printOut:false];
     [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/src/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
@@ -287,52 +287,13 @@
         [xpkg downloadFile:url place:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]]];
         [xpkg print:@"\tUnpacking..."];
         [xpkg UntarFileAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]] workingDir:[xpkg getPathWithPrefix:@"/tmp/"]];
+    } else {
+        [xpkg printError:@"URL Is Invalid, Aborting package install"];
+        return NO;
     }
 
     for (int x = 0; x < [filecmps count]; x++) {
 
-        if ([filecmps[x] hasPrefix:@"&"]) {
-            if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&build"]) {
-                [xpkg print:@"\tBuilding..."];
-                double start = CFAbsoluteTimeGetCurrent();
-                for (int d = 0; ![filecmps[x] isEqualToString:@"}"]; d++) {
-                    x++;
-                    if ([filecmps[x] hasPrefix:@"$"] || [filecmps[x] hasPrefix:@"\t$"]) {
-                        // SHELL COMMAND
-                        NSArray* parts = [filecmps[x] componentsSeparatedByString:@" "];
-                        NSString* command = parts[1];
-                        NSMutableArray* mp = [parts mutableCopy];
-                        [mp removeObjectAtIndex:0];
-                        [mp removeObjectAtIndex:0];
-                        parts = mp;
-                        if ([command hasPrefix:@"./"]) {
-                            command = [NSString stringWithFormat:@"%@%@", [xpkg getPathWithPrefix:@"/tmp/bash-4.3/"], command];
-                        }
-
-                        [xpkg print:[NSString stringWithFormat:@"Executing command %@", command]];
-                        if (command) {
-                            [xpkg executeCommand:command withArgs:parts andPath:[xpkg getPathWithPrefix:@"/tmp/bash-4.3/"] printErr:false printOut:false];
-                            [xpkg print:@"Done."];
-                        } else {
-                            [xpkg printError:[NSString stringWithFormat:@"Unable to launch command %@", command]];
-                        }
-                    } else if ([filecmps[x] hasPrefix:@"%"] || [filecmps[x] hasPrefix:@"\t%"]) {
-                        // SPECIAL COMMAND
-
-                    }
-                }
-                double end = CFAbsoluteTimeGetCurrent();
-                [xpkg print:[NSString stringWithFormat:@"Built in %f ms", (end - start) * 1000]];
-            } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&install"]) {
-
-                //INSTALL METHOD
-
-            } else if ([[filecmps[x] componentsSeparatedByString:@" "][0] isEqualToString:@"&remove"]) {
-                [xpkg print:@"\nREMOVE METHOD\n"];
-            }
-        } else if ([filecmps[x] hasPrefix:@"#"]) {
-            //comment, ignore
-        }
     }
     return s;
 }
