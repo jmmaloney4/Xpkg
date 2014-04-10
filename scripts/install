@@ -9,6 +9,9 @@
 export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
 
+touch $HOME/.bash_profile
+source $HOME/.bash_profile
+
 echo "Checking PATH..."
 if [[ :$PATH: == *":/opt/xpkg/bin:"* ]]; then
   echo "bin PATH Looks Good"
