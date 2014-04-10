@@ -73,7 +73,8 @@ cd ./autoconf-2.69/
 make
 make install
 cd /opt/xpkg/core/autoconf/
-ln ./autoconf /opt/xpkg/
+ln ./bin/* /opt/xpkg/bin/
+ln ./share/man/man1/* /opt/xpkg/man/man1/
 
 # Build Automake
 echo "Building Automake"
@@ -84,6 +85,7 @@ make
 make install
 cd /opt/xpkg/core/automake/
 ln ./bin/* /opt/xpkg/bin/
+ln ./share/man/man1/* /opt/xpkg/man/man1/
 
 
 # Build Git
