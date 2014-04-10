@@ -6,11 +6,9 @@
 #  Created by Jack Maloney on 4/2/14.
 #
 
-if [ whoami == "root" ]; then
-  echo "User is Root, Continuing..."
-else
-  echo "User is not Root, Exiting..."
-  exit 1
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
 fi
 
 export XPKG=/opt/xpkg
