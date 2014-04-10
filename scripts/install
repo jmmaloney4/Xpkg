@@ -38,6 +38,12 @@ fi
 
 source $HOME/.bash_profile
 
+cd /opt/
+
+echo "Downloading xpkg"
+curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
+tar -xf ./master.tar.gz >> $LOG 2>&1
+mv ./Xpkg-master/ ./xpkg/
 
 mkdir -p $XPKG/log
 mkdir -p $XPKG/bin
@@ -57,11 +63,6 @@ mkdir -p $XPKG/man/man9/
 mkdir -p $XPKG/man/mann/
 mkdir -p $XPKG/man/whatis/
 mkdir -p $XPKG/core/info/
-cd $XPKG
-
-echo "Downloading xpkg"
-curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
-tar -xf ./master.tar.gz >> $LOG 2>&1
 
 echo "Downloading Git"
 curl '-#L' https://codeload.github.com/git/git/tar.gz/v1.9.1 > ./git.tar.gz
@@ -138,6 +139,8 @@ sudo xcodebuild >> $LOG 2>&1
 sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
 
 sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
+
+rm -r /opt/xpkg/autoconf-2.69/ rm -r /opt/xpkg/automake-1.14.1/ rm -r /opt/xpkg/git-1.9.1/
 
 sudo /usr/bin/xpkg update
 
