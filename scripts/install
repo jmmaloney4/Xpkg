@@ -9,9 +9,24 @@
 export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
 
-echo '# XPKG PATH SETUP' >> $HOME/.bash_profile
-echo 'export PATH=/opt/xpkg/bin:/opt/xpkg/sbin:$PATH' >> $HOME/.bash_profile
-echo '# XPKG PATH SETUP END' >> $HOME/.bash_profile
+echo "Checking PATH..."
+if [[ ":$PATH:" == *":/opt/xpkg/bin:"* ]]; then
+  echo "bin PATH Looks Good"
+else
+  echo "Adding /opt/xpkg/bin to PATH"
+  echo '# XPKG PATH SETUP' >> $HOME/.bash_profile
+  echo 'export PATH=/opt/xpkg/bin:$PATH' >> $HOME/.bash_profile
+  echo '# XPKG PATH SETUP END' >> $HOME/.bash_profile
+fi
+
+if [[ ":$PATH:" == *":/opt/xpkg/sbin:"* ]]; then
+  echo "sbin PATH Looks Good"
+else
+  echo "Adding /opt/xpkg/sbin to PATH"
+  echo '# XPKG PATH SETUP' >> $HOME/.bash_profile
+  echo 'export PATH=/opt/xpkg/sbin:$PATH' >> $HOME/.bash_profile
+  echo '# XPKG PATH SETUP END' >> $HOME/.bash_profile
+fi
 
 source $HOME/.bash_profile
 
@@ -32,14 +47,30 @@ tar -xf ./master.tar.gz >> $LOG
 echo "Downloading Git"
 curl '-#L' https://codeload.github.com/git/git/tar.gz/v1.9.1 > ./git.tar.gz
 
+echo "Downloading Autoconf"
+curl '-#L' http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz > ./autoconf.tar.gz
+
 echo "Downloading Automake"
 curl '-#L' http://ftp.gnu.org/gnu/automake/automake-1.14.1.tar.gz > ./automake.tar.gz
 
 echo "Unpacking Git"
 tar -xf ./git.tar.gz >> $LOG
 
+echo "Unpacking Autoconf"
+tar -xf ./autoconf.tar.gz >> $LOG
+
 echo "Unpacking Automake"
 tar -xf ./automake.tar.gz >> $LOG
+
+# Build Autoconf
+echo "Building Autoconf"
+mkdir -p /opt/xpkg/core/autoconf
+cd ./autoconf-2.69/
+./configure --prefix=/opt/xpkg/core/autoconf/
+make
+make install
+cd /opt/xpkg/core/autoconf/
+ln ./autoconf /opt/xpkg/
 
 # Build Automake
 echo "Building Automake"
