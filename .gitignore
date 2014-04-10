@@ -2,6 +2,6 @@ src/xpkg/DerivedData/
 src/xpkg/build/
 src/xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/
 src/xpkg/xpkg.xcodeproj/xcuserdata/
-!src/
+! src/
 
 *.xcuserstate
