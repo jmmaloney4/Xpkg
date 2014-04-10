@@ -140,7 +140,13 @@ sudo cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
 
 sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 
-rm -r /opt/xpkg/autoconf-2.69/ rm -r /opt/xpkg/automake-1.14.1/ rm -r /opt/xpkg/git-1.9.1/
+rm -r /opt/xpkg/autoconf-2.69/ 
+rm -r /opt/xpkg/automake-1.14.1/ 
+rm -r /opt/xpkg/git-1.9.1/
+rm /opt/xpkg/autoconf.tar.gz
+rm /opt/xpkg/automake.tar.gz
+rm /opt/xpkg/git.tar.gz
+rm /opt/xpkg/master.tar.gz
 
 sudo /usr/bin/xpkg update
 
