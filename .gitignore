@@ -1,8 +1,10 @@
+!xpkg/
+
 xpkg/DerivedData/
 xpkg/build/
 xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/
 xpkg/xpkg.xcodeproj/xcuserdata/
 LICENSE
-!xpkg/
-
 *.xcuserstate
+
+
