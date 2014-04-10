@@ -40,7 +40,17 @@ mkdir -p $XPKG/sbin
 mkdir -p $XPKG/core
 mkdir -p $XPKG/tmp
 mkdir -p $XPKG/xpkgs
-mkdir -p $XPKG/man
+mkdir -p $XPKG/man/man1/
+mkdir -p $XPKG/man/man2/
+mkdir -p $XPKG/man/man3/
+mkdir -p $XPKG/man/man4/
+mkdir -p $XPKG/man/man5/
+mkdir -p $XPKG/man/man6/
+mkdir -p $XPKG/man/man7/
+mkdir -p $XPKG/man/man8/
+mkdir -p $XPKG/man/man9/
+mkdir -p $XPKG/man/mann/
+mkdir -p $XPKG/man/whatis/
 mkdir -p $XPKG/core/info/
 cd $XPKG
 
