@@ -292,9 +292,7 @@
         return NO;
     }
 
-    for (int x = 0; x < [filecmps count]; x++) {
 
-    }
     return s;
 }
 
