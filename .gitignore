@@ -1,5 +1,3 @@
-!xpkg/
-
 xpkg/DerivedData/
 xpkg/build/
 xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/
