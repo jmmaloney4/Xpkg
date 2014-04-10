@@ -136,7 +136,7 @@ sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 sudo /usr/bin/xpkg update
 
 if [ $? == 0 ]; then
-  echo "Install Comleted Sucsessfully"
+  echo "\033[1m\033[32mInstall Comleted Sucsessfully\033[0m"
 else
-  echo "Install Failed"
+  echo "\033[1m\033[31mInstall Failed\033[0m"
 fi
