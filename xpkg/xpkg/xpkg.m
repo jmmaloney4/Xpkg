@@ -334,7 +334,7 @@
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
     if (!filecmps) {
-        return NO;
+        return nil;
     }
 
     for (int x = 0; x < [filecmps count]; x++) {
@@ -364,21 +364,81 @@
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
     if (!filecmps) {
-        return NO;
+        return nil;
     }
 
     for (int x = 0; x < [filecmps count]; x++) {
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
-            NSString* str = f[1];
-            rv = [str componentsSeparatedByString:@","];
-            NSMutableArray* md = [rv mutableCopy];
-            for (int a = 0; a < [md count]; a++) {
-                if ([md[a] hasPrefix:@" "]) {
-                    md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
+            if ([[f[0] componentsSeparatedByString:@"@"][0] isEqualToString:attr]) {
+                if (f.count == 0 || f.count == 1) {
+                    return nil;
+                }
+                NSString* str = f[1];
+                rv = [str componentsSeparatedByString:@","];
+                NSMutableArray* md = [rv mutableCopy];
+                for (int a = 0; a < [md count]; a++) {
+                    if ([md[a] hasPrefix:@" "]) {
+                        md[a] = [md[a] substringWithRange:NSMakeRange(1, [md[a] length] - 1)];
+                    }
+                }
+                rv = md;
+            }
+        }
+    }
+    return rv;
+}
+
++(NSString*) getMethod:(NSString*)method atPath:(NSString*)path isURL:(BOOL) url {
+    NSString* rv;
+
+    NSFileHandle* file = [xpkg getFileAtPath:path];
+    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+
+    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
+
+    NSString* sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
+
+    [@"#!/bin/bash" writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
+
+    if (!filecmps) {
+        return nil;
+    }
+
+    for (int x = 0; x < [filecmps count]; x++) {
+        if ([filecmps[x] hasPrefix:@"@"]) {
+            NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
+            if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:method]) {
+                rv = f[1];
+                if (url) {
+                    rv = [rv stringByAppendingString:@":"];
+                    rv = [rv stringByAppendingString:f[2]];
+                }
+                if ([rv hasPrefix:@" "]) {
+                    rv = [rv substringWithRange:NSMakeRange(1, [rv length]-1)];
+                }
+
+                for (int x = 0; x < [filecmps count]; x++) {
+                    if ([filecmps[x] hasPrefix:@"@"]) {
+                        NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
+                        if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"END"]) {
+                            rv = f[1];
+                            if (url) {
+                                rv = [rv stringByAppendingString:@":"];
+                                rv = [rv stringByAppendingString:f[2]];
+                            }
+
+                            if ([rv hasPrefix:@" "]) {
+                                rv = [rv substringWithRange:NSMakeRange(1, [rv length]-1)];
+                            }
+
+                        }
+                    } else {
+                        [filecmps[x] writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
+                        [xpkg print:filecmps[x]];
+                    }
                 }
             }
-            rv = md;
         }
     }
     return rv;
@@ -458,7 +518,7 @@
 
 +(void) addRepository:(NSString*) url {
     NSFileManager* filem = [[NSFileManager alloc] init];
-   
+
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
 
@@ -474,7 +534,7 @@
     [xpkg print:[NSString stringWithFormat:@"NAME: %@", name]];
     [xpkg print:[NSString stringWithFormat:@"MAINTAINER: %@", maintainer]];
     [xpkg print:[NSString stringWithFormat:@"DESCRIPTION: %@", description]];
-
+    
     NSArray* rv = @[name, maintainer, description];
     return rv;
 }
