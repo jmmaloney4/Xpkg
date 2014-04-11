@@ -434,7 +434,8 @@
 
                         }
                     } else {
-                        [filecmps[x] writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
+                        NSString* str = [NSString stringWithFormat:@"\n%s", [filecmps[x] UTF8String]];
+                        [str writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
                         [xpkg print:filecmps[x]];
                     }
                 }
