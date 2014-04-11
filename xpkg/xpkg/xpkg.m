@@ -31,7 +31,6 @@
 }
 
 +(void) log:(NSString *)x {
-    NSString* date = [xpkg getTimestamp];
 
     NSString* pre = @"[ ";
 
@@ -39,7 +38,7 @@
         return;
     }
 
-    pre = [pre stringByAppendingString:date];
+    pre = [pre stringByAppendingString:[xpkg getTimestamp]];
     pre = [pre stringByAppendingString:@" ] "];
     pre = [pre stringByAppendingString:x];
 
@@ -48,6 +47,8 @@
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:LOG_FILE];
     [fileHandle seekToEndOfFile];
     [fileHandle writeData:data];
+    [xpkg print:x];
+    [xpkg print:[xpkg getStringFromData:data]];
     [fileHandle closeFile];
 }
 
@@ -257,6 +258,10 @@
 +(BOOL) installPackage:(NSString*)path {
     BOOL s = NO;
 
+    if ([path hasPrefix:@"/"] || [path hasPrefix:@"./"] || [path hasPrefix:@"~/"]) {
+        [xpkg print:@"Local Package"];
+    }
+
     NSString* package;
     NSString* name;
     NSString* version;
@@ -304,6 +309,10 @@
         return NO;
     }
 
+    [xpkg getMethod:@"BUILD" atPath:path isURL:false];
+    setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
+    [xpkg executeCommand:@"/bin/chmod" withArgs:@[[xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"]];
+    [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
 
     return s;
 }
@@ -390,16 +399,15 @@
 }
 
 +(NSString*) getMethod:(NSString*)method atPath:(NSString*)path isURL:(BOOL) url {
-    NSString* rv;
-
     NSFileHandle* file = [xpkg getFileAtPath:path];
     NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
     NSString* sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
+    NSString* rv;
 
-    [@"#!/bin/bash" writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
+    rv = [rv stringByAppendingString:@"#!/bin/bash"];
 
     if (!filecmps) {
         return nil;
@@ -409,39 +417,23 @@
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:method]) {
-                rv = f[1];
-                if (url) {
-                    rv = [rv stringByAppendingString:@":"];
-                    rv = [rv stringByAppendingString:f[2]];
-                }
-                if ([rv hasPrefix:@" "]) {
-                    rv = [rv substringWithRange:NSMakeRange(1, [rv length]-1)];
-                }
 
                 for (int x = 0; x < [filecmps count]; x++) {
                     if ([filecmps[x] hasPrefix:@"@"]) {
                         NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
                         if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"END"]) {
-                            rv = f[1];
-                            if (url) {
-                                rv = [rv stringByAppendingString:@":"];
-                                rv = [rv stringByAppendingString:f[2]];
-                            }
-
-                            if ([rv hasPrefix:@" "]) {
-                                rv = [rv substringWithRange:NSMakeRange(1, [rv length]-1)];
-                            }
 
                         }
                     } else {
                         NSString* str = [NSString stringWithFormat:@"\n%s", [filecmps[x] UTF8String]];
-                        [str writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
+                        rv = [rv stringByAppendingString:str];
                         [xpkg print:filecmps[x]];
                     }
                 }
             }
         }
     }
+    [rv writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
     return rv;
 }
 
@@ -542,6 +534,10 @@
 
 +(void) printUsage {
     printf("%s", [[NSString stringWithFormat:@"%@Xpkg Usage:\n%@%@%@", BOLDMAGENTA, BOLDCYAN, USAGE, RESET] UTF8String]);
+}
+
++(NSString*) getClangVersion {
+    return [NSString stringWithFormat:@"%d.%d", __clang_major__, __clang_minor__];
 }
 
 

@@ -84,6 +84,7 @@ static NSString* SYS_INFO = @"sys";
 +(void) addRepository:(NSString*) url;
 +(NSArray*) parseRepoFile:(NSString*)path;
 +(void) printUsage;
++(NSString*) getClangVersion;
 @end
 
 static NSFileHandle* logFile;
