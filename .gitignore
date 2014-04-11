@@ -1,3 +1,5 @@
-*.xcuserstate
 xpkg/DerivedData/
-xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/jack.xcuserdatad/UserInterfaceState.xcuserstate
+/xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/jack.xcuserdatad/*.xcuserstate
+xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/jack.xcuserdatad/*.xcuserstate
+xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/jack.xcuserdatad/*
+/**/jack.xcuserdatad/

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		044631F418F05DA4000B009E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044631F318F05DA4000B009E /* Foundation.framework */; };
 		044631F718F05DA5000B009E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 044631F618F05DA5000B009E /* main.m */; };
-		044631FB18F05DA5000B009E /* xpkg.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 044631FA18F05DA5000B009E /* xpkg.1 */; };
 		0446320318F05E10000B009E /* xpkg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0446320218F05E10000B009E /* xpkg.m */; };
 /* End PBXBuildFile section */
 
@@ -20,7 +19,6 @@
 			dstPath = /usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
-				044631FB18F05DA5000B009E /* xpkg.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -31,7 +29,6 @@
 		044631F318F05DA4000B009E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		044631F618F05DA5000B009E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		044631F918F05DA5000B009E /* xpkg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xpkg-Prefix.pch"; sourceTree = "<group>"; };
-		044631FA18F05DA5000B009E /* xpkg.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = xpkg.1; sourceTree = "<group>"; };
 		0446320118F05E10000B009E /* xpkg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = xpkg.h; sourceTree = "<group>"; usesTabs = 0; };
 		0446320218F05E10000B009E /* xpkg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xpkg.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,7 +76,6 @@
 				044631F618F05DA5000B009E /* main.m */,
 				0446320118F05E10000B009E /* xpkg.h */,
 				0446320218F05E10000B009E /* xpkg.m */,
-				044631FA18F05DA5000B009E /* xpkg.1 */,
 				044631F818F05DA5000B009E /* Supporting Files */,
 			);
 			path = xpkg;
