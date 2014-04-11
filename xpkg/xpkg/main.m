@@ -19,6 +19,8 @@ int main(int argc, const char * argv[])
         init_log = [init_log stringByAppendingString:@" ==========\n\n"];
 
         [xpkg log:init_log];
+        [xpkg printXpkg];
+        [xpkg print:RESET];
 
         [xpkg checkForArgs:argc];
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
@@ -36,15 +38,9 @@ int main(int argc, const char * argv[])
             }
         } else if ([VERSION_ARG isEqualToString:arg]) {
             [xpkg print:VERSION];
-            [xpkg printXpkg];
-            [xpkg print:RESET];
         } else if ([@"-v" isEqualToString:arg] || [@"--version" isEqualToString:arg]) {
-            [xpkg printXpkg];
-            [xpkg print:RESET];
             [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
         } else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
-            [xpkg printXpkg];
-            [xpkg print:RESET];
             [xpkg print:USAGE];
             [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
             [xpkg print:HELP_TEXT];
@@ -52,18 +48,12 @@ int main(int argc, const char * argv[])
             [xpkg exitIfNotRoot];
             [xpkg clearLog];
         } else if ([@"log" isEqualToString:arg]) {
-            [xpkg printXpkg];
-            [xpkg print:RESET];
             system([[NSString stringWithFormat:@"less %@", [xpkg getPathWithPrefix:@"/log/xpkg.log"]] UTF8String]);
         } else if ([VIEW isEqualToString:arg]) {
             //VIEW COMMAND
         } else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
-            [xpkg printXpkg];
-            [xpkg print:RESET];
             system([[NSString stringWithFormat:@"less %@", [xpkg getPathWithPrefix:@"/LICENSE"]] UTF8String]);
         } else {
-            [xpkg printXpkg];
-            [xpkg print:RESET];
             [xpkg printError:@"Arguments are invalid"];
             [xpkg print:USAGE];
         }
