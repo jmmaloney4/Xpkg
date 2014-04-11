@@ -62,7 +62,7 @@
 +(BOOL) checkForArgs:(int)argc {
     BOOL rv = NO;
     if (argc < 2) {
-        [xpkg print:USAGE];
+        [xpkg printUsage];
         exit(1);
         rv = NO;
     } else {
@@ -225,6 +225,8 @@
  **/
 
 +(void) updateProgram {
+    [xpkg printInfo:@"Updating..."];
+    [xpkg print:@"\tUpdating Xpkg"];
     [xpkg executeCommand:@"/bin/rm" withArgs:@[@"-r", [xpkg getPathWithPrefix:@"/xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata"]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg addAndCommit];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
@@ -232,6 +234,8 @@
     [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
     [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg print:@"\tUpdating Repositories"];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"update"] andPath:[xpkg getPathWithPrefix:@"/"]];
 }
 
 +(void) addAndCommit {
@@ -473,6 +477,10 @@
 
     NSArray* rv = @[name, maintainer, description];
     return rv;
+}
+
++(void) printUsage {
+    printf("%s", [[NSString stringWithFormat:@"%@Xpkg Usage:\n%@%@%@", BOLDMAGENTA, BOLDCYAN, USAGE, RESET] UTF8String]);
 }
 
 

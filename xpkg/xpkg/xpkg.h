@@ -83,6 +83,7 @@ static NSString* SYS_INFO = @"sys";
 +(void) printXpkg;
 +(void) addRepository:(NSString*) url;
 +(NSArray*) parseRepoFile:(NSString*)path;
++(void) printUsage;
 @end
 
 static NSFileHandle* logFile;
