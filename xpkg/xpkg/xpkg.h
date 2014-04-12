@@ -85,7 +85,6 @@ static NSString* SYS_INFO = @"sys";
 +(NSArray*) parseRepoFile:(NSString*)path;
 +(void) printUsage;
 +(NSString*) getClangVersion;
-+(NSString*) executeMethod:(NSString*)method atPath:(NSString*)path;
 @end
 
 static NSFileHandle* logFile;

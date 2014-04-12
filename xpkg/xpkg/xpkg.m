@@ -308,21 +308,25 @@
 
     // BUILD
     sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
-    script = [xpkg executeMethod:@"BUILD" atPath:path];
+    script = [xpkg getMethod:@"BUILD" atPath:path isURL:false];
     [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
+    setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
+    setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
     [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg print:@"\tBuilding..."];
-
+    system("/opt/xpkg/tmp/script");
 
     // INSTALL
     sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
-    [xpkg executeMethod:@"INSTALL" atPath:path];
+    script = [xpkg getMethod:@"INSTALL" atPath:path isURL:false];
     [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
-    [xpkg print:script];
+    setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
+    setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
     [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg print:@"\tInstalling..."];
+    system("/opt/xpkg/tmp/script");
 
     return s;
 }
@@ -408,13 +412,23 @@
     return rv;
 }
 
-+(NSString*) executeMethod:(NSString*)method atPath:(NSString*)path {
++(NSString*) getMethod:(NSString*)method atPath:(NSString*)path isURL:(BOOL) url {
     NSFileHandle* file = [xpkg getFileAtPath:path];
     NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
     NSString* rv = @"";
+
+    rv = [rv stringByAppendingString:@"#!/bin/bash"];
+    NSString* x = @"";
+    x = [NSString stringWithFormat:@"XPKG_ROOT_DIR=%@", [xpkg getPathWithPrefix:@"/"]];
+    rv = [rv stringByAppendingString:[NSString stringWithFormat:@"\n%@", x]];
+    x = [NSString stringWithFormat:@"XPKG_PKG_DIR=%@%@/%@", [xpkg getPathWithPrefix:@"/xpkgs/"], [xpkg getPackage:path], [xpkg getPackageVersion:path]];
+    rv = [rv stringByAppendingString:[NSString stringWithFormat:@"\n%@", x]];
+    x = [NSString stringWithFormat:@"cd %@%@-%@", [xpkg getPathWithPrefix:@"/tmp/"], [xpkg getPackage:path], [xpkg getPackageVersion:path]];
+    rv = [rv stringByAppendingString:[NSString stringWithFormat:@"\n%@", x]];
+
 
     if (!filecmps) {
         return nil;
@@ -431,32 +445,9 @@
                             break;
                         }
                     } else {
-                        NSString* str = [NSString stringWithFormat:@"\n%@", filecmps[x]];
+                        NSString* str = [NSString stringWithFormat:@"\n%s", [filecmps[x] UTF8String]];
+                        str = [str stringByAppendingString:@" >> /opt/xpkg/log/xpkg.log"];
                         rv = [rv stringByAppendingString:str];
-
-                        if (str.length < 3) {
-                            
-                        } else {
-                            NSArray* a = [str componentsSeparatedByString:@" "];
-                            NSString* s = a[0];
-                            [xpkg print:a[0]];
-                            [[a mutableCopy] removeObjectAtIndex:0];
-                            [xpkg print:s];
-                            if ([s hasPrefix:@"/"] || [s hasPrefix:@"./"]) {
-                                [xpkg print:s];
-                                NSString* g = [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", [xpkg getPackage:path], [xpkg getPackageVersion:path]]];
-                                g = [g stringByAppendingString:s];
-                                s = g;
-                                [xpkg print:s];
-                            } else {
-                                s = [xpkg executeCommand:@"/usr/bin/which" withArgs:@[s] andPath:@"/" printErr:true printOut:true returnOut:true];
-                            }
-
-                            [xpkg print:s];
-                            [xpkg executeCommand:s withArgs:a andPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", [xpkg getPackage:path], [xpkg getPackageVersion:path]]]];
-
-                        }
-
                     }
                 }
             }
