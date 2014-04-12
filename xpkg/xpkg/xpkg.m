@@ -334,7 +334,7 @@
     [xpkg print:@"\tInstalling..."];
     [xpkg log:@"START LOG INSTALL SCRIPT"];
     s = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
-    [xpkg printInfo:[NSString stringWithFormat:@"Done installing %@, Built in %f seconds", package, time]];
+    [xpkg printInfo:[NSString stringWithFormat:@"Done installing %@, Built in %f seconds", name, time]];
     return s;
 }
 
@@ -603,17 +603,17 @@
     NSFileManager* filem = [[NSFileManager alloc] init];
 
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
-    [xpkg print:[xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false]];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
 
     NSString* path = [xpkg getPathWithPrefix:@"/core/repos/tmp/REPO"];
 
     NSString* name = [xpkg parseRepoFile:path][0];
 
-    [filem moveItemAtPath:[xpkg getPathWithPrefix:@"/core/repos/tmp"] toPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]] error:nil];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"mv", @"./tmp", [NSString stringWithFormat:@"./%@", name]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"]];
     NSString* s = [NSString stringWithFormat:@"====\n"];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@NAME: %@", name]];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@PATH: %@", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]]]];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@URL: %@", url]];
+    s = [s stringByAppendingString:[NSString stringWithFormat:@"@NAME: %@\n", name]];
+    s = [s stringByAppendingString:[NSString stringWithFormat:@"@PATH: %@\n", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]]]];
+    s = [s stringByAppendingString:[NSString stringWithFormat:@"@URL: %@\n", url]];
 
     [xpkg print:s];
 
