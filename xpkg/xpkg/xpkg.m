@@ -303,10 +303,14 @@
         return NO;
     }
 
-    [xpkg getMethod:@"BUILD" atPath:path isURL:false];
+    NSString* sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
+    NSString* script = [xpkg getMethod:@"BUILD" atPath:path isURL:false];
+    [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
     setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
+    setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
     [xpkg executeCommand:@"/bin/chmod" withArgs:@[[xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
+
 
     return s;
 }
@@ -398,10 +402,16 @@
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
-    NSString* sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
-    NSString* rv;
+    NSString* rv = @"";
 
     rv = [rv stringByAppendingString:@"#!/bin/bash"];
+    NSString* x = @"";
+    //x = [NSString stringWithFormat:@"XPKG_ROOT_DIR=%@", [xpkg getPathWithPrefix:@"/"]];
+    x = @"echo $XPKG_ROOT_DIR";
+    rv = [rv stringByAppendingString:[NSString stringWithFormat:@"\n%@", x]];
+    //x = [NSString stringWithFormat:@"XPKG_PKG_DIR=%@%@/%@", [xpkg getPathWithPrefix:@"/xpkgs/"], [xpkg getPackage:path], [xpkg getPackageVersion:path]];
+    rv = [rv stringByAppendingString:[NSString stringWithFormat:@"\n%@", x]];
+
 
     if (!filecmps) {
         return nil;
@@ -411,23 +421,20 @@
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:method]) {
-
                 for (int x = 0; x < [filecmps count]; x++) {
                     if ([filecmps[x] hasPrefix:@"@"]) {
                         NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
                         if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"END"]) {
-
+                            break;
                         }
                     } else {
                         NSString* str = [NSString stringWithFormat:@"\n%s", [filecmps[x] UTF8String]];
                         rv = [rv stringByAppendingString:str];
-                        [xpkg print:filecmps[x]];
                     }
                 }
             }
         }
     }
-    [rv writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
     return rv;
 }
 
