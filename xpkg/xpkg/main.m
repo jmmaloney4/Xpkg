@@ -20,6 +20,12 @@ int main(int argc, const char * argv[])
 
         [xpkg log:init_log];
 
+        if (__APPLE__) {
+            [xpkg log:@"Platform is Apple"];
+        } else {
+            [xpkg printWarn:@"This is not being run on Mac OS X, There is NO GAURENTEE that anything will work"];
+        }
+
         [xpkg checkForArgs:argc];
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
 
@@ -33,6 +39,8 @@ int main(int argc, const char * argv[])
             [xpkg exitIfNotRoot];
             if (argc > 2) {
                 [xpkg installPackage:[NSString stringWithUTF8String:argv[2]]];
+            } else {
+                [xpkg printError:@"No package specified"];
             }
         } else if ([VERSION_ARG isEqualToString:arg]) {
             [xpkg print:VERSION];
