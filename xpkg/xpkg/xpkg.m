@@ -306,7 +306,9 @@
     NSString* sfile;
     NSString* script;
 
+
     // BUILD
+    NSDate* start = [NSDate date];
     sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
     script = [xpkg getMethod:@"BUILD" atPath:path isURL:false];
     [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
@@ -314,9 +316,11 @@
     setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
     [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
-    [xpkg print:@"\tBuilding..."];
     [xpkg log:@"START LOG BUILD SCRIPT"];
+    [xpkg print:@"\tBuilding..."];
     system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
+    NSTimeInterval time = [start timeIntervalSinceNow];
+    time = time - (time * 2);
 
     // INSTALL
     sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
@@ -330,6 +334,7 @@
     [xpkg print:@"\tInstalling..."];
     [xpkg log:@"START LOG INSTALL SCRIPT"];
     s = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
+    [xpkg printInfo:[NSString stringWithFormat:@"Done installing %@, Built in %f seconds", package, time]];
     return s;
 }
 
@@ -390,7 +395,7 @@
     [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg print:@"\tRemoving..."];
-    [xpkg log:@"START LOG BUILD SCRIPT"];
+    [xpkg log:@"START LOG REMOVE SCRIPT"];
     s = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
     return s;
 }
@@ -598,17 +603,33 @@
     NSFileManager* filem = [[NSFileManager alloc] init];
 
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
+    [xpkg print:[xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false]];
 
-    NSString* path = [xpkg getPathWithPrefix:@"/core/repos/tmp"];
-    [xpkg parseRepoFile:path];
+    NSString* path = [xpkg getPathWithPrefix:@"/core/repos/tmp/REPO"];
+
+    NSString* name = [xpkg parseRepoFile:path][0];
+
+    [filem moveItemAtPath:[xpkg getPathWithPrefix:@"/core/repos/tmp"] toPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]] error:nil];
+    NSString* s = [NSString stringWithFormat:@"====\n"];
+    s = [s stringByAppendingString:[NSString stringWithFormat:@"@NAME: %@", name]];
+    s = [s stringByAppendingString:[NSString stringWithFormat:@"@PATH: %@", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]]]];
+    s = [s stringByAppendingString:[NSString stringWithFormat:@"@URL: %@", url]];
+
+    [xpkg print:s];
+
+    [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", url]];
+
+    NSString *contents = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:@"/core/info/repos"] encoding:NSUTF8StringEncoding error:nil];
+    contents = [contents stringByAppendingString:s];
+    [contents writeToFile:[xpkg getPathWithPrefix:@"/core/info/repos"] atomically:YES encoding: NSUnicodeStringEncoding error:nil];
+
 }
 
 +(NSArray*) parseRepoFile:(NSString*)path {
     NSString* name = [xpkg getPackageAttribute:@"Name" atPath:path isURL:false];
     NSString* maintainer = [xpkg getPackageAttribute:@"Maintainer" atPath:path isURL:false];
     NSString* description = [xpkg getPackageAttribute:@"Description" atPath:path isURL:false];
-
+    [xpkg print:path];
     [xpkg print:[NSString stringWithFormat:@"NAME: %@", name]];
     [xpkg print:[NSString stringWithFormat:@"MAINTAINER: %@", maintainer]];
     [xpkg print:[NSString stringWithFormat:@"DESCRIPTION: %@", description]];
@@ -624,7 +645,6 @@
 +(NSString*) getClangVersion {
     return [NSString stringWithFormat:@"%d.%d", __clang_major__, __clang_minor__];
 }
-
 
 @end
 
