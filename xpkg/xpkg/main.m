@@ -35,6 +35,9 @@ int main(int argc, const char * argv[])
         } else if ([ADD isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
             [xpkg addRepository:[NSString stringWithUTF8String:argv[2]]];
+        } else if ([RM_REPO isEqualToString:arg]) {
+            [xpkg exitIfNotRoot];
+            [xpkg rmRepository:[NSString stringWithUTF8String:argv[2]]];
         } else if ([INSTALL isEqualToString:arg]) {
             [xpkg exitIfNotRoot];
             if (argc > 2) {

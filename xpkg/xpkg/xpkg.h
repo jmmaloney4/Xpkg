@@ -83,6 +83,7 @@ static NSString* SYS_INFO = @"sys";
 +(BOOL) is64Bit;
 +(void) printXpkg;
 +(void) addRepository:(NSString*) url;
++(void) rmRepository:(NSString*) path;
 +(NSArray*) parseRepoFile:(NSString*)path;
 +(void) printUsage;
 +(NSString*) getClangVersion;

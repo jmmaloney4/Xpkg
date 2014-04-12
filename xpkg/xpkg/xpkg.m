@@ -100,7 +100,7 @@
 
     // prints the error of the command to stderr if 'er' is true
     if (er) {
-        fprintf(stderr, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
+        fprintf(stderr, "%s", [[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] UTF8String]);
     }
 
     if (![[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
@@ -600,34 +600,49 @@
 }
 
 +(void) addRepository:(NSString*) url {
+    [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", url]];
+
     NSFileManager* filem = [[NSFileManager alloc] init];
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
 
     // Parse Repo name from URL
     NSArray* u = [url componentsSeparatedByString:@"/"];
     u = [u[u.count - 1] componentsSeparatedByString:@"."];
-    [xpkg print:u[0]];
 
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", url, [xpkg getPathWithPrefix:@"/core/repos/tmp"]] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", @"--force", url] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
 
-    NSString* path = [xpkg getPathWithPrefix:@"/core/repos/tmp/REPO"];
+    NSString* path = [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@/REPO", u[0]]];
 
     NSString* name = [xpkg parseRepoFile:path][0];
 
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"mv", @"./tmp", [NSString stringWithFormat:@"./%@", name]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"]];
     NSString* s = [NSString stringWithFormat:@"====\n"];
     s = [s stringByAppendingString:[NSString stringWithFormat:@"@NAME: %@\n", name]];
     s = [s stringByAppendingString:[NSString stringWithFormat:@"@PATH: %@\n", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]]]];
     s = [s stringByAppendingString:[NSString stringWithFormat:@"@URL: %@\n", url]];
 
-    [xpkg print:s];
-
-    [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", url]];
-
     NSString *contents = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:@"/core/info/repos"] encoding:NSUTF8StringEncoding error:nil];
     contents = [contents stringByAppendingString:s];
     [contents writeToFile:[xpkg getPathWithPrefix:@"/core/info/repos"] atomically:YES encoding: NSUnicodeStringEncoding error:nil];
+
+
+    [xpkg print:@"\tDone."];
+}
+
++(void) rmRepository:(NSString*) path {
+    NSArray* r = [path componentsSeparatedByString:@"/"];
+    NSString* d = r[r.count - 1];
+
+    [xpkg printInfo:[NSString stringWithFormat:@"Removing Repository at %@", path]];
+
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"deinit", @"-f", [NSString stringWithFormat:@"./%@", d]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"] printErr:false printOut:false];
+
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"rm", @"-f", [NSString stringWithFormat:@"./%@", d]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"] printErr:false printOut:false];
+
+    [xpkg addAndCommit];
+    [xpkg print:@"\tDone."];
+
+    // Needs to remove Repo entry from the repo db file
 
 }
 
@@ -635,10 +650,11 @@
     NSString* name = [xpkg getPackageAttribute:@"Name" atPath:path isURL:false];
     NSString* maintainer = [xpkg getPackageAttribute:@"Maintainer" atPath:path isURL:false];
     NSString* description = [xpkg getPackageAttribute:@"Description" atPath:path isURL:false];
-    [xpkg print:path];
-    [xpkg print:[NSString stringWithFormat:@"NAME: %@", name]];
-    [xpkg print:[NSString stringWithFormat:@"MAINTAINER: %@", maintainer]];
-    [xpkg print:[NSString stringWithFormat:@"DESCRIPTION: %@", description]];
+
+    //[xpkg print:path];
+    //[xpkg print:[NSString stringWithFormat:@"NAME: %@", name]];
+    //[xpkg print:[NSString stringWithFormat:@"MAINTAINER: %@", maintainer]];
+    //[xpkg print:[NSString stringWithFormat:@"DESCRIPTION: %@", description]];
     
     NSArray* rv = @[name, maintainer, description];
     return rv;
