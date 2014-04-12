@@ -329,7 +329,69 @@
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg print:@"\tInstalling..."];
     [xpkg log:@"START LOG INSTALL SCRIPT"];
-    system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
+    s = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
+    return s;
+}
+
++(BOOL) removePackage:(NSString*)path {
+    BOOL s = NO;
+
+    if ([path hasPrefix:@"/"] || [path hasPrefix:@"./"] || [path hasPrefix:@"~/"]) {
+        [xpkg print:@"Local Package"];
+    }
+
+    NSString* package;
+    NSString* name;
+    NSString* version;
+    NSString* sha256;
+    NSString* rmd160;
+    NSString* description;
+    NSString* url;
+    NSString* homepage;
+    NSString* maintainer;
+    NSArray* depends;
+    NSArray* recomended;
+
+    NSFileHandle* file = [xpkg getFileAtPath:path];
+    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+
+    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
+
+    if (!filecmps) {
+        return NO;
+    }
+
+    package = [xpkg getPackage:path];
+    version = [xpkg getPackageVersion:path];
+    name = [xpkg getPackageName:path];
+    sha256 = [xpkg getPackageSHA256:path];
+    rmd160 = [xpkg getPackageRMD160:path];
+    description = [xpkg getPackageDescription:path];
+    url = [xpkg getPackageURL:path];
+    homepage = [xpkg getPackageHomepage:path];
+    maintainer = [xpkg getPackageMaintainer:path];
+    depends = [xpkg getPackageDepends:path];
+    recomended = [xpkg getPackageRecomended:path];
+
+    [xpkg printInfo:[NSString stringWithFormat:@"Removing %@, Version %@ From: %@", name, version, url]];
+
+    NSString* sfile;
+    NSString* script;
+
+    NSFileManager* fm = [[NSFileManager alloc] init];
+    [fm removeItemAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] error:nil];
+
+    // REMOVE SCRIPT
+    sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
+    script = [xpkg getMethod:@"REMOVE" atPath:path isURL:false];
+    [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
+    setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
+    setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
+    [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
+    [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
+    [xpkg print:@"\tRemoving..."];
+    [xpkg log:@"START LOG BUILD SCRIPT"];
+    s = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
     return s;
 }
 
@@ -556,7 +618,7 @@
 }
 
 +(void) printUsage {
-    printf("%s", [[NSString stringWithFormat:@"%@Xpkg Usage:\n%@%@%@", BOLDMAGENTA, BOLDCYAN, USAGE, RESET] UTF8String]);
+    printf("%s", [[NSString stringWithFormat:@"%@Xpkg Usage:\n%@%@", BOLDMAGENTA, RESET, USAGE] UTF8String]);
 }
 
 +(NSString*) getClangVersion {

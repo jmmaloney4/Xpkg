@@ -42,6 +42,13 @@ int main(int argc, const char * argv[])
             } else {
                 [xpkg printError:@"No package specified"];
             }
+        } else if ([REMOVE isEqualToString:arg]) {
+            [xpkg exitIfNotRoot];
+            if (argc > 2) {
+                [xpkg removePackage:[NSString stringWithUTF8String:argv[2]]];
+            } else {
+                [xpkg printError:@"No package specified"];
+            }
         } else if ([VERSION_ARG isEqualToString:arg]) {
             [xpkg print:VERSION];
         } else if ([@"-v" isEqualToString:arg] || [@"--version" isEqualToString:arg]) {

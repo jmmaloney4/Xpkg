@@ -66,6 +66,7 @@ static NSString* SYS_INFO = @"sys";
 +(void) downloadFile:(NSString*)URL place:(NSString*)path;
 +(void) exitIfNotRoot;
 +(BOOL) installPackage:(NSString*)path;
++(BOOL) removePackage:(NSString*)path;
 +(NSFileHandle*) getFileAtPath:(NSString*)path;
 +(NSString*) getStringFromData:(NSData*) data;
 +(NSData*) getDataFromFile:(NSFileHandle*) file;
