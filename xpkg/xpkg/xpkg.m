@@ -315,10 +315,12 @@
     [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg print:@"\tBuilding..."];
-    system("/opt/xpkg/tmp/script");
+    [xpkg log:@"START LOG BUILD SCRIPT"];
+    system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
 
     // INSTALL
     sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
+    [xpkg executeCommand:@"/bin/rm" withArgs:@[sfile] andPath:@"/"];
     script = [xpkg getMethod:@"INSTALL" atPath:path isURL:false];
     [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
     setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
@@ -326,8 +328,8 @@
     [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg print:@"\tInstalling..."];
-    system("/opt/xpkg/tmp/script");
-
+    [xpkg log:@"START LOG INSTALL SCRIPT"];
+    system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
     return s;
 }
 
@@ -438,15 +440,18 @@
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:method]) {
-                for (int x = 0; x < [filecmps count]; x++) {
-                    if ([filecmps[x] hasPrefix:@"@"]) {
-                        NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
+                [xpkg print:f[0]];
+                for (int y = x; y < [filecmps count]; y++) {
+                    if ([filecmps[y] hasPrefix:@"@"]) {
+                        NSArray* f = [filecmps[y] componentsSeparatedByString:@":"];
                         if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"END"]) {
                             break;
+                        } else {
+                            [xpkg printWarn:@"Encountered Attribute Field inside of a method"];
                         }
                     } else {
-                        NSString* str = [NSString stringWithFormat:@"\n%s", [filecmps[x] UTF8String]];
-                        str = [str stringByAppendingString:@" >> /opt/xpkg/log/xpkg.log"];
+                        NSString* str = [NSString stringWithFormat:@"\n%s", [filecmps[y] UTF8String]];
+                        str = [str stringByAppendingString:@" >> /opt/xpkg/log/xpkg.log 2>&1"];
                         rv = [rv stringByAppendingString:str];
                     }
                 }
