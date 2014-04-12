@@ -34,10 +34,6 @@
 
     NSString* pre = @"[ ";
 
-    if (!nil) {
-        return;
-    }
-
     pre = [pre stringByAppendingString:[xpkg getTimestamp]];
     pre = [pre stringByAppendingString:@" ] "];
     pre = [pre stringByAppendingString:x];
@@ -47,8 +43,6 @@
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:LOG_FILE];
     [fileHandle seekToEndOfFile];
     [fileHandle writeData:data];
-    [xpkg print:x];
-    [xpkg print:[xpkg getStringFromData:data]];
     [fileHandle closeFile];
 }
 
