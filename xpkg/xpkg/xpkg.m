@@ -440,8 +440,7 @@
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:method]) {
-                [xpkg print:f[0]];
-                for (int y = x; y < [filecmps count]; y++) {
+                for (int y = x + 1; y < [filecmps count]; y++) {
                     if ([filecmps[y] hasPrefix:@"@"]) {
                         NSArray* f = [filecmps[y] componentsSeparatedByString:@":"];
                         if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"END"]) {
