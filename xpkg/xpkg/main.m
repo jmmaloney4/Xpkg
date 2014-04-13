@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "xpkg.h"
+#import "FMDatabase.h"
 
 int main(int argc, const char * argv[])
 {
