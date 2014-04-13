@@ -600,10 +600,31 @@
 }
 
 +(void) addRepository:(NSString*) url {
-    [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", url]];
-
     NSFileManager* filem = [[NSFileManager alloc] init];
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
+    NSFileHandle* repos;
+
+    if (![filem fileExistsAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"]]) {
+        NSData* data = [@"" dataUsingEncoding:NSUTF8StringEncoding];
+        [filem createFileAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"] contents:data attributes:nil];
+    }
+
+    repos = [NSFileHandle fileHandleForReadingAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"]];
+
+    NSArray* rf = [[xpkg getStringFromData:[repos readDataToEndOfFile]] componentsSeparatedByString:@"\n"];
+
+    [xpkg print:[xpkg getStringFromData:[repos readDataToEndOfFile]]];
+
+    for (int z = 0; z < rf.count; z++) {
+        if (!([rf[z] rangeOfString:url].location == NSNotFound)) {
+            [xpkg printError:@"Repository already exists"];
+            return;
+        } else {
+            [xpkg print:rf[z]];
+        }
+    }
+
+    [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", url]];
 
     // Parse Repo name from URL
     NSArray* u = [url componentsSeparatedByString:@"/"];
@@ -621,10 +642,10 @@
     s = [s stringByAppendingString:[NSString stringWithFormat:@"@PATH: %@\n", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]]]];
     s = [s stringByAppendingString:[NSString stringWithFormat:@"@URL: %@\n", url]];
 
-    NSString *contents = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:@"/core/info/repos"] encoding:NSUTF8StringEncoding error:nil];
+    NSString* contents = @"";
+    contents = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:@"/core/info/repos"] encoding:NSUTF8StringEncoding error:nil];
     contents = [contents stringByAppendingString:s];
-    [contents writeToFile:[xpkg getPathWithPrefix:@"/core/info/repos"] atomically:YES encoding: NSUnicodeStringEncoding error:nil];
-
+    [repos writeData:[contents dataUsingEncoding:NSUTF8StringEncoding]];
 
     [xpkg print:@"\tDone."];
 }
@@ -650,11 +671,6 @@
     NSString* name = [xpkg getPackageAttribute:@"Name" atPath:path isURL:false];
     NSString* maintainer = [xpkg getPackageAttribute:@"Maintainer" atPath:path isURL:false];
     NSString* description = [xpkg getPackageAttribute:@"Description" atPath:path isURL:false];
-
-    //[xpkg print:path];
-    //[xpkg print:[NSString stringWithFormat:@"NAME: %@", name]];
-    //[xpkg print:[NSString stringWithFormat:@"MAINTAINER: %@", maintainer]];
-    //[xpkg print:[NSString stringWithFormat:@"DESCRIPTION: %@", description]];
     
     NSArray* rv = @[name, maintainer, description];
     return rv;
