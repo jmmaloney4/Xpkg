@@ -159,8 +159,8 @@ sudo /usr/bin/xpkg update
 
 if [ $? == 0 ]; then
   echo "\033[1m\033[32mInstall Comleted Sucsessfully\033[0m"
+  touch $XPKG/.xpkg_installed
 else
   echo "\033[1m\033[31mInstall Failed\033[0m"
 fi
 
-touch $XPKG/.xpkg_installed
