@@ -162,3 +162,5 @@ if [ $? == 0 ]; then
 else
   echo "\033[1m\033[31mInstall Failed\033[0m"
 fi
+
+touch $XPKG/.xpkg_installed
