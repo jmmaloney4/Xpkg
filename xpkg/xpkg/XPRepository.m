@@ -21,6 +21,12 @@
     return self;
 }
 
++(XPRepository*) getRepoFromPath:(NSString*) path {
+    // get a url from db for the repository at the path
+    // XPRepository* repo = [[XPRepository alloc] initWithURL:];
+    return nil;
+}
+
 
 -(void) add {
     NSFileManager* filem = [[NSFileManager alloc] init];

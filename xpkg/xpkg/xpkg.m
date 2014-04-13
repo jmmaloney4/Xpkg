@@ -403,20 +403,8 @@
 }
 
 +(void) rmRepository:(NSString*) path {
-    NSArray* r = [path componentsSeparatedByString:@"/"];
-    NSString* d = r[r.count - 1];
-
-    [xpkg printInfo:[NSString stringWithFormat:@"Removing Repository at %@", path]];
-
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"deinit", @"-f", [NSString stringWithFormat:@"./%@", d]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"] printErr:false printOut:false];
-
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"rm", @"-f", [NSString stringWithFormat:@"./%@", d]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"] printErr:false printOut:false];
-
-    [xpkg addAndCommit];
-    [xpkg print:@"\tDone."];
-
-    // Needs to remove Repo entry from the repo db file
-
+    //XPRepository* repo = [];
+    //[repo add];
 }
 
 +(NSArray*) parseRepoFile:(NSString*)path {
