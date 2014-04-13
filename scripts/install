@@ -11,6 +11,19 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+if [ -f $XPKG/.xpkg_installed ]; then
+    echo "Xpkg is already installed"
+    echo -n "Would you like to reinstall Xpkg [y/n]"
+    read ans
+    
+    if [ans == "y"]; then
+      rm -r $XPKG
+    else
+      exit
+    fi
+    
+fi
+
 export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
 
