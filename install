@@ -3,6 +3,10 @@
 echo "Grabbing Extra Components Needed for Install..."
 
 curl -# https://raw.githubusercontent.com/jmmaloney4/Xpkg/install/scripts/install > ~/.xpkg_install
-chmod +x ~/.xpkg_install
-sudo ~/.xpkg_install
-rm ~/.xpkg_install
+  hash=dd05fef972bb62d280c940a4430e3470cccb55af
+if [ "SHA1(${1})= $2" = "${hash}" ]; then 
+  chmod +x ~/.xpkg_install
+  sudo ~/.xpkg_install
+  rm ~/.xpkg_install 
+else 
+  echo "SHA1 Verification"; fi
