@@ -19,7 +19,7 @@ if [ -f $XPKG/.xpkg_installed ]; then
     echo -n "Would you like to reinstall Xpkg [y-n]"
     read ans
     
-    if [ans == "y"]; then
+    if [ $ans == "y" ]; then
       rm -r $XPKG
     else
       exit
