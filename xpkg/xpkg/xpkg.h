@@ -3,7 +3,7 @@
 //  xpkg
 //
 //  Created by Jack Maloney on 3/31/14.
-//  Copyright (c) 2014 IV. All rights reserved.
+//  Copyright (c) 2014 Jack Maloney. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -74,9 +74,9 @@ static NSString* SYS_INFO = @"sys";
 +(NSString*) getTimestamp;
 +(void) clearLog;
 +(NSString*) getPackageRoot:(NSString*)package andVersion:(NSString*)version;
-+(NSArray*) getPackageArrayAttribute:(NSString*)attr atPath:(NSString*)path;
-+(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path;
-+(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
++(NSArray*) getArrayAttribute:(NSString*)attr atPath:(NSString*)path;
++(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path;
++(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
 +(void) printInfo:(NSString *)x;
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
 +(void) clearTmp;
@@ -87,6 +87,7 @@ static NSString* SYS_INFO = @"sys";
 +(NSArray*) parseRepoFile:(NSString*)path;
 +(void) printUsage;
 +(NSString*) getClangVersion;
+
 @end
 
 static NSFileHandle* logFile;

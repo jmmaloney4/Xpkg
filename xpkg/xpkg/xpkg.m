@@ -3,10 +3,11 @@
 //  xpkg
 //
 //  Created by Jack Maloney on 3/31/14.
-//  Copyright (c) 2014 IV. All rights reserved.
+//  Copyright (c) 2014 Jack Maloney. All rights reserved.
 //
 
 #import "xpkg.h"
+#import "Package.h"
 
 @implementation xpkg
 
@@ -247,160 +248,6 @@
 }
 
 /**
- * installs a package from the package file at path
- **/
-+(BOOL) installPackage:(NSString*)path {
-    BOOL s = NO;
-
-    if ([path hasPrefix:@"/"] || [path hasPrefix:@"./"] || [path hasPrefix:@"~/"]) {
-        [xpkg print:@"Local Package"];
-    }
-
-    NSString* package;
-    NSString* name;
-    NSString* version;
-    NSString* sha256;
-    NSString* rmd160;
-    NSString* description;
-    NSString* url;
-    NSString* homepage;
-    NSString* maintainer;
-    NSArray* depends;
-    NSArray* recomended;
-
-    NSFileHandle* file = [xpkg getFileAtPath:path];
-    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
-
-    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
-
-    if (!filecmps) {
-        return NO;
-    }
-
-    package = [xpkg getPackage:path];
-    version = [xpkg getPackageVersion:path];
-    name = [xpkg getPackageName:path];
-    sha256 = [xpkg getPackageSHA256:path];
-    rmd160 = [xpkg getPackageRMD160:path];
-    description = [xpkg getPackageDescription:path];
-    url = [xpkg getPackageURL:path];
-    homepage = [xpkg getPackageHomepage:path];
-    maintainer = [xpkg getPackageMaintainer:path];
-    depends = [xpkg getPackageDepends:path];
-    recomended = [xpkg getPackageRecomended:path];
-
-    [xpkg printInfo:[NSString stringWithFormat:@"Installing %@, Version %@ From: %@", name, version, url]];
-
-    [xpkg clearTmp];
-
-    if (url) {
-        [xpkg print:@"\tDownloading..."];
-        [xpkg downloadFile:url place:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]]];
-        [xpkg print:@"\tUnpacking..."];
-        [xpkg UntarFileAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@.tar.gz", package]] workingDir:[xpkg getPathWithPrefix:@"/tmp/"]];
-    } else {
-        [xpkg printError:@"URL Is Invalid, Aborting package install"];
-        return NO;
-    }
-
-    NSString* sfile;
-    NSString* script;
-
-
-    // BUILD
-    NSDate* start = [NSDate date];
-    sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
-    script = [xpkg getMethod:@"BUILD" atPath:path isURL:false];
-    [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
-    setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
-    setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
-    [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
-    [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
-    [xpkg log:@"START LOG BUILD SCRIPT"];
-    [xpkg print:@"\tBuilding..."];
-    system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
-    NSTimeInterval time = [start timeIntervalSinceNow];
-    time = time - (time * 2);
-
-    // INSTALL
-    sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
-    [xpkg executeCommand:@"/bin/rm" withArgs:@[sfile] andPath:@"/"];
-    script = [xpkg getMethod:@"INSTALL" atPath:path isURL:false];
-    [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
-    setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
-    setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
-    [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
-    [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
-    [xpkg print:@"\tInstalling..."];
-    [xpkg log:@"START LOG INSTALL SCRIPT"];
-    s = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
-    [xpkg printInfo:[NSString stringWithFormat:@"Done installing %@, Built in %f seconds", name, time]];
-    return s;
-}
-
-+(BOOL) removePackage:(NSString*)path {
-    BOOL s = NO;
-
-    if ([path hasPrefix:@"/"] || [path hasPrefix:@"./"] || [path hasPrefix:@"~/"]) {
-        [xpkg print:@"Local Package"];
-    }
-
-    NSString* package;
-    NSString* name;
-    NSString* version;
-    NSString* sha256;
-    NSString* rmd160;
-    NSString* description;
-    NSString* url;
-    NSString* homepage;
-    NSString* maintainer;
-    NSArray* depends;
-    NSArray* recomended;
-
-    NSFileHandle* file = [xpkg getFileAtPath:path];
-    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
-
-    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
-
-    if (!filecmps) {
-        return NO;
-    }
-
-    package = [xpkg getPackage:path];
-    version = [xpkg getPackageVersion:path];
-    name = [xpkg getPackageName:path];
-    sha256 = [xpkg getPackageSHA256:path];
-    rmd160 = [xpkg getPackageRMD160:path];
-    description = [xpkg getPackageDescription:path];
-    url = [xpkg getPackageURL:path];
-    homepage = [xpkg getPackageHomepage:path];
-    maintainer = [xpkg getPackageMaintainer:path];
-    depends = [xpkg getPackageDepends:path];
-    recomended = [xpkg getPackageRecomended:path];
-
-    [xpkg printInfo:[NSString stringWithFormat:@"Removing %@, Version %@ From: %@", name, version, url]];
-
-    NSString* sfile;
-    NSString* script;
-
-    NSFileManager* fm = [[NSFileManager alloc] init];
-    [fm removeItemAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] error:nil];
-
-    // REMOVE SCRIPT
-    sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
-    script = [xpkg getMethod:@"REMOVE" atPath:path isURL:false];
-    [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
-    setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
-    setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", package, version]] UTF8String], 1);
-    [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
-    [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", package, version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
-    [xpkg print:@"\tRemoving..."];
-    [xpkg log:@"START LOG REMOVE SCRIPT"];
-    s = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
-    return s;
-}
-
-/**
  * clears the Xpkg log file
  **/
 +(void) clearLog {
@@ -413,11 +260,11 @@
     return [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@", package, version]];
 }
 
-+(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path  {
-    return [xpkg getPackageAttribute:attr atPath:path isURL:false];
++(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path  {
+    return [xpkg getAttribute:attr atPath:path isURL:false];
 }
 
-+(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url{
++(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url{
     NSString* rv;
 
     NSFileHandle* file = [xpkg getFileAtPath:path];
@@ -447,7 +294,7 @@
     return rv;
 }
 
-+(NSArray*) getPackageArrayAttribute:(NSString*)attr atPath:(NSString*)path {
++(NSArray*) getArrayAttribute:(NSString*)attr atPath:(NSString*)path {
     NSArray* rv;
 
     NSFileHandle* file = [xpkg getFileAtPath:path];
@@ -481,94 +328,48 @@
     return rv;
 }
 
-+(NSString*) getMethod:(NSString*)method atPath:(NSString*)path isURL:(BOOL) url {
-    NSFileHandle* file = [xpkg getFileAtPath:path];
-    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
-
-    NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
-
-    NSString* rv = @"";
-
-    rv = [rv stringByAppendingString:@"#!/bin/bash"];
-    NSString* x = @"";
-    x = [NSString stringWithFormat:@"XPKG_ROOT_DIR=%@", [xpkg getPathWithPrefix:@"/"]];
-    rv = [rv stringByAppendingString:[NSString stringWithFormat:@"\n%@", x]];
-    x = [NSString stringWithFormat:@"XPKG_PKG_DIR=%@%@/%@", [xpkg getPathWithPrefix:@"/xpkgs/"], [xpkg getPackage:path], [xpkg getPackageVersion:path]];
-    rv = [rv stringByAppendingString:[NSString stringWithFormat:@"\n%@", x]];
-    x = [NSString stringWithFormat:@"cd %@%@-%@", [xpkg getPathWithPrefix:@"/tmp/"], [xpkg getPackage:path], [xpkg getPackageVersion:path]];
-    rv = [rv stringByAppendingString:[NSString stringWithFormat:@"\n%@", x]];
-
-
-    if (!filecmps) {
-        return nil;
-    }
-
-    for (int x = 0; x < [filecmps count]; x++) {
-        if ([filecmps[x] hasPrefix:@"@"]) {
-            NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
-            if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:method]) {
-                for (int y = x + 1; y < [filecmps count]; y++) {
-                    if ([filecmps[y] hasPrefix:@"@"]) {
-                        NSArray* f = [filecmps[y] componentsSeparatedByString:@":"];
-                        if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"END"]) {
-                            break;
-                        } else {
-                            [xpkg printWarn:@"Encountered Attribute Field inside of a method"];
-                        }
-                    } else {
-                        NSString* str = [NSString stringWithFormat:@"\n%s", [filecmps[y] UTF8String]];
-                        str = [str stringByAppendingString:@" >> /opt/xpkg/log/xpkg.log 2>&1"];
-                        rv = [rv stringByAppendingString:str];
-                    }
-                }
-            }
-        }
-    }
-    return rv;
-}
-
 +(NSString*) getPackage:(NSString*)path {
-    return [xpkg getPackageAttribute:@"Package" atPath:path];
+    return [xpkg getAttribute:@"Package" atPath:path];
 }
 
 +(NSString*) getPackageVersion:(NSString*)path {
-    return [xpkg getPackageAttribute:@"Version" atPath:path];
+    return [xpkg getAttribute:@"Version" atPath:path];
 }
 
 +(NSString*) getPackageName:(NSString*)path {
-    return [xpkg getPackageAttribute:@"Name" atPath:path];
+    return [xpkg getAttribute:@"Name" atPath:path];
 }
 
 +(NSString*) getPackageURL:(NSString*)path {
-    return [xpkg getPackageAttribute:@"URL" atPath:path isURL:true];
+    return [xpkg getAttribute:@"URL" atPath:path isURL:true];
 }
 
 +(NSString*) getPackageHomepage:(NSString*)path {
-    return [xpkg getPackageAttribute:@"Homepage" atPath:path isURL:true];
+    return [xpkg getAttribute:@"Homepage" atPath:path isURL:true];
 }
 
 +(NSString*) getPackageSHA256:(NSString*)path {
-    return [xpkg getPackageAttribute:@"SHA256" atPath:path];
+    return [xpkg getAttribute:@"SHA256" atPath:path];
 }
 
 +(NSString*) getPackageRMD160:(NSString*)path {
-    return [xpkg getPackageAttribute:@"RMD160" atPath:path];
+    return [xpkg getAttribute:@"RMD160" atPath:path];
 }
 
 +(NSString*) getPackageDescription:(NSString*)path {
-    return [xpkg getPackageAttribute:@"Description" atPath:path];
+    return [xpkg getAttribute:@"Description" atPath:path];
 }
 
 +(NSString*) getPackageMaintainer:(NSString*)path {
-    return [xpkg getPackageAttribute:@"Maintainer" atPath:path];
+    return [xpkg getAttribute:@"Maintainer" atPath:path];
 }
 
 +(NSArray*) getPackageDepends:(NSString*)path {
-    return [xpkg getPackageArrayAttribute:@"Depends" atPath:path];
+    return [xpkg getArrayAttribute:@"Depends" atPath:path];
 }
 
 +(NSArray*) getPackageRecomended:(NSString*)path {
-    return [xpkg getPackageArrayAttribute:@"Recomended" atPath:path];
+    return [xpkg getArrayAttribute:@"Recomended" atPath:path];
 }
 
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir {
@@ -668,9 +469,9 @@
 }
 
 +(NSArray*) parseRepoFile:(NSString*)path {
-    NSString* name = [xpkg getPackageAttribute:@"Name" atPath:path isURL:false];
-    NSString* maintainer = [xpkg getPackageAttribute:@"Maintainer" atPath:path isURL:false];
-    NSString* description = [xpkg getPackageAttribute:@"Description" atPath:path isURL:false];
+    NSString* name = [xpkg getAttribute:@"Name" atPath:path isURL:false];
+    NSString* maintainer = [xpkg getAttribute:@"Maintainer" atPath:path isURL:false];
+    NSString* description = [xpkg getAttribute:@"Description" atPath:path isURL:false];
     
     NSArray* rv = @[name, maintainer, description];
     return rv;
@@ -683,6 +484,19 @@
 +(NSString*) getClangVersion {
     return [NSString stringWithFormat:@"%d.%d", __clang_major__, __clang_minor__];
 }
+
++(BOOL) installPackage:(NSString *)path {
+    BOOL rv = NO;
+
+    Package* pkg = [[Package alloc] initWithpath:path];
+
+    if (!pkg) {
+        rv = [pkg install];
+    }
+
+    return rv;
+}
+
 
 @end
 
