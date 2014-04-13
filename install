@@ -9,5 +9,5 @@ if [ "SHA1(${1})= $2" = "${hash}" ]; then
   sudo ~/.xpkg_install
   rm ~/.xpkg_install 
 else 
-  echo "SHA1 Verification"; fi
+  echo "SHA1 Verification Failed";
 fi
