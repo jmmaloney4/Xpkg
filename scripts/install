@@ -11,6 +11,9 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+export XPKG=/opt/xpkg
+export LOG=/opt/xpkg/log/xpkg.log
+
 if [ -f $XPKG/.xpkg_installed ]; then
     echo "Xpkg is already installed"
     echo -n "Would you like to reinstall Xpkg [y/n]"
@@ -23,9 +26,6 @@ if [ -f $XPKG/.xpkg_installed ]; then
     fi
     
 fi
-
-export XPKG=/opt/xpkg
-export LOG=/opt/xpkg/log/xpkg.log
 
 touch $HOME/.bash_profile
 source $HOME/.bash_profile
