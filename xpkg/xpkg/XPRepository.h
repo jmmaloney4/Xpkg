@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Repository : NSObject
+@interface XPRepository : NSObject
 
 @property NSString* url;
 @property NSString* name;
 @property NSString* maintainer;
+@property NSString* path;
+@property NSArray* packages;
+
+-(instancetype) initWithURL:(NSString*)url;
+-(void) add;
 
 @end

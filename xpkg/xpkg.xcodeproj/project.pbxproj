@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0431952218FAC72C0050AC74 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431952118FAC72C0050AC74 /* Repository.m */; };
-		0431952518FAC7730050AC74 /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431952418FAC7730050AC74 /* Package.m */; };
+		0431952A18FB279E0050AC74 /* XPPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431952718FB279E0050AC74 /* XPPackage.m */; };
+		0431952B18FB279E0050AC74 /* XPRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431952918FB279E0050AC74 /* XPRepository.m */; };
 		044631F418F05DA4000B009E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044631F318F05DA4000B009E /* Foundation.framework */; };
 		044631F718F05DA5000B009E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 044631F618F05DA5000B009E /* main.m */; };
 		0446320318F05E10000B009E /* xpkg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0446320218F05E10000B009E /* xpkg.m */; };
@@ -28,10 +28,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0431952018FAC72C0050AC74 /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
-		0431952118FAC72C0050AC74 /* Repository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repository.m; sourceTree = "<group>"; };
-		0431952318FAC7730050AC74 /* Package.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Package.h; sourceTree = "<group>"; };
-		0431952418FAC7730050AC74 /* Package.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Package.m; sourceTree = "<group>"; };
+		0431952618FB279E0050AC74 /* XPPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPPackage.h; sourceTree = "<group>"; };
+		0431952718FB279E0050AC74 /* XPPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPPackage.m; sourceTree = "<group>"; };
+		0431952818FB279E0050AC74 /* XPRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPRepository.h; sourceTree = "<group>"; };
+		0431952918FB279E0050AC74 /* XPRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPRepository.m; sourceTree = "<group>"; };
 		044631F018F05DA4000B009E /* xpkg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xpkg; sourceTree = BUILT_PRODUCTS_DIR; };
 		044631F318F05DA4000B009E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		044631F618F05DA5000B009E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,10 +88,10 @@
 				044631F618F05DA5000B009E /* main.m */,
 				0446320118F05E10000B009E /* xpkg.h */,
 				0446320218F05E10000B009E /* xpkg.m */,
-				0431952018FAC72C0050AC74 /* Repository.h */,
-				0431952118FAC72C0050AC74 /* Repository.m */,
-				0431952318FAC7730050AC74 /* Package.h */,
-				0431952418FAC7730050AC74 /* Package.m */,
+				0431952618FB279E0050AC74 /* XPPackage.h */,
+				0431952718FB279E0050AC74 /* XPPackage.m */,
+				0431952818FB279E0050AC74 /* XPRepository.h */,
+				0431952918FB279E0050AC74 /* XPRepository.m */,
 				044631F818F05DA5000B009E /* Supporting Files */,
 			);
 			path = xpkg;
@@ -191,10 +191,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0431952518FAC7730050AC74 /* Package.m in Sources */,
 				044631F718F05DA5000B009E /* main.m in Sources */,
+				0431952B18FB279E0050AC74 /* XPRepository.m in Sources */,
 				0446320318F05E10000B009E /* xpkg.m in Sources */,
-				0431952218FAC72C0050AC74 /* Repository.m in Sources */,
+				0431952A18FB279E0050AC74 /* XPPackage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Jack Maloney. All rights reserved.
 //
 
-#import "Package.h"
+#import "XPPackage.h"
 #import "xpkg.h"
 
-@implementation Package
+@implementation XPPackage
 
 -(instancetype) initWithpath:(NSString*)path {
     self = [super init];

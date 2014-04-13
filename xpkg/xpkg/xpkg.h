@@ -55,14 +55,24 @@ static NSString* SYS_INFO = @"sys";
 +(void) printWarn:(NSString *)x;
 +(BOOL) checkForArgs:(int)argc;
 
+/**
+ *  Executes a shell command using an NSTask
+ **/
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot returnOut:(BOOL) x ;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot;
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot returnOut:(BOOL) x ;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL)ot;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er;
 
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
+
+/**
+ *  updates Xpkg
+ **/
 +(void) updateProgram;
+/**
+ *  Downloads a file
+ **/
 +(void) downloadFile:(NSString*)URL place:(NSString*)path;
 +(void) exitIfNotRoot;
 +(BOOL) installPackage:(NSString*)path;
@@ -73,7 +83,6 @@ static NSString* SYS_INFO = @"sys";
 +(NSString*) getPathWithPrefix:(NSString*)path;
 +(NSString*) getTimestamp;
 +(void) clearLog;
-+(NSString*) getPackageRoot:(NSString*)package andVersion:(NSString*)version;
 +(NSArray*) getArrayAttribute:(NSString*)attr atPath:(NSString*)path;
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path;
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
@@ -87,6 +96,7 @@ static NSString* SYS_INFO = @"sys";
 +(NSArray*) parseRepoFile:(NSString*)path;
 +(void) printUsage;
 +(NSString*) getClangVersion;
++(void) addAndCommit;
 
 @end
 

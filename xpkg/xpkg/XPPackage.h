@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Package : NSObject
+@interface XPPackage : NSObject
 
 @property NSString* url;
 @property NSString* package;

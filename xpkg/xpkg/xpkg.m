@@ -7,7 +7,8 @@
 //
 
 #import "xpkg.h"
-#import "Package.h"
+#import "XPPackage.h"
+#import "XPRepository.h"
 
 @implementation xpkg
 
@@ -256,10 +257,6 @@
     [xpkg printInfo:[NSString stringWithFormat:@"Cleared Log At: %@", [xpkg getTimestamp]]];
 }
 
-+(NSString*) getPackageRoot:(NSString*)package andVersion:(NSString*)version {
-    return [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@", package, version]];
-}
-
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path  {
     return [xpkg getAttribute:attr atPath:path isURL:false];
 }
@@ -401,54 +398,8 @@
 }
 
 +(void) addRepository:(NSString*) url {
-    NSFileManager* filem = [[NSFileManager alloc] init];
-    [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
-    NSFileHandle* repos;
-
-    if (![filem fileExistsAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"]]) {
-        NSData* data = [@"" dataUsingEncoding:NSUTF8StringEncoding];
-        [filem createFileAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"] contents:data attributes:nil];
-    }
-
-    repos = [NSFileHandle fileHandleForReadingAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"]];
-
-    NSArray* rf = [[xpkg getStringFromData:[repos readDataToEndOfFile]] componentsSeparatedByString:@"\n"];
-
-    [xpkg print:[xpkg getStringFromData:[repos readDataToEndOfFile]]];
-
-    for (int z = 0; z < rf.count; z++) {
-        if (!([rf[z] rangeOfString:url].location == NSNotFound)) {
-            [xpkg printError:@"Repository already exists"];
-            return;
-        } else {
-            [xpkg print:rf[z]];
-        }
-    }
-
-    [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", url]];
-
-    // Parse Repo name from URL
-    NSArray* u = [url componentsSeparatedByString:@"/"];
-    u = [u[u.count - 1] componentsSeparatedByString:@"."];
-
-    [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", @"--force", url] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
-
-    NSString* path = [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@/REPO", u[0]]];
-
-    NSString* name = [xpkg parseRepoFile:path][0];
-
-    NSString* s = [NSString stringWithFormat:@"====\n"];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@NAME: %@\n", name]];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@PATH: %@\n", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]]]];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@URL: %@\n", url]];
-
-    NSString* contents = @"";
-    contents = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:@"/core/info/repos"] encoding:NSUTF8StringEncoding error:nil];
-    contents = [contents stringByAppendingString:s];
-    [repos writeData:[contents dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [xpkg print:@"\tDone."];
+    XPRepository* repo = [[XPRepository alloc] initWithURL:url];
+    [repo add];
 }
 
 +(void) rmRepository:(NSString*) path {
@@ -488,7 +439,7 @@
 +(BOOL) installPackage:(NSString *)path {
     BOOL rv = NO;
 
-    Package* pkg = [[Package alloc] initWithpath:path];
+    XPPackage* pkg = [[XPPackage alloc] initWithpath:path];
 
     if (!pkg) {
         rv = [pkg install];
@@ -496,6 +447,19 @@
 
     return rv;
 }
+
++(BOOL) removePackage:(NSString *)path {
+    BOOL rv = NO;
+
+    XPPackage* pkg = [[XPPackage alloc] initWithpath:path];
+
+    if (!pkg) {
+        rv = [pkg remove];
+    }
+
+    return rv;
+}
+
 
 
 @end
