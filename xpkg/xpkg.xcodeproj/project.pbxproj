@@ -89,14 +89,14 @@
 			isa = PBXGroup;
 			children = (
 				044631F618F05DA5000B009E /* main.m */,
-				0431952C18FB313A0050AC74 /* XPManager.h */,
-				0431952D18FB313A0050AC74 /* XPManager.m */,
 				0446320118F05E10000B009E /* xpkg.h */,
 				0446320218F05E10000B009E /* xpkg.m */,
 				0431952618FB279E0050AC74 /* XPPackage.h */,
 				0431952718FB279E0050AC74 /* XPPackage.m */,
 				0431952818FB279E0050AC74 /* XPRepository.h */,
 				0431952918FB279E0050AC74 /* XPRepository.m */,
+				0431952C18FB313A0050AC74 /* XPManager.h */,
+				0431952D18FB313A0050AC74 /* XPManager.m */,
 				044631F818F05DA5000B009E /* Supporting Files */,
 			);
 			path = xpkg;

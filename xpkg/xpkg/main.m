@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "xpkg.h"
 #import "FMDatabase.h"
+#import "XPManager.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
+
+        XPManager* dbman = [[XPManager alloc] init];
 
         NSString* init_log = @"\n\n\n========== Started Logging Session ";
         init_log = [init_log stringByAppendingString:[xpkg getTimestamp]];
