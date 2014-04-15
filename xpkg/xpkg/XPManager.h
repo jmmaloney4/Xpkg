@@ -14,7 +14,8 @@
 @interface XPManager : NSObject
 @property FMDatabase* db;
 
--(void) addPackageInfoToDatabase:(XPPackage*)pkg;
+-(XPPackage*) addPackageInfoToDatabase:(XPPackage*)pkg;
 -(BOOL) repoExistsAtPath:(NSString*) url;
--(void) addRepoToDatabase:(XPRepository*) repo;
+-(XPRepository*) addRepoToDatabase:(XPRepository*) repo;
+-(XPRepository*) removeRepoFromDatabase:(XPRepository*) repo;
 @end

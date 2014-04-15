@@ -15,8 +15,11 @@
 @property NSString* maintainer;
 @property NSString* path;
 @property NSArray* packages;
+@property NSInteger* uid;
 
+-(instancetype) initWithPath:(NSString*)path;
 -(instancetype) initWithURL:(NSString*)url;
 -(void) add;
+-(void) remove;
 
 @end

@@ -22,6 +22,16 @@
     return self;
 }
 
+-(instancetype) initWithPath:(NSString*)path {
+    self = [super init];
+
+    self.path = path;
+
+    NSArray* u = [self.url componentsSeparatedByString:@"/"];
+    self.name = u[u.count - 1];
+    return self;
+}
+
 +(XPRepository*) getRepoFromPath:(NSString*) path {
     // get a url from db for the repository at the path
     // XPRepository* repo = [[XPRepository alloc] initWithURL:];
@@ -33,17 +43,20 @@
     XPManager* manager = [[XPManager alloc] init];
 
     if ([manager repoExistsAtPath:self.path]) {
-        [xpkg printError:@"Repo Already Exists"];
-        return;
+      [xpkg printError:@"Repo Already Exists"];
+        //return;
     }
 
     NSFileManager* filem = [[NSFileManager alloc] init];
 
     [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", self.url]];
 
-
+    [manager addRepoToDatabase:self];
+    [xpkg addAndCommit];
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
+    [xpkg addAndCommit];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", @"--force", self.url] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
+    [xpkg addAndCommit];
 
     NSString* repoFilePath = [NSString stringWithFormat:@"%@/REPO", self.path];
 
@@ -58,6 +71,9 @@
 -(void) remove {
     NSArray* r = [self.path componentsSeparatedByString:@"/"];
     NSString* d = r[r.count - 1];
+
+    XPManager* manager = [[XPManager alloc] init];
+    [manager removeRepoFromDatabase:self];
 
     [xpkg printInfo:[NSString stringWithFormat:@"Removing Repository at %@", self.path]];
 

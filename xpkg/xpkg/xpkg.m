@@ -455,8 +455,8 @@
  *  Removes the repository at path
  **/
 +(void) rmRepository:(NSString*) path {
-    //XPRepository* repo = [];
-    //[repo add];
+    XPRepository* repo = [[XPRepository alloc] initWithPath:path];
+    [repo remove];
 }
 
 /**
@@ -490,7 +490,6 @@
  **/
 +(BOOL) installPackage:(NSString *)path {
     BOOL rv = NO;
-
     XPPackage* pkg = [[XPPackage alloc] initWithpath:path];
 
     if (pkg) {
@@ -500,6 +499,9 @@
     return rv;
 }
 
+/**
+ * Removes the package from the package file at path
+ **/
 +(BOOL) removePackage:(NSString *)path {
     BOOL rv = NO;
 

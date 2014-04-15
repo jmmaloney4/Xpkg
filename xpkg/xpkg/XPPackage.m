@@ -14,7 +14,8 @@
 -(instancetype) initWithpath:(NSString*)path {
     self = [super init];
     self.path = path;
-    self.package = [xpkg getAttribute:@"Package" atPath:self.package];
+    self.version = [xpkg getAttribute:@"Version" atPath:self.path];
+    self.package = [xpkg getAttribute:@"Package" atPath:self.path];
     self.name = [xpkg getAttribute:@"Name" atPath:self.path];
     self.url = [xpkg getAttribute:@"URL" atPath:self.path isURL:true];
     self.homepage = [xpkg getAttribute:@"Homepage" atPath:self.path isURL:true];
@@ -83,13 +84,17 @@
 
     // BUILD
     NSTimeInterval time;
+    [xpkg print:@"\tBuilding..."];
     int a = [self runMethodScript:@"BUILD" withTime:time];
 
     if (a != 0) {
-        [xpkg printError:@"NON-ZERO BUILD RETURN"];
+        [xpkg printError:@"Build Failed"];
+        [xpkg log:[NSString stringWithFormat:@"Build of %@ returned exit code %d", self.package, a]];
+        exit(20);
     }
 
     // INSTALL
+    [xpkg print:@"\tInstalling..."];
     a = [self runMethodScript:@"INSTALL"];
     return a;
 }
@@ -109,7 +114,7 @@
 
     //TODO Remove packages that depend on this package before removing this package itself
 
-    [xpkg printInfo:[NSString stringWithFormat:@"Removing %@, Version %@ From: %@", self.name, self.version, self.url]];
+    [xpkg printInfo:[NSString stringWithFormat:@"Removing %@, Version %@", self.name, self.version]];
 
     NSFileManager* fm = [[NSFileManager alloc] init];
     [fm removeItemAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", self.package, self.version]] error:nil];
@@ -171,7 +176,7 @@
                         if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:@"END"]) {
                             break;
                         } else {
-                            [xpkg printWarn:@"Encountered Attribute Field inside of a method, Ignoring..."];
+                            [xpkg printWarn:@"Encountered Attribute Feild inside of a method, Ignoring..."];
                         }
                     } else {
                         NSString* str = [NSString stringWithFormat:@"\n%s", [filecmps[y] UTF8String]];
