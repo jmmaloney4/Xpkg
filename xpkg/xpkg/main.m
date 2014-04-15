@@ -10,13 +10,12 @@
 #import "xpkg.h"
 #import "FMDatabase.h"
 #import "XPManager.h"
+#import "XPPackage.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-
-        XPManager* dbman = [[XPManager alloc] init];
 
         NSString* init_log = @"\n\n\n========== Started Logging Session ";
         init_log = [init_log stringByAppendingString:[xpkg getTimestamp]];
@@ -30,7 +29,11 @@ int main(int argc, const char * argv[])
             [xpkg printWarn:@"This is not being run on Mac OS X, There is NO GAURENTEE that anything will work"];
         }
 
-        [xpkg checkForArgs:argc];
+        if (argc < 2) {
+            [xpkg printUsage];
+            exit(1);
+        }
+
         NSString* arg = [NSString stringWithUTF8String:argv[1]];
 
         if ([UPDATE isEqualToString:arg]) {

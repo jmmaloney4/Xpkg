@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XPManager.h"
 
 static NSString* RESET = @"\033[0m";
 static NSString* RED = @"\033[31m";                 /* Red */
@@ -49,11 +50,14 @@ static NSString* CLEAR_LOG = @"clear-log";
 static NSString* SYS_INFO = @"sys";
 
 @interface xpkg : NSObject
+
+@property XPManager* manager;
+
+
 +(void) print:(NSString*)x;
 +(void) printError:(NSString*)x;
 +(void) log:(NSString *)x;
 +(void) printWarn:(NSString *)x;
-+(BOOL) checkForArgs:(int)argc;
 
 /**
  *  Executes a shell command using an NSTask
@@ -77,9 +81,6 @@ static NSString* SYS_INFO = @"sys";
 +(void) exitIfNotRoot;
 +(BOOL) installPackage:(NSString*)path;
 +(BOOL) removePackage:(NSString*)path;
-+(NSFileHandle*) getFileAtPath:(NSString*)path;
-+(NSString*) getStringFromData:(NSData*) data;
-+(NSData*) getDataFromFile:(NSFileHandle*) file;
 +(NSString*) getPathWithPrefix:(NSString*)path;
 +(NSString*) getTimestamp;
 +(void) clearLog;

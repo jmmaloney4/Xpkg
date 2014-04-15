@@ -10,20 +10,24 @@
 
 @interface XPPackage : NSObject
 
+-(instancetype) initWithpath:(NSString*)path;
 @property NSString* url;
 @property NSString* package;
 @property NSString* description;
+@property NSString* maintainer;
 @property NSString* version;
 @property NSString* path;
 @property NSString* name;
 @property NSString* homepage;
 @property NSString* sha256;
 @property NSString* rmd160;
+@property NSArray* mirrors;
 @property NSArray* depends;
 @property NSArray* dependers;
 @property NSArray* recomended;
+@property NSString* repo_name;
+@property NSNumber* pkgid;
 
--(instancetype) initWithpath:(NSString*)path;
 -(BOOL) install;
 -(BOOL) remove;
 @end

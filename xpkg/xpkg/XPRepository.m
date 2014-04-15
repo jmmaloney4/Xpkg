@@ -8,6 +8,7 @@
 
 #import "XPRepository.h"
 #import "xpkg.h"
+#include "XPManager.h"
 
 @implementation XPRepository
 
@@ -29,53 +30,28 @@
 
 
 -(void) add {
+    XPManager* manager = [[XPManager alloc] init];
+
+    if ([manager repoExistsAtPath:self.path]) {
+        [xpkg printError:@"Repo Already Exists"];
+        return;
+    }
+
     NSFileManager* filem = [[NSFileManager alloc] init];
-    [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
-    NSFileHandle* repos;
-
-    if (![filem fileExistsAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"]]) {
-        NSData* data = [@"" dataUsingEncoding:NSUTF8StringEncoding];
-        [filem createFileAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"] contents:data attributes:nil];
-    }
-
-    repos = [NSFileHandle fileHandleForReadingAtPath:[xpkg getPathWithPrefix:@"/core/info/repos"]];
-
-    NSArray* rf = [[xpkg getStringFromData:[repos readDataToEndOfFile]] componentsSeparatedByString:@"\n"];
-
-    [xpkg print:[xpkg getStringFromData:[repos readDataToEndOfFile]]];
-
-    for (int z = 0; z < rf.count; z++) {
-        if (!([rf[z] rangeOfString:self.url].location == NSNotFound)) {
-            [xpkg printError:@"Repository already exists"];
-            return;
-        } else {
-            [xpkg print:rf[z]];
-        }
-    }
 
     [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", self.url]];
 
-    // Parse Repo name from URL
-    NSArray* u = [self.url componentsSeparatedByString:@"/"];
-    u = [u[u.count - 1] componentsSeparatedByString:@"."];
 
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", @"--force", self.url] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
 
-    NSString* path = [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@/REPO", u[0]]];
+    NSString* repoFilePath = [NSString stringWithFormat:@"%@/REPO", self.path];
 
-    NSString* name = [xpkg parseRepoFile:path][0];
+    self.name = [xpkg parseRepoFile:repoFilePath][0];
+    self.maintainer = [xpkg parseRepoFile:repoFilePath][1];
 
-    NSString* s = [NSString stringWithFormat:@"====\n"];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@NAME: %@\n", name]];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@PATH: %@\n", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", name]]]];
-    s = [s stringByAppendingString:[NSString stringWithFormat:@"@URL: %@\n", self.url]];
+    [manager addRepoToDatabase:self];
 
-    NSString* contents = @"";
-    contents = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:@"/core/info/repos"] encoding:NSUTF8StringEncoding error:nil];
-    contents = [contents stringByAppendingString:s];
-    [repos writeData:[contents dataUsingEncoding:NSUTF8StringEncoding]];
-    
     [xpkg print:@"\tDone."];
 }
 

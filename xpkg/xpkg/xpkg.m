@@ -12,26 +12,41 @@
 
 @implementation xpkg
 
+/**
+ *  A printf function that also logs to the xpkg log
+ **/
 +(void) print:(NSString*) x {
     printf("%s\n", [x UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"INFO: %@\n", x]];
 }
 
+/**
+ *  A printf function that prints an error also logs to the xpkg log as an error
+ **/
 +(void) printError:(NSString *)x {
     fprintf(stderr, "%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [x UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", x]];
 }
 
+/**
+ *  A printf function that prints a warning also logs to the xpkg log as a warning
+ **/
 +(void) printWarn:(NSString *)x {
     fprintf(stderr, "%sWARNING: %s%s\n", [BOLDYELLOW UTF8String], [RESET UTF8String], [x UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"WARNING: %@\n", x]];
 }
 
+/**
+ *  A printf function that logs in bold cyan letters, showing something importatn, and is logged as such
+ **/
 +(void) printInfo:(NSString *)x {
     printf("%s%s%s\n", [BOLDCYAN UTF8String], [x UTF8String], [RESET UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"INFORMATION: %@\n", x]];
 }
 
+/**
+ *  Logs to the xpkg log
+ **/
 +(void) log:(NSString *)x {
 
     NSString* pre = @"[ ";
@@ -48,25 +63,15 @@
     [fileHandle closeFile];
 }
 
+/**
+ *  Gets a timestamp in the format 'cccc, MMMM dd, YYYY, HH:mm:ss.SSS aa' which turns out like this 'Monday, April 14, 2014, 21:46:53.882 PM'
+ **/
 +(NSString*) getTimestamp {
     NSDate *myDate = [[NSDate alloc] init];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"cccc, MMMM dd, YYYY, HH:mm:ss.SSS aa"];
     NSString* date = [dateFormat stringFromDate:myDate];
     return date;
-}
-
-+(BOOL) checkForArgs:(int)argc {
-    BOOL rv = NO;
-    if (argc < 2) {
-        [xpkg printUsage];
-        exit(1);
-        rv = NO;
-    } else {
-        rv = YES;
-        return rv;
-    }
-    return rv;
 }
 
 /**
@@ -159,22 +164,9 @@
     return [xpkg executeCommand:command withArgs:args andPath:path printErr:true printOut:false];
 }
 
-/*
- * a few utility methods
- */
-+(NSFileHandle*) getFileAtPath:(NSString*) path {
-    NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:path];
-    return file;
-}
-
-+(NSData*) getDataFromFile:(NSFileHandle*) file {
-    return [file readDataToEndOfFile];
-}
-
-+(NSString*) getStringFromData:(NSData*) data {
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-}
-
+/**
+ * returns a path with '/opt/xpkg' in front of it
+ **/
 +(NSString*) getPathWithPrefix:(NSString*)path {
     NSMutableString* rv = [PREFIX mutableCopy];
     [rv appendString:path];
@@ -235,6 +227,9 @@
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"update"] andPath:[xpkg getPathWithPrefix:@"/"]];
 }
 
+/**
+ *  adds the files in the xpkg git repository and locally commits them
+ **/
 +(void) addAndCommit {
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"add", @"-A"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"commit", @"-m", @"\"xpkg local commit\""] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
@@ -257,15 +252,20 @@
     [xpkg printInfo:[NSString stringWithFormat:@"Cleared Log At: %@", [xpkg getTimestamp]]];
 }
 
+/**
+ *  gets the specified attribute field from the file at the path
+ **/
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path  {
     return [xpkg getAttribute:attr atPath:path isURL:false];
 }
 
+/**
+ *  gets the specified attribute field from the file at the path
+ **/
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url{
     NSString* rv;
 
-    NSFileHandle* file = [xpkg getFileAtPath:path];
-    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+    NSString* filestr = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
@@ -291,11 +291,13 @@
     return rv;
 }
 
+/**
+ *  gets the specified attribute field, but returns an array of values that were comma seperated in that field, from the file at the path
+ **/
 +(NSArray*) getArrayAttribute:(NSString*)attr atPath:(NSString*)path {
     NSArray* rv;
 
-    NSFileHandle* file = [xpkg getFileAtPath:path];
-    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+    NSString* filestr = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
@@ -325,59 +327,100 @@
     return rv;
 }
 
+/**
+ *  Gets the package attribute from the file at path
+ **/
 +(NSString*) getPackage:(NSString*)path {
     return [xpkg getAttribute:@"Package" atPath:path];
 }
 
+/**
+ *  Gets the version attribute from the file at path
+ **/
 +(NSString*) getPackageVersion:(NSString*)path {
     return [xpkg getAttribute:@"Version" atPath:path];
 }
 
+/**
+ *  Gets the name attribute from the file at path
+ **/
 +(NSString*) getPackageName:(NSString*)path {
     return [xpkg getAttribute:@"Name" atPath:path];
 }
 
+/**
+ *  Gets the url attribute from the file at path
+ **/
 +(NSString*) getPackageURL:(NSString*)path {
     return [xpkg getAttribute:@"URL" atPath:path isURL:true];
 }
 
+/**
+ *  Gets the homepage attribute from the file at path
+ **/
 +(NSString*) getPackageHomepage:(NSString*)path {
     return [xpkg getAttribute:@"Homepage" atPath:path isURL:true];
 }
 
+/**
+ *  Gets the sha256 attribute from the file at path
+ **/
 +(NSString*) getPackageSHA256:(NSString*)path {
     return [xpkg getAttribute:@"SHA256" atPath:path];
 }
 
+/**
+ *  Gets the rmd160 attribute from the file at path
+ **/
 +(NSString*) getPackageRMD160:(NSString*)path {
     return [xpkg getAttribute:@"RMD160" atPath:path];
 }
 
+/**
+ *  Gets the description attribute from the file at path
+ **/
 +(NSString*) getPackageDescription:(NSString*)path {
     return [xpkg getAttribute:@"Description" atPath:path];
 }
 
+/**
+ *  Gets the maintainer attribute from the file at path
+ **/
 +(NSString*) getPackageMaintainer:(NSString*)path {
     return [xpkg getAttribute:@"Maintainer" atPath:path];
 }
-
+/**
+ *  Gets the dependancies attribute from the file at path
+ **/
 +(NSArray*) getPackageDepends:(NSString*)path {
     return [xpkg getArrayAttribute:@"Depends" atPath:path];
 }
 
+/**
+ *  Gets the recomended attribute from the file at path
+ **/
 +(NSArray*) getPackageRecomended:(NSString*)path {
     return [xpkg getArrayAttribute:@"Recomended" atPath:path];
 }
 
+/**
+ *  Untars the file at path, in the working directory
+ **/
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir {
     [xpkg executeCommand:@"/usr/bin/tar" withArgs:@[@"-xvf", path] andPath:wdir printErr:false printOut:false];
 }
 
+/**
+ *  Clears the /opt/xpkg/tmp folder
+ **/
 +(void) clearTmp {
     [xpkg executeCommand:@"/bin/rm" withArgs:@[@"-r", [xpkg getPathWithPrefix:@"/tmp/"]] andPath:@"/"];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[[xpkg getPathWithPrefix:@"/tmp"]] andPath:@"/"];
 }
 
+/**
+ *  Gets whether the machine is 64-bit or not, at runtime
+ **/
 +(BOOL) is64Bit {
     if (__LP64__) {
         return true;
@@ -386,6 +429,9 @@
     }
 }
 
+/**
+ *  Prints a giant XPKG
+ **/
 +(void) printXpkg {
     printf("%s", [[NSString stringWithFormat:@"%@\n\\⎺⎺\\       /⎺⎺/ |⎺⎺⎺⎺⎺⎺⎺⎺| |⎺⎺|  /⎺⎺/ |⎺⎺⎺⎺⎺⎺⎺⎺⎺|  \n%@", BOLDMAGENTA, RESET] UTF8String]);
     printf("%s", [[NSString stringWithFormat:@"%@ \\  \\     /  /  |  |⎺⎺⎺| | |  | /  /  |  |⎺⎺⎺⎺⎺⎺|    \n%@", BOLDMAGENTA, RESET] UTF8String]);
@@ -397,16 +443,25 @@
     printf("%s", [[NSString stringWithFormat:@"%@/__/       \\__\\ |__|       |__|  \\__\\ |_________|  %@Advanced Package Managment for Mac OS X\n\n%@", BOLDMAGENTA, BOLDGREEN, RESET] UTF8String]);
 }
 
+/**
+ *  Adds the repository at url to xpkg's list of repositories
+ **/
 +(void) addRepository:(NSString*) url {
     XPRepository* repo = [[XPRepository alloc] initWithURL:url];
     [repo add];
 }
 
+/**
+ *  Removes the repository at path
+ **/
 +(void) rmRepository:(NSString*) path {
     //XPRepository* repo = [];
     //[repo add];
 }
 
+/**
+ *  parses the repo file at path
+ **/
 +(NSArray*) parseRepoFile:(NSString*)path {
     NSString* name = [xpkg getAttribute:@"Name" atPath:path isURL:false];
     NSString* maintainer = [xpkg getAttribute:@"Maintainer" atPath:path isURL:false];
@@ -416,20 +471,29 @@
     return rv;
 }
 
+/**
+ *  Prints Xpkg's usage
+ **/
 +(void) printUsage {
     printf("%s", [[NSString stringWithFormat:@"%@Xpkg Usage:\n%@%@", BOLDMAGENTA, RESET, USAGE] UTF8String]);
 }
 
+/**
+ *  Returns the version of clang being used at runtime
+ **/
 +(NSString*) getClangVersion {
     return [NSString stringWithFormat:@"%d.%d", __clang_major__, __clang_minor__];
 }
 
+/**
+ *  Installs the package from the package file at path
+ **/
 +(BOOL) installPackage:(NSString *)path {
     BOOL rv = NO;
 
     XPPackage* pkg = [[XPPackage alloc] initWithpath:path];
 
-    if (!pkg) {
+    if (pkg) {
         rv = [pkg install];
     }
 
@@ -441,14 +505,12 @@
 
     XPPackage* pkg = [[XPPackage alloc] initWithpath:path];
 
-    if (!pkg) {
+    if (pkg) {
         rv = [pkg remove];
     }
 
     return rv;
 }
-
-
 
 @end
 

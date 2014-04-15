@@ -21,8 +21,27 @@
     self.description = [xpkg getAttribute:@"Description" atPath:self.path];
     self.rmd160 = [xpkg getAttribute:@"RMD160" atPath:self.path];
     self.sha256 = [xpkg getAttribute:@"SHA256" atPath:self.path];
+    self.maintainer = [xpkg getAttribute:@"Maintainer" atPath:self.path];
     self.depends = [xpkg getArrayAttribute:@"Depends" atPath:self.path];
     self.recomended = [xpkg getArrayAttribute:@"Recomended" atPath:self.path];
+    return self;
+}
+
+-(instancetype) initWithData:(NSString*)path package:(NSString*)package version:(NSString*)version name:(NSString*)name url:(NSString*)url homepage:(NSString*)homepage description:(NSString*)description rmd:(NSString*)rmd sha:(NSString*)sha maintainer:(NSString*)maintainer depends:(NSArray*)depends recomended:(NSArray*)recomended dependers:(NSArray*)dependers {
+    self = [super init];
+    self.path = path;
+    self.package = package;
+    self.version = version;
+    self.name = name;
+    self.url = url;
+    self.homepage = homepage;
+    self.description = description;
+    self.rmd160 = rmd;
+    self.sha256 = sha;
+    self.maintainer = maintainer;
+    self.depends = depends;
+    self.recomended = recomended;
+    self.dependers = dependers;
     return self;
 }
 
@@ -40,8 +59,7 @@
         [xpkg print:@"Local Package"];
     }
 
-    NSFileHandle* file = [xpkg getFileAtPath:self.path];
-    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+    NSString* filestr = [[NSString alloc] initWithContentsOfFile:self.path encoding:NSUTF8StringEncoding error:nil];
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
@@ -77,12 +95,11 @@
 }
 
 -(BOOL) remove {
-    if ([self.self.path hasPrefix:@"/"] || [self.self.path hasPrefix:@"./"] || [self.self.path hasPrefix:@"~/"]) {
+    if ([self.path hasPrefix:@"/"] || [self.path hasPrefix:@"./"] || [self.path hasPrefix:@"~/"]) {
         [xpkg print:@"Local Package"];
     }
 
-    NSFileHandle* file = [xpkg getFileAtPath:self.path];
-    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+    NSString* filestr = [[NSString alloc] initWithContentsOfFile:self.path encoding:NSUTF8StringEncoding error:nil];
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
@@ -125,8 +142,7 @@
 
 
 -(NSString*) readMethodScript:(NSString*)method {
-    NSFileHandle* file = [xpkg getFileAtPath:self.path];
-    NSString* filestr = [xpkg getStringFromData:[xpkg getDataFromFile:file]];
+    NSString* filestr = [[NSString alloc] initWithContentsOfFile:self.path encoding:NSUTF8StringEncoding error:nil];
 
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
 
