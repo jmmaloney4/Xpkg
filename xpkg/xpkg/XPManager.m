@@ -17,7 +17,7 @@
 
     NSFileManager* fm = [[NSFileManager alloc] init];
     BOOL init = NO;
-    init = [fm fileExistsAtPath:[NSString stringWithFormat:@"%@/tmp/core/info/xpkg.db", [xpkg getPathWithPrefix:@""]] isDirectory:NULL];
+    init = ![fm fileExistsAtPath:[xpkg getPathWithPrefix:@"/core/info/xpkg.db"] isDirectory:NULL];
 
     self.db = [FMDatabase databaseWithPath:[xpkg getPathWithPrefix:@"/core/info/xpkg.db"]];
 
@@ -79,6 +79,7 @@
 }
 
 -(XPRepository*) addRepoToDatabase:(XPRepository*) repo {
+    [xpkg print:[NSString stringWithFormat:@"%@\t%@\t%@", repo.name, repo.path, repo.url]];
     [self.db executeUpdateWithFormat:@"insert into repos(name, path, url) values('%@', '%@', '%@')", repo.name, repo.path, repo.url];
     return repo;
 }

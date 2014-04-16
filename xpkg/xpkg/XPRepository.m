@@ -71,6 +71,7 @@
 -(void) remove {
     NSArray* r = [self.path componentsSeparatedByString:@"/"];
     NSString* d = r[r.count - 1];
+    NSFileManager* fm = [[NSFileManager alloc] init];
 
     XPManager* manager = [[XPManager alloc] init];
     [manager removeRepoFromDatabase:self];
@@ -82,9 +83,15 @@
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"rm", @"-f", [NSString stringWithFormat:@"./%@", d]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"] printErr:false printOut:false];
 
     [xpkg addAndCommit];
-    [xpkg print:@"\tDone."];
 
-    // Needs to remove Repo entry from the repo db file
+    // Scan packages
+    NSMutableArray* pkgs;
+    NSArray* cons = [fm contentsOfDirectoryAtPath:@"" error:nil];
+    for (int a = 0; a < cons.count; a++) {
+        [pkgs insertObject:cons[a] atIndex:a];
+    }
+
+    [xpkg print:@"\tDone."];
 }
 
 @end
