@@ -54,10 +54,11 @@ static NSString* SYS_INFO = @"sys";
 @property XPManager* manager;
 
 
-+(void) print:(NSString*)x;
-+(void) printError:(NSString*)x;
-+(void) log:(NSString *)x;
-+(void) printWarn:(NSString *)x;
++(void) print:(NSString*) x, ...;
++(void) printError:(NSString *)x, ...;
++(void) printWarn:(NSString *)x, ...;
++(void) printInfo:(NSString *)x, ...;
++(void) log:(NSString *)x, ...;
 
 /**
  *  Executes a shell command using an NSTask
@@ -87,7 +88,6 @@ static NSString* SYS_INFO = @"sys";
 +(NSArray*) getArrayAttribute:(NSString*)attr atPath:(NSString*)path;
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path;
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
-+(void) printInfo:(NSString *)x;
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
 +(void) clearTmp;
 +(BOOL) is64Bit;

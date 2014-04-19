@@ -89,11 +89,13 @@
 }
 
 -(BOOL) repoExistsAtPath:(NSString*) url {
-    FMResultSet* x = [self.db executeQuery:[NSString stringWithFormat:@"select url from repos where \"url\" = \"%@\"", url]];
-    if (![x next]) {
-        return false;
-    } else {
+    [xpkg print:@"%@", url];
+    FMResultSet* x = [self.db executeQuery:[NSString stringWithFormat:@"select * from repos where \"path\" = \"%@\"", url]];
+    if ([x next]) {
+        [xpkg print:@"%@", [x stringForColumn:@"path"]];
         return true;
+    } else {
+        return false;
     }
 }
 

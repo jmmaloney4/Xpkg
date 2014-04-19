@@ -44,7 +44,7 @@
     XPManager* manager = [[XPManager alloc] init];
 
     if ([manager repoExistsAtPath:self.path]) {
-      [xpkg printError:@"Repo Already Exists"];
+        [xpkg printError:@"Repo Already Exists"];
         return;
     }
 
@@ -65,15 +65,28 @@
 
     [manager addRepoToDatabase:self];
 
+    // Scan packages
+    NSMutableArray* pkgs;
+    NSArray* cons = [filem contentsOfDirectoryAtPath:[xpkg getPathWithPrefix:self.path] error:nil];
+    for (int a = 0; a < cons.count; a++) {
+        [pkgs insertObject:cons[a] atIndex:a];
+        [xpkg print:cons[a]];
+    }
+    [xpkg print:@"%d", ((unsigned int)cons.count)];
     [xpkg print:@"\tDone."];
 }
 
 -(void) remove {
     NSArray* r = [self.path componentsSeparatedByString:@"/"];
     NSString* d = r[r.count - 1];
-    NSFileManager* fm = [[NSFileManager alloc] init];
 
     XPManager* manager = [[XPManager alloc] init];
+
+    if (![manager repoExistsAtPath:self.path]) {
+        [xpkg printError:@"Repository Does Not Exist"];
+        return;
+    }
+
     [manager removeRepoFromDatabase:self];
 
     [xpkg printInfo:[NSString stringWithFormat:@"Removing Repository at %@", self.path]];
@@ -83,13 +96,6 @@
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"rm", @"-f", [NSString stringWithFormat:@"./%@", d]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"] printErr:false printOut:false];
 
     [xpkg addAndCommit];
-
-    // Scan packages
-    NSMutableArray* pkgs;
-    NSArray* cons = [fm contentsOfDirectoryAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@/", self.name]] error:nil];
-    for (int a = 0; a < cons.count; a++) {
-        [pkgs insertObject:cons[a] atIndex:a];
-    }
 
     [xpkg print:@"\tDone."];
 }
