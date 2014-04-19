@@ -18,6 +18,7 @@
     NSArray* u = [self.url componentsSeparatedByString:@"/"];
     u = [u[u.count - 1] componentsSeparatedByString:@"."];
     self.name = u[0];
+    [xpkg print:self.name];
     self.path = [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@", self.name]];
     return self;
 }
@@ -28,7 +29,7 @@
     self.path = path;
 
     NSArray* u = [self.url componentsSeparatedByString:@"/"];
-    self.name = u[u.count - 1];
+    self.name = u [u.count - 1];
     return self;
 }
 
@@ -44,14 +45,13 @@
 
     if ([manager repoExistsAtPath:self.path]) {
       [xpkg printError:@"Repo Already Exists"];
-        //return;
+        return;
     }
 
     NSFileManager* filem = [[NSFileManager alloc] init];
 
     [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", self.url]];
 
-    [manager addRepoToDatabase:self];
     [xpkg addAndCommit];
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
     [xpkg addAndCommit];
@@ -86,7 +86,7 @@
 
     // Scan packages
     NSMutableArray* pkgs;
-    NSArray* cons = [fm contentsOfDirectoryAtPath:@"" error:nil];
+    NSArray* cons = [fm contentsOfDirectoryAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/repos/%@/", self.name]] error:nil];
     for (int a = 0; a < cons.count; a++) {
         [pkgs insertObject:cons[a] atIndex:a];
     }
