@@ -68,7 +68,7 @@
         return NO;
     }
 
-    [xpkg printInfo:[NSString stringWithFormat:@"Installing %@, Version %@ From: %@", self.name, self.version, self.url]];
+    [xpkg printInfo:@"Installing %@, Version %@ From: %@", self.name, self.version, self.url];
 
     [xpkg clearTmp];
 
@@ -89,7 +89,7 @@
 
     if (a != 0) {
         [xpkg printError:@"Build Failed"];
-        [xpkg log:[NSString stringWithFormat:@"Build of %@ returned exit code %d", self.package, a]];
+        [xpkg log:@"Build of %@ returned exit code %d", self.package, a];
         exit(20);
     }
 
@@ -138,7 +138,7 @@
     setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", self.package, self.version]] UTF8String], 1);
     [xpkg executeCommand:@"/bin/chmod" withArgs:@[@"+x", [xpkg getPathWithPrefix:@"/tmp/script"]] andPath:[xpkg getPathWithPrefix:@"/"] printErr:true printOut:true returnOut:true];
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", self.package, self.version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
-    [xpkg log:[NSString stringWithFormat:@"Starting log for %@ script", method]];
+    [xpkg log:@"Starting log for %@ script", method];
     int d = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
     time = [start timeIntervalSinceNow];
     time = time - (time * 2);

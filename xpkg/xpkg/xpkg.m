@@ -15,45 +15,73 @@
 /**
  *  A printf function that also logs to the xpkg log
  **/
-+(void) print:(NSString*) x {
-    printf("%s\n", [x UTF8String]);
-    [xpkg log:[NSString stringWithFormat:@"INFO: %@\n", x]];
++(void) print:(NSString*) x, ... {
+
+    va_list formatArgs;
+    va_start(formatArgs, x);
+
+    NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
+    printf("%s\n", [str UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"INFO: %@\n", str]];
 }
 
 /**
  *  A printf function that prints an error also logs to the xpkg log as an error
  **/
-+(void) printError:(NSString *)x {
-    fprintf(stderr, "%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [x UTF8String]);
-    [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", x]];
++(void) printError:(NSString *)x, ... {
+
+    va_list formatArgs;
+    va_start(formatArgs, x);
+
+    NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
+
+    fprintf(stderr, "%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [str UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", str]];
 }
 
 /**
  *  A printf function that prints a warning also logs to the xpkg log as a warning
  **/
-+(void) printWarn:(NSString *)x {
-    fprintf(stderr, "%sWARNING: %s%s\n", [BOLDYELLOW UTF8String], [RESET UTF8String], [x UTF8String]);
-    [xpkg log:[NSString stringWithFormat:@"WARNING: %@\n", x]];
++(void) printWarn:(NSString *)x, ... {
+
+    va_list formatArgs;
+    va_start(formatArgs, x);
+
+    NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
+
+    fprintf(stderr, "%sWARNING: %s%s\n", [BOLDYELLOW UTF8String], [RESET UTF8String], [str UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"WARNING: %@\n", str]];
 }
 
 /**
  *  A printf function that logs in bold cyan letters, showing something importatn, and is logged as such
  **/
-+(void) printInfo:(NSString *)x {
-    printf("%s%s%s\n", [BOLDCYAN UTF8String], [x UTF8String], [RESET UTF8String]);
-    [xpkg log:[NSString stringWithFormat:@"INFORMATION: %@\n", x]];
++(void) printInfo:(NSString *)x, ... {
+
+    va_list formatArgs;
+    va_start(formatArgs, x);
+
+    NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
+
+    printf("%s%s%s\n", [BOLDCYAN UTF8String], [str UTF8String], [RESET UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"INFORMATION: %@\n", str]];
 }
 
 /**
  *  Logs to the xpkg log
  **/
-+(void) log:(NSString *)x {
++(void) log:(NSString *)x, ... {
+
+    va_list formatArgs;
+    va_start(formatArgs, x);
+
+    NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
 
     NSString* pre = @"[ ";
 
     pre = [pre stringByAppendingString:[xpkg getTimestamp]];
     pre = [pre stringByAppendingString:@" ] "];
-    pre = [pre stringByAppendingString:x];
+    pre = [pre stringByAppendingString:str];
 
     NSData* data = [pre dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -455,7 +483,7 @@
  *  Removes the repository at path
  **/
 +(void) rmRepository:(NSString*) path {
-    XPRepository* repo = [[XPRepository alloc] initWithPath:path];
+    XPRepository* repo = [[XPRepository alloc] initWithURL:path];
     [repo remove];
 }
 

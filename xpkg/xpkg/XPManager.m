@@ -51,7 +51,7 @@
     while ([results next]) {
         if ([[results stringForColumn:@"package"] isEqualToString:[NSString stringWithFormat:@"%@", pkg.package]]) {
             // Check for package from repository
-            FMResultSet* r = [self.db executeQueryWithFormat:@"select name from repos where \"name\" = \"%@\"", pkg.repo_name];
+            FMResultSet* r = [self.db executeQuery:[NSString stringWithFormat:@"select name from repos where \"name\" = \"%@\"", pkg.repo_name]];
             if ([r next]) {
                 if ([[r stringForColumn:@"repo"] isEqualToString:[NSString stringWithFormat:@"%@", pkg.repo_name]]) {
                     [xpkg log:[NSString stringWithFormat:@"Package %@ is already added from repository %@", pkg.package, pkg.repo_name]];
@@ -60,7 +60,7 @@
         }
     }
 
-    [self.db executeUpdateWithFormat:@"insert into pkgs(package, version, name, description, path, url, mirror1, mirror2, mirror3, mirror4, mirror5, sha, rmd, maintainer, installed) values('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', 0)", pkg.package, pkg.version, pkg.name, pkg.description, pkg.path, pkg.url, pkg.mirrors[1], pkg.mirrors[2], pkg.mirrors[3], pkg.mirrors[4], pkg.mirrors[5], pkg.sha256, pkg.rmd160, pkg.maintainer];
+    [self.db executeUpdate:[NSString stringWithFormat:@"insert into pkgs(package, version, name, description, path, url, mirror1, mirror2, mirror3, mirror4, mirror5, sha, rmd, maintainer, installed) values('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', 0)", pkg.package, pkg.version, pkg.name, pkg.description, pkg.path, pkg.url, pkg.mirrors[1], pkg.mirrors[2], pkg.mirrors[3], pkg.mirrors[4], pkg.mirrors[5], pkg.sha256, pkg.rmd160, pkg.maintainer]];
 
     FMResultSet* x = [self.db executeQueryWithFormat:@"select pkgid from pkgs where \"package\" = \"%@\"", pkg.package];
     if ([x next]) {
@@ -68,9 +68,9 @@
     }
 
     for (int a = 0; a < pkg.depends.count; a++) {
-        x = [self.db executeQueryWithFormat:@"select pkgid from pkgs where \"package\" = \"%@\"", pkg.depends[a]];
+        x = [self.db executeQuery:[NSString stringWithFormat:@"select pkgid from pkgs where \"package\" = \"%@\"", pkg.depends[a]]];
         if ([x next]) {
-            [self.db executeUpdateWithFormat:@"insert into deps(pkgid, depid) values('%@', '%@')", pkg.pkgid, [x stringForColumn:@"pkgid"]];
+            [self.db executeUpdate:[NSString stringWithFormat:@"insert into deps(pkgid, depid) values('%@', '%@')", pkg.pkgid, [x stringForColumn:@"pkgid"]]];
         } else {
             [xpkg printError:[NSString stringWithFormat:@"Dependancy of %@, %@ does not exist", pkg.package, pkg.depends[a]]];
         }
@@ -79,19 +79,20 @@
 }
 
 -(XPRepository*) addRepoToDatabase:(XPRepository*) repo {
-    [xpkg print:[NSString stringWithFormat:@"%@\t%@\t%@", repo.name, repo.path, repo.url]];
-    [self.db executeUpdateWithFormat:@"insert into repos(name, path, url) values('%@', '%@', '%@')", repo.name, repo.path, repo.url];
+    [self.db executeUpdate:[NSString stringWithFormat:@"insert into repos(name, path, url) values('%@', '%@', '%@')", repo.name, repo.path, repo.url]];
     return repo;
 }
 
 -(XPRepository*) removeRepoFromDatabase:(XPRepository*) repo {
-    [self.db executeUpdateWithFormat:@"delete from repos where \"name\" = \"%@\"", repo.name];
+    [self.db executeUpdate:[NSString stringWithFormat:@"delete from repos where \"url\" = \"%@\"", repo.url]];
     return repo;
 }
 
 -(BOOL) repoExistsAtPath:(NSString*) url {
-    FMResultSet* x = [self.db executeQueryWithFormat:@"select url from repos where \"url\" = \"%@\"", url];
-    if (![x next]) {
+    [xpkg print:@"%@", url];
+    FMResultSet* x = [self.db executeQuery:[NSString stringWithFormat:@"select * from repos where \"path\" = \"%@\"", url]];
+    if ([x next]) {
+        [xpkg print:@"%@", [x stringForColumn:@"path"]];
         return true;
     } else {
         return false;
