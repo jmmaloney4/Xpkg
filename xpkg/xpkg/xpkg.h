@@ -3,10 +3,11 @@
 //  xpkg
 //
 //  Created by Jack Maloney on 3/31/14.
-//  Copyright (c) 2014 IV. All rights reserved.
+//  Copyright (c) 2014 Jack Maloney. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "XPManager.h"
 
 static NSString* RESET = @"\033[0m";
 static NSString* RED = @"\033[31m";                 /* Red */
@@ -49,42 +50,56 @@ static NSString* CLEAR_LOG = @"clear-log";
 static NSString* SYS_INFO = @"sys";
 
 @interface xpkg : NSObject
-+(void) print:(NSString*)x;
-+(void) printError:(NSString*)x;
-+(void) log:(NSString *)x;
-+(void) printWarn:(NSString *)x;
-+(BOOL) checkForArgs:(int)argc;
 
+@property XPManager* manager;
+
+
++(void) print:(NSString*) x, ...;
++(void) printError:(NSString *)x, ...;
++(void) printWarn:(NSString *)x, ...;
++(void) printInfo:(NSString *)x, ...;
++(void) log:(NSString *)x, ...;
+
+/**
+ *  Executes a shell command using an NSTask
+ **/
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot returnOut:(BOOL) x ;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot;
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot returnOut:(BOOL) x ;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL)ot;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er;
 
 +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
+
+/**
+ *  updates Xpkg
+ **/
 +(void) updateProgram;
+/**
+ *  Downloads a file
+ **/
 +(void) downloadFile:(NSString*)URL place:(NSString*)path;
 +(void) exitIfNotRoot;
 +(BOOL) installPackage:(NSString*)path;
-+(NSFileHandle*) getFileAtPath:(NSString*)path;
-+(NSString*) getStringFromData:(NSData*) data;
-+(NSData*) getDataFromFile:(NSFileHandle*) file;
++(BOOL) removePackage:(NSString*)path;
 +(NSString*) getPathWithPrefix:(NSString*)path;
 +(NSString*) getTimestamp;
 +(void) clearLog;
-+(NSString*) getPackageRoot:(NSString*)package andVersion:(NSString*)version;
-+(NSArray*) getPackageArrayAttribute:(NSString*)attr atPath:(NSString*)path;
-+(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path;
-+(NSString*) getPackageAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
-+(void) printInfo:(NSString *)x;
++(NSArray*) getArrayAttribute:(NSString*)attr atPath:(NSString*)path;
++(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path;
++(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url;
 +(void) UntarFileAtPath:(NSString*)path workingDir:(NSString*)wdir;
 +(void) clearTmp;
 +(BOOL) is64Bit;
 +(void) printXpkg;
 +(void) addRepository:(NSString*) url;
++(void) rmRepository:(NSString*) path;
 +(NSArray*) parseRepoFile:(NSString*)path;
 +(void) printUsage;
 +(NSString*) getClangVersion;
++(void) addAndCommit;
++(BOOL) fileIsIgnoredInRepo:(NSString*) str;
+
 @end
 
 static NSFileHandle* logFile;
