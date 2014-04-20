@@ -98,6 +98,7 @@ static NSString* SYS_INFO = @"sys";
 +(void) printUsage;
 +(NSString*) getClangVersion;
 +(void) addAndCommit;
++(BOOL) fileIsIgnoredInRepo:(NSString*) str;
 
 @end
 

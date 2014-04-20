@@ -29,7 +29,7 @@
      *  Creates the pkg Table
      */
     if (init) {
-        [self.db executeUpdate:@"create table pkgs(pkgid integer primary key autoincrement, package varchar(50), version varchar(20), name varchar(50), description varchar(200), path varchar(75), url varchar(125), mirror1 varchar(125), mirror2 varchar(125), mirror3 varchar(125), mirror4 varchar(125), mirror5 varchar(125), sha varchar(64), rmd varchar(40), maintanier varchar(75), repo integer, installed integer)"];
+        [self.db executeUpdate:@"create table pkgs(pkgid integer primary key autoincrement, package varchar(50), version varchar(20), name varchar(50), description varchar(200), path varchar(75), url varchar(125), mirror1 varchar(125), mirror2 varchar(125), mirror3 varchar(125), mirror4 varchar(125), mirror5 varchar(125), sha varchar(64), rmd varchar(40), maintainer varchar(75), repo integer, installed integer)"];
         // if installed is equal to 0 than it is not installed, else it is installed
 
         /*
