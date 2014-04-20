@@ -64,7 +64,7 @@
         [pkgs insertObject:cons[a] atIndex:a];
         if (![xpkg fileIsIgnoredInRepo:cons[a]]) {
             // Add Package to sqlite3 database
-            XPPackage* pkg = [[XPPackage alloc] initWithpath:[NSString stringWithFormat:@"%@/%@", self.path, cons[a]]];
+            XPPackage* pkg = [[XPPackage alloc] initWithpath:[NSString stringWithFormat:@"%@/%@", self.path, cons[a]] andRepo:self.name];
             [manager addPackageInfoToDatabase:pkg];
         }
     }
@@ -81,6 +81,18 @@
         [xpkg printError:@"Repository Does Not Exist"];
         return;
     }
+    NSFileManager* filem = [[NSFileManager alloc] init];
+    NSMutableArray* pkgs;
+    NSArray* cons = [filem contentsOfDirectoryAtPath:self.path error:nil];
+    for (int a = 0; a < cons.count; a++) {
+        [pkgs insertObject:cons[a] atIndex:a];
+        if (![xpkg fileIsIgnoredInRepo:cons[a]]) {
+            // Add Package to sqlite3 database
+            XPPackage* pkg = [[XPPackage alloc] initWithpath:[NSString stringWithFormat:@"%@/%@", self.path, cons[a]] andRepo:self.name];
+            [xpkg print:self.name];
+            [manager removePackage:pkg];
+        }
+    }
 
     [manager removeRepoFromDatabase:self];
 
@@ -93,6 +105,17 @@
     [xpkg addAndCommit];
     
     [xpkg print:@"\tDone."];
+}
+
++(int) getRepoIDForName:(NSString*) name {
+    int rv = -1;
+
+    XPManager* x = [[XPManager alloc] init];
+    FMResultSet* f = [x.db executeQuery:[NSString stringWithFormat:@"select * from repos where \"name\" = \"%@\"", name]];
+    if ([f next]) {
+        return [f intForColumn:@"uid"];
+    }
+    return rv;
 }
 
 @end

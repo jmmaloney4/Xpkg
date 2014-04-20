@@ -11,6 +11,12 @@
 
 @implementation XPPackage
 
+-(instancetype) initWithpath:(NSString*)path andRepo:(NSString*)repon {
+    self = [self initWithpath:path];
+    self.repo_name = repon;
+    return self;
+}
+
 -(instancetype) initWithpath:(NSString*)path {
     self = [super init];
     self.path = path;
@@ -28,6 +34,13 @@
     return self;
 }
 
+-(instancetype) initFromDatabase {
+    self = [super init];
+
+    return self;
+}
+
+/*
 -(instancetype) initWithData:(NSString*)path package:(NSString*)package version:(NSString*)version name:(NSString*)name url:(NSString*)url homepage:(NSString*)homepage description:(NSString*)description rmd:(NSString*)rmd sha:(NSString*)sha maintainer:(NSString*)maintainer depends:(NSArray*)depends recomended:(NSArray*)recomended dependers:(NSArray*)dependers {
     self = [super init];
     self.path = path;
@@ -45,9 +58,10 @@
     self.dependers = dependers;
     return self;
 }
+*/
 
 /**
- *  Returns nil because it is not the corrct init method, use initWithself.path instead
+ *  Returns nil because it is not the corrct init method, use initWithPath instead
  **/
 -(instancetype) init {
     return nil;

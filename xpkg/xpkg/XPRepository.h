@@ -22,4 +22,6 @@
 -(void) add;
 -(void) remove;
 
++(int) getRepoIDForName:(NSString*) name;
+
 @end
