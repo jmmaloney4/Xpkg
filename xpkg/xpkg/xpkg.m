@@ -483,7 +483,7 @@
  *  Removes the repository at path
  **/
 +(void) rmRepository:(NSString*) path {
-    XPRepository* repo = [[XPRepository alloc] initWithPath:path];
+    XPRepository* repo = [[XPRepository alloc] initWithURL:path];
     [repo remove];
 }
 

@@ -84,7 +84,7 @@
 }
 
 -(XPRepository*) removeRepoFromDatabase:(XPRepository*) repo {
-    [self.db executeUpdate:[NSString stringWithFormat:@"delete from repos where \"url\" = \"%@\"", repo.path]];
+    [self.db executeUpdate:[NSString stringWithFormat:@"delete from repos where \"url\" = \"%@\"", repo.url]];
     return repo;
 }
 
