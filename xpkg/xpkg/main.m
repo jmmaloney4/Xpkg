@@ -24,7 +24,7 @@ int main(int argc, const char * argv[])
         [xpkg log:init_log];
 
         if (__APPLE__) {
-            [xpkg log:@"Platform is Apple"];
+            [xpkg log:@"Platform is Apple\n"];
         } else {
             [xpkg printWarn:@"This is not being run on Mac OS X, There is NO GAURENTEE that anything will work"];
         }

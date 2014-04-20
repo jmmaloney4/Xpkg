@@ -27,18 +27,10 @@
     self = [super init];
 
     self.path = path;
-
     NSArray* u = [self.url componentsSeparatedByString:@"/"];
     self.name = u [u.count - 1];
     return self;
 }
-
-+(XPRepository*) getRepoFromPath:(NSString*) path {
-    // get a url from db for the repository at the path
-    // XPRepository* repo = [[XPRepository alloc] initWithURL:];
-    return nil;
-}
-
 
 -(void) add {
     XPManager* manager = [[XPManager alloc] init];
@@ -67,12 +59,15 @@
 
     // Scan packages
     NSMutableArray* pkgs;
-    NSArray* cons = [filem contentsOfDirectoryAtPath:[xpkg getPathWithPrefix:self.path] error:nil];
+    NSArray* cons = [filem contentsOfDirectoryAtPath:self.path error:nil];
     for (int a = 0; a < cons.count; a++) {
         [pkgs insertObject:cons[a] atIndex:a];
-        [xpkg print:cons[a]];
+        if (![xpkg fileIsIgnoredInRepo:cons[a]]) {
+            // Add Package to sqlite3 database
+            XPPackage* pkg = [[XPPackage alloc] initWithpath:[NSString stringWithFormat:@"%@/%@", self.path, cons[a]]];
+            [manager addPackageInfoToDatabase:pkg];
+        }
     }
-    [xpkg print:@"%d", ((unsigned int)cons.count)];
     [xpkg print:@"\tDone."];
 }
 
@@ -96,7 +91,7 @@
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"rm", @"-f", [NSString stringWithFormat:@"./%@", d]] andPath:[xpkg getPathWithPrefix:@"/core/repos/"] printErr:false printOut:false];
 
     [xpkg addAndCommit];
-
+    
     [xpkg print:@"\tDone."];
 }
 
