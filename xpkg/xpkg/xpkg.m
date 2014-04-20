@@ -542,5 +542,16 @@
     return rv;
 }
 
++(BOOL) fileIsIgnoredInRepo:(NSString*) str {
+    NSArray* ignored_files = @[@"REPO", @".git", @"README", @"README.md", @"LICENCE", @"LICENSE"];
+    for (int a = 0; a < ignored_files.count; a++) {
+        if ([str isEqualToString:ignored_files[a]]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 @end
 
