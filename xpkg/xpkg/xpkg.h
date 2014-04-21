@@ -26,10 +26,9 @@ static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype x
 
 static NSString* PREFIX = @"/opt/xpkg";
 
-static NSString* VERSION = @"1.0.0-Beta.2";
+static NSString* VERSION = @"1.0.0-Beta.4";
 
 static NSString* HELP_TEXT = @"";
-//HELP_TEXT = [NSString stringWithFormat:@"Options are either: \n\t"];
 
 static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
 
