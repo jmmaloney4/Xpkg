@@ -19,6 +19,9 @@
 #import <Foundation/Foundation.h>
 #import "XPManager.h"
 
+/*
+ * Colors For Colorized Terminal Output
+ */
 static NSString* RESET = @"\033[0m";
 static NSString* RED = @"\033[31m";                 /* Red */
 static NSString* GREEN = @"\033[32m";               /* Green */
@@ -32,16 +35,29 @@ static NSString* BOLDCYAN = @"\033[1m\033[36m";     /* Bold Cyan */
 static NSString* BOLDMAGENTA = @"\033[1m\033[35m";  /* Bold Magenta */
 static NSString* BOLDBLUE = @"\033[1m\033[34m";     /* Bold Blue */
 
+/*
+ * The Usage Statement For Xpkg
+ */
 static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype xpkg -h  for more help\n";
 
+/*
+ * Path Prefix For Xpkg
+ */
 static NSString* PREFIX = @"/opt/xpkg";
 
-static NSString* VERSION = @"1.0.0-Beta.4";
+/*
+ * Xpkg Version
+ */
+static NSString* VERSION = @"1.0.0-Beta.5";
 
-static NSString* HELP_TEXT = @"";
-
+/*
+ * Path to the Log File
+ */
 static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
 
+/*
+ * A few attempts to localize command names (etc.)
+ */
 static NSString* VERSION_ARG = @"-V";
 static NSString* INSTALL = @"install";
 static NSString* UPDATE = @"update";
@@ -62,7 +78,9 @@ static NSString* SYS_INFO = @"sys";
 
 @property XPManager* manager;
 
-
+/*
+ * Print methods for ease of use
+ */
 +(void) print:(NSString*) x, ...;
 +(void) printError:(NSString *)x, ...;
 +(void) printWarn:(NSString *)x, ...;
@@ -78,7 +96,8 @@ static NSString* SYS_INFO = @"sys";
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printOut:(BOOL)ot;
 +(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er;
 
-+(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
+
+// +(BOOL) checkHashes:(NSString*)sha rmd160:(NSString*)rmd atPath:(NSString*) path;
 
 /**
  *  updates Xpkg
