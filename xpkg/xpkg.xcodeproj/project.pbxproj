@@ -290,6 +290,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "";
 			};
@@ -301,10 +302,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "";
 			};

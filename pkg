@@ -1,0 +1,24 @@
+@Package: 
+@Name: 
+@Version: 
+@Description: 
+@URL: 
+@SHA256: 
+@RMD160: 
+@Mirror-1: 
+@Maintainer: 
+@Depends: 
+@Recomended: 
+
+@BUILD
+# ./configure --prefix=$XPKG_PKG_DIR
+# make
+@END
+
+@INSTALL
+# ln $XPKG_PKG_DIR/bin/* $XPKG_ROOT_DIR/bin/
+@END
+
+@REMOVE
+# rm $XPKG_ROOT_DIR/bin/bash
+@END
