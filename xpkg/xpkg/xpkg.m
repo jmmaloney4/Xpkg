@@ -258,8 +258,8 @@
     [xpkg addAndCommit];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
     [xpkg addAndCommit];
-    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
-    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[@"-workspace", @"xpkg.xcworkspace", @"-scheme", @"xpkg"] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
+    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/Build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg print:@"\tUpdating Repositories"];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"update"] andPath:[xpkg getPathWithPrefix:@"/"]];

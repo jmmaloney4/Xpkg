@@ -23,6 +23,7 @@
 
 -(instancetype) initWithpath:(NSString*)path;
 -(instancetype) initWithpath:(NSString*)path andRepo:(NSString*)repon;
+
 @property NSString* url;
 @property NSString* package;
 @property NSString* description;
@@ -42,4 +43,5 @@
 
 -(BOOL) install;
 -(BOOL) remove;
+
 @end
