@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>2194B723-7570-4221-9FB8-4AE144FBBECC</string>
+	<string>4033E396-FC04-4C26-800E-D35F876F0820</string>
 	<key>IDESourceControlProjectName</key>
 	<string>xpkg</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2CBA8095-D239-4864-A6C2-8E4E6DE47A57</key>
-		<string>https://github.com/jmmaloney4/xpkg.git</string>
+		<key>1427ECC0-5018-4EB6-8F59-020C133B6B07</key>
+		<string>https://github.com/jmmaloney4/Xpkg.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>xpkg/xpkg.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2CBA8095-D239-4864-A6C2-8E4E6DE47A57</key>
+		<key>1427ECC0-5018-4EB6-8F59-020C133B6B07</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/jmmaloney4/xpkg.git</string>
+	<string>https://github.com/jmmaloney4/Xpkg.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2CBA8095-D239-4864-A6C2-8E4E6DE47A57</string>
+	<string>1427ECC0-5018-4EB6-8F59-020C133B6B07</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2CBA8095-D239-4864-A6C2-8E4E6DE47A57</string>
+			<string>1427ECC0-5018-4EB6-8F59-020C133B6B07</string>
 			<key>IDESourceControlWCCName</key>
-			<string>xpkg</string>
+			<string>Xpkg</string>
 		</dict>
 	</array>
 </dict>
