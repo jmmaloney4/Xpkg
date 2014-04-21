@@ -154,7 +154,7 @@ sudo git branch --set-upstream-to=origin/master >> $LOG 2>&1
 
 cd $XPKG/xpkg >> $LOG 2>&1
 
-sudo xcodebuild >> $LOG 2>&1
+sudo xcodebuild -workspace ./xpkg.xcworkspace -scheme xpkg >> $LOG 2>&1
 
 sudo cp $XPKG/xpkg/build/Release/xpkg $XPKG/core/
 
