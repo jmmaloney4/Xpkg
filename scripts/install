@@ -156,7 +156,7 @@ cd $XPKG/xpkg >> $LOG 2>&1
 
 xcodebuild -workspace ./xpkg.xcworkspace -scheme xpkg >> $LOG 2>&1
 
-cp $XPKG/xpkg/build/Release/xpkg $XPKG/core/
+cp $XPKG/xpkg/Build/Release/xpkg $XPKG/core/
 
 cp $XPKG/xpkg.1/ $XPKG/man/man1/
 
