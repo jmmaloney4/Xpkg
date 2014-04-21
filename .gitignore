@@ -1,4 +1,5 @@
 xpkg/DerivedData/
+xpkg/Build/
 /xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/jack.xcuserdatad/*.xcuserstate
 xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/jack.xcuserdatad/*.xcuserstate
 xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/jack.xcuserdatad/*
