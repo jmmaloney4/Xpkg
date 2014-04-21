@@ -36,6 +36,19 @@
 }
 
 /**
+ *  A printf function that also logs to the xpkg log
+ **/
++(void) printSucsess:(NSString*) x, ... {
+    
+    va_list formatArgs;
+    va_start(formatArgs, x);
+    
+    NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
+    printf("%s✔︎ %s%s\n", [BOLDGREEN UTF8String], [str UTF8String], [RESET UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"Sucsess: %@\n", str]];
+}
+
+/**
  *  A printf function that prints an error also logs to the xpkg log as an error
  **/
 +(void) printError:(NSString *)x, ... {

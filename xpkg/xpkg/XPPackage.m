@@ -120,6 +120,22 @@
     // INSTALL
     [xpkg print:@"\tInstalling..."];
     a = [self runMethodScript:@"INSTALL"];
+    if (a != 0) {
+        [xpkg printError:@"Install Failed"];
+        [xpkg log:@"Install of %@ returned exit code %d", self.package, a];
+        exit(21);
+    }
+    
+    // TEST
+    [xpkg print:@"\tTesting..."];
+    a = [self runMethodScript:@"TEST"];
+    
+    if (a == 0) {
+        [xpkg printSucsess:@"Installed %@ Sucsessfully"];
+    } else {
+        
+    }
+    
     return a;
 }
 
