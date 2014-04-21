@@ -148,7 +148,7 @@ cd $XPKG >> $LOG 2>&1
 echo "Building Xpkg"
 cd $XPKG
 $XPKG/bin/git init >> $LOG 2>&1
-$XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git >> $LOG 2>&1
+$XPKG/bin/git remote add origin https://github.com/jmmaloney4/Xpkg.git >> $LOG 2>&1
 $XPKG/bin/git pull origin master >> $LOG 2>&1
 git branch --set-upstream-to=origin/master >> $LOG 2>&1
 
