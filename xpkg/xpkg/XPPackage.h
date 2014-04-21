@@ -12,6 +12,7 @@
 @interface XPPackage : NSObject
 
 -(instancetype) initWithpath:(NSString*)path;
+-(instancetype) initWithpath:(NSString*)path andRepo:(NSString*)repon;
 @property NSString* url;
 @property NSString* package;
 @property NSString* description;
@@ -27,7 +28,7 @@
 @property NSArray* dependers;
 @property NSArray* recomended;
 @property NSString* repo_name;
-@property NSNumber* pkgid;
+@property NSInteger* pkgid;
 
 -(BOOL) install;
 -(BOOL) remove;

@@ -46,37 +46,37 @@
 }
 
 -(XPPackage*) addPackageInfoToDatabase:(XPPackage*) pkg {
-    FMResultSet* results = [self.db executeQueryWithFormat:@"select package, repo from pkgs where \"package\" = \"%@\"", pkg.package];
-    // Checks for a package by this name, in this repository in the database
-    while ([results next]) {
-        if ([[results stringForColumn:@"package"] isEqualToString:[NSString stringWithFormat:@"%@", pkg.package]]) {
-            // Check for package from repository
-            FMResultSet* r = [self.db executeQuery:[NSString stringWithFormat:@"select name from repos where \"name\" = \"%@\"", pkg.repo_name]];
-            if ([r next]) {
-                if ([[r stringForColumn:@"repo"] isEqualToString:[NSString stringWithFormat:@"%@", pkg.repo_name]]) {
-                    [xpkg log:[NSString stringWithFormat:@"Package %@ is already added from repository %@", pkg.package, pkg.repo_name]];
-                }
-            }
+    FMResultSet* r = [self.db executeQuery:[NSString stringWithFormat:@"select * from repos where \"name\" = \"%@\"", pkg.repo_name]];
+    if ([r next]) {
+        FMResultSet* results = [self.db executeQueryWithFormat:@"select * from pkgs where \"package\" = \"%@\" and \"repo\" = \"%d\"", pkg.package, [r intForColumn:@"uid"]];
+        if ([results next]) {
+            return nil;
         }
+    } else {
+        [xpkg printError:@"Repo %@ not found", pkg.repo_name];
     }
 
-    [self.db executeUpdate:[NSString stringWithFormat:@"insert into pkgs(package, version, name, description, path, url, mirror1, mirror2, mirror3, mirror4, mirror5, sha, rmd, maintainer, installed) values('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', 0)", pkg.package, pkg.version, pkg.name, pkg.description, pkg.path, pkg.url, pkg.mirrors[1], pkg.mirrors[2], pkg.mirrors[3], pkg.mirrors[4], pkg.mirrors[5], pkg.sha256, pkg.rmd160, pkg.maintainer]];
 
-    FMResultSet* x = [self.db executeQueryWithFormat:@"select pkgid from pkgs where \"package\" = \"%@\"", pkg.package];
-    if ([x next]) {
-        pkg.pkgid = [NSNumber numberWithInt:[x intForColumn:@"pkgid"]];
-    }
+    [self.db executeUpdate:[NSString stringWithFormat:@"insert into pkgs(package, version, name, description, path, url, mirror1, mirror2, mirror3, mirror4, mirror5, sha, rmd, repo, maintainer, installed) values('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %d, 0)", pkg.package, pkg.version, pkg.name, pkg.description, pkg.path, pkg.url, pkg.mirrors[1], pkg.mirrors[2], pkg.mirrors[3], pkg.mirrors[4], pkg.mirrors[5], pkg.sha256, pkg.rmd160, pkg.maintainer, [XPRepository getRepoIDForName:pkg.repo_name]]];
 
-    for (int a = 0; a < pkg.depends.count; a++) {
-        x = [self.db executeQuery:[NSString stringWithFormat:@"select pkgid from pkgs where \"package\" = \"%@\"", pkg.depends[a]]];
-        if ([x next]) {
-            [self.db executeUpdate:[NSString stringWithFormat:@"insert into deps(pkgid, depid) values('%@', '%@')", pkg.pkgid, [x stringForColumn:@"pkgid"]]];
-        } else {
-            [xpkg printError:[NSString stringWithFormat:@"Dependancy of %@, %@ does not exist", pkg.package, pkg.depends[a]]];
+    if (pkg.depends) {
+        for (int a = 0; a < pkg.depends.count; a++) {
+            FMResultSet* r = [self.db executeQuery:[NSString stringWithFormat:@"select * from pkgs where \"package\" = \"%@\"", pkg.depends[a]]];
+            if ([r next]) {
+                FMResultSet* f = [self.db executeQuery:[NSString stringWithFormat:@"select * from pkgs where \"package\" = \"%@\"", pkg.package]];
+                [self.db executeUpdate:[NSString stringWithFormat:@"insert into deps(pkgid, depid) values(%d, %d)", [f intForColumn:@"pkgid"], [r intForColumn:@"pkgid"]]];
+            }
         }
     }
     return pkg;
 }
+
+-(XPPackage*) removePackage:(XPPackage*) pkg {
+    [xpkg print:@"%@\t%d", pkg.name, pkg.repo_name];
+    [self.db executeUpdate:[NSString stringWithFormat:@"delete from pkgs where \"package\" = \"%@\" and \"repo\" = %d", pkg.package, [XPRepository getRepoIDForName:pkg.repo_name]]];
+    return pkg;
+}
+
 
 -(XPRepository*) addRepoToDatabase:(XPRepository*) repo {
     [self.db executeUpdate:[NSString stringWithFormat:@"insert into repos(name, path, url) values('%@', '%@', '%@')", repo.name, repo.path, repo.url]];
@@ -97,6 +97,11 @@
     } else {
         return false;
     }
+}
+
+
+-(void) dealloc {
+    [self.db close];
 }
 
 @end

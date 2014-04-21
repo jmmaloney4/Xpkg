@@ -1,0 +1,62 @@
+.TH XPKG 1 "April 20, 2014" "Mac OS X" "BSD General Commands Manual" "M"
+
+.SH NAME xpkg \- Advanced Package Management For Mac OS X
+
+.SH SYNOPSIS 
+.B xpkg\fR [ \fBinstall\fR | \fBremove\fR ] <package>
+
+.B xpkg\fR [ \fB-lvV\fR ]
+
+.B xpkg\fR [ \fBupdate\fR | \fBlog\fR | \fBclear\fR ]
+
+.B xpkg\fR [ \fBadd\fR | \fBrm-repo\fR ] <url>
+
+.SH DESCRIPTION 
+Installs, removes and updates packages. It also allows the user to add third-party package sources.
+xpkg uses an SQLite3 database to manage all of its packages and repositories.
+This allows for dependancies to be calculated quickly and efficently.
+Package Sources are just git submodules, added to /opt/xpkg/core/repos/, which makes it very easy to host your own.
+
+.SH COMMANDS
+
+\fBinstall\fR - installs the specified packages
+
+\fBremove\fR - remove the specified packages
+
+\fBupdate\fR - updates xpkg, and the package sources
+
+\fBlog\fR - shows the xpkg log
+
+\fBclear-log\fR - clears the xpkg log
+
+\fBadd\fR - adds the package source from the specified url
+
+\fBrm-repo\fR - removes the package source from the specified url
+
+.SH OPTIONS
+
+\fB-l\fR / \fB--license\fR Displays the xpkg licnese
+
+\fB-v\fR / \fB--version\fR Displays a user friendly version string
+
+\fB-V\fR Displays a straight version number such as \fI1.2.3\fR
+
+.SH FILES
+
+.I /opt/xpkg/core/info/xpkg.db\fR:
+The SQLite3 database file used to track packages, repositories and dependancies.
+
+.I /opt/xpkg/core/repos/\fR:
+The directory where all of the package sources are cloned.
+
+.I /opt/xpkg/bin/\fR:
+The bin directory for installed packages
+
+.I /opt/xpkg/sbin/\fR:
+The sbin directory for installed packages
+
+.I /opt/xpkg/man/\fR:
+The man page directory for installed packages
+
+.SH AUTHOR
+.B Jack Maloney

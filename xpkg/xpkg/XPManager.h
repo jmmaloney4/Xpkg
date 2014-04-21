@@ -15,6 +15,7 @@
 @property FMDatabase* db;
 
 -(XPPackage*) addPackageInfoToDatabase:(XPPackage*)pkg;
+-(XPPackage*) removePackage:(XPPackage*) pkg;
 -(BOOL) repoExistsAtPath:(NSString*) url;
 -(XPRepository*) addRepoToDatabase:(XPRepository*) repo;
 -(XPRepository*) removeRepoFromDatabase:(XPRepository*) repo;

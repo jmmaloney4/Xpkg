@@ -78,9 +78,7 @@ int main(int argc, const char * argv[])
         }
 
         else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
-            [xpkg printUsage];
-            [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
-            [xpkg print:HELP_TEXT];
+            system("less /opt/xpkg/man/man1/xpkg.1");
         }
 
         else if ([CLEAR_LOG isEqualToString:arg]) {
