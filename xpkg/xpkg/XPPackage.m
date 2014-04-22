@@ -131,7 +131,7 @@
     a = [self runMethodScript:@"TEST"];
     
     if (a == 0) {
-        [xpkg printSucsess:@"Installed %@ Sucsessfully"];
+        [xpkg printSucsess:@"Installed %@ Sucsessfully", self.name];
     } else {
         
     }
@@ -173,6 +173,9 @@
     NSDate* start = [NSDate date];
     sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
     script = [self readMethodScript:method];
+    if (!script) {
+        [xpkg printWarn:@"The %@ method was not found in the package file at %@", method, self.path];
+    }
     [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
     setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", self.package, self.version]] UTF8String], 1);
     setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", self.package, self.version]] UTF8String], 1);
@@ -205,11 +208,14 @@
     if (!filecmps) {
         return nil;
     }
-
+    
+    BOOL found = NO;
+    
     for (int x = 0; x < [filecmps count]; x++) {
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:method]) {
+                found = YES;
                 for (int y = x + 1; y < [filecmps count]; y++) {
                     if ([filecmps[y] hasPrefix:@"@"]) {
                         NSArray* f = [filecmps[y] componentsSeparatedByString:@":"];
@@ -226,6 +232,10 @@
                 }
             }
         }
+    }
+    
+    if (!found) {
+        return nil;
     }
     return rv;
 }
