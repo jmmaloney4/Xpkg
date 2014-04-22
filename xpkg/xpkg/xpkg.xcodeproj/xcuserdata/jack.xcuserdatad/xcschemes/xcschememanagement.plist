@@ -7,12 +7,12 @@
 		<key>xpkg.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>04709132190728B300BE21DB</key>
+		<key>0470914C190728DB00BE21DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,6 +14,12 @@
 		047091191907286200BE21DB /* libxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 047091001907286200BE21DB /* libxpkg.a */; };
 		0470911F1907286200BE21DB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0470911D1907286200BE21DB /* InfoPlist.strings */; };
 		047091211907286200BE21DB /* xpkgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 047091201907286200BE21DB /* xpkgTests.m */; };
+		0470916A1907296600BE21DB /* XPManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091621907296600BE21DB /* XPManager.h */; };
+		0470916B1907296600BE21DB /* XPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047091631907296600BE21DB /* XPManager.m */; };
+		0470916C1907296600BE21DB /* XPPackage.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091641907296600BE21DB /* XPPackage.h */; };
+		0470916D1907296600BE21DB /* XPPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 047091651907296600BE21DB /* XPPackage.m */; };
+		047091701907296600BE21DB /* XPRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091681907296600BE21DB /* XPRepository.h */; };
+		047091711907296600BE21DB /* XPRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 047091691907296600BE21DB /* XPRepository.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,12 @@
 		0470911C1907286200BE21DB /* xpkgTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "xpkgTests-Info.plist"; sourceTree = "<group>"; };
 		0470911E1907286200BE21DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		047091201907286200BE21DB /* xpkgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xpkgTests.m; sourceTree = "<group>"; };
+		047091621907296600BE21DB /* XPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPManager.h; sourceTree = "<group>"; };
+		047091631907296600BE21DB /* XPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPManager.m; sourceTree = "<group>"; };
+		047091641907296600BE21DB /* XPPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPPackage.h; sourceTree = "<group>"; };
+		047091651907296600BE21DB /* XPPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPPackage.m; sourceTree = "<group>"; };
+		047091681907296600BE21DB /* XPRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPRepository.h; sourceTree = "<group>"; };
+		047091691907296600BE21DB /* XPRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPRepository.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,12 @@
 		047091091907286200BE21DB /* xpkg */ = {
 			isa = PBXGroup;
 			children = (
+				047091621907296600BE21DB /* XPManager.h */,
+				047091631907296600BE21DB /* XPManager.m */,
+				047091641907296600BE21DB /* XPPackage.h */,
+				047091651907296600BE21DB /* XPPackage.m */,
+				047091681907296600BE21DB /* XPRepository.h */,
+				047091691907296600BE21DB /* XPRepository.m */,
 				0470910C1907286200BE21DB /* xpkg.h */,
 				0470910D1907286200BE21DB /* xpkg.m */,
 				0470910A1907286200BE21DB /* Supporting Files */,
@@ -146,6 +164,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047091701907296600BE21DB /* XPRepository.h in Headers */,
+				0470916A1907296600BE21DB /* XPManager.h in Headers */,
+				0470916C1907296600BE21DB /* XPPackage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +251,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047091711907296600BE21DB /* XPRepository.m in Sources */,
 				0470910E1907286200BE21DB /* xpkg.m in Sources */,
+				0470916B1907296600BE21DB /* XPManager.m in Sources */,
+				0470916D1907296600BE21DB /* XPPackage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
