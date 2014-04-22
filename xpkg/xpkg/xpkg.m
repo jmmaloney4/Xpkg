@@ -268,7 +268,7 @@
     [xpkg printInfo:@"Updating..."];
     [xpkg print:@"\tUpdating Xpkg"];
     [xpkg addAndCommit];
-    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
+    [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull", @"-u", @"origin", @"master"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
     [xpkg addAndCommit];
     [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[@"-workspace", @"xpkg.xcworkspace", @"-scheme", @"xpkg", @"CONFIGURATION_BUILD_DIR=$(pwd)/Build"] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
     [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
