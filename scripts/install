@@ -151,6 +151,10 @@ else
    echo "Installing CocoaPods"
    gem install cocoapods >> $LOG 2>&1
 fi
+
+sudo chown -R $USER ~/Library/Caches/CocoaPods
+sudo chown -R $USER ~/.cocoapods
+
 echo "Building Xpkg"
 cd $XPKG
 $XPKG/bin/git init >> $LOG 2>&1
