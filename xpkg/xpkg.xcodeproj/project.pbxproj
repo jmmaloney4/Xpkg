@@ -13,8 +13,25 @@
 		044631F418F05DA4000B009E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044631F318F05DA4000B009E /* Foundation.framework */; };
 		044631F718F05DA5000B009E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 044631F618F05DA5000B009E /* main.m */; };
 		0446320318F05E10000B009E /* xpkg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0446320218F05E10000B009E /* xpkg.m */; };
+		0470906D1907265B00BE21DB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470906C1907265B00BE21DB /* Cocoa.framework */; };
+		047090771907265B00BE21DB /* libxpkg.m in Sources */ = {isa = PBXBuildFile; fileRef = 047090761907265B00BE21DB /* libxpkg.m */; };
+		0470907E1907265B00BE21DB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470907D1907265B00BE21DB /* XCTest.framework */; };
+		0470907F1907265B00BE21DB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470906C1907265B00BE21DB /* Cocoa.framework */; };
+		047090821907265B00BE21DB /* liblibxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470906B1907265B00BE21DB /* liblibxpkg.a */; };
+		047090881907265B00BE21DB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 047090861907265B00BE21DB /* InfoPlist.strings */; };
+		0470908A1907265B00BE21DB /* libxpkgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 047090891907265B00BE21DB /* libxpkgTests.m */; };
 		04F90D391907078700689ECD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F90D381907078700689ECD /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		047090801907265B00BE21DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 044631E818F05DA4000B009E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0470906A1907265B00BE21DB;
+			remoteInfo = libxpkg;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		044631EE18F05DA4000B009E /* CopyFiles */ = {
@@ -41,6 +58,19 @@
 		044631F918F05DA5000B009E /* xpkg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xpkg-Prefix.pch"; sourceTree = "<group>"; };
 		0446320118F05E10000B009E /* xpkg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = xpkg.h; sourceTree = "<group>"; usesTabs = 0; };
 		0446320218F05E10000B009E /* xpkg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xpkg.m; sourceTree = "<group>"; };
+		0470906B1907265B00BE21DB /* liblibxpkg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibxpkg.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0470906C1907265B00BE21DB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		0470906F1907265B00BE21DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		047090701907265B00BE21DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		047090711907265B00BE21DB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		047090741907265B00BE21DB /* libxpkg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libxpkg-Prefix.pch"; sourceTree = "<group>"; };
+		047090751907265B00BE21DB /* libxpkg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libxpkg.h; sourceTree = "<group>"; };
+		047090761907265B00BE21DB /* libxpkg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libxpkg.m; sourceTree = "<group>"; };
+		0470907C1907265B00BE21DB /* libxpkgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = libxpkgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0470907D1907265B00BE21DB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		047090851907265B00BE21DB /* libxpkgTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "libxpkgTests-Info.plist"; sourceTree = "<group>"; };
+		047090871907265B00BE21DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		047090891907265B00BE21DB /* libxpkgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libxpkgTests.m; sourceTree = "<group>"; };
 		04F90D381907078700689ECD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -54,6 +84,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		047090681907265B00BE21DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0470906D1907265B00BE21DB /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		047090791907265B00BE21DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0470907F1907265B00BE21DB /* Cocoa.framework in Frameworks */,
+				0470907E1907265B00BE21DB /* XCTest.framework in Frameworks */,
+				047090821907265B00BE21DB /* liblibxpkg.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				044631F518F05DA5000B009E /* xpkg */,
+				047090721907265B00BE21DB /* libxpkg */,
+				047090831907265B00BE21DB /* libxpkgTests */,
 				044631F218F05DA4000B009E /* Frameworks */,
 				044631F118F05DA4000B009E /* Products */,
 			);
@@ -70,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				044631F018F05DA4000B009E /* xpkg */,
+				0470906B1907265B00BE21DB /* liblibxpkg.a */,
+				0470907C1907265B00BE21DB /* libxpkgTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +131,9 @@
 			children = (
 				04F90D381907078700689ECD /* libsqlite3.dylib */,
 				044631F318F05DA4000B009E /* Foundation.framework */,
+				0470906C1907265B00BE21DB /* Cocoa.framework */,
+				0470907D1907265B00BE21DB /* XCTest.framework */,
+				0470906E1907265B00BE21DB /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -108,7 +163,63 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0470906E1907265B00BE21DB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0470906F1907265B00BE21DB /* Foundation.framework */,
+				047090701907265B00BE21DB /* CoreData.framework */,
+				047090711907265B00BE21DB /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		047090721907265B00BE21DB /* libxpkg */ = {
+			isa = PBXGroup;
+			children = (
+				047090751907265B00BE21DB /* libxpkg.h */,
+				047090761907265B00BE21DB /* libxpkg.m */,
+				047090731907265B00BE21DB /* Supporting Files */,
+			);
+			path = libxpkg;
+			sourceTree = "<group>";
+		};
+		047090731907265B00BE21DB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				047090741907265B00BE21DB /* libxpkg-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		047090831907265B00BE21DB /* libxpkgTests */ = {
+			isa = PBXGroup;
+			children = (
+				047090891907265B00BE21DB /* libxpkgTests.m */,
+				047090841907265B00BE21DB /* Supporting Files */,
+			);
+			path = libxpkgTests;
+			sourceTree = "<group>";
+		};
+		047090841907265B00BE21DB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				047090851907265B00BE21DB /* libxpkgTests-Info.plist */,
+				047090861907265B00BE21DB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		047090691907265B00BE21DB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		044631EF18F05DA4000B009E /* xpkg */ = {
@@ -127,6 +238,41 @@
 			productName = xpkg;
 			productReference = 044631F018F05DA4000B009E /* xpkg */;
 			productType = "com.apple.product-type.tool";
+		};
+		0470906A1907265B00BE21DB /* libxpkg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0470908B1907265B00BE21DB /* Build configuration list for PBXNativeTarget "libxpkg" */;
+			buildPhases = (
+				047090671907265B00BE21DB /* Sources */,
+				047090681907265B00BE21DB /* Frameworks */,
+				047090691907265B00BE21DB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libxpkg;
+			productName = libxpkg;
+			productReference = 0470906B1907265B00BE21DB /* liblibxpkg.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		0470907B1907265B00BE21DB /* libxpkgTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0470908E1907265B00BE21DB /* Build configuration list for PBXNativeTarget "libxpkgTests" */;
+			buildPhases = (
+				047090781907265B00BE21DB /* Sources */,
+				047090791907265B00BE21DB /* Frameworks */,
+				0470907A1907265B00BE21DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				047090811907265B00BE21DB /* PBXTargetDependency */,
+			);
+			name = libxpkgTests;
+			productName = libxpkgTests;
+			productReference = 0470907C1907265B00BE21DB /* libxpkgTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -150,9 +296,22 @@
 			projectRoot = "";
 			targets = (
 				044631EF18F05DA4000B009E /* xpkg */,
+				0470906A1907265B00BE21DB /* libxpkg */,
+				0470907B1907265B00BE21DB /* libxpkgTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0470907A1907265B00BE21DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047090881907265B00BE21DB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		044631EC18F05DA4000B009E /* Sources */ = {
@@ -167,7 +326,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		047090671907265B00BE21DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047090771907265B00BE21DB /* libxpkg.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		047090781907265B00BE21DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0470908A1907265B00BE21DB /* libxpkgTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		047090811907265B00BE21DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0470906A1907265B00BE21DB /* libxpkg */;
+			targetProxy = 047090801907265B00BE21DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		047090861907265B00BE21DB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				047090871907265B00BE21DB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		044631FC18F05DA5000B009E /* Debug */ = {
@@ -276,6 +470,64 @@
 			};
 			name = Release;
 		};
+		0470908C1907265B00BE21DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libxpkg/libxpkg-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0470908D1907265B00BE21DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libxpkg/libxpkg-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0470908F1907265B00BE21DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libxpkg/libxpkg-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "libxpkgTests/libxpkgTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		047090901907265B00BE21DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libxpkg/libxpkg-Prefix.pch";
+				INFOPLIST_FILE = "libxpkgTests/libxpkgTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -296,6 +548,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		0470908B1907265B00BE21DB /* Build configuration list for PBXNativeTarget "libxpkg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0470908C1907265B00BE21DB /* Debug */,
+				0470908D1907265B00BE21DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0470908E1907265B00BE21DB /* Build configuration list for PBXNativeTarget "libxpkgTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0470908F1907265B00BE21DB /* Debug */,
+				047090901907265B00BE21DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
