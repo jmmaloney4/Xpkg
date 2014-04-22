@@ -152,9 +152,6 @@ else
    gem install cocoapods >> $LOG 2>&1
 fi
 
-sudo chown -R $USER ~/Library/Caches/CocoaPods
-sudo chown -R $USER ~/.cocoapods
-
 echo "Building Xpkg"
 cd $XPKG
 $XPKG/bin/git init >> $LOG 2>&1
@@ -162,9 +159,15 @@ $XPKG/bin/git remote add origin https://github.com/jmmaloney4/Xpkg.git >> $LOG 2
 $XPKG/bin/git pull origin master >> $LOG 2>&1
 git branch --set-upstream-to=origin/master >> $LOG 2>&1
 
+cd $XPKG
+chown -R jack:staff 
+
 cd $XPKG/xpkg >> $LOG 2>&1
 
 pod install >> $LOG 2>&1
+
+cd $XPKG
+chown -R jack:staff
 
 xcodebuild -workspace ./xpkg.xcworkspace -scheme xpkg CONFIGURATION_BUILD_DIR=$(pwd)/Build >> $LOG 2>&1
 
@@ -174,7 +177,7 @@ cp $XPKG/xpkg.1/ $XPKG/core
 
 ln $XPKG/core/xpkg.1 $XPKG/man/man1
 
-sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
+ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 
 rm -r /opt/xpkg/autoconf-2.69/ 
 rm -r /opt/xpkg/automake-1.14.1/ 
@@ -184,7 +187,7 @@ rm /opt/xpkg/automake.tar.gz
 rm /opt/xpkg/git.tar.gz
 rm /opt/master.tar.gz
 
-sudo /usr/bin/xpkg update
+/usr/bin/xpkg update
 
 if [ $? == 0 ]; then
   echo "\033[1m\033[32mInstall Comleted Sucsessfully\033[0m"
