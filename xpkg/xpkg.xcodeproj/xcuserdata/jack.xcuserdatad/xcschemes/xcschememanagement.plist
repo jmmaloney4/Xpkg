@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>libxpkg.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>xpkg.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,26 +13,6 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>044631EF18F05DA4000B009E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>04709040190725C000BE21DB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>04709051190725C100BE21DB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0470906A1907265B00BE21DB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0470907B1907265B00BE21DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
