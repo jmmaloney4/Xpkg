@@ -145,9 +145,12 @@ ln -fF ./bin/* $XPKG/bin >> $LOG 2>&1
 
 cd $XPKG >> $LOG 2>&1
 
-echo "Installing CocoaPods"
-gem install cocoapods >> $LOG 2>&1
-
+if [ $(which -s pod) == 0 ]; then
+   echo "CocoaPods already installed"
+else
+   echo "Installing CocoaPods"
+   gem install cocoapods >> $LOG 2>&1
+fi
 echo "Building Xpkg"
 cd $XPKG
 $XPKG/bin/git init >> $LOG 2>&1
