@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export LOG=/opt/xpkg/log/xpkg.log
+
 curl -L# https://raw.githubusercontent.com/jmmaloney4/Xpkg/install/scripts/pre > ~/.xpkg_pre_install
 curl -L# https://raw.githubusercontent.com/jmmaloney4/Xpkg/install/scripts/post > ~/.xpkg_post_install
 
