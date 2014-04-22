@@ -32,7 +32,7 @@ fi
 
 source $HOME/.bash_profile
 
-cd /opt/
+cd $XPKG/..
 
 echo "Downloading xpkg"
 curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
@@ -43,9 +43,6 @@ if [[ -d "$/opt/xpkg" ]] ; then
 rm -r ./xpkg
 
 fi
-
-cp -r ./Xpkg-master/ ./xpkg/
-rm -r ./Xpkg-master
 
 mkdir -p $XPKG/log
 mkdir -p $XPKG/bin
@@ -67,6 +64,8 @@ mkdir -p $XPKG/man/whatis/
 mkdir -p $XPKG/core/info/
 mkdir -p $XPKG/core/repos/
 mkdir -p $XPKG/core/local/
+
+touch $LOG
 
 cd $XPKG
 
