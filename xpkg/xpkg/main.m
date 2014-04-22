@@ -102,6 +102,12 @@ int main(int argc, const char * argv[])
 
         else if ([VIEW isEqualToString:arg]) {
             //VIEW COMMAND
+            if (argc > 1) {
+                NSString* str = [[NSString alloc] initWithFormat:@"less %s", argv[1]];
+                system([str UTF8String]);
+            } else {
+                [xpkg printError:@"%@ requires at least one argument", VIEW];
+            }
         }
 
         else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {

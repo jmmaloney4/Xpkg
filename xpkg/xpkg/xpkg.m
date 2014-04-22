@@ -267,7 +267,6 @@
 +(void) updateProgram {
     [xpkg printInfo:@"Updating..."];
     [xpkg print:@"\tUpdating Xpkg"];
-    [xpkg executeCommand:@"/bin/rm" withArgs:@[@"-r", [xpkg getPathWithPrefix:@"/xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata"]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg addAndCommit];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
     [xpkg addAndCommit];
