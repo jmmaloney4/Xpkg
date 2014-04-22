@@ -8,14 +8,14 @@ sudo chmod +x ~/.xpkg_post_install
 sudo ~/.xpkg_pre_install
 
 cd $XPKG
-sudo chown -R jack:staff 
+sudo chown -R jack:staff ./xpkg
 
 cd $XPKG/xpkg >> $LOG 2>&1
 
 pod install >> $LOG 2>&1
 
 cd $XPKG
-sudo chown -R root:wheel
+sudo chown -R root:wheel ./xpkg
 
 sudo ~/.xpkg_post_install
 
