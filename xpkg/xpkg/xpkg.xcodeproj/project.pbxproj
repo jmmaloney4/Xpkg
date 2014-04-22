@@ -7,83 +7,83 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04709137190728B300BE21DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04709136190728B300BE21DB /* Foundation.framework */; };
-		0470913A190728B300BE21DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04709139190728B300BE21DB /* main.m */; };
-		0470913E190728B300BE21DB /* xpkg.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0470913D190728B300BE21DB /* xpkg.1 */; };
+		04709151190728DB00BE21DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04709150190728DB00BE21DB /* Foundation.framework */; };
+		04709154190728DC00BE21DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04709153190728DC00BE21DB /* main.m */; };
+		04709158190728DC00BE21DB /* xpkg.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 04709157190728DC00BE21DB /* xpkg.1 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		04709131190728B300BE21DB /* CopyFiles */ = {
+		0470914B190728DB00BE21DB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				0470913E190728B300BE21DB /* xpkg.1 in CopyFiles */,
+				04709158190728DC00BE21DB /* xpkg.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04709133190728B300BE21DB /* xpkg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xpkg; sourceTree = BUILT_PRODUCTS_DIR; };
-		04709136190728B300BE21DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		04709139190728B300BE21DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0470913C190728B300BE21DB /* xpkg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xpkg-Prefix.pch"; sourceTree = "<group>"; };
-		0470913D190728B300BE21DB /* xpkg.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = xpkg.1; sourceTree = "<group>"; };
+		0470914D190728DB00BE21DB /* xpkg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xpkg; sourceTree = BUILT_PRODUCTS_DIR; };
+		04709150190728DB00BE21DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		04709153190728DC00BE21DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		04709156190728DC00BE21DB /* xpkg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xpkg-Prefix.pch"; sourceTree = "<group>"; };
+		04709157190728DC00BE21DB /* xpkg.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = xpkg.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		04709130190728B300BE21DB /* Frameworks */ = {
+		0470914A190728DB00BE21DB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04709137190728B300BE21DB /* Foundation.framework in Frameworks */,
+				04709151190728DB00BE21DB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0470912A190728B300BE21DB = {
+		04709144190728DB00BE21DB = {
 			isa = PBXGroup;
 			children = (
-				04709138190728B300BE21DB /* xpkg */,
-				04709135190728B300BE21DB /* Frameworks */,
-				04709134190728B300BE21DB /* Products */,
+				04709152190728DB00BE21DB /* xpkg */,
+				0470914F190728DB00BE21DB /* Frameworks */,
+				0470914E190728DB00BE21DB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		04709134190728B300BE21DB /* Products */ = {
+		0470914E190728DB00BE21DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04709133190728B300BE21DB /* xpkg */,
+				0470914D190728DB00BE21DB /* xpkg */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		04709135190728B300BE21DB /* Frameworks */ = {
+		0470914F190728DB00BE21DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04709136190728B300BE21DB /* Foundation.framework */,
+				04709150190728DB00BE21DB /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		04709138190728B300BE21DB /* xpkg */ = {
+		04709152190728DB00BE21DB /* xpkg */ = {
 			isa = PBXGroup;
 			children = (
-				04709139190728B300BE21DB /* main.m */,
-				0470913D190728B300BE21DB /* xpkg.1 */,
-				0470913B190728B300BE21DB /* Supporting Files */,
+				04709153190728DC00BE21DB /* main.m */,
+				04709157190728DC00BE21DB /* xpkg.1 */,
+				04709155190728DC00BE21DB /* Supporting Files */,
 			);
 			path = xpkg;
 			sourceTree = "<group>";
 		};
-		0470913B190728B300BE21DB /* Supporting Files */ = {
+		04709155190728DC00BE21DB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0470913C190728B300BE21DB /* xpkg-Prefix.pch */,
+				04709156190728DC00BE21DB /* xpkg-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -91,13 +91,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		04709132190728B300BE21DB /* xpkg */ = {
+		0470914C190728DB00BE21DB /* xpkg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04709141190728B300BE21DB /* Build configuration list for PBXNativeTarget "xpkg" */;
+			buildConfigurationList = 0470915B190728DC00BE21DB /* Build configuration list for PBXNativeTarget "xpkg" */;
 			buildPhases = (
-				0470912F190728B300BE21DB /* Sources */,
-				04709130190728B300BE21DB /* Frameworks */,
-				04709131190728B300BE21DB /* CopyFiles */,
+				04709149190728DB00BE21DB /* Sources */,
+				0470914A190728DB00BE21DB /* Frameworks */,
+				0470914B190728DB00BE21DB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -105,48 +105,48 @@
 			);
 			name = xpkg;
 			productName = xpkg;
-			productReference = 04709133190728B300BE21DB /* xpkg */;
+			productReference = 0470914D190728DB00BE21DB /* xpkg */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0470912B190728B300BE21DB /* Project object */ = {
+		04709145190728DB00BE21DB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Jack Maloney";
 			};
-			buildConfigurationList = 0470912E190728B300BE21DB /* Build configuration list for PBXProject "xpkg" */;
+			buildConfigurationList = 04709148190728DB00BE21DB /* Build configuration list for PBXProject "xpkg" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 0470912A190728B300BE21DB;
-			productRefGroup = 04709134190728B300BE21DB /* Products */;
+			mainGroup = 04709144190728DB00BE21DB;
+			productRefGroup = 0470914E190728DB00BE21DB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				04709132190728B300BE21DB /* xpkg */,
+				0470914C190728DB00BE21DB /* xpkg */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0470912F190728B300BE21DB /* Sources */ = {
+		04709149190728DB00BE21DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0470913A190728B300BE21DB /* main.m in Sources */,
+				04709154190728DC00BE21DB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		0470913F190728B300BE21DB /* Debug */ = {
+		04709159190728DC00BE21DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -184,7 +184,7 @@
 			};
 			name = Debug;
 		};
-		04709140190728B300BE21DB /* Release */ = {
+		0470915A190728DC00BE21DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -216,7 +216,7 @@
 			};
 			name = Release;
 		};
-		04709142190728B300BE21DB /* Debug */ = {
+		0470915C190728DC00BE21DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -225,7 +225,7 @@
 			};
 			name = Debug;
 		};
-		04709143190728B300BE21DB /* Release */ = {
+		0470915D190728DC00BE21DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -237,24 +237,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0470912E190728B300BE21DB /* Build configuration list for PBXProject "xpkg" */ = {
+		04709148190728DB00BE21DB /* Build configuration list for PBXProject "xpkg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0470913F190728B300BE21DB /* Debug */,
-				04709140190728B300BE21DB /* Release */,
+				04709159190728DC00BE21DB /* Debug */,
+				0470915A190728DC00BE21DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		04709141190728B300BE21DB /* Build configuration list for PBXNativeTarget "xpkg" */ = {
+		0470915B190728DC00BE21DB /* Build configuration list for PBXNativeTarget "xpkg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				04709142190728B300BE21DB /* Debug */,
-				04709143190728B300BE21DB /* Release */,
+				0470915C190728DC00BE21DB /* Debug */,
+				0470915D190728DC00BE21DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0470912B190728B300BE21DB /* Project object */;
+	rootObject = 04709145190728DB00BE21DB /* Project object */;
 }
