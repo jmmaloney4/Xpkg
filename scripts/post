@@ -1,0 +1,28 @@
+#!/bin/bash
+
+xcodebuild -workspace ./xpkg.xcworkspace -scheme xpkg CONFIGURATION_BUILD_DIR=$(pwd)/Build >> $LOG 2>&1
+
+cp $XPKG/xpkg/Build/xpkg $XPKG/core/
+
+cp $XPKG/xpkg.1/ $XPKG/core
+
+ln $XPKG/core/xpkg.1 $XPKG/man/man1
+
+ln -fF $XPKG/core/xpkg /usr/bin/xpkg
+
+rm -r /opt/xpkg/autoconf-2.69/ 
+rm -r /opt/xpkg/automake-1.14.1/ 
+rm -r /opt/xpkg/git-1.9.1/
+rm /opt/xpkg/autoconf.tar.gz
+rm /opt/xpkg/automake.tar.gz
+rm /opt/xpkg/git.tar.gz
+rm /opt/master.tar.gz
+
+/usr/bin/xpkg update
+
+if [ $? == 0 ]; then
+  echo "\033[1m\033[32mInstall Comleted Sucsessfully\033[0m"
+  touch $XPKG/.xpkg_installed
+else
+  echo "\033[1m\033[31mInstall Failed\033[0m"
+fi
