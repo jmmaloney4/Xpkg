@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>34186189-75FE-4390-9B77-0D004CF04D2D</string>
+	<string>A79BEE43-1E4B-4D05-B94A-8477447739C6</string>
 	<key>IDESourceControlProjectName</key>
 	<string>xpkg</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>A9BF2970-911B-4CD9-BF93-A60610FFA7AB</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Xpkg</string>
+			<string>xpkg</string>
 		</dict>
 	</array>
 </dict>
