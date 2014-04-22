@@ -157,6 +157,8 @@ git branch --set-upstream-to=origin/master >> $LOG 2>&1
 
 cd $XPKG/xpkg >> $LOG 2>&1
 
+pod install
+
 xcodebuild -workspace ./xpkg.xcworkspace -scheme xpkg CONFIGURATION_BUILD_DIR=$(pwd)/Build >> $LOG 2>&1
 
 cp $XPKG/xpkg/Build/xpkg $XPKG/core/
