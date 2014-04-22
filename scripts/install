@@ -9,6 +9,8 @@ sudo chmod +x ~/.xpkg_pre_install
 sudo chmod +x ~/.xpkg_post_install
 sudo ~/.xpkg_pre_install
 
+sudo chmod +rw $LOG 
+
 cd $XPKG
 sudo chown -R jack:staff ./xpkg
 
