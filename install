@@ -4,5 +4,5 @@ echo "Grabbing Extra Components Needed for Install..."
 
 curl -# https://raw.githubusercontent.com/jmmaloney4/Xpkg/install/scripts/install > ~/.xpkg_install
 chmod +x ~/.xpkg_install
-~/.xpkg_install
+sudo ~/.xpkg_install
 rm ~/.xpkg_install
