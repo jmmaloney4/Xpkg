@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import "xpkg.h"
-#import "FMDatabase.h"
+#import <sqlite3.h>
 #import "XPManager.h"
 #import "XPPackage.h"
 

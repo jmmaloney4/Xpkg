@@ -80,8 +80,11 @@
 
 
 -(BOOL) install {
-    if ([self.path hasPrefix:@"/"] || [self.path hasPrefix:@"./"] || [self.path hasPrefix:@"~/"]) {
+    if ([self.path hasPrefix:@"/"] || [self.path hasPrefix:@"./"] || [self.path hasPrefix:@"~/"] || [self.path hasPrefix:@"."]) {
         [xpkg print:@"Local Package"];
+        NSFileManager* fm = [[NSFileManager alloc] init];
+        NSArray* x = [self.path componentsSeparatedByString:@"/"];
+        [fm copyItemAtPath:self.path toPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/local/%@", x [x.count - 1]]] error:nil];
     }
 
     NSString* filestr = [[NSString alloc] initWithContentsOfFile:self.path encoding:NSUTF8StringEncoding error:nil];
@@ -108,6 +111,7 @@
 
     // BUILD
     NSTimeInterval time;
+    [xpkg print:@"%d", time];
     [xpkg print:@"\tBuilding..."];
     int a = [self runMethodScript:@"BUILD" withTime:time];
 
@@ -131,7 +135,7 @@
     a = [self runMethodScript:@"TEST"];
     
     if (a == 0) {
-        [xpkg printSucsess:@"Installed %@ Sucsessfully", self.name];
+        [xpkg printSucsess:@"Installed %@ Sucsessfully, Built in %f", self.name, time];
     } else {
         [xpkg printError:@"Package %@ Did Not Test Sucsessfully", self.name];
     }
@@ -191,8 +195,9 @@
     [xpkg executeCommand:@"/bin/mkdir" withArgs:@[@"-p", [xpkg getPathWithPrefix:[NSString stringWithFormat:@"/tmp/%@-%@", self.package, self.version]]] andPath:[xpkg getPathWithPrefix:@"/"]];
     [xpkg log:@"Starting log for %@ script", method];
     int d = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
-    time = [start timeIntervalSinceNow];
-    time = time - (time * 2);
+    NSDate* finish = [NSDate date];
+    time = [finish timeIntervalSinceDate:start];
+    [xpkg print:@"%f", time];
     return d;
 }
 

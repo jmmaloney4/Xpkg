@@ -18,7 +18,7 @@
 
 #import "XPRepository.h"
 #import "xpkg.h"
-#include "XPManager.h"
+#import "XPManager.h"
 
 @implementation XPRepository
 
@@ -116,7 +116,7 @@
     
     [xpkg print:@"\tDone."];
 }
-
+/*
 +(int) getRepoIDForName:(NSString*) name {
     int rv = -1;
 
@@ -127,5 +127,5 @@
     }
     return rv;
 }
-
+*/
 @end
