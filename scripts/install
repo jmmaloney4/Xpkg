@@ -1,3 +1,12 @@
+#!/bin/bash
+
+curl -L# https://raw.githubusercontent.com/jmmaloney4/Xpkg/install/scripts/pre > ~/.xpkg_pre_install
+curl -L# https://raw.githubusercontent.com/jmmaloney4/Xpkg/install/scripts/post > ~/.xpkg_post_install
+
+sudo chmod +x ~/.xpkg_pre_install
+sudo chmod +x ~/.xpkg_post_install
+sudo ~/.xpkg_pre_install
+
 cd $XPKG
 sudo chown -R jack:staff 
 
@@ -8,3 +17,4 @@ pod install >> $LOG 2>&1
 cd $XPKG
 sudo chown -R root:wheel
 
+sudo ~/.xpkg_post_install
