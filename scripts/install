@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export LOG=/opt/xpkg/log/xpkg.log
+export XPKG=/opt/xpkg
+export LOG=$XPKG/log/xpkg.log
 
 touch $HOME/.bash_profile
 source $HOME/.bash_profile
@@ -32,7 +33,7 @@ fi
 
 source $HOME/.bash_profile
 
-cd $XPKG/..
+cd /opt
 
 echo "Downloading xpkg"
 curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
@@ -79,10 +80,31 @@ echo "Downloading Automake"
 curl '-#L' http://ftp.gnu.org/gnu/automake/automake-1.14.1.tar.gz > ./automake.tar.gz
 
 echo "Unpacking Git"
-tar -xf ./git.tar.gz >> $LOG 2>&1
+tar -xvf ./git.tar.gz >> $LOG 2>&1
 
 echo "Unpacking Autoconf"
-tar -xf ./autoconf.tar.gz >> $LOG 2>&1
+tar -xvf ./autoconf.tar.gz >> $LOG 2>&1
+
+echo "Unpacking Automake"
+tar -xvf ./automake.tar.gz >> $LOG 2>&1
+
+echo "Building Autoconf"
+cd $XPKG/autoconf-2.69
+./configure --prefix=$XPKG/core/autoconf/2.69/ >> $LOG 2>&1
+make >> $LOG 2>&1
+make install >> $LOG 2>&1
+ln -fF $XPKG/core/autoconf/2.69/bin/* $XPKG/bin
+ln -fF $XPKG/core/autoconf/2.69/share/man/man1/* $XPKG/man/man1
+
+echo "Building Automake"
+cd $XPKG/automake-1.14.1
+./configure --prefix=$XPKG/core/automake/1.14.1/ >> $LOG 2>&1
+make >> $LOG 2>&1
+make install >> $LOG 2>&1
+ln -fF $XPKG/core/automake/1.14.1/bin/* $XPKG/bin
+ln -fF $XPKG/core/automake/1.14.1/share/man/man1/* $XPKG/man/man1
+
+cd $XPKG/git-1.9.1
 
 echo "Building Git, This May Take A Few Minutes"
 sudo make configure >> $LOG 2>&1
@@ -106,7 +128,7 @@ git branch --set-upstream-to=origin/master >> $LOG 2>&1
 
 xcodebuild >> $LOG 2>&1
 
-cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
+cp $XPKG/xpkg/build/Release/xpkg $XPKG/core/
 
 ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 
@@ -117,6 +139,8 @@ rm /opt/xpkg/autoconf.tar.gz
 rm /opt/xpkg/automake.tar.gz
 rm /opt/xpkg/git.tar.gz
 rm /opt/master.tar.gz
+
+cd $XPKG/xpkg
 
 /usr/bin/xpkg update
 
