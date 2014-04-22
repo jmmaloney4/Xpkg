@@ -1,3 +1,6 @@
 xpkg/DerivedData/
 xpkg/Build/
+xpkg/build/
 Build/
+*.xcuserstate
+xpkg/xpkg.xcodeproj/project.xcworkspace/xcuserdata/
