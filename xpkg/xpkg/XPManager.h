@@ -17,12 +17,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FMDatabase.h"
+#import <sqlite3.h>
 #import "XPRepository.h"
 #import "XPPackage.h"
 
 @interface XPManager : NSObject
-@property FMDatabase* db;
 
 -(XPPackage*) addPackageInfoToDatabase:(XPPackage*)pkg;
 -(XPPackage*) removePackage:(XPPackage*) pkg;
