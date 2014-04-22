@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export LOG=/opt/xpkg/log/xpkg.log
+export XPKG=/opt/xpkg
+
 xcodebuild -workspace ./xpkg.xcworkspace -scheme xpkg CONFIGURATION_BUILD_DIR=$(pwd)/Build >> $LOG 2>&1
 
 cp $XPKG/xpkg/Build/xpkg $XPKG/core/
