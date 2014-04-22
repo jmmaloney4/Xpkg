@@ -1,6 +1,31 @@
-#!/bin/bash
+#!/bin/sh
 
+#  Script.sh
+#  
+#
+#  Created by Jack Maloney on 4/2/14.
+#
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+export XPKG=/opt/xpkg
 export LOG=/opt/xpkg/log/xpkg.log
+
+if [ -f "/opt/xpkg/.xpkg_installed" ]; then
+    echo "Xpkg is already installed"
+    echo -n "Would you like to reinstall Xpkg [y-n]"
+    read ans
+    
+    if [ $ans == "y" ]; then
+      rm -r $XPKG
+    else
+      exit
+    fi
+    
+fi
 
 touch $HOME/.bash_profile
 source $HOME/.bash_profile
@@ -30,8 +55,8 @@ cd /opt/
 
 echo "Downloading xpkg"
 curl '-#' https://codeload.github.com/jmmaloney4/xpkg/zip/master > ./master.tar.gz
-tar -xf ./master.tar.gz >> $LOG 2>&1
-if if [[ -d "$/opt/xpkg" ]] ; then
+tar -xf ./master.tar.gz
+if [[ -d "$/opt/xpkg" ]] ; then
    rm -r ./xpkg
 fi
 cp -r ./Xpkg-master/ ./xpkg/
@@ -55,8 +80,6 @@ mkdir -p $XPKG/man/man9/
 mkdir -p $XPKG/man/mann/
 mkdir -p $XPKG/man/whatis/
 mkdir -p $XPKG/core/info/
-mkdir -p $XPKG/core/repos/
-mkdir -p $XPKG/core/local/
 
 cd $XPKG
 
@@ -75,44 +98,64 @@ tar -xf ./git.tar.gz >> $LOG 2>&1
 echo "Unpacking Autoconf"
 tar -xf ./autoconf.tar.gz >> $LOG 2>&1
 
+echo "Unpacking Automake"
+tar -xf ./automake.tar.gz >> $LOG 2>&1
+
+cd $XPKG
+
+# Build Autoconf
+echo "Building Autoconf"
+mkdir -p /opt/xpkg/core/autoconf
+cd ./autoconf-2.69/
+./configure --prefix=/opt/xpkg/core/autoconf/ >> $LOG 2>&1
+make >> $LOG 2>&1
+make install >> $LOG 2>&1
+cd /opt/xpkg/core/autoconf/
+ln ./bin/* /opt/xpkg/bin
+ln ./share/man/man1/* /opt/xpkg/man/man1
+
+cd $XPKG
+
+# Build Automake
+echo "Building Automake"
+mkdir -p /opt/xpkg/core/automake
+cd ./automake-1.14.1/
+./configure --prefix=/opt/xpkg/core/automake/ >> $LOG 2>&1
+make >> $LOG 2>&1
+make install >> $LOG 2>&1
+cd /opt/xpkg/core/automake/
+ln ./bin/* /opt/xpkg/bin
+ln ./share/man/man1/* /opt/xpkg/man/man1
+
+
+# Build Git
+cd $XPKG
+cd ./git-1.9.1/
+
 echo "Building Git, This May Take A Few Minutes"
-sudo make configure >> $LOG 2>&1
-sudo mkdir -p $XPKG/core/git/1.9.1/
-sudo ./configure --prefix=$XPKG/core/git/1.9.1/ >> $LOG 2>&1
-sudo make all >> $LOG 2>&1
+make configure >> $LOG 2>&1
+mkdir -p $XPKG/core/git/1.9.1/
+./configure --prefix=$XPKG/core/git/1.9.1/ >> $LOG 2>&1
+make all >> $LOG 2>&1
 echo "Still Building Git..."
-sudo make install >> $LOG 2>&1
+make install >> $LOG 2>&1
 
 cd $XPKG/core/git/1.9.1/
-sudo ln -fF ./bin/* $XPKG/bin/ >> $LOG 2>&1
+ln -fF ./bin/* $XPKG/bin >> $LOG 2>&1
 
 cd $XPKG >> $LOG 2>&1
+
+if [ $(which -s pod) == 0 ]; then
+   echo "CocoaPods already installed"
+else
+   echo "Installing CocoaPods"
+   gem install cocoapods >> $LOG 2>&1
+fi
 
 echo "Building Xpkg"
 cd $XPKG
 $XPKG/bin/git init >> $LOG 2>&1
-$XPKG/bin/git remote add origin https://github.com/jmmaloney4/xpkg.git >> $LOG 2>&1
+$XPKG/bin/git remote add origin https://github.com/jmmaloney4/Xpkg.git >> $LOG 2>&1
 $XPKG/bin/git pull origin master >> $LOG 2>&1
 git branch --set-upstream-to=origin/master >> $LOG 2>&1
 
-xcodebuild >> $LOG 2>&1
-
-cp $XPKG/src/xpkg/build/Release/xpkg $XPKG/core/
-
-ln -fF $XPKG/core/xpkg /usr/bin/xpkg
-
-rm -r /opt/xpkg/autoconf-2.69/ 
-rm -r /opt/xpkg/automake-1.14.1/ 
-rm -r /opt/xpkg/git-1.9.1/
-rm /opt/xpkg/autoconf.tar.gz
-rm /opt/xpkg/automake.tar.gz
-rm /opt/xpkg/git.tar.gz
-rm /opt/master.tar.gz
-
-/usr/bin/xpkg update
-
-if [ $? == 0 ]; then
-  echo "\033[1m\033[32mInstall Comleted Sucsessfully\033[0m"
-else
-  echo "\033[1m\033[31mInstall Failed\033[0m"
-fi
