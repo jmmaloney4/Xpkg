@@ -133,7 +133,7 @@
     if (a == 0) {
         [xpkg printSucsess:@"Installed %@ Sucsessfully", self.name];
     } else {
-        
+        [xpkg printError:@"Package %@ Did Not Test Sucsessfully", self.name];
     }
     
     return a;
