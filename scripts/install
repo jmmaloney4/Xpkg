@@ -124,7 +124,7 @@ cd ./automake-1.14.1/
 make >> $LOG 2>&1
 make install >> $LOG 2>&1
 cd /opt/xpkg/core/automake/
-ln ./bin/* /opt/xpkg/bin/
+ln ./bin/* /opt/xpkg/bin
 ln ./share/man/man1/* /opt/xpkg/man/man1/
 
 
@@ -141,7 +141,7 @@ echo "Still Building Git..."
 make install >> $LOG 2>&1
 
 cd $XPKG/core/git/1.9.1/
-ln -fF ./bin/* $XPKG/bin/ >> $LOG 2>&1
+ln -fF ./bin/* $XPKG/bin >> $LOG 2>&1
 
 cd $XPKG >> $LOG 2>&1
 
@@ -158,7 +158,9 @@ xcodebuild -workspace ./xpkg.xcworkspace -scheme xpkg CONFIGURATION_BUILD_DIR=$(
 
 cp $XPKG/xpkg/Build/xpkg $XPKG/core/
 
-cp $XPKG/xpkg.1/ $XPKG/man/man1/
+cp $XPKG/xpkg.1/ $XPKG/core
+
+ln $XPKG/core/xpkg.1 $XPKG/man/man1
 
 sudo ln -fF $XPKG/core/xpkg /usr/bin/xpkg
 
