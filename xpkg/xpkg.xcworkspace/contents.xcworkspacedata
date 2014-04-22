@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:xpkg.xcodeproj">
+      location = "group:lib/xpkg/xpkg.xcodeproj">
    </FileRef>
 </Workspace>

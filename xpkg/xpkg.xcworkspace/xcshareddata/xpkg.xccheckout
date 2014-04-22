@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>305FED22-94EA-4E6D-AEED-EB5A3B3A3404</string>
+	<key>IDESourceControlProjectName</key>
+	<string>xpkg</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>A9BF2970-911B-4CD9-BF93-A60610FFA7AB</key>
+		<string>https://github.com/jmmaloney4/Xpkg.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>xpkg/xpkg.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2E64685D-C626-479E-81CC-F82B239BF4E7</key>
+		<string>../lib/xpkg</string>
+		<key>2E6F6A5E-25E5-4CD0-A9ED-0ED8BB547128</key>
+		<string>../xpkg-lib</string>
+		<key>A9BF2970-911B-4CD9-BF93-A60610FFA7AB</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jmmaloney4/Xpkg.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A9BF2970-911B-4CD9-BF93-A60610FFA7AB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A9BF2970-911B-4CD9-BF93-A60610FFA7AB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xpkg</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2E64685D-C626-479E-81CC-F82B239BF4E7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xpkg</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2E6F6A5E-25E5-4CD0-A9ED-0ED8BB547128</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xpkg-lib</string>
+		</dict>
+	</array>
+</dict>
+</plist>

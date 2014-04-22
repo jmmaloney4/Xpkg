@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		047090D11907280A00BE21DB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047090D01907280A00BE21DB /* Cocoa.framework */; };
+		047090DB1907280A00BE21DB /* xpkg_lib.m in Sources */ = {isa = PBXBuildFile; fileRef = 047090DA1907280A00BE21DB /* xpkg_lib.m */; };
+		047090E21907280A00BE21DB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047090E11907280A00BE21DB /* XCTest.framework */; };
+		047090E31907280A00BE21DB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047090D01907280A00BE21DB /* Cocoa.framework */; };
+		047090E61907280A00BE21DB /* libxpkg-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 047090CD1907280A00BE21DB /* libxpkg-lib.a */; };
+		047090EC1907280A00BE21DB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 047090EA1907280A00BE21DB /* InfoPlist.strings */; };
+		047090EE1907280A00BE21DB /* xpkg_libTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 047090ED1907280A00BE21DB /* xpkg_libTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		047090E41907280A00BE21DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 047090C51907280A00BE21DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 047090CC1907280A00BE21DB;
+			remoteInfo = "xpkg-lib";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		047090CD1907280A00BE21DB /* libxpkg-lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libxpkg-lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		047090D01907280A00BE21DB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		047090D31907280A00BE21DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		047090D41907280A00BE21DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		047090D51907280A00BE21DB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		047090D81907280A00BE21DB /* xpkg-lib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xpkg-lib-Prefix.pch"; sourceTree = "<group>"; };
+		047090D91907280A00BE21DB /* xpkg_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xpkg_lib.h; sourceTree = "<group>"; };
+		047090DA1907280A00BE21DB /* xpkg_lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xpkg_lib.m; sourceTree = "<group>"; };
+		047090E01907280A00BE21DB /* xpkg-libTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xpkg-libTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		047090E11907280A00BE21DB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		047090E91907280A00BE21DB /* xpkg-libTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "xpkg-libTests-Info.plist"; sourceTree = "<group>"; };
+		047090EB1907280A00BE21DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		047090ED1907280A00BE21DB /* xpkg_libTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xpkg_libTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		047090CA1907280A00BE21DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047090D11907280A00BE21DB /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		047090DD1907280A00BE21DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047090E61907280A00BE21DB /* libxpkg-lib.a in Frameworks */,
+				047090E31907280A00BE21DB /* Cocoa.framework in Frameworks */,
+				047090E21907280A00BE21DB /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		047090C41907280A00BE21DB = {
+			isa = PBXGroup;
+			children = (
+				047090D61907280A00BE21DB /* xpkg-lib */,
+				047090E71907280A00BE21DB /* xpkg-libTests */,
+				047090CF1907280A00BE21DB /* Frameworks */,
+				047090CE1907280A00BE21DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		047090CE1907280A00BE21DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				047090CD1907280A00BE21DB /* libxpkg-lib.a */,
+				047090E01907280A00BE21DB /* xpkg-libTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		047090CF1907280A00BE21DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				047090D01907280A00BE21DB /* Cocoa.framework */,
+				047090E11907280A00BE21DB /* XCTest.framework */,
+				047090D21907280A00BE21DB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		047090D21907280A00BE21DB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				047090D31907280A00BE21DB /* Foundation.framework */,
+				047090D41907280A00BE21DB /* CoreData.framework */,
+				047090D51907280A00BE21DB /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		047090D61907280A00BE21DB /* xpkg-lib */ = {
+			isa = PBXGroup;
+			children = (
+				047090D91907280A00BE21DB /* xpkg_lib.h */,
+				047090DA1907280A00BE21DB /* xpkg_lib.m */,
+				047090D71907280A00BE21DB /* Supporting Files */,
+			);
+			path = "xpkg-lib";
+			sourceTree = "<group>";
+		};
+		047090D71907280A00BE21DB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				047090D81907280A00BE21DB /* xpkg-lib-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		047090E71907280A00BE21DB /* xpkg-libTests */ = {
+			isa = PBXGroup;
+			children = (
+				047090ED1907280A00BE21DB /* xpkg_libTests.m */,
+				047090E81907280A00BE21DB /* Supporting Files */,
+			);
+			path = "xpkg-libTests";
+			sourceTree = "<group>";
+		};
+		047090E81907280A00BE21DB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				047090E91907280A00BE21DB /* xpkg-libTests-Info.plist */,
+				047090EA1907280A00BE21DB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		047090CB1907280A00BE21DB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		047090CC1907280A00BE21DB /* xpkg-lib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 047090F11907280A00BE21DB /* Build configuration list for PBXNativeTarget "xpkg-lib" */;
+			buildPhases = (
+				047090C91907280A00BE21DB /* Sources */,
+				047090CA1907280A00BE21DB /* Frameworks */,
+				047090CB1907280A00BE21DB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "xpkg-lib";
+			productName = "xpkg-lib";
+			productReference = 047090CD1907280A00BE21DB /* libxpkg-lib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		047090DF1907280A00BE21DB /* xpkg-libTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 047090F41907280A00BE21DB /* Build configuration list for PBXNativeTarget "xpkg-libTests" */;
+			buildPhases = (
+				047090DC1907280A00BE21DB /* Sources */,
+				047090DD1907280A00BE21DB /* Frameworks */,
+				047090DE1907280A00BE21DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				047090E51907280A00BE21DB /* PBXTargetDependency */,
+			);
+			name = "xpkg-libTests";
+			productName = "xpkg-libTests";
+			productReference = 047090E01907280A00BE21DB /* xpkg-libTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		047090C51907280A00BE21DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Jack Maloney";
+			};
+			buildConfigurationList = 047090C81907280A00BE21DB /* Build configuration list for PBXProject "xpkg-lib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 047090C41907280A00BE21DB;
+			productRefGroup = 047090CE1907280A00BE21DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				047090CC1907280A00BE21DB /* xpkg-lib */,
+				047090DF1907280A00BE21DB /* xpkg-libTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		047090DE1907280A00BE21DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047090EC1907280A00BE21DB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		047090C91907280A00BE21DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047090DB1907280A00BE21DB /* xpkg_lib.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		047090DC1907280A00BE21DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047090EE1907280A00BE21DB /* xpkg_libTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		047090E51907280A00BE21DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 047090CC1907280A00BE21DB /* xpkg-lib */;
+			targetProxy = 047090E41907280A00BE21DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		047090EA1907280A00BE21DB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				047090EB1907280A00BE21DB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		047090EF1907280A00BE21DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		047090F01907280A00BE21DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		047090F21907280A00BE21DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "xpkg-lib/xpkg-lib-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		047090F31907280A00BE21DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "xpkg-lib/xpkg-lib-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		047090F51907280A00BE21DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "xpkg-lib/xpkg-lib-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "xpkg-libTests/xpkg-libTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		047090F61907280A00BE21DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "xpkg-lib/xpkg-lib-Prefix.pch";
+				INFOPLIST_FILE = "xpkg-libTests/xpkg-libTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		047090C81907280A00BE21DB /* Build configuration list for PBXProject "xpkg-lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				047090EF1907280A00BE21DB /* Debug */,
+				047090F01907280A00BE21DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		047090F11907280A00BE21DB /* Build configuration list for PBXNativeTarget "xpkg-lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				047090F21907280A00BE21DB /* Debug */,
+				047090F31907280A00BE21DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		047090F41907280A00BE21DB /* Build configuration list for PBXNativeTarget "xpkg-libTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				047090F51907280A00BE21DB /* Debug */,
+				047090F61907280A00BE21DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 047090C51907280A00BE21DB /* Project object */;
+}
