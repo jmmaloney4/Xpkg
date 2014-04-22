@@ -158,8 +158,16 @@
 
     NSFileManager* fm = [[NSFileManager alloc] init];
     [fm removeItemAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", self.package, self.version]] error:nil];
-
-    return [self runMethodScript:@"REMOVE"];
+    
+    int a = [self runMethodScript:@"REMOVE"];
+    
+    if (a == 0) {
+        [xpkg printSucsess:@"Removed %@ Sucsessfully", self.name];
+    } else {
+        [xpkg printError:@"Package %@ Was Not Removed Sucsessfully", self.name];
+    }
+    
+    return a;
 }
 
 -(int) runMethodScript:(NSString*)method {
