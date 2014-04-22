@@ -120,6 +120,22 @@
     // INSTALL
     [xpkg print:@"\tInstalling..."];
     a = [self runMethodScript:@"INSTALL"];
+    if (a != 0) {
+        [xpkg printError:@"Install Failed"];
+        [xpkg log:@"Install of %@ returned exit code %d", self.package, a];
+        exit(21);
+    }
+    
+    // TEST
+    [xpkg print:@"\tTesting..."];
+    a = [self runMethodScript:@"TEST"];
+    
+    if (a == 0) {
+        [xpkg printSucsess:@"Installed %@ Sucsessfully", self.name];
+    } else {
+        [xpkg printError:@"Package %@ Did Not Test Sucsessfully", self.name];
+    }
+    
     return a;
 }
 
@@ -142,8 +158,16 @@
 
     NSFileManager* fm = [[NSFileManager alloc] init];
     [fm removeItemAtPath:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", self.package, self.version]] error:nil];
-
-    return [self runMethodScript:@"REMOVE"];
+    
+    int a = [self runMethodScript:@"REMOVE"];
+    
+    if (a == 0) {
+        [xpkg printSucsess:@"Removed %@ Sucsessfully", self.name];
+    } else {
+        [xpkg printError:@"Package %@ Was Not Removed Sucsessfully", self.name];
+    }
+    
+    return a;
 }
 
 -(int) runMethodScript:(NSString*)method {
@@ -157,6 +181,9 @@
     NSDate* start = [NSDate date];
     sfile = [xpkg getPathWithPrefix:@"/tmp/script"];
     script = [self readMethodScript:method];
+    if (!script) {
+        [xpkg printWarn:@"The %@ method was not found in the package file at %@", method, self.path];
+    }
     [script writeToFile:sfile atomically:true encoding:NSUTF8StringEncoding error:nil];
     setenv("XPKG_PKG_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", self.package, self.version]] UTF8String], 1);
     setenv("XPKG_ROOT_DIR", [[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/xpkgs/%@/%@/", self.package, self.version]] UTF8String], 1);
@@ -189,11 +216,14 @@
     if (!filecmps) {
         return nil;
     }
-
+    
+    BOOL found = NO;
+    
     for (int x = 0; x < [filecmps count]; x++) {
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
             if ([[f[0] componentsSeparatedByString:@"@"][1] isEqualToString:method]) {
+                found = YES;
                 for (int y = x + 1; y < [filecmps count]; y++) {
                     if ([filecmps[y] hasPrefix:@"@"]) {
                         NSArray* f = [filecmps[y] componentsSeparatedByString:@":"];
@@ -210,6 +240,10 @@
                 }
             }
         }
+    }
+    
+    if (!found) {
+        return nil;
     }
     return rv;
 }

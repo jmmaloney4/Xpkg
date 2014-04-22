@@ -36,6 +36,19 @@
 }
 
 /**
+ *  A printf function that also logs to the xpkg log
+ **/
++(void) printSucsess:(NSString*) x, ... {
+    
+    va_list formatArgs;
+    va_start(formatArgs, x);
+    
+    NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
+    printf("%s✔︎ %s%s\n", [BOLDGREEN UTF8String], [str UTF8String], [RESET UTF8String]);
+    [xpkg log:[NSString stringWithFormat:@"Sucsess: %@\n", str]];
+}
+
+/**
  *  A printf function that prints an error also logs to the xpkg log as an error
  **/
 +(void) printError:(NSString *)x, ... {
@@ -258,8 +271,8 @@
     [xpkg addAndCommit];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"pull"] andPath:[xpkg getPathWithPrefix:@"/"] printErr:false printOut:false];
     [xpkg addAndCommit];
-    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[@"-workspace", @"xpkg.xcworkspace", @"-scheme", @"xpkg"] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
-    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/Build/Release/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
+    [xpkg executeCommand:@"/usr/bin/xcodebuild" withArgs:@[@"-workspace", @"xpkg.xcworkspace", @"-scheme", @"xpkg", @"CONFIGURATION_BUILD_DIR=$(pwd)/Build"] andPath:[xpkg getPathWithPrefix:@"/xpkg"] printErr:false printOut:false];
+    [xpkg executeCommand:@"/bin/cp" withArgs:@[[xpkg getPathWithPrefix:@"/xpkg/Build/xpkg"], [xpkg getPathWithPrefix:@"/core/"]] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg executeCommand:@"/bin/ln" withArgs:@[@"-fF", [xpkg getPathWithPrefix:@"/core/xpkg"], @"/usr/bin/xpkg"] andPath:[xpkg getPathWithPrefix:@""]];
     [xpkg print:@"\tUpdating Repositories"];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"update"] andPath:[xpkg getPathWithPrefix:@"/"]];

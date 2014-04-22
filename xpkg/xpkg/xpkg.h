@@ -82,6 +82,7 @@ static NSString* SYS_INFO = @"sys";
  * Print methods for ease of use
  */
 +(void) print:(NSString*) x, ...;
++(void) printSucsess:(NSString*) x, ...;
 +(void) printError:(NSString *)x, ...;
 +(void) printWarn:(NSString *)x, ...;
 +(void) printInfo:(NSString *)x, ...;
