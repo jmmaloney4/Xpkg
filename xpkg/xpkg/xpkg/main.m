@@ -17,6 +17,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AppKit/NSWorkspace.h>
 #import <xpkg/xpkg.h>
 
 int main(int argc, const char * argv[])
@@ -113,8 +114,11 @@ int main(int argc, const char * argv[])
             }
         }
         
+        /*
+         *  Opens xpkg Home page
+         */
         else if ([WEB isEqualToString:arg]) {
-            [xpkg openHomePage];
+            [[NSWorkspace sharedWorkspace] openURL:[[NSURL alloc] initWithString:HOME]];
         }
         
         else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
@@ -123,8 +127,8 @@ int main(int argc, const char * argv[])
             [xpkg printError:@"Arguments are invalid"];
             [xpkg printUsage];
         }
-        
     }
     return 0;
 }
+
 

@@ -10,6 +10,7 @@
 		0470917F190742BE00BE21DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470917E190742BE00BE21DB /* Foundation.framework */; };
 		047091901907435300BE21DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470918F1907435300BE21DB /* main.m */; };
 		0470919F190748E900BE21DB /* libxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470919C190748C700BE21DB /* libxpkg.a */; };
+		04D022901908613B008181D0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D0228F1908613B008181D0 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		0470918F1907435300BE21DB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		047091931907486B00BE21DB /* libxpkg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxpkg.a; path = "../../../../Library/Developer/Xcode/DerivedData/xpkg-bzebyycyyqbvwbbciojylrlbetkz/Build/Products/Debug/libxpkg.a"; sourceTree = "<group>"; };
 		04709196190748C700BE21DB /* xpkg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = xpkg.xcodeproj; path = ../lib/xpkg/xpkg.xcodeproj; sourceTree = "<group>"; };
+		04D0228F1908613B008181D0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D022901908613B008181D0 /* AppKit.framework in Frameworks */,
 				0470919F190748E900BE21DB /* libxpkg.a in Frameworks */,
 				0470917F190742BE00BE21DB /* Foundation.framework in Frameworks */,
 			);
@@ -92,6 +95,7 @@
 		0470917D190742BE00BE21DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D0228F1908613B008181D0 /* AppKit.framework */,
 				047091931907486B00BE21DB /* libxpkg.a */,
 				0470917E190742BE00BE21DB /* Foundation.framework */,
 			);
