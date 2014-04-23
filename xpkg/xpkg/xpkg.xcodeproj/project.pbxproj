@@ -346,6 +346,7 @@
 				0470918B190742BE00BE21DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
