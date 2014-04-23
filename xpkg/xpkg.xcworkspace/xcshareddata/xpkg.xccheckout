@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>7E95C2C4-4D08-4C68-BFDD-DF6453DB2C14</string>
+	<string>6987C9FE-BEBF-490A-9157-A5FEC0ACB561</string>
 	<key>IDESourceControlProjectName</key>
 	<string>xpkg</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,15 @@
 		<string>https://github.com/jmmaloney4/Xpkg.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>xpkg/xpkg.xcodeproj/project.xcworkspace</string>
+	<string>xpkg/xpkg.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>2E64685D-C626-479E-81CC-F82B239BF4E7</key>
+		<string>../lib/xpkg</string>
+		<key>2E6F6A5E-25E5-4CD0-A9ED-0ED8BB547128</key>
+		<string>../xpkg-lib</string>
 		<key>A9BF2970-911B-4CD9-BF93-A60610FFA7AB</key>
-		<string>../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/jmmaloney4/Xpkg.git</string>
@@ -34,7 +38,23 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>A9BF2970-911B-4CD9-BF93-A60610FFA7AB</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Xpkg</string>
+			<string>xpkg</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2E64685D-C626-479E-81CC-F82B239BF4E7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xpkg</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2E6F6A5E-25E5-4CD0-A9ED-0ED8BB547128</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xpkg-lib</string>
 		</dict>
 	</array>
 </dict>

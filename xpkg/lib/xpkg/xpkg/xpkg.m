@@ -17,28 +17,20 @@
 //
 
 #import "xpkg.h"
-#import "XPPackage.h"
-#import "XPRepository.h"
 
 @implementation xpkg
 
-/**
- *  A printf function that also logs to the xpkg log
- **/
 +(void) print:(NSString*) x, ... {
-
+    
     va_list formatArgs;
     va_start(formatArgs, x);
-
+    
     NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
     printf("%s\n", [str UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"INFO: %@\n", str]];
 }
 
-/**
- *  A printf function that also logs to the xpkg log
- **/
-+(void) printSucsess:(NSString*) x, ... {
++(void) printSuccess:(NSString*) x, ... {
     
     va_list formatArgs;
     va_start(formatArgs, x);
@@ -48,30 +40,24 @@
     [xpkg log:[NSString stringWithFormat:@"Sucsess: %@\n", str]];
 }
 
-/**
- *  A printf function that prints an error also logs to the xpkg log as an error
- **/
 +(void) printError:(NSString *)x, ... {
-
+    
     va_list formatArgs;
     va_start(formatArgs, x);
-
+    
     NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
-
+    
     fprintf(stderr, "%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [str UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", str]];
 }
 
-/**
- *  A printf function that prints a warning also logs to the xpkg log as a warning
- **/
 +(void) printWarn:(NSString *)x, ... {
-
+    
     va_list formatArgs;
     va_start(formatArgs, x);
-
+    
     NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
-
+    
     fprintf(stderr, "%sWARNING: %s%s\n", [BOLDYELLOW UTF8String], [RESET UTF8String], [str UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"WARNING: %@\n", str]];
 }
@@ -80,12 +66,12 @@
  *  A printf function that logs in bold cyan letters, showing something importatn, and is logged as such
  **/
 +(void) printInfo:(NSString *)x, ... {
-
+    
     va_list formatArgs;
     va_start(formatArgs, x);
-
+    
     NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
-
+    
     printf("%s%s%s\n", [BOLDCYAN UTF8String], [str UTF8String], [RESET UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"INFORMATION: %@\n", str]];
 }
@@ -94,20 +80,20 @@
  *  Logs to the xpkg log
  **/
 +(void) log:(NSString *)x, ... {
-
+    
     va_list formatArgs;
     va_start(formatArgs, x);
-
+    
     NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
-
+    
     NSString* pre = @"[ ";
-
+    
     pre = [pre stringByAppendingString:[xpkg getTimestamp]];
     pre = [pre stringByAppendingString:@" ] "];
     pre = [pre stringByAppendingString:str];
-
+    
     NSData* data = [pre dataUsingEncoding:NSUTF8StringEncoding];
-
+    
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:LOG_FILE];
     [fileHandle seekToEndOfFile];
     [fileHandle writeData:data];
@@ -128,53 +114,53 @@
 /**
  * Uses an NSTask to execute a shell command
  **/
-+(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot returnOut:(BOOL) x{
-
++(NSString*)executeCommand:(NSString*)command withArgs:(NSArray*)args andPath:(NSString*)path printErr:(BOOL)er printOut:(BOOL)ot returnOut:(BOOL) x {
+    
     NSTask* task = [[NSTask alloc] init];
-
+    
     [task setLaunchPath:command];
-
+    
     [task setArguments:args];
-
+    
     if ([path isEqualToString:@""] || [path isEqualToString:nil]) {
         path = @"/";
     }
-
+    
     [task setCurrentDirectoryPath:path];
-
+    
     NSPipe* pipe = [NSPipe pipe];
     [task setStandardOutput:pipe];
-
+    
     NSPipe* err = [NSPipe pipe];
     [task setStandardError:err];
-
+    
     [task launch];
-
+    
     NSFileHandle* file = [pipe fileHandleForReading];
     NSData* data = [file readDataToEndOfFile];
-
+    
     NSFileHandle* errfile = [err fileHandleForReading];
     NSData* errdata = [errfile readDataToEndOfFile];
-
+    
     // prints the error of the command to stderr if 'er' is true
     if (er) {
         fprintf(stderr, "%s", [[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] UTF8String]);
     }
-
+    
     if (![[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
         [xpkg log:[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]];
     }
-
+    
     if (![[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding] isEqualToString:@""]) {
         [xpkg log:[[NSString alloc] initWithData: errdata encoding: NSUTF8StringEncoding]];
     }
-
+    
     // prints the standard out of the command to stdout if 'ot' is true
     if (ot) {
         fprintf(stdout, "%s", [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] UTF8String]);
     }
     NSString* rv;
-
+    
     if (x) {
         rv = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
     } else {
@@ -242,10 +228,10 @@
     BOOL rv = NO;
     NSString* shar = [xpkg executeCommand:@"/usr/bin/shasum" withArgs:@[@"-a 256", path] andPath:@"/"];
     NSString* rmdr = [xpkg executeCommand:@"/usr/bin/openssl" withArgs:@[@"rmd160", path] andPath:@"/"];
-
+    
     NSArray* shas = [shar componentsSeparatedByString:@" "];
     NSArray* rmds = [rmdr componentsSeparatedByString:@" "];
-
+    
     for (int i = 0; i < [shar length]; i++) {
         if (shas[i] == sha) {
             for (int i = 0; i < [rmdr length]; i++) {
@@ -256,14 +242,13 @@
             }
         }
     }
-
+    
     return rv;
 }
 
 /**
  * updates Xpkg itself
  **/
-
 +(void) updateProgram {
     [xpkg printInfo:@"Updating..."];
     [xpkg print:@"\tUpdating Xpkg"];
@@ -299,7 +284,7 @@
 +(void) clearLog {
     [xpkg executeCommand:@"/bin/rm" withArgs:@[[xpkg getPathWithPrefix:@"/log/xpkg.log"]] andPath:@"/"];
     [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[[xpkg getPathWithPrefix:@"/log/xpkg.log"]] andPath:@"/"];
-    [xpkg printInfo:[NSString stringWithFormat:@"Cleared Log At: %@", [xpkg getTimestamp]]];
+    [xpkg printSuccess:@"Cleared Log At: %@", [xpkg getTimestamp]];
 }
 
 /**
@@ -314,15 +299,15 @@
  **/
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url{
     NSString* rv;
-
+    
     NSString* filestr = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-
+    
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
-
+    
     if (!filecmps) {
         return nil;
     }
-
+    
     for (int x = 0; x < [filecmps count]; x++) {
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
@@ -346,15 +331,15 @@
  **/
 +(NSArray*) getArrayAttribute:(NSString*)attr atPath:(NSString*)path {
     NSArray* rv;
-
+    
     NSString* filestr = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-
+    
     NSArray* filecmps = [filestr componentsSeparatedByString:@"\n"];
-
+    
     if (!filecmps) {
         return nil;
     }
-
+    
     for (int x = 0; x < [filecmps count]; x++) {
         if ([filecmps[x] hasPrefix:@"@"]) {
             NSArray* f = [filecmps[x] componentsSeparatedByString:@":"];
@@ -439,6 +424,7 @@
 +(NSString*) getPackageMaintainer:(NSString*)path {
     return [xpkg getAttribute:@"Maintainer" atPath:path];
 }
+
 /**
  *  Gets the dependancies attribute from the file at path
  **/
@@ -529,7 +515,7 @@
 }
 
 /**
- *  Returns the version of clang being used at runtime
+ *  Returns the version of clang being used
  **/
 +(NSString*) getClangVersion {
     return [NSString stringWithFormat:@"%d.%d", __clang_major__, __clang_minor__];
@@ -538,30 +524,30 @@
 /**
  *  Installs the package from the package file at path
  **/
-+(BOOL) installPackage:(NSString *)path {
++(XPPackage*) installPackage:(NSString *)path {
     BOOL rv = NO;
     XPPackage* pkg = [[XPPackage alloc] initWithpath:path];
-
+    
     if (pkg) {
         rv = [pkg install];
     }
-
-    return rv;
+    
+    return pkg;
 }
 
 /**
  * Removes the package from the package file at path
  **/
-+(BOOL) removePackage:(NSString *)path {
++(XPPackage*) removePackage:(NSString *)path {
     BOOL rv = NO;
-
+    
     XPPackage* pkg = [[XPPackage alloc] initWithpath:path];
-
+    
     if (pkg) {
         rv = [pkg remove];
     }
-
-    return rv;
+    
+    return pkg;
 }
 
 +(BOOL) fileIsIgnoredInRepo:(NSString*) str {
@@ -571,9 +557,13 @@
             return true;
         }
     }
-
+    
     return false;
 }
 
-@end
++(void) showLog {
+    NSString* str = [[NSString alloc] initWithFormat:@"less %@log/xpkg.log", [xpkg getPathWithPrefix:@"/"]];
+    system([str UTF8String]);
+}
 
+@end

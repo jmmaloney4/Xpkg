@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "044631EF18F05DA4000B009E"
-               BuildableName = "xpkg"
+               BlueprintIdentifier = "047090FF1907286200BE21DB"
+               BuildableName = "libxpkg.a"
                BlueprintName = "xpkg"
                ReferencedContainer = "container:xpkg.xcodeproj">
             </BuildableReference>
@@ -28,16 +28,17 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "047091121907286200BE21DB"
+               BuildableName = "xpkgTests.xctest"
+               BlueprintName = "xpkgTests"
+               ReferencedContainer = "container:xpkg.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "044631EF18F05DA4000B009E"
-            BuildableName = "xpkg"
-            BlueprintName = "xpkg"
-            ReferencedContainer = "container:xpkg.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,15 +49,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "044631EF18F05DA4000B009E"
-            BuildableName = "xpkg"
-            BlueprintName = "xpkg"
-            ReferencedContainer = "container:xpkg.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +58,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "044631EF18F05DA4000B009E"
-            BuildableName = "xpkg"
-            BlueprintName = "xpkg"
-            ReferencedContainer = "container:xpkg.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

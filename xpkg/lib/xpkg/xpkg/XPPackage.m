@@ -33,14 +33,14 @@
     self.version = [xpkg getAttribute:@"Version" atPath:self.path];
     self.package = [xpkg getAttribute:@"Package" atPath:self.path];
     self.name = [xpkg getAttribute:@"Name" atPath:self.path];
-    self.url = [xpkg getAttribute:@"URL" atPath:self.path isURL:true];
-    self.homepage = [xpkg getAttribute:@"Homepage" atPath:self.path isURL:true];
+    self.url = [xpkg getPackageURL:self.path];
+    self.homepage = [xpkg getPackageHomepage:self.path];
     self.description = [xpkg getAttribute:@"Description" atPath:self.path];
     self.rmd160 = [xpkg getAttribute:@"RMD160" atPath:self.path];
     self.sha256 = [xpkg getAttribute:@"SHA256" atPath:self.path];
     self.maintainer = [xpkg getAttribute:@"Maintainer" atPath:self.path];
-    self.depends = [xpkg getArrayAttribute:@"Depends" atPath:self.path];
-    self.recomended = [xpkg getArrayAttribute:@"Recomended" atPath:self.path];
+    self.depends = [xpkg getPackageDepends:self.path];
+    self.recomended = [xpkg getPackageRecomended:self.path];
     return self;
 }
 
@@ -135,7 +135,7 @@
     a = [self runMethodScript:@"TEST"];
     
     if (a == 0) {
-        [xpkg printSucsess:@"Installed %@ Sucsessfully, Built in %f", self.name, time];
+        [xpkg printSuccess:@"Installed %@ Sucsessfully, Built in %f", self.name, time];
     } else {
         [xpkg printError:@"Package %@ Did Not Test Sucsessfully", self.name];
     }
@@ -166,7 +166,7 @@
     int a = [self runMethodScript:@"REMOVE"];
     
     if (a == 0) {
-        [xpkg printSucsess:@"Removed %@ Sucsessfully", self.name];
+        [xpkg printSuccess:@"Removed %@ Sucsessfully", self.name];
     } else {
         [xpkg printError:@"Package %@ Was Not Removed Sucsessfully", self.name];
     }
