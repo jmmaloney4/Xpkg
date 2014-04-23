@@ -48,10 +48,15 @@ static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype x
  */
 static NSString* PREFIX = @"/opt/xpkg";
 
-/*
+/**
+ *  The Xpkg Homepage URL
+ **/
+static NSString* HOME = @"http://jmmaloney4.github.io/xpkg/";
+
+/**
  * Xpkg Version
- */
-static NSString* VERSION = @"1.0.0-Beta.5";
+ **/
+static NSString* VERSION = @"1.0.0-Beta.6";
 
 /*
  * Path to the Log File
@@ -76,6 +81,7 @@ static NSString* EXTRACT = @"extract";
 static NSString* VIEW = @"view";
 static NSString* CLEAR_LOG = @"clear-log";
 static NSString* SYS_INFO = @"sys";
+static NSString* WEB = @"web";
 
 @interface xpkg : NSObject
 
@@ -160,11 +166,6 @@ static NSString* SYS_INFO = @"sys";
 +(void) addAndCommit;
 
 /**
- * Downloads the fie at URL and saves it at the path provided
- **/
-+(void) downloadFile:(NSString*)URL place:(NSString*)path;
-
-/**
  * clears the Xpkg log file
  **/
 +(void) clearLog;
@@ -173,6 +174,11 @@ static NSString* SYS_INFO = @"sys";
  *  Shows the user the log file
  **/
 +(void) showLog;
+
+/**
+ * Downloads the fie at URL and saves it at the path provided
+ **/
++(void) downloadFile:(NSString*)URL place:(NSString*)path;
 
 /**
  *  gets the specified attribute field from the file at the path
@@ -285,13 +291,13 @@ static NSString* SYS_INFO = @"sys";
 +(XPPackage*) removePackage:(NSString *)path;
 
 /**
- * returns YES if the file is an ignored file in a package repository (not a package file), and NO if it is a package file
- **/
-+(BOOL) fileIsIgnoredInRepo:(NSString*) str;
-
-/**
  *  returns information about the current system, mostly for debugging purposes
  **/
 +(NSString*) SystemInfo;
+
+/**
+ *  Opens the xpkg homepage defined in HOME
+ **/
++(void) openHomePage;
 
 @end

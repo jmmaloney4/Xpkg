@@ -437,6 +437,7 @@
 				047091261907286200BE21DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		047091271907286200BE21DB /* Build configuration list for PBXNativeTarget "xpkgTests" */ = {
 			isa = XCConfigurationList;
@@ -445,6 +446,7 @@
 				047091291907286200BE21DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

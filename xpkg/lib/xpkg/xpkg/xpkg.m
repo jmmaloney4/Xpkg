@@ -595,4 +595,8 @@
     return cores;
 }
 
++(void) openHomePage {
+    [[NSWorkspace sharedWorkspace] openURL:[[NSURL alloc] initWithString:HOME]];
+}
+
 @end

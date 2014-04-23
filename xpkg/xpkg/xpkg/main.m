@@ -113,6 +113,10 @@ int main(int argc, const char * argv[])
             }
         }
         
+        else if ([WEB isEqualToString:arg]) {
+            [xpkg openHomePage];
+        }
+        
         else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
             system([[NSString stringWithFormat:@"less %@", [xpkg getPathWithPrefix:@"/LICENSE"]] UTF8String]);
         } else {
