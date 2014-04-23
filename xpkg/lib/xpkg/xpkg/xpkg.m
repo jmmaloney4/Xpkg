@@ -566,4 +566,33 @@
     system([str UTF8String]);
 }
 
++(NSString*) SystemInfo {
+    NSString* str = [NSString string];
+    str = [str stringByAppendingString:[NSString stringWithFormat:@"\tClang:\t\t\t%@", [xpkg getClangVersion]]];
+    str = [str stringByAppendingString:[NSString stringWithFormat:@"\n\tMac OS X:\t\t%@", [xpkg getOSVersion]]];
+    str = [str stringByAppendingString:[NSString stringWithFormat:@"\n\tRAM:\t\t\t%ld Bytes", [xpkg getPhysicalMem]]];
+    str = [str stringByAppendingString:[NSString stringWithFormat:@"\n\tProcessor Cores:\t%lu", (unsigned long)[xpkg getCores]]];
+    
+    // str = [str stringByAppendingString:[NSString stringWithFormat:@"\n"]];
+    return str;
+}
+
++(NSString*) getOSVersion {
+    NSProcessInfo* pInfo = [NSProcessInfo processInfo];
+    NSString* version = [pInfo operatingSystemVersionString];
+    return version;
+}
+
++(long) getPhysicalMem {
+    NSProcessInfo* pInfo = [NSProcessInfo processInfo];
+    long mem = [pInfo physicalMemory];
+    return mem;
+}
+
++(NSUInteger) getCores {
+    NSProcessInfo* pInfo = [NSProcessInfo processInfo];
+    NSUInteger cores = [pInfo processorCount];
+    return cores;
+}
+
 @end

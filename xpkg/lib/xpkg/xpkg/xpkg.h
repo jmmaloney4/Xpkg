@@ -289,4 +289,9 @@ static NSString* SYS_INFO = @"sys";
  **/
 +(BOOL) fileIsIgnoredInRepo:(NSString*) str;
 
+/**
+ *  returns information about the current system, mostly for debugging purposes
+ **/
++(NSString*) SystemInfo;
+
 @end

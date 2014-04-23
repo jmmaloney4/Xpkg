@@ -85,8 +85,8 @@ int main(int argc, const char * argv[])
             [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
         }
         
-        else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
-            system("less /opt/xpkg/man/man1/xpkg.1");
+        else if ([@"-h" isEqualToString:arg] || [@"--help" isEqualToString:arg]) {
+            system("man /opt/xpkg/man/man1/xpkg.1");
         }
         
         else if ([CLEAR_LOG isEqualToString:arg]) {
@@ -96,6 +96,11 @@ int main(int argc, const char * argv[])
         
         else if ([@"log" isEqualToString:arg]) {
             [xpkg showLog];
+        }
+        
+        else if ([SYS_INFO isEqualToString:arg]) {
+            [xpkg printInfo:@"System Information"];
+            [xpkg print:@"%@", [xpkg SystemInfo]];
         }
         
         else if ([VIEW isEqualToString:arg]) {
