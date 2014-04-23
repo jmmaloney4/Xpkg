@@ -30,7 +30,7 @@
     [xpkg log:[NSString stringWithFormat:@"INFO: %@\n", str]];
 }
 
-+(void) printSucssess:(NSString*) x, ... {
++(void) printSuccess:(NSString*) x, ... {
     
     va_list formatArgs;
     va_start(formatArgs, x);
@@ -284,7 +284,7 @@
 +(void) clearLog {
     [xpkg executeCommand:@"/bin/rm" withArgs:@[[xpkg getPathWithPrefix:@"/log/xpkg.log"]] andPath:@"/"];
     [xpkg executeCommand:@"/usr/bin/touch" withArgs:@[[xpkg getPathWithPrefix:@"/log/xpkg.log"]] andPath:@"/"];
-    [xpkg printInfo:[NSString stringWithFormat:@"Cleared Log At: %@", [xpkg getTimestamp]]];
+    [xpkg printSuccess:@"Cleared Log At: %@", [xpkg getTimestamp]];
 }
 
 /**
@@ -559,6 +559,11 @@
     }
     
     return false;
+}
+
++(void) showLog {
+    NSString* str = [[NSString alloc] initWithFormat:@"less %@log/xpkg.log", [xpkg getPathWithPrefix:@"/"]];
+    system([str UTF8String]);
 }
 
 @end

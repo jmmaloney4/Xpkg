@@ -32,6 +32,6 @@
 -(void) add;
 -(void) remove;
 
-+(int) getRepoIDForName:(NSString*) name;
+// +(int) getRepoIDForName:(NSString*) name;
 
 @end

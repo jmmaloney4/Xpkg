@@ -170,6 +170,11 @@ static NSString* SYS_INFO = @"sys";
 +(void) clearLog;
 
 /**
+ *  Shows the user the log file
+ **/
++(void) showLog;
+
+/**
  *  gets the specified attribute field from the file at the path
  **/
 +(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path;

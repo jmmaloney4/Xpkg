@@ -301,10 +301,7 @@
 					/Users/jack/Desktop/Xpkg/xpkg/Build/Products/Debug,
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/xpkg-bzebyycyyqbvwbbciojylrlbetkz/Build/Products/Debug",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all-load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -325,10 +322,7 @@
 					/Users/jack/Desktop/Xpkg/xpkg/Build/Products/Debug,
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/xpkg-bzebyycyyqbvwbbciojylrlbetkz/Build/Products/Debug",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all-load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
