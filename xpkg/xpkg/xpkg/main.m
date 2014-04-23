@@ -17,7 +17,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "xpkg.h"
+#import <xpkg/xpkg.h>
 
 int main(int argc, const char * argv[])
 {

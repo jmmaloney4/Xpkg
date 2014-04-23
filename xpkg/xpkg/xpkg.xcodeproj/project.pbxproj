@@ -8,9 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		0470917F190742BE00BE21DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470917E190742BE00BE21DB /* Foundation.framework */; };
-		0470918D190742F000BE21DB /* libxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470918C190742F000BE21DB /* libxpkg.a */; };
 		047091901907435300BE21DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470918F1907435300BE21DB /* main.m */; };
+		0470919F190748E900BE21DB /* libxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470919C190748C700BE21DB /* libxpkg.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0470919B190748C700BE21DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04709196190748C700BE21DB /* xpkg.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 047091001907286200BE21DB;
+			remoteInfo = xpkg;
+		};
+		0470919D190748C700BE21DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04709196190748C700BE21DB /* xpkg.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 047091131907286200BE21DB;
+			remoteInfo = xpkgTests;
+		};
+		047091A01907490900BE21DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04709196190748C700BE21DB /* xpkg.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 047090FF1907286200BE21DB;
+			remoteInfo = xpkg;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		04709179190742BE00BE21DB /* CopyFiles */ = {
@@ -28,9 +52,10 @@
 		0470917B190742BE00BE21DB /* xpkg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xpkg; sourceTree = BUILT_PRODUCTS_DIR; };
 		0470917E190742BE00BE21DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		04709184190742BE00BE21DB /* xpkg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xpkg-Prefix.pch"; sourceTree = "<group>"; };
-		0470918C190742F000BE21DB /* libxpkg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxpkg.a; path = ../Build/Products/Debug/libxpkg.a; sourceTree = "<group>"; };
 		0470918E1907433400BE21DB /* xpkg.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = xpkg.1; sourceTree = "<group>"; };
 		0470918F1907435300BE21DB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		047091931907486B00BE21DB /* libxpkg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxpkg.a; path = "../../../../Library/Developer/Xcode/DerivedData/xpkg-bzebyycyyqbvwbbciojylrlbetkz/Build/Products/Debug/libxpkg.a"; sourceTree = "<group>"; };
+		04709196190748C700BE21DB /* xpkg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = xpkg.xcodeproj; path = ../lib/xpkg/xpkg.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0470918D190742F000BE21DB /* libxpkg.a in Frameworks */,
+				0470919F190748E900BE21DB /* libxpkg.a in Frameworks */,
 				0470917F190742BE00BE21DB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +77,7 @@
 				04709180190742BE00BE21DB /* xpkg */,
 				0470917D190742BE00BE21DB /* Frameworks */,
 				0470917C190742BE00BE21DB /* Products */,
+				04709196190748C700BE21DB /* xpkg.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,7 +92,7 @@
 		0470917D190742BE00BE21DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0470918C190742F000BE21DB /* libxpkg.a */,
+				047091931907486B00BE21DB /* libxpkg.a */,
 				0470917E190742BE00BE21DB /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -90,6 +116,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		04709197190748C700BE21DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0470919C190748C700BE21DB /* libxpkg.a */,
+				0470919E190748C700BE21DB /* xpkgTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,6 +139,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				047091A11907490900BE21DB /* PBXTargetDependency */,
 			);
 			name = xpkg;
 			productName = xpkg;
@@ -129,12 +165,35 @@
 			mainGroup = 04709172190742BE00BE21DB;
 			productRefGroup = 0470917C190742BE00BE21DB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 04709197190748C700BE21DB /* Products */;
+					ProjectRef = 04709196190748C700BE21DB /* xpkg.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0470917A190742BE00BE21DB /* xpkg */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0470919C190748C700BE21DB /* libxpkg.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libxpkg.a;
+			remoteRef = 0470919B190748C700BE21DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0470919E190748C700BE21DB /* xpkgTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = xpkgTests.xctest;
+			remoteRef = 0470919D190748C700BE21DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		04709177190742BE00BE21DB /* Sources */ = {
@@ -146,6 +205,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		047091A11907490900BE21DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = xpkg;
+			targetProxy = 047091A01907490900BE21DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		04709187190742BE00BE21DB /* Debug */ = {
@@ -223,9 +290,20 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(TARGER_BUILD_DIRECTORY)/usr/local/lib/include\"",
+					"\"$(OBJROOT)/UninstalledProducts/include\"",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jack/Desktop/Xpkg/xpkg/Build/Products/Debug,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/xpkg-bzebyycyyqbvwbbciojylrlbetkz/Build/Products/Debug",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all-load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -236,9 +314,20 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(TARGER_BUILD_DIRECTORY)/usr/local/lib/include\"",
+					"\"$(OBJROOT)/UninstalledProducts/include\"",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jack/Desktop/Xpkg/xpkg/Build/Products/Debug,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/xpkg-bzebyycyyqbvwbbciojylrlbetkz/Build/Products/Debug",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all-load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
