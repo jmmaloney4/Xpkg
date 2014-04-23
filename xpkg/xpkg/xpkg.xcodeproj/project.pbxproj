@@ -11,6 +11,7 @@
 		047091901907435300BE21DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470918F1907435300BE21DB /* main.m */; };
 		0470919F190748E900BE21DB /* libxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470919C190748C700BE21DB /* libxpkg.a */; };
 		04D022901908613B008181D0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D0228F1908613B008181D0 /* AppKit.framework */; };
+		04D022941908634F008181D0 /* XPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D022931908634F008181D0 /* XPUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		047091931907486B00BE21DB /* libxpkg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxpkg.a; path = "../../../../Library/Developer/Xcode/DerivedData/xpkg-bzebyycyyqbvwbbciojylrlbetkz/Build/Products/Debug/libxpkg.a"; sourceTree = "<group>"; };
 		04709196190748C700BE21DB /* xpkg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = xpkg.xcodeproj; path = ../lib/xpkg/xpkg.xcodeproj; sourceTree = "<group>"; };
 		04D0228F1908613B008181D0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		04D022921908634F008181D0 /* XPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUtils.h; sourceTree = "<group>"; };
+		04D022931908634F008181D0 /* XPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 		04709180190742BE00BE21DB /* xpkg */ = {
 			isa = PBXGroup;
 			children = (
+				04D022921908634F008181D0 /* XPUtils.h */,
+				04D022931908634F008181D0 /* XPUtils.m */,
 				0470918F1907435300BE21DB /* main.m */,
 				0470918E1907433400BE21DB /* xpkg.1 */,
 				04709183190742BE00BE21DB /* Supporting Files */,
@@ -205,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047091901907435300BE21DB /* main.m in Sources */,
+				04D022941908634F008181D0 /* XPUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

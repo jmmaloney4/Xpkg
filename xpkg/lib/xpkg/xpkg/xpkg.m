@@ -573,6 +573,20 @@
     str = [str stringByAppendingString:[NSString stringWithFormat:@"\n\tRAM:\t\t\t%ld Bytes", [xpkg getPhysicalMem]]];
     str = [str stringByAppendingString:[NSString stringWithFormat:@"\n\tProcessor Cores:\t%lu", (unsigned long)[xpkg getCores]]];
     
+    // Checks For Apple Machine
+    if (__APPLE__) {
+        str = [str stringByAppendingString:@"\n\tSystem Is Apple"];
+    } else {
+        str = [str stringByAppendingString:@"\n\tSystem Is Not Apple"];
+    }
+    
+    // Checks if System is 64 bit
+    if (__LP64__) {
+        str = [str stringByAppendingString:@"\n\tSystem Is 64 bit"];
+    } else {
+        str = [str stringByAppendingString:@"\n\tSystem Is 32 bit"];
+    }
+    
     // str = [str stringByAppendingString:[NSString stringWithFormat:@"\n"]];
     return str;
 }

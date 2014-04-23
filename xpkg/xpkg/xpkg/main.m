@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/NSWorkspace.h>
 #import <xpkg/xpkg.h>
+#import "XPUtils.h"
 
 int main(int argc, const char * argv[])
 {
@@ -83,7 +84,9 @@ int main(int argc, const char * argv[])
         }
         
         else if ([@"-v" isEqualToString:arg] || [@"--version" isEqualToString:arg]) {
-            [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
+            [xpkg printInfo:@"Xpkg Advanced Packaging System"];
+            [xpkg print:@"Version: %@", VERSION];
+            [xpkg print:@"Built On: %s at %s", __DATE__, __TIME__];
         }
         
         else if ([@"-h" isEqualToString:arg] || [@"--help" isEqualToString:arg]) {
@@ -95,7 +98,7 @@ int main(int argc, const char * argv[])
             [xpkg clearLog];
         }
         
-        else if ([@"log" isEqualToString:arg]) {
+        else if ([LOG isEqualToString:arg]) {
             [xpkg showLog];
         }
         
@@ -104,6 +107,7 @@ int main(int argc, const char * argv[])
             [xpkg print:@"%@", [xpkg SystemInfo]];
         }
         
+        /*
         else if ([VIEW isEqualToString:arg]) {
             //VIEW COMMAND
             if (argc > 1) {
@@ -113,6 +117,7 @@ int main(int argc, const char * argv[])
                 [xpkg printError:@"%@ requires at least one argument", VIEW];
             }
         }
+        */
         
         /*
          *  Opens xpkg Home page

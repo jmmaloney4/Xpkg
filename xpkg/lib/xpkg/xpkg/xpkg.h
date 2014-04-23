@@ -63,26 +63,6 @@ static NSString* VERSION = @"1.0.0-Beta.6";
  */
 static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
 
-/*
- * A few attempts to localize command names (etc.)
- */
-static NSString* VERSION_ARG = @"-V";
-static NSString* INSTALL = @"install";
-static NSString* UPDATE = @"update";
-static NSString* UPGRADE = @"upgrade";
-static NSString* REINSTALL = @"reinstall";
-static NSString* REMOVE = @"remove";
-static NSString* BUILD = @"build";
-static NSString* LIST = @"list";
-static NSString* SEARCH = @"search";
-static NSString* ADD = @"add";
-static NSString* RM_REPO = @"rm-repo";
-static NSString* EXTRACT = @"extract";
-static NSString* VIEW = @"view";
-static NSString* CLEAR_LOG = @"clear-log";
-static NSString* SYS_INFO = @"sys";
-static NSString* WEB = @"web";
-
 @interface xpkg : NSObject
 
 /**
@@ -271,7 +251,7 @@ static NSString* WEB = @"web";
 +(void) rmRepository:(NSString*) path;
 
 /**
- *  parses the repo file at path, and returns an array containing [name, maintainer, description]
+ *  parses the repo file at path, and returns an array containing [name, maintainer, description] in that order, always
  **/
 +(NSArray*) parseRepoFile:(NSString*)path;
 
@@ -294,10 +274,5 @@ static NSString* WEB = @"web";
  *  returns information about the current system, mostly for debugging purposes
  **/
 +(NSString*) SystemInfo;
-
-/**
- *  Opens the xpkg homepage defined in HOME
- **/
-+(void) openHomePage;
 
 @end
