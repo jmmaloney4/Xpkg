@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0470917F190742BE00BE21DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470917E190742BE00BE21DB /* Foundation.framework */; };
-		04709182190742BE00BE21DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04709181190742BE00BE21DB /* main.m */; };
-		04709186190742BE00BE21DB /* xpkg.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 04709185190742BE00BE21DB /* xpkg.1 */; };
+		0470918D190742F000BE21DB /* libxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470918C190742F000BE21DB /* libxpkg.a */; };
+		047091901907435300BE21DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470918F1907435300BE21DB /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +19,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				04709186190742BE00BE21DB /* xpkg.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -28,9 +27,10 @@
 /* Begin PBXFileReference section */
 		0470917B190742BE00BE21DB /* xpkg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xpkg; sourceTree = BUILT_PRODUCTS_DIR; };
 		0470917E190742BE00BE21DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		04709181190742BE00BE21DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04709184190742BE00BE21DB /* xpkg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xpkg-Prefix.pch"; sourceTree = "<group>"; };
-		04709185190742BE00BE21DB /* xpkg.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = xpkg.1; sourceTree = "<group>"; };
+		0470918C190742F000BE21DB /* libxpkg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxpkg.a; path = ../Build/Products/Debug/libxpkg.a; sourceTree = "<group>"; };
+		0470918E1907433400BE21DB /* xpkg.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = xpkg.1; sourceTree = "<group>"; };
+		0470918F1907435300BE21DB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0470918D190742F000BE21DB /* libxpkg.a in Frameworks */,
 				0470917F190742BE00BE21DB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +66,7 @@
 		0470917D190742BE00BE21DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0470918C190742F000BE21DB /* libxpkg.a */,
 				0470917E190742BE00BE21DB /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -73,8 +75,8 @@
 		04709180190742BE00BE21DB /* xpkg */ = {
 			isa = PBXGroup;
 			children = (
-				04709181190742BE00BE21DB /* main.m */,
-				04709185190742BE00BE21DB /* xpkg.1 */,
+				0470918F1907435300BE21DB /* main.m */,
+				0470918E1907433400BE21DB /* xpkg.1 */,
 				04709183190742BE00BE21DB /* Supporting Files */,
 			);
 			path = xpkg;
@@ -139,7 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04709182190742BE00BE21DB /* main.m in Sources */,
+				047091901907435300BE21DB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +223,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jack/Desktop/Xpkg/xpkg/Build/Products/Debug,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -230,6 +236,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpkg/xpkg-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jack/Desktop/Xpkg/xpkg/Build/Products/Debug,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
