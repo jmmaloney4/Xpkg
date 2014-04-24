@@ -16,5 +16,5 @@
 @END
 
 @REMOVE
-# rm $XPKG_ROOT_DIR/bin/bash
+# rm $XPKG_ROOT_DIR/bin/???
 @END
