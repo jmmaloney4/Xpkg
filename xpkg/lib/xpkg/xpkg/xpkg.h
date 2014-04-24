@@ -48,34 +48,20 @@ static NSString* USAGE = @"xpkg [options] command [options] <arguments> \ntype x
  */
 static NSString* PREFIX = @"/opt/xpkg";
 
-/*
+/**
+ *  The Xpkg Homepage URL
+ **/
+static NSString* HOME = @"http://jmmaloney4.github.io/xpkg/";
+
+/**
  * Xpkg Version
- */
-static NSString* VERSION = @"1.0.0-Beta.5";
+ **/
+static NSString* VERSION = @"1.0.0-Beta.6";
 
 /*
  * Path to the Log File
  */
 static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
-
-/*
- * A few attempts to localize command names (etc.)
- */
-static NSString* VERSION_ARG = @"-V";
-static NSString* INSTALL = @"install";
-static NSString* UPDATE = @"update";
-static NSString* UPGRADE = @"upgrade";
-static NSString* REINSTALL = @"reinstall";
-static NSString* REMOVE = @"remove";
-static NSString* BUILD = @"build";
-static NSString* LIST = @"list";
-static NSString* SEARCH = @"search";
-static NSString* ADD = @"add";
-static NSString* RM_REPO = @"rm-repo";
-static NSString* EXTRACT = @"extract";
-static NSString* VIEW = @"view";
-static NSString* CLEAR_LOG = @"clear-log";
-static NSString* SYS_INFO = @"sys";
 
 @interface xpkg : NSObject
 
@@ -160,11 +146,6 @@ static NSString* SYS_INFO = @"sys";
 +(void) addAndCommit;
 
 /**
- * Downloads the fie at URL and saves it at the path provided
- **/
-+(void) downloadFile:(NSString*)URL place:(NSString*)path;
-
-/**
  * clears the Xpkg log file
  **/
 +(void) clearLog;
@@ -173,6 +154,11 @@ static NSString* SYS_INFO = @"sys";
  *  Shows the user the log file
  **/
 +(void) showLog;
+
+/**
+ * Downloads the fie at URL and saves it at the path provided
+ **/
++(void) downloadFile:(NSString*)URL place:(NSString*)path;
 
 /**
  *  gets the specified attribute field from the file at the path
@@ -265,7 +251,7 @@ static NSString* SYS_INFO = @"sys";
 +(void) rmRepository:(NSString*) path;
 
 /**
- *  parses the repo file at path, and returns an array containing [name, maintainer, description]
+ *  parses the repo file at path, and returns an array containing [name, maintainer, description] in that order, always
  **/
 +(NSArray*) parseRepoFile:(NSString*)path;
 
@@ -285,8 +271,8 @@ static NSString* SYS_INFO = @"sys";
 +(XPPackage*) removePackage:(NSString *)path;
 
 /**
- * returns YES if the file is an ignored file in a package repository (not a package file), and NO if it is a package file
+ *  returns information about the current system, mostly for debugging purposes
  **/
-+(BOOL) fileIsIgnoredInRepo:(NSString*) str;
++(NSString*) SystemInfo;
 
 @end

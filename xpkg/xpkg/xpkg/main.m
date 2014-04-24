@@ -17,7 +17,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AppKit/NSWorkspace.h>
 #import <xpkg/xpkg.h>
+#import "XPUtils.h"
 
 int main(int argc, const char * argv[])
 {
@@ -82,11 +84,13 @@ int main(int argc, const char * argv[])
         }
         
         else if ([@"-v" isEqualToString:arg] || [@"--version" isEqualToString:arg]) {
-            [xpkg print:[NSString stringWithFormat:@"Xpkg Advanced Packaging System \nVersion: %@", VERSION]];
+            [xpkg printInfo:@"Xpkg Advanced Packaging System"];
+            [xpkg print:@"Version: %@", VERSION];
+            [xpkg print:@"Built On: %s at %s", __DATE__, __TIME__];
         }
         
-        else if ([@"-h" isEqualToString:arg] || [@"" isEqualToString:arg]) {
-            system("less /opt/xpkg/man/man1/xpkg.1");
+        else if ([@"-h" isEqualToString:arg] || [@"--help" isEqualToString:arg]) {
+            system("man /opt/xpkg/man/man1/xpkg.1");
         }
         
         else if ([CLEAR_LOG isEqualToString:arg]) {
@@ -94,10 +98,40 @@ int main(int argc, const char * argv[])
             [xpkg clearLog];
         }
         
-        else if ([@"log" isEqualToString:arg]) {
+        else if ([LOG isEqualToString:arg]) {
             [xpkg showLog];
         }
         
+        else if ([SYS_INFO isEqualToString:arg]) {
+            [xpkg printInfo:@"System Information"];
+            [xpkg print:@"%@", [xpkg SystemInfo]];
+        }
+        
+        else if ([CREATE isEqualToString:arg]) {
+            if (argc > 2) {
+                [xpkg printInfo:@"Creating Package %@", [NSString stringWithUTF8String:argv[2]]];
+                NSFileManager* f = [[NSFileManager alloc] init];
+                
+                NSString* pkgfile = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/assets/pkg"]] encoding:NSUTF8StringEncoding error:nil];
+                
+                
+                NSString* file = [NSString stringWithFormat:@"@Package: %@\n", [NSString stringWithUTF8String:argv[2]]];
+                
+                file = [file stringByAppendingString:[NSString stringWithFormat:@"@Name: %@\n", [NSString stringWithUTF8String:argv[2]]]];
+                
+                file = [file stringByAppendingString:@"@Version: 1.0\n"];
+                
+                file = [file stringByAppendingString:pkgfile];
+                
+                [file writeToFile:[NSString stringWithFormat:@"%@/%@", [f currentDirectoryPath], [NSString stringWithUTF8String:argv[2]]] atomically:true encoding:NSUTF8StringEncoding error:nil];
+                
+                [xpkg print:@"\tDone."];
+            } else {
+                [xpkg printError:@"Not Enough Arguments"];
+            }
+        }
+        
+        /*
         else if ([VIEW isEqualToString:arg]) {
             //VIEW COMMAND
             if (argc > 1) {
@@ -107,6 +141,14 @@ int main(int argc, const char * argv[])
                 [xpkg printError:@"%@ requires at least one argument", VIEW];
             }
         }
+        */
+        
+        /*
+         *  Opens xpkg Home page
+         */
+        else if ([WEB isEqualToString:arg]) {
+            [[NSWorkspace sharedWorkspace] openURL:[[NSURL alloc] initWithString:HOME]];
+        }
         
         else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
             system([[NSString stringWithFormat:@"less %@", [xpkg getPathWithPrefix:@"/LICENSE"]] UTF8String]);
@@ -114,8 +156,8 @@ int main(int argc, const char * argv[])
             [xpkg printError:@"Arguments are invalid"];
             [xpkg printUsage];
         }
-        
     }
     return 0;
 }
+
 

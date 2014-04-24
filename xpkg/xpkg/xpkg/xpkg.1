@@ -3,11 +3,11 @@
 .SH NAME xpkg \- Advanced Package Management For Mac OS X
 
 .SH SYNOPSIS 
-.B xpkg\fR [ \fBinstall\fR | \fBremove\fR ] <package>
+.B xpkg\fR [ \fBinstall\fR | \fBremove\fR | \fBcreate\fR] <package>
 
 .B xpkg\fR [ \fB-lvV\fR ]
 
-.B xpkg\fR [ \fBupdate\fR | \fBlog\fR | \fBclear\fR ]
+.B xpkg\fR [ \fBupdate\fR | \fBlog\fR | \fBclear-log\fR | \fBweb\fR ]
 
 .B xpkg\fR [ \fBadd\fR | \fBrm-repo\fR ] <url>
 
@@ -23,6 +23,8 @@ Package Sources are just git submodules, added to /opt/xpkg/core/repos/, which m
 
 \fBremove\fR - remove the specified packages
 
+\fBcreate\fR - creates a boilerplate package file in the current directory, with the specified package name
+
 \fBupdate\fR - updates xpkg, and the package sources
 
 \fBlog\fR - shows the xpkg log
@@ -33,9 +35,15 @@ Package Sources are just git submodules, added to /opt/xpkg/core/repos/, which m
 
 \fBrm-repo\fR - removes the package source from the specified url
 
+\fBweb\fR - opens the xpkg homepage
+
+\fBcreate\fR - opens the xpkg homepage
+
 .SH OPTIONS
 
 \fB-l\fR / \fB--license\fR Displays the xpkg licnese
+
+\fB-h\fR / \fB--help\fR Displays this manpage
 
 \fB-v\fR / \fB--version\fR Displays a user friendly version string
 
@@ -57,6 +65,15 @@ The sbin directory for installed packages
 
 .I /opt/xpkg/man/\fR:
 The man page directory for installed packages
+
+.SH MORE HELP
+
+.B For more help see \fIhttp://jmmaloney4.github.io/xpkg/\fR
+
+.SH REPORTING BUGS
+
+When reporting bugs, the first thing you should do is check to make sure that your bug is acturally a bug in xpkg, not in a package.
+If your bug is relavant see \fIhttps://github.com/jmmaloney4/Xpkg/wiki/Reporting-Bugs\fR
 
 .SH AUTHOR
 .B Jack Maloney
