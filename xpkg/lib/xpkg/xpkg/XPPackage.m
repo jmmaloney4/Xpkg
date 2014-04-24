@@ -111,7 +111,6 @@
 
     // BUILD
     NSTimeInterval time;
-    [xpkg print:@"%d", time];
     [xpkg print:@"\tBuilding..."];
     int a = [self runMethodScript:@"BUILD" withTime:time];
 
@@ -135,7 +134,7 @@
     a = [self runMethodScript:@"TEST"];
     
     if (a == 0) {
-        [xpkg printSuccess:@"Installed %@ Sucsessfully, Built in %f", self.name, time];
+        [xpkg printSuccess:@"Installed %@ Sucsessfully", self.name];
     } else {
         [xpkg printError:@"Package %@ Did Not Test Sucsessfully", self.name];
     }
@@ -197,7 +196,6 @@
     int d = system("/opt/xpkg/tmp/script >> /opt/xpkg/log/xpkg.log 2>&1");
     NSDate* finish = [NSDate date];
     time = [finish timeIntervalSinceDate:start];
-    [xpkg print:@"%f", time];
     return d;
 }
 

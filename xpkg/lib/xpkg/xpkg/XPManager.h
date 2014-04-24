@@ -23,9 +23,14 @@
 
 @interface XPManager : NSObject
 
+@property sqlite3* db;
+
 -(XPPackage*) addPackageInfoToDatabase:(XPPackage*)pkg;
 -(XPPackage*) removePackage:(XPPackage*) pkg;
 -(BOOL) repoExistsAtPath:(NSString*) url;
 -(XPRepository*) addRepoToDatabase:(XPRepository*) repo;
 -(XPRepository*) removeRepoFromDatabase:(XPRepository*) repo;
+
+-(NSArray*) SQLExec:(NSString*)query, ...;
+
 @end

@@ -21,8 +21,7 @@
 #import <xpkg/xpkg.h>
 #import "XPUtils.h"
 
-int main(int argc, const char * argv[])
-{
+int main(int argc, const char * argv[]) {
 
     @autoreleasepool {
         
@@ -87,6 +86,17 @@ int main(int argc, const char * argv[])
             [xpkg printInfo:@"Xpkg Advanced Packaging System"];
             [xpkg print:@"Version: %@", VERSION];
             [xpkg print:@"Built On: %s at %s", __DATE__, __TIME__];
+            [xpkg print:@"\nxpkg Copyright (c) 2014 Jack Maloney. All rights reserved"];
+            [xpkg print:@"\nThis program is free software: you can redistribute it and/or modify"];
+            [xpkg print:@"it under the terms of the GNU General Public License as published by"];
+            [xpkg print:@"the Free Software Foundation, either version 3 of the License, or"];
+            [xpkg print:@"(at your option) any later version.\n"];
+            [xpkg print:@"This program is distributed in the hope that it will be useful,"];
+            [xpkg print:@"but WITHOUT ANY WARRANTY; without even the implied warranty of"];
+            [xpkg print:@"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the"];
+            [xpkg print:@"GNU General Public License for more details.\n"];
+            [xpkg print:@"You should have received a copy of the GNU General Public License"];
+            [xpkg print:@"along with this program.  Type xpkg -l to see the \nlicense.  If not, see <http://www.gnu.org/licenses/>."];
         }
         
         else if ([@"-h" isEqualToString:arg] || [@"--help" isEqualToString:arg]) {
@@ -152,7 +162,15 @@ int main(int argc, const char * argv[])
         
         else if ([@"-l" isEqualToString:arg] || [@"--license" isEqualToString:arg]) {
             system([[NSString stringWithFormat:@"less %@", [xpkg getPathWithPrefix:@"/LICENSE"]] UTF8String]);
-        } else {
+        }
+        
+        // Fallback checks
+        
+        else if ([arg hasSuffix:@".git"]) {
+            [xpkg printInfo:@"This is a repo url, Use %@xpkg add %@%@ to add this repository", BOLDGREEN, arg, BOLDCYAN];
+        }
+        
+        else {
             [xpkg printError:@"Arguments are invalid"];
             [xpkg printUsage];
         }

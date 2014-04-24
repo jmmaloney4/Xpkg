@@ -12,6 +12,7 @@
 		0470919F190748E900BE21DB /* libxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470919C190748C700BE21DB /* libxpkg.a */; };
 		04D022901908613B008181D0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D0228F1908613B008181D0 /* AppKit.framework */; };
 		04D022941908634F008181D0 /* XPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D022931908634F008181D0 /* XPUtils.m */; };
+		04D022971908A5A7008181D0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D022961908A5A7008181D0 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		04D0228F1908613B008181D0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		04D022921908634F008181D0 /* XPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPUtils.h; sourceTree = "<group>"; };
 		04D022931908634F008181D0 /* XPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPUtils.m; sourceTree = "<group>"; };
+		04D022961908A5A7008181D0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D022971908A5A7008181D0 /* libsqlite3.dylib in Frameworks */,
 				04D022901908613B008181D0 /* AppKit.framework in Frameworks */,
 				0470919F190748E900BE21DB /* libxpkg.a in Frameworks */,
 				0470917F190742BE00BE21DB /* Foundation.framework in Frameworks */,
@@ -98,6 +101,7 @@
 		0470917D190742BE00BE21DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D022961908A5A7008181D0 /* libsqlite3.dylib */,
 				04D0228F1908613B008181D0 /* AppKit.framework */,
 				047091931907486B00BE21DB /* libxpkg.a */,
 				0470917E190742BE00BE21DB /* Foundation.framework */,

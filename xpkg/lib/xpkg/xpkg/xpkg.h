@@ -54,6 +54,11 @@ static NSString* PREFIX = @"/opt/xpkg";
 static NSString* HOME = @"http://jmmaloney4.github.io/xpkg/";
 
 /**
+ *  the path to the sqlite3 database used by xpkg
+ **/
+static NSString* DBPATH = @"/opt/xpkg/core/xpkg.db";
+
+/**
  * Xpkg Version
  **/
 static NSString* VERSION = @"1.0.0-Beta.6";
@@ -128,7 +133,7 @@ static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
 /**
  * returns a path with the xpkg path prefix in front of it
  **/
-+(NSString*) getPathWithPrefix:(NSString*)path;
++(NSString*) getPathWithPrefix:(NSString*)path, ...;
 
 /**
  * Exits the program if it is not run as root

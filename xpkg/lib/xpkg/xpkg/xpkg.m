@@ -204,9 +204,15 @@
 /**
  * returns a path with '/opt/xpkg' in front of it
  **/
-+(NSString*) getPathWithPrefix:(NSString*)path {
++(NSString*) getPathWithPrefix:(NSString*)path, ... {
+    
+    va_list formatArgs;
+    va_start(formatArgs, path);
+    
+    NSString* str = [[NSString alloc] initWithFormat:path arguments: formatArgs];
+    
     NSMutableString* rv = [PREFIX mutableCopy];
-    [rv appendString:path];
+    [rv appendString:str];
     return rv;
 }
 
