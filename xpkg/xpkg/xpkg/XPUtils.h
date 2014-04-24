@@ -28,6 +28,7 @@ static NSString* CLEAR_LOG = @"clear-log";
 static NSString* SYS_INFO = @"sys";
 static NSString* WEB = @"web";
 static NSString* LOG = @"log";
+static NSString* CREATE = @"create";
 
 @interface XPUtils : NSObject
 

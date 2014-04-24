@@ -107,6 +107,30 @@ int main(int argc, const char * argv[])
             [xpkg print:@"%@", [xpkg SystemInfo]];
         }
         
+        else if ([CREATE isEqualToString:arg]) {
+            if (argc > 2) {
+                [xpkg printInfo:@"Creating Package %@", [NSString stringWithUTF8String:argv[2]]];
+                NSFileManager* f = [[NSFileManager alloc] init];
+                
+                NSString* pkgfile = [NSString stringWithContentsOfFile:[xpkg getPathWithPrefix:[NSString stringWithFormat:@"/core/assets/pkg"]] encoding:NSUTF8StringEncoding error:nil];
+                
+                
+                NSString* file = [NSString stringWithFormat:@"@Package: %@\n", [NSString stringWithUTF8String:argv[2]]];
+                
+                file = [file stringByAppendingString:[NSString stringWithFormat:@"@Name: %@\n", [NSString stringWithUTF8String:argv[2]]]];
+                
+                file = [file stringByAppendingString:@"@Version: 1.0\n"];
+                
+                file = [file stringByAppendingString:pkgfile];
+                
+                [file writeToFile:[NSString stringWithFormat:@"%@/%@", [f currentDirectoryPath], [NSString stringWithUTF8String:argv[2]]] atomically:true encoding:NSUTF8StringEncoding error:nil];
+                
+                [xpkg print:@"\tDone."];
+            } else {
+                [xpkg printError:@"Not Enough Arguments"];
+            }
+        }
+        
         /*
         else if ([VIEW isEqualToString:arg]) {
             //VIEW COMMAND
