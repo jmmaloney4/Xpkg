@@ -101,6 +101,7 @@
 }
 
 -(XPPackage*) removePackage:(XPPackage*) pkg {
+    [self SQLExec:@"DELETE FROM pkgs WHERE \"package\" = \"%@\" AND \"repo\" = \"%@\"", pkg.package, [self getRepoID:pkg.repo_name]];
     return pkg;
 }
 
