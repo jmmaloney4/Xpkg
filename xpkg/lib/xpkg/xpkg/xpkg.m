@@ -25,9 +25,11 @@
     va_list formatArgs;
     va_start(formatArgs, x);
     
-    NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
+    //NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
+    NSString* str = x;
     printf("%s\n", [str UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"INFO: %@\n", str]];
+    va_end(formatArgs);
 }
 
 +(void) printSuccess:(NSString*) x, ... {
@@ -38,6 +40,7 @@
     NSString* str = [[NSString alloc] initWithFormat:x arguments: formatArgs];
     printf("%s✔︎ %s%s\n", [BOLDGREEN UTF8String], [str UTF8String], [RESET UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"Sucsess: %@\n", str]];
+    va_end(formatArgs);
 }
 
 +(void) printError:(NSString *)x, ... {
@@ -49,6 +52,7 @@
     
     fprintf(stderr, "%sERROR: %s%s\n", [BOLDRED  UTF8String], [RESET UTF8String], [str UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"ERROR: %@\n", str]];
+    va_end(formatArgs);
 }
 
 +(void) printWarn:(NSString *)x, ... {
@@ -60,6 +64,7 @@
     
     fprintf(stderr, "%sWARNING: %s%s\n", [BOLDYELLOW UTF8String], [RESET UTF8String], [str UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"WARNING: %@\n", str]];
+    va_end(formatArgs);
 }
 
 /**
@@ -74,6 +79,7 @@
     
     printf("%s%s%s\n", [BOLDCYAN UTF8String], [str UTF8String], [RESET UTF8String]);
     [xpkg log:[NSString stringWithFormat:@"INFORMATION: %@\n", str]];
+    va_end(formatArgs);
 }
 
 /**
@@ -98,6 +104,7 @@
     [fileHandle seekToEndOfFile];
     [fileHandle writeData:data];
     [fileHandle closeFile];
+    va_end(formatArgs);
 }
 
 /**
@@ -303,7 +310,7 @@
 /**
  *  gets the specified attribute field from the file at the path
  **/
-+(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url{
++(NSString*) getAttribute:(NSString*)attr atPath:(NSString*)path isURL:(BOOL) url {
     NSString* rv;
     
     NSString* filestr = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];

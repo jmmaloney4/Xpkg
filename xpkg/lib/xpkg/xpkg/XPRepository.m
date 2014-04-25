@@ -53,28 +53,28 @@
     NSFileManager* filem = [[NSFileManager alloc] init];
 
     [xpkg printInfo:[NSString stringWithFormat:@"Adding Repository from %@", self.url]];
-
+    
     [xpkg addAndCommit];
     [filem createDirectoryAtPath:[xpkg getPathWithPrefix:@"/core/repos"] withIntermediateDirectories:true attributes:nil error:nil];
     [xpkg addAndCommit];
     [xpkg executeCommand:[xpkg getPathWithPrefix:@"/bin/git"] withArgs:@[@"submodule", @"add", @"--force", self.url] andPath:[xpkg getPathWithPrefix:@"/core/repos"] printErr:false printOut:false returnOut:false];
     [xpkg addAndCommit];
-
+    
     NSString* repoFilePath = [NSString stringWithFormat:@"%@/REPO", self.path];
 
     self.name = [xpkg parseRepoFile:repoFilePath][0];
     self.maintainer = [xpkg parseRepoFile:repoFilePath][1];
-
+    
     [manager addRepoToDatabase:self];
-
+    
     // Scan packages
     NSMutableArray* pkgs;
     NSArray* cons = [filem contentsOfDirectoryAtPath:self.path error:nil];
-    for (int a = 0; a < cons.count; a++) {
-        [pkgs insertObject:cons[a] atIndex:a];
-        if (![xpkg fileIsIgnoredInRepo:cons[a]]) {
+    for (int d = 0; d < cons.count; d++) {
+        if (![xpkg fileIsIgnoredInRepo:cons[d]]) {
             // Add Package to sqlite3 database
-            XPPackage* pkg = [[XPPackage alloc] initWithpath:[NSString stringWithFormat:@"%@/%@", self.path, cons[a]] andRepo:self.name];
+            XPPackage* pkg = [[XPPackage alloc] initWithpath:[NSString stringWithFormat:@"%@/%@", self.path, cons[d]] andRepo:self.name];
+            [pkgs insertObject:cons[d] atIndex:d];
             [manager addPackageInfoToDatabase:pkg];
         }
     }

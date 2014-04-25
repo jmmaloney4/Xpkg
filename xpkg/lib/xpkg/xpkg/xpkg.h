@@ -274,6 +274,10 @@ static NSString* LOG_FILE = @"/opt/xpkg/log/xpkg.log";
  * Removes the package from the package file at path
  **/
 +(XPPackage*) removePackage:(NSString *)path;
+/**
+ *  retuens YES if the filename is ignored in an xpkg repo
+ **/
++(BOOL) fileIsIgnoredInRepo:(NSString*) str;
 
 /**
  *  returns information about the current system, mostly for debugging purposes

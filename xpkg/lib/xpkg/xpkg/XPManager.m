@@ -55,12 +55,10 @@
 -(NSArray*) SQLExec:(NSString*) query, ... {
     
     va_list formatArgs;
-    [xpkg print:@"hi"];
     va_start(formatArgs, query);
-    [xpkg print:@"hi"];
     NSString* str = [[NSString alloc] initWithFormat:query arguments:formatArgs];
-    [xpkg print:@"hi"];
     query = str;
+    va_end(formatArgs);
     
     sqlite3_stmt *statement = nil;
     const char *sql = [query UTF8String];
@@ -98,7 +96,7 @@
 }
 
 -(XPPackage*) addPackageInfoToDatabase:(XPPackage*) pkg {
-    [self SQLExec:@"INSERT INTO pkgs(package, version, name, description, path, url, mirror1, mirror2, mirror3, mirror4, mirror5, sha, rmd, maintainer, repo, installed) VALUES('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', 0)", pkg.package, pkg.version, pkg.name, pkg.description, pkg.path, pkg.url, pkg.mirrors[0], pkg.mirrors[1], pkg.mirrors[2], pkg.mirrors[3], pkg.mirrors[4], pkg.sha256, pkg.rmd160, pkg.maintainer, [self getRepoID:pkg.repo_name]];
+    [self SQLExec:@"INSERT INTO pkgs(package, version, name, description, path, url, mirror1, mirror2, mirror3, mirror4, mirror5, sha, rmd, maintainer, repo, installed) VALUES('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%d', 0)", pkg.package, pkg.version, pkg.name, pkg.description, pkg.path, pkg.url, pkg.mirrors[0], pkg.mirrors[1], pkg.mirrors[2], pkg.mirrors[3], pkg.mirrors[4], pkg.sha256, pkg.rmd160, pkg.maintainer, [self getRepoID:pkg.repo_name]];
     return pkg;
 }
 
@@ -108,6 +106,7 @@
 
 
 -(XPRepository*) addRepoToDatabase:(XPRepository*) repo {
+    [self SQLExec:@"INSERT INTO repos(name, path, url) values('%@', '%@', '%@')", repo.name, repo.path, repo.url];
     return repo;
 }
 

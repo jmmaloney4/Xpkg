@@ -86,7 +86,7 @@ int main(int argc, const char * argv[]) {
             [xpkg printInfo:@"Xpkg Advanced Packaging System"];
             [xpkg print:@"Version: %@", VERSION];
             [xpkg print:@"Built On: %s at %s", __DATE__, __TIME__];
-            [xpkg print:@"\nxpkg Copyright (c) 2014 Jack Maloney. All rights reserved"];
+            [xpkg print:@"\nxpkg Copyright (c) 2014 Jack Maloney. All rights reserved."];
             [xpkg print:@"\nThis program is free software: you can redistribute it and/or modify"];
             [xpkg print:@"it under the terms of the GNU General Public License as published by"];
             [xpkg print:@"the Free Software Foundation, either version 3 of the License, or"];
