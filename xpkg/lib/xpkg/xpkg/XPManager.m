@@ -112,6 +112,7 @@
 }
 
 -(XPRepository*) removeRepoFromDatabase:(XPRepository*) repo {
+    [self SQLExec:@"DELETE FROM repos WHERE \"name\" = \"%@\"", repo.name];
     return repo;
 }
 
