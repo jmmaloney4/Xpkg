@@ -14,11 +14,11 @@
 		047091191907286200BE21DB /* libxpkg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 047091001907286200BE21DB /* libxpkg.a */; };
 		0470911F1907286200BE21DB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0470911D1907286200BE21DB /* InfoPlist.strings */; };
 		047091211907286200BE21DB /* xpkgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 047091201907286200BE21DB /* xpkgTests.m */; };
-		0470916A1907296600BE21DB /* XPManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091621907296600BE21DB /* XPManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		0470916A1907296600BE21DB /* XPManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091621907296600BE21DB /* XPManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0470916B1907296600BE21DB /* XPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047091631907296600BE21DB /* XPManager.m */; };
-		0470916C1907296600BE21DB /* XPPackage.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091641907296600BE21DB /* XPPackage.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		0470916C1907296600BE21DB /* XPPackage.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091641907296600BE21DB /* XPPackage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0470916D1907296600BE21DB /* XPPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 047091651907296600BE21DB /* XPPackage.m */; };
-		047091701907296600BE21DB /* XPRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091681907296600BE21DB /* XPRepository.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		047091701907296600BE21DB /* XPRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 047091681907296600BE21DB /* XPRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		047091711907296600BE21DB /* XPRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 047091691907296600BE21DB /* XPRepository.m */; };
 		047091951907487800BE21DB /* xpkg.h in Headers */ = {isa = PBXBuildFile; fileRef = 0470910C1907286200BE21DB /* xpkg.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
